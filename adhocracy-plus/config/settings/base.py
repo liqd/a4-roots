@@ -16,6 +16,7 @@ CONTACT_EMAIL = "contact@domain"
 
 # Link to a dokuwiki instance containing a manual for aplus
 # Leave blank to disable
+# For guest users this is hardcoded in indicator.html
 APLUS_MANUAL_URL = ""
 
 # Application definition
@@ -40,6 +41,7 @@ INSTALLED_APPS = (
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+    "guest_user",
     "rules.apps.AutodiscoverRulesConfig",
     "easy_thumbnails",
     "parler",
@@ -276,6 +278,7 @@ AUTHENTICATION_BACKENDS = (
     "rules.permissions.ObjectPermissionBackend",
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend",
+    "guest_user.backends.GuestBackend",
 )
 
 ACCOUNT_ADAPTER = "apps.users.adapters.AccountAdapter"
@@ -705,3 +708,13 @@ CKEDITOR_5_CONFIGS = {
         },
     },
 }
+
+GUEST_USER = {
+    "NAME_GENERATOR": "guest_user.functions.generate_uuid_username",
+}
+
+GUEST_USER_REQUIRED_ANON_URL = "/accounts/guests/login";
+# Redirects below when guest user is required but currently regular user.
+# Currently only guest dashboard views use this, so redirects to user profile.
+GUEST_USER_REQUIRED_USER_URL = "/account/profile/";
+GUEST_USER_CONVERT_URL = "/account/guest/convert/";

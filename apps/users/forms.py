@@ -36,8 +36,21 @@ class DefaultLoginForm(LoginForm):
         self.fields["password"].widget.attrs["autocomplete"] = "current-password"
 
 
-class DefaultSignupForm(SignupForm):
-    terms_of_use = forms.BooleanField(label=_("Terms of use"))
+class TermsAndCaptchaMixin:
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        if "terms_of_use" not in self.fields:
+            self.fields["terms_of_use"] = forms.BooleanField(label=_("Terms of use"))
+
+        if getattr(settings, "CAPTCHA_URL", None):
+            self.fields["captcha"] = CaptcheckCaptchaField(label=_("I am not a robot"))
+            self.fields["captcha"].help_text = helpers.add_email_link_to_helptext(
+                self.fields["captcha"].help_text, CAPTCHA_HELP
+            )
+
+
+class DefaultSignupForm(TermsAndCaptchaMixin, SignupForm):
     get_newsletters = forms.BooleanField(
         label=_("I would like to receive further information"),
         help_text=_(
@@ -46,10 +59,10 @@ class DefaultSignupForm(SignupForm):
         ),
         required=False,
     )
-    captcha = CaptcheckCaptchaField(label=_("I am not a robot"))
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
         self.fields["username"].help_text = _(
             "Your username will appear publicly next to your posts."
         )
@@ -61,12 +74,6 @@ class DefaultSignupForm(SignupForm):
         self.fields["email"].widget.attrs["autocomplete"] = "username"
         self.fields["password1"].widget.attrs["autocomplete"] = "new-password"
         self.fields["password2"].widget.attrs["autocomplete"] = "new-password"
-        if not (hasattr(settings, "CAPTCHA_URL") and settings.CAPTCHA_URL):
-            del self.fields["captcha"]
-        else:
-            self.fields["captcha"].help_text = helpers.add_email_link_to_helptext(
-                self.fields["captcha"].help_text, CAPTCHA_HELP
-            )
 
     def save(self, request):
         user = super().save(request)
@@ -75,6 +82,50 @@ class DefaultSignupForm(SignupForm):
             user.language = get_language()
             user.save()
             return user
+
+
+class GuestCreateForm(TermsAndCaptchaMixin, forms.Form):
+    pass
+
+
+class GuestConvertForm(DefaultSignupForm):
+
+    get_newsletters = forms.BooleanField(
+        label=_("I would like to receive further information"),
+        help_text=_(
+            "Projects you are following can send you "
+            "additional information via email."
+        ),
+        required=False,
+    )
+
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop("user", None)
+        super().__init__(*args, **kwargs)
+
+        del self.fields["captcha"]
+
+        self.fields["email"].required = True
+        self.fields["username"].required = True
+        self.fields["password1"].required = True
+        self.fields["password2"].required = True
+
+    def clean_email(self):
+        email = self.cleaned_data["email"]
+        users = User.objects.filter(email__iexact=email)
+        if users.exists():
+            raise forms.ValidationError("Email already in use.")
+        return email
+
+    def save(self, request):
+        user = self.user
+        user.email = self.cleaned_data["email"]
+        user.username = self.cleaned_data["username"]
+        user.get_newsletters = self.cleaned_data["get_newsletters"]
+        user.set_password(self.cleaned_data["password1"])
+        user.save()
+
+        return user
 
 
 class IgbceSignupForm(DefaultSignupForm):

@@ -52,6 +52,9 @@ class AccountDeletionForm(forms.Form):
         widget=forms.PasswordInput(attrs={"autocomplete": "new-password"}),
     )
 
+class GuestAccountDeletionForm(forms.Form):
+    # No password field for guest users
+    pass
 
 class OrganisationTermsOfUseForm(forms.ModelForm):
     class Meta:
