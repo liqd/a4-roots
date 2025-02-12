@@ -11,8 +11,6 @@ from apps.moderatorfeedback.models import ModeratorCommentFeedback
 
 from . import emails
 
-User = get_user_model()
-
 
 @receiver(signals.post_save, sender=Action)
 def send_notifications(instance, created, **kwargs):

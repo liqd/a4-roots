@@ -3,6 +3,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.views import generic
+from guest_user.mixins import GuestUserRequiredMixin, RegularUserRequiredMixin
 
 from adhocracy4.actions.models import Action
 from adhocracy4.comments.models import Comment
@@ -18,6 +19,7 @@ from apps.users.models import User
 
 class UserDashboardBaseMixin(
     LoginRequiredMixin,
+    RegularUserRequiredMixin,
     generic.base.ContextMixin,
     generic.base.TemplateResponseMixin,
     generic.base.View,
