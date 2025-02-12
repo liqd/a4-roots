@@ -1,4 +1,4 @@
-{% load i18n static thumbnail settings %}
+{% load i18n static thumbnail settings guest_user %}
 {% if request.user.is_authenticated %}
     <div class="dropdown userindicator__dropdown">
         <button title="{% translate 'Menu' %}"
@@ -17,13 +17,19 @@
                 aria-haspopup="true"
                 aria-expanded="false"
                 id="user-actions">
-            <div class="userindicator__btn-img"
-                 style="background-image: {% if request.user.avatar %} url({{ request.user.avatar|thumbnail_url:'avatar' }}) {% else %}  url({{ request.user.avatar_fallback }}) {% endif %}">
-            </div>
+            {% if not user|is_guest_user %}
+                <div class="userindicator__btn-img"
+                    style="background-image: {% if request.user.avatar %} url({{ request.user.avatar|thumbnail_url:'avatar' }}) {% else %}  url({{ request.user.avatar_fallback }}) {% endif %}">
+                </div>
+            {% endif %}
             <div class="userindicator__btn-text text-start">
-                <span class="userindicator__hello">{% translate "Hello" %}</span>
-                <br>
-                <div class="u-overflow-ellipsis">{{ request.user.username }}</div>
+                <span class="userindicator__hello">{% translate "Hello" %}, </span>
+                {% if not user|is_guest_user %}
+                    <br>
+                    <div class="u-overflow-ellipsis">{{ request.user.username }}</div>
+                {% else %}
+                    <span>{% translate "Guest" %}</span>
+                {% endif %}
             </div>
             <i class="fa fa-chevron-down" aria-hidden="true"></i>
         </button>
@@ -32,20 +38,25 @@
             {% if request.user.is_superuser %}
                 <a class="dropdown-item" href="{% url 'admin:index' %}">{% translate "Admin" %}</a>
             {% endif %}
-            <a class="dropdown-item" href="{% url 'userdashboard-overview' %}">{% translate 'My Overview' %}</a>
-            <a class="dropdown-item" href="{% url 'account' %}">{% translate "Account Settings" %}</a>
-            {% for organisation in request.user.organisations %}
-                <a class="dropdown-item"
-                   href="{% url 'a4dashboard:project-list' organisation_slug=organisation.slug %}">
-                    {{ organisation.name }}
-                </a>
-            {% endfor %}
-            {% settings_value "APLUS_MANUAL_URL" as manual_url %}
-            {% if manual_url %}
-                <a class="dropdown-item"
-                   href="{{ manual_url }}/{{ LANGUAGE_CODE }}:start"
-                   target="_blank">{% translate 'Help' %}</a>
-            {% endif %}
+            {% if not user|is_guest_user %}
+                <a class="dropdown-item" href="{% url 'userdashboard-overview' %}">{% translate 'My Overview' %}</a>
+                <a class="dropdown-item" href="{% url 'account' %}">{% translate "Account Settings" %}</a>
+                {% for organisation in request.user.organisations %}
+                    <a class="dropdown-item"
+                    href="{% url 'a4dashboard:project-list' organisation_slug=organisation.slug %}">
+                        {{ organisation.name }}
+                    </a>
+                {% endfor %}
+                {% settings_value "APLUS_MANUAL_URL" as manual_url %}
+                {% if manual_url %}
+                    <a class="dropdown-item"
+                    href="{{ manual_url }}/{{ LANGUAGE_CODE }}:start"
+                    target="_blank">{% translate 'Help' %}</a>
+                {% endif %}
+            {% else %} 
+                <a class="dropdown-item" href="{% url 'guest_convert' %}">{% translate 'Guest Account Settings' %}</a>
+                <a class="dropdown-item" href="https://manual.adhocracy.plus/de:start" target="_blank">{% translate "Help" %}</a>
+            {% endif%}
             <form class="form--inline"
                   action="{% url 'account_logout' %}"
                   method="post"

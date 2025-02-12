@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.contrib.auth import logout
+from allauth.account.utils import complete_signup
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.exceptions import ValidationError
@@ -10,20 +11,21 @@ from django.views import generic
 from django.views.generic.base import RedirectView
 
 from apps.users.models import User
+from apps.users.forms import GuestConvertForm
 from apps.users.utils import set_session_language
+
+from guest_user.views import ConvertFormView
+from guest_user.functions import is_guest_user
+from guest_user.mixins import GuestUserRequiredMixin, RegularUserRequiredMixin
 
 from . import forms
 from .emails import AccountDeletionEmail
 
-
-class AccountView(RedirectView):
+class AccountView(RegularUserRequiredMixin, RedirectView):
     permanent = False
     pattern_name = "account_profile"
-    # Placeholder View to be replaced if we want to use a custom account
-    # dashboard function overview.
 
-
-class ProfileUpdateView(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateView):
+class ProfileUpdateView(LoginRequiredMixin, SuccessMessageMixin, RegularUserRequiredMixin, generic.UpdateView):
     model = User
     template_name = "a4_candy_account/profile.html"
     form_class = forms.ProfileForm
@@ -46,6 +48,28 @@ class ProfileUpdateView(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateV
         return response
 
 
+class GuestConvertView(SuccessMessageMixin, GuestUserRequiredMixin, ConvertFormView, generic.FormView):
+    template_name = "a4_candy_account/guest_convert.html"
+    form_class = GuestConvertForm
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        if 'instance' in kwargs:
+            del kwargs['instance']
+        return kwargs
+
+    def form_valid(self, form):
+        user = form.save(self.request)
+        response = complete_signup(
+            self.request,
+            user,
+            email_verification=settings.ACCOUNT_EMAIL_VERIFICATION,
+            success_url=settings.LOGIN_REDIRECT_URL,
+        )
+        return response
+
+
 class AccountDeletionView(LoginRequiredMixin, SuccessMessageMixin, generic.DeleteView):
     template_name = "a4_candy_account/account_deletion.html"
     form_class = forms.AccountDeletionForm
@@ -55,10 +79,15 @@ class AccountDeletionView(LoginRequiredMixin, SuccessMessageMixin, generic.Delet
     def get_object(self):
         return get_object_or_404(User, pk=self.request.user.id)
 
+    def get_form_class(self):
+        if is_guest_user(self.request.user):
+            return forms.GuestAccountDeletionForm
+        return forms.AccountDeletionForm
+
     def form_valid(self, form):
         user = self.request.user
         password = form.cleaned_data.get("password")
-        if not user.check_password(password):
+        if not is_guest_user(user) and not user.check_password(password):
             form.add_error(
                 "password", ValidationError("Incorrect password.", "invalid")
             )
