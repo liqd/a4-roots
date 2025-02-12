@@ -1,4 +1,5 @@
-# adhocracy+
+# ROOTS
+**ROOTS** is a fork of *adhocracy.plus*, adapted and extended to support the ROOTS project. This repository will serve as the foundation for developing new features that empower civil society organizations in their participatory digital transformation. The project is a collaboration between *Institut für Angewandte Informatik (InfAI)*, *Kindervereinigung Leipzig e.V. (KVL)*, and *Liquid Democracy*.
 
 [adhocracy.plus](https://adhocracy.plus/) is a free Open-Source participation platform maintained and primarily developed by Liquid Democracy e.V.. It is based on [adhocracy 4](https://github.com/liqd/adhocracy4) and [Django](https://github.com/django/django). The project's [technical documentation](https://liqd.github.io/adhocracy-plus/) currently is in progress. You are welcome to provide feedback by creating a GitHub issue.
 
@@ -22,8 +23,8 @@ adhocracy+ is designed to make online participation easy and accessible to every
 
 ### Installation
 
-    git clone https://github.com/liqd/adhocracy-plus.git
-    cd adhocracy-plus
+    git clone git@github.com:liqd/roots.git
+    cd roots
     make install 
     make fixtures
 
