@@ -107,6 +107,7 @@ INSTALLED_APPS = (
     "apps.offlineevents",
     "apps.projects",
     "apps.userdashboard",
+    "apps.learning_nuggets",
     # Apps defining phases
     "apps.activities",
     "apps.budgeting",

@@ -1,0 +1,40 @@
+{% load wagtailcore_tags learn_center_tags %}
+{% get_learn_center_content as content %}
+
+<dialog id="learnDialog" class="learn-dialog">
+    <div class="learn-dialog-content">
+        <header class="learn-header">
+            <button class="close-button" aria-label="Close Learn Center"><i class="fa fa-times"></i></button>
+        </header>
+        
+        <div class="learn-content">
+            {% include 'learn_center/categories_list.html' with categories=content.categories %}
+        </div>
+    </div>
+</dialog>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const dialog = document.getElementById('learnDialog');
+        const learnButton = document.getElementById('learnButton');
+        const closeButton = dialog.querySelector('.close-button');
+        
+        learnButton.addEventListener('click', () => {
+            dialog.showModal();
+            learnButton.setAttribute('aria-expanded', 'true');
+            // Update URL without reload
+            const currentUrl = new URL(window.location);
+            currentUrl.searchParams.set('learn', 'open');
+            window.history.pushState({}, '', currentUrl);
+        });
+
+        closeButton.addEventListener('click', () => {
+            dialog.close();
+            learnButton.setAttribute('aria-expanded', 'false');
+            // Remove learn param from URL
+            const currentUrl = new URL(window.location);
+            currentUrl.searchParams.delete('learn');
+            window.history.pushState({}, '', currentUrl);
+        });
+    });
+</script>

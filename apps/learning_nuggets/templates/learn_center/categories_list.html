@@ -1,0 +1,20 @@
+{% load wagtailcore_tags %}
+
+<div class="categories-list">
+    {% for category in categories %}
+        <section class="category-section">
+            <h2>{{ category.name }}</h2>
+            <ul class="nuggets-list">
+                {% for nugget in category.nuggets.live %}
+                <li>
+                    <article class="nugget-card" data-nugget-url="{% pageurl nugget %}">
+                        {% for block in nugget.content %}
+                            {% include_block block %}
+                        {% endfor %}
+                    </article>
+                </li>
+            {% endfor %}
+            </ul>
+        </section>
+    {% endfor %}
+</div>

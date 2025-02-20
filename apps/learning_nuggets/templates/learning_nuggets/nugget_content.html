@@ -1,0 +1,13 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+
+<article class="nugget-detail">
+    <div class="nugget-header">
+        <h1>{{ page.title }}</h1>
+    </div>
+
+    <div class="nugget-body">
+        {% for block in page.content %}
+            {% include_block block %}
+        {% endfor %}
+    </div>
+</article>
