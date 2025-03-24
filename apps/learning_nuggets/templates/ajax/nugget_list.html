@@ -1,0 +1,30 @@
+<div class="sidebar-breadcrumb">
+    <a href="{% url 'learning_nuggets:index' %}" class="breadcrumb-link" data-sidebar>Home</a>
+    <span> &gt; </span>
+    <span class="breadcrumb-current">{{ category.name }}</span>
+</div>
+
+<h3>{{ category.name }} Nuggets</h3>
+
+<div class="nugget-grid">
+    {% for nugget in category.nuggets.all %}
+    <div class="nugget-card">
+        {% if nugget.content %}
+            {% for block in nugget.content %}
+                {% if block.block_type == 'learning_nugget' and block.value.thumbnail %}
+                    {% image block.value.thumbnail fill-300x200 as thumb %}
+                    <img src="{{ thumb.url }}" alt="{{ nugget.title }}" class="nugget-thumbnail">
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        <h3 class="nugget-title">
+            <a href="{% url 'learning_nuggets:nugget' category_slug=category.slug nugget_slug=nugget.slug %}" 
+               data-sidebar>
+                {{ nugget.title }}
+            </a>
+        </h3>
+    </div>
+    {% empty %}
+    <p>No learning nuggets available in this category.</p>
+    {% endfor %}
+</div>

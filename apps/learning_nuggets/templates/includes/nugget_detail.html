@@ -1,0 +1,15 @@
+{% load wagtailcore_tags %}
+
+<article class="learning-nugget">
+    <h1>{{ nugget.title }}</h1>
+
+    {% if nugget.category %}
+      <p class="category">Category: {{ nugget.category.name }}</p>
+    {% endif %}
+
+    {% for block in nugget.content %}
+      {% include_block block %}
+    {% empty %}
+      <p>No content available.</p>
+    {% endfor %}
+</article>
