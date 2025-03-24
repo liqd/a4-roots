@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h1>Learning Category: {{ category.name }}</h1>
+
+    {% if category.nuggets.all %}
+      <ul>
+        {% for nugget in category.nuggets.all %}
+          <li>
+            <a href="{{ nugget.get_absolute_url }}">{{ nugget.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No learning nuggets available in this category.</p>
+    {% endif %}
+  </div>
+{% endblock %}
