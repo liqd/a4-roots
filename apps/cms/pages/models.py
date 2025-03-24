@@ -19,6 +19,7 @@ from apps.cms.use_cases.blocks import UseCaseBlock
 from apps.contrib.translations import TranslatedField
 from apps.contrib.translations import TranslatedFieldLegal
 
+
 class HomePage(Page):
     image_1 = models.ForeignKey(
         "a4_candy_cms_images.CustomImage",
@@ -179,8 +180,8 @@ class HomePage(Page):
     )
 
     subpage_types = [
-        "a4_candy_cms_pages.EmptyPage", 
-        "learning_nuggets.LearningCenterPage"
+        "a4_candy_cms_pages.EmptyPage",
+        "a4_candy_learning_nuggets.LearningCenterPage",
     ]
 
 
@@ -302,4 +303,3 @@ class SimplePage(Page):
     )
 
     subpage_types = ["a4_candy_cms_pages.SimplePage"]
-    

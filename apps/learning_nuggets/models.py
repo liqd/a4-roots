@@ -1,14 +1,15 @@
-from django.db import models
 from django.core.exceptions import ValidationError
+from django.db import models
+from django.urls import reverse
+from django.utils.text import slugify
 from wagtail.admin.panels import FieldPanel
 from wagtail.fields import StreamField
 from wagtail.models import Page
 from wagtail.search import index
 from wagtail.snippets.models import register_snippet
-from django.utils.text import slugify
-from django.urls import reverse
 
 from .blocks import LearningContentBlock
+
 
 @register_snippet
 class LearningCategory(models.Model):
@@ -36,8 +37,8 @@ class LearningCategory(models.Model):
         ordering = ["order", "name"]
         verbose_name = "Learning Category"
         verbose_name_plural = "Learning Categories"
-    
-    def save(self, *args, **kwargs):
+
+    def save(self, update_fields=None, *args, **kwargs):
         if not self.slug:
             base_slug = slugify(self.name)
             unique_slug = base_slug
@@ -47,10 +48,11 @@ class LearningCategory(models.Model):
                 unique_slug = f"{base_slug}-{counter}"
                 counter += 1
 
-            self.slug = unique_slug  
-            
-        super().save(*args, **kwargs)
+            self.slug = unique_slug
 
+        if update_fields:
+            update_fields = {"slug"}.union(update_fields)
+        super().save(update_fields=update_fields, *args, **kwargs)
 
     def __str__(self):
         return self.name
@@ -61,6 +63,7 @@ class LearningCenterPage(Page):
     Singleton page model for the Learning Center.
     Will contain all learning nuggets organized by category.
     """
+
     max_count = 1  # Ensures only one instance can be created
 
     content_panels = Page.content_panels
@@ -76,11 +79,13 @@ class LearningCenterPage(Page):
     class Meta:
         verbose_name = "Learning Center Page"
 
+
 def validate_single_instance(value):
     """Ensures only one item exists in the StreamField."""
     if len(value) > 1:
         raise ValidationError("Only one Learning Nugget is allowed in this field.")
-    
+
+
 class LearningNuggetPage(Page):
     category = models.ForeignKey(
         LearningCategory,
@@ -91,8 +96,8 @@ class LearningNuggetPage(Page):
     )
 
     content = StreamField(
-        [("learning_nugget", LearningContentBlock())], 
-        use_json_field=True, 
+        [("a4_candy_learning_nuggets", LearningContentBlock())],
+        use_json_field=True,
         blank=True,
         validators=[validate_single_instance],
     )
@@ -111,10 +116,10 @@ class LearningNuggetPage(Page):
 
     def get_absolute_url(self):
         if self.category:
-            return reverse("learning_nuggets:nugget", kwargs={
-                "category_slug": self.category.slug,
-                "nugget_slug": self.slug
-            })
+            return reverse(
+                "learning_nuggets:nugget-detail",
+                kwargs={"category_slug": self.category.slug, "nugget_slug": self.slug},
+            )
         return "#"  # Fallback if no category
 
     class Meta:
