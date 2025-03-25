@@ -149,6 +149,7 @@ module.exports = {
     },
     learning_sidebar: {
       import: [
+        './apps/learning_nuggets/assets/css/learning.scss',
         './apps/learning_nuggets/assets/js/learning_sidebar.js'
       ]
     }

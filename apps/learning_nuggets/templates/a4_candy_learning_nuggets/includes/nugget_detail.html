@@ -1,15 +1,29 @@
-{% load wagtailcore_tags %}
+{% load i18n wagtailcore_tags %}
+
+<nav class="sidebar-breadcrumb">
+  <ol>
+    <li>
+      <a href="{% url 'learning_nuggets:index' %}" class="breadcrumb-link" {% if is_ajax %} data-sidebar{% endif %}>{% translate 'Learning Center' %}</a>
+    </li>
+    <li>
+      <a href="{% url 'learning_nuggets:category' category_slug=nugget.category.slug %}" {% if is_ajax %} data-sidebar{% endif %}>{{ nugget.category }}</a>
+    </li>
+    <li>
+      <span class="sidebar-breadcrumb__current">{{ nugget.title }}</span>
+    </li>
+  </ol>
+</nav>
 
 <article class="learning-nugget">
     <h1>{{ nugget.title }}</h1>
 
     {% if nugget.category %}
-      <p class="category">Category: {{ nugget.category.name }}</p>
+      <p class="category">{% translate 'Category: ' %}{{ nugget.category.name }}</p>
     {% endif %}
 
     {% for block in nugget.content %}
       {% include_block block %}
     {% empty %}
-      <p>No content available.</p>
+      <p>{% translate 'No content available.' %}</p>
     {% endfor %}
 </article>

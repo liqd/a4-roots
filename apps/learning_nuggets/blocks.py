@@ -29,6 +29,6 @@ class LearningContentBlock(blocks.StructBlock):
     )
 
     class Meta:
-        template = "blocks/learning_content_block.html"
+        template = "a4_candy_learning_nuggets/blocks/learning_content_block.html"
         icon = "media"
         label = "Learning Nugget Content"
