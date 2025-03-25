@@ -1,0 +1,17 @@
+{% load i18n %}
+
+<h2>{% translate 'Learning Categories' %}</h2>
+
+<ul class="learning-category__list">
+    {% for category in categories %}
+    <li class="learning-category__item">
+        <a href="{% url 'learning_nuggets:category' category_slug=category.slug %}" 
+           class="learning-category__link"
+           {% if is_ajax %} data-sidebar{% endif %}>
+            {{ category.name }}
+        </a>
+    </li>
+    {% empty %}
+        <li>{% translate 'No categories available.' %}</li>
+    {% endfor %}
+</ul>

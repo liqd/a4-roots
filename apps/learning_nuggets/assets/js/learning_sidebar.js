@@ -1,30 +1,29 @@
-// learning-sidebar.js - Simplified approach
 document.addEventListener('DOMContentLoaded', function () {
-  // Get DOM elements
   const toggleButton = document.getElementById('learning-toggle')
   const sidebar = document.getElementById('learning-sidebar')
   const closeButton = document.getElementById('learning-close')
   const sidebarContent = document.getElementById('learning-content')
+  const originalUrl = window.location.href
 
+  // Toggle sidebar
   toggleButton.addEventListener('click', function (e) {
     e.preventDefault()
     sidebar.classList.add('active')
 
-    // Only load content if the sidebar is empty
     if (!sidebarContent.innerHTML.trim()) {
-    //   loadContent('/learning-center/')
+      loadContent('/learning-center/')
     }
   })
 
-  // Close sidebar
+  // Close sidebar and reset URL
   closeButton.addEventListener('click', function (e) {
     e.preventDefault()
     sidebar.classList.remove('active')
+    window.history.pushState(null, '', originalUrl)
   })
 
   // Handle clicks inside the sidebar content
   sidebarContent.addEventListener('click', function (e) {
-    // Only handle links with data-sidebar attribute
     const link = e.target.closest('a[data-sidebar]')
     if (link) {
       e.preventDefault()

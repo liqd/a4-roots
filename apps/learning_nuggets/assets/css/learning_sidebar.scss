@@ -1,0 +1,67 @@
+  $toggle_bg: #CFD7E5;
+
+  .learning-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 998;
+    background-color: $toggle_bg;
+    border: none;
+    padding: 8px 15px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 2em;
+  }
+  
+  .learning-sidebar {
+    position: fixed;
+    top: 0;
+    right: -350px; /* Start off-screen */
+    width: 350px;
+    height: 100vh;
+    background-color: $body-bg;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    transition: right 0.3s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .learning-sidebar.active {
+    right: 0;
+  }
+  
+  .learning-sidebar__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+
+    h1 {
+      font-size: 24px;
+      font-family: $font-family-base;
+      font-weight: 700;
+      margin-top: 10px;
+    }
+  }
+  
+  .learning-sidebar__close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0 5px;
+  }
+  
+  .learning-sidebar__content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px;
+  }
+
+  @media screen and (max-width: $breakpoint) {
+    .learning-sidebar {
+      width: 100%;
+      right: -100%;
+    }
+  }

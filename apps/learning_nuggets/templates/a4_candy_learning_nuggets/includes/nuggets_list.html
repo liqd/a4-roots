@@ -1,0 +1,24 @@
+{% load i18n %}
+
+<div class="sidebar-breadcrumb">
+    <a href="{% url 'learning_nuggets:index' %}" class="breadcrumb-link" {% if is_ajax %} data-sidebar{% endif %}>{% translate 'Learning Center' %}</a>
+    <span> &gt; </span>
+    <span class="breadcrumb-current">{{ category.name }}</span>
+</div>
+
+<h1>{{ category.name }}</h1>
+
+{% if category.nuggets.all %}
+    <ul>
+        {% for nugget in category.nuggets.all %}
+            <li>
+                <a href="{% url 'learning_nuggets:nugget-detail' category_slug=category.slug nugget_slug=nugget.slug %}"
+                {% if is_ajax %} data-sidebar{% endif %}>
+                    {{ nugget.title }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>{% translate 'No learning nuggets available in this category.' %}</p>
+{% endif %}

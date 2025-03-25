@@ -1,11 +1,27 @@
-<button id="learning-toggle">Learning Center</button>
+{% load i18n static %}
 
-<div id="learning-sidebar">
-    <div class="sidebar-header">
-        <h2>Learning Center</h2>
-        <button id="learning-close">×</button>
+{% block extra_css %}
+    <link type="text/css" href="{% static 'learning_sidebar.css' %}" rel="stylesheet" />
+{% endblock extra_css %}
+
+<noscript>
+    <a href="{% url 'learning_nuggets:index' %}" class="learning-link">{% translate 'Go to Learning Center' %}</a>
+</noscript>
+<button id="learning-toggle" class="learning-toggle" aria-label="{% translate 'Open Learning Center' %} ">
+    <i class="fa fa-question-circle"></i>
+</button>
+
+<div id="learning-sidebar" class="learning-sidebar">
+    <div class="u-page-ribbon"></div>
+    <div class="learning-sidebar__header">
+        <h1>{% translate 'Learning Center' %}</h1>
+        <button id="learning-close" class="learning-sidebar__close" aria-label="Close">
+            <i class="fa fa-times"></i>
+        </button>
     </div>
-    <div id="learning-content">
-        <!-- Content will be loaded here via AJAX -->
-    </div>
+    <div id="learning-content" class="learning-sidebar__content"></div>
 </div>
+
+{% block extra_js %}
+    <script type="text/javascript" src="{% static 'learning_sidebar.js' %}"></script>
+{% endblock extra_js %}
