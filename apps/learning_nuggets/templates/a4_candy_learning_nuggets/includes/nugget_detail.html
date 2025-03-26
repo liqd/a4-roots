@@ -1,29 +1,27 @@
 {% load i18n wagtailcore_tags %}
 
-<nav class="sidebar-breadcrumb">
-  <ol>
+<nav class="learning-breadcrumb">
+  <ul>
     <li>
-      <a href="{% url 'learning_nuggets:index' %}" class="breadcrumb-link" {% if is_ajax %} data-sidebar{% endif %}>{% translate 'Learning Center' %}</a>
+      <a href="{% url 'learning_nuggets:index' %}" class="learning-breadcrumb__link" {% if is_ajax %} data-sidebar{% endif %}>
+        {% translate 'Learning Center' %}
+      </a>
     </li>
+    <i class="fas fa-chevron-right" aria-hidden="true"></i> 
     <li>
-      <a href="{% url 'learning_nuggets:category' category_slug=nugget.category.slug %}" {% if is_ajax %} data-sidebar{% endif %}>{{ nugget.category }}</a>
+      <a href="{% url 'learning_nuggets:category' category_slug=nugget.category.slug %}" {% if is_ajax %} data-sidebar{% endif %}>
+        {{ nugget.category }}
+      </a>
     </li>
+    <i class="fas fa-chevron-right" aria-hidden="true"></i> 
     <li>
-      <span class="sidebar-breadcrumb__current">{{ nugget.title }}</span>
+      <span class="learning-breadcrumb__current">{{ nugget.title }}</span>
     </li>
-  </ol>
+  </ul>
 </nav>
 
-<article class="learning-nugget">
-    <h1>{{ nugget.title }}</h1>
-
-    {% if nugget.category %}
-      <p class="category">{% translate 'Category: ' %}{{ nugget.category.name }}</p>
-    {% endif %}
-
-    {% for block in nugget.content %}
-      {% include_block block %}
-    {% empty %}
-      <p>{% translate 'No content available.' %}</p>
-    {% endfor %}
-</article>
+{% for block in nugget.content %}
+  {% include_block block %}
+{% empty %}
+  <p>{% translate 'No content available.' %}</p>
+{% endfor %}

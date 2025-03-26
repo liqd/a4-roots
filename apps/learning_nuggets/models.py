@@ -13,7 +13,8 @@ from .blocks import LearningContentBlock
 
 @register_snippet
 class LearningCategory(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=60)
+    description = models.CharField(max_length=255, blank=True)
     slug = models.SlugField(unique=True, blank=True)
     permission_level = models.CharField(
         max_length=50,
@@ -28,6 +29,7 @@ class LearningCategory(models.Model):
 
     panels = [
         FieldPanel("name"),
+        FieldPanel("description"),
         FieldPanel("slug"),
         FieldPanel("permission_level"),
         FieldPanel("order"),
