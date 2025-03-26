@@ -138,10 +138,6 @@ class VideoBlock(StructBlock):
         "MP4, WebM, MP3, WAV",
         required=False,
     )
-    media_type = ChoiceBlock(
-        choices=[("audio", "Audio file"), ("video", "Video file")],
-        required=False,
-    )
     transcript = RichTextBlock(
         features=["bold", "italic", "ol", "ul", "link", "document-link"],
         help_text="You can add the video's "
