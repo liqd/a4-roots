@@ -1,9 +1,14 @@
 // subset of bootstrap variables
-$brand-primary: #abc6d6; // blue
+$brand-primary: #2364aa; // dk blue
 
-$brand-secondary: #c4d9c6 !default; // green
+$brand-secondary: #cfd7e5 !default; // light purple
 
-$brand-tertiary: #cfd6e6 !default; // grey
+$brand-tertiary: $brand-secondary; 
+
+// Top band has distinct colors
+$band-primary: #c4d9c6; // green
+$band-secondary: #abc6d6 !default; // blue
+$band-tertiary: #cfd6e6 !default; // grey
 
 /* Don't use variables but hex-values here as they should not be overwritten on organisation pages */
 $brand-success: #a3ef90 !default;
@@ -42,7 +47,7 @@ $print-link: #005cb4 !default;
 
 $brand-primary-tint: lighten($brand-primary, 47%) !default;
 $brand-secondary-tint: lighten($brand-secondary, 20%) !default;
-$brand-tertiary-tint: lighten($brand-tertiary, 55%) !default;
+$brand-tertiary-tint: $brand-tertiary !default;
 
 $bg-light: #f7f7f7;
 $bg-tertiary: $brand-tertiary-tint !default;
