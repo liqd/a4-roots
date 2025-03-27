@@ -2,7 +2,7 @@
 {% load i18n %}
 {% block head_title %}
     {% translate "Register" %}
-{% endblock %}
+{% endblock head_title %}
 {% block content %}
     <h1>{% translate "Register" %}</h1>
     {% with page=settings.a4_candy_cms_settings.ImportantPages.registration %}
@@ -67,8 +67,8 @@
         {% endif %}
 
         <div class="u-spacer-bottom-double">
-            <button class="btn btn--primary btn--secondary-filled" type="submit">{% translate "Register" %}</button>
+            <button class="btn btn--primary" type="submit">{% translate "Register" %}</button>
         </div>
     </form>
     {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-{% endblock %}
+{% endblock content %}
