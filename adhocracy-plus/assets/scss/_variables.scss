@@ -3,12 +3,12 @@ $brand-primary: #2364aa; // dk blue
 
 $brand-secondary: #cfd7e5 !default; // light purple
 
-$brand-tertiary: $brand-secondary; 
+$brand-tertiary: #cfd6e6 !default; // grey
 
 // Top band has distinct colors
 $band-primary: #c4d9c6; // green
 $band-secondary: #abc6d6 !default; // blue
-$band-tertiary: #cfd6e6 !default; // grey
+$band-tertiary: $brand-tertiary; 
 
 /* Don't use variables but hex-values here as they should not be overwritten on organisation pages */
 $brand-success: #a3ef90 !default;
