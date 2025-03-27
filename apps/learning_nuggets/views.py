@@ -1,4 +1,4 @@
-# apps/learning_nuggets/views.py
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView
 from django.views.generic import ListView
@@ -49,8 +49,17 @@ class LearningCategoryView(AjaxTemplateMixin, DetailView):
     context_object_name = "category"
 
     def get_object(self):
-        # Get the category based on the slug from the URL
-        return get_object_or_404(LearningCategory, slug=self.kwargs["category_slug"])
+        category = get_object_or_404(
+            LearningCategory, slug=self.kwargs["category_slug"]
+        )
+
+        permission_check = (
+            f"a4_candy_learning_nuggets.view_{category.permission_level}_content"
+        )
+        if not self.request.user.has_perm(permission_check):
+            raise PermissionDenied
+
+        return category
 
 
 class LearningNuggetView(AjaxTemplateMixin, DetailView):
@@ -68,4 +77,11 @@ class LearningNuggetView(AjaxTemplateMixin, DetailView):
         nugget = get_object_or_404(
             LearningNuggetPage, slug=self.kwargs["nugget_slug"], category=category
         )
+
+        permission_check = (
+            f"a4_candy_learning_nuggets.view_{category.permission_level}_content"
+        )
+        if not self.request.user.has_perm(permission_check):
+            raise PermissionDenied
+
         return nugget
