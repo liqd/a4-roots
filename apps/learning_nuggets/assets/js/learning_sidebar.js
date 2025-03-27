@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', function () {
   const sidebarContent = document.getElementById('learning-content')
   const originalUrl = window.location.href
 
+  toggleButton.classList.add('learning-toggle--js-enabled')
+
   // Toggle sidebar
   toggleButton.addEventListener('click', function (e) {
     e.preventDefault()

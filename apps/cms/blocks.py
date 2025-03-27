@@ -1,7 +1,5 @@
-from django.core.exceptions import ValidationError
 from wagtail import blocks
 from wagtail.blocks import CharBlock
-from wagtail.blocks import ChoiceBlock
 from wagtail.blocks import RichTextBlock
 from wagtail.blocks import StructBlock
 from wagtail.documents.blocks import DocumentChooserBlock
@@ -145,25 +143,6 @@ class VideoBlock(StructBlock):
         "characters).",
         required=False,
     )
-
-    def clean(self, value):
-        errors = {}
-        media = value.get("media")
-
-        if media:
-            if not value.get("media_type"):
-                errors["media_type"] = ValidationError(
-                    "Media type is required when a media file is uploaded."
-                )
-            if not value.get("title"):
-                errors["title"] = ValidationError(
-                    "Title is required when a media file is uploaded."
-                )
-
-        if errors:
-            raise ValidationError("Please fix the following errors:", params=errors)
-
-        return super().clean(value)
 
     class Meta:
         template = "a4_candy_cms_pages/blocks/video_block.html"

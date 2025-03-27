@@ -13,7 +13,7 @@ class LearningContentBlock(blocks.StructBlock):
     )
     thumbnail = ImageBlock(
         required=False,
-        help_text="Upload a representative image that visually captures the content (recommended size: 800x450px, 16:9 ratio)",
+        help_text="Upload a representative image that visually captures the content (recommended size: 600x400px, 3:2 ratio)",
     )
     description = blocks.RichTextBlock(
         required=False,
