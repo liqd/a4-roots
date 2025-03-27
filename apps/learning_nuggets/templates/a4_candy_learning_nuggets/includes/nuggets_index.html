@@ -1,17 +1,24 @@
 {% load i18n %}
 
-<h2>{% translate 'Learning Categories' %}</h2>
+{% include "a4_candy_learning_nuggets/includes/learning_header.html" %}
 
-<ul class="learning-category__list">
-    {% for category in categories %}
-    <li class="learning-category__item">
-        <a href="{% url 'learning_nuggets:category' category_slug=category.slug %}" 
-           class="learning-category__link"
-           {% if is_ajax %} data-sidebar{% endif %}>
-            {{ category.name }}
-        </a>
-    </li>
-    {% empty %}
-        <li>{% translate 'No categories available.' %}</li>
-    {% endfor %}
-</ul>
+<article class="learning-content">
+    <ul class="u-list-reset">
+        {% for category in categories %}
+            <li>
+                <article>
+                    <h2 class="learning-content__title learning-content__title--md">
+                        <a href="{% url 'learning_nuggets:category' category_slug=category.slug %}" 
+                        class="u-no-underline"
+                        {% if is_ajax %} data-sidebar{% endif %}>
+                            {{ category.name }}
+                        </a>
+                    </h2>
+                    <p>{{ category.description }}</p>
+                </article>
+            </li>
+        {% empty %}
+            <li>{% translate 'No categories available.' %}</li>
+        {% endfor %}
+    </ul>
+</article>
