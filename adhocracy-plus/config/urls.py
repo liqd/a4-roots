@@ -44,6 +44,7 @@ from apps.userdashboard.routers import ModerationDetailDefaultRouter
 from apps.users.api import UserViewSet
 from apps.users.decorators import user_is_project_admin
 from apps.users.views import set_language_overwrite
+from apps.learning_nuggets.views import LearningCenterView
 
 router = routers.DefaultRouter()
 router.register(r"follows", FollowViewSet, basename="follows")
@@ -222,6 +223,7 @@ if settings.DEBUG:
 
 # generic patterns at the very end
 urlpatterns += [
+    path('learning-center/', include('apps.learning_nuggets.urls', namespace='learning_nuggets')),
     path("", include("apps.organisations.urls")),
     path("", include("wagtail.urls")),
 ]
