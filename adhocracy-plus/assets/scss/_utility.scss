@@ -112,7 +112,7 @@
 }
 
 .u-page-ribbon {
-    background: linear-gradient(to right, $ribbon-primary 0%, $ribbon-secondary 50.5%, $ribbon-tertiary 100%);
+    background: linear-gradient(to right, $ribbon-primary $ribbon-primary-stop, $ribbon-secondary $ribbon-secondary-stop, $ribbon-tertiary $ribbon-tertiary-stop);
     height: 0.5em;
 }
 
