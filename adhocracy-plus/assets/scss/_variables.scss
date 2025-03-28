@@ -1,14 +1,25 @@
-// subset of bootstrap variables
-$brand-primary: #2364aa; // dk blue
+// Define fantasy color variables
+$deep-ocean: #2364aa; // or $dark-blue
+$misty-lavender: #cfd7e5; // or $ light-purple
+$silver-fog: #cfd6e6; // or $grey
 
-$brand-secondary: #cfd7e5 !default; // light purple
+$soft-meadow: #c4d9c6; // or $green (Top ribbon)
+$sky-horizon: #abc6d6; // or $blue (Top ribbon)
 
-$brand-tertiary: #cfd6e6 !default; // grey
+// Assign them to Bootstrap role-based variables
+$brand-primary: $deep-ocean;
+$brand-secondary: $misty-lavender !default;
+$brand-tertiary: $silver-fog !default;
+$brand-quaternary: $sky-horizon !default;
 
-// Top band has distinct colors
-$ribbon-primary: #c4d9c6; // green
-$ribbon-secondary: #abc6d6 !default; // blue
-$ribbon-tertiary: $brand-tertiary; 
+// Ribbon colours
+$ribbon-primary: $soft-meadow;
+$ribbon-secondary: $sky-horizon !default;
+$ribbon-tertiary: $brand-tertiary;
+
+$ribbon-primary-stop: 0%;
+$ribbon-secondary-stop: 50.5%;
+$ribbon-tertiary-stop: 100%;
 
 /* Don't use variables but hex-values here as they should not be overwritten on organisation pages */
 $brand-success: #a3ef90 !default;
