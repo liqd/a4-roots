@@ -1,9 +1,25 @@
-// subset of bootstrap variables
-$brand-primary: #2d40cc; // ultramarine
+// Define fantasy color variables
+$deep-ocean: #2364aa; // or $dark-blue
+$misty-lavender: #cfd7e5; // or $ light-purple
+$silver-fog: #cfd6e6; // or $grey
 
-$brand-secondary: #90efe4 !default; // terquoise
+$soft-meadow: #c4d9c6; // or $green (Top ribbon)
+$sky-horizon: #abc6d6; // or $blue (Top ribbon)
 
-$brand-tertiary: #008dc5 !default; // prussian blue
+// Assign them to Bootstrap role-based variables
+$brand-primary: $deep-ocean;
+$brand-secondary: $misty-lavender !default;
+$brand-tertiary: $silver-fog !default;
+$brand-quaternary: $sky-horizon !default;
+
+// Ribbon colours
+$ribbon-primary: $soft-meadow;
+$ribbon-secondary: $sky-horizon !default;
+$ribbon-tertiary: $brand-tertiary;
+
+$ribbon-primary-stop: 0%;
+$ribbon-secondary-stop: 50.5%;
+$ribbon-tertiary-stop: 100%;
 
 /* Don't use variables but hex-values here as they should not be overwritten on organisation pages */
 $brand-success: #a3ef90 !default;
@@ -42,7 +58,7 @@ $print-link: #005cb4 !default;
 
 $brand-primary-tint: lighten($brand-primary, 47%) !default;
 $brand-secondary-tint: lighten($brand-secondary, 20%) !default;
-$brand-tertiary-tint: lighten($brand-tertiary, 55%) !default;
+$brand-tertiary-tint: $brand-tertiary !default;
 
 $bg-light: #f7f7f7;
 $bg-tertiary: $brand-tertiary-tint !default;
@@ -61,7 +77,7 @@ $feedback-color-accepted: #0a820a !default;
 $feedback-color-rejected: #dc3818 !default;
 $feedback-color-consideration: #ffae00 !default;
 
-$font-family-base: "SourceSansPro", sans-serif !default;
+$font-family-base: "PT Sans", sans-serif !default;
 $font-family-serif: "SourceSerifPro", serif !default;
 
 $font-size-xxxl: 2.5rem !default; //40px

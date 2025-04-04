@@ -68,7 +68,7 @@
 }
 
 .btn.btn--primary {
-    @include button($brand-primary, $brand-primary, $text-color, 47%);
+    @include button-bg($print-black, $print-black, $body-bg, 15%);
     min-width: 10 * $spacer;
 }
 
@@ -82,7 +82,7 @@
 }
 
 .btn.btn--bg-tertiary {
-    @include button-bg($brand-tertiary-tint, $brand-tertiary-tint, $print-black, 2%);
+    @include button-bg($brand-tertiary, $brand-tertiary, $print-black, 2%);
 }
 
 .btn.btn--transparent {
