@@ -98,10 +98,9 @@ class LearningNuggetPage(Page):
     )
 
     content = StreamField(
-        [("a4_candy_learning_nuggets", LearningContentBlock())],
+        [("learning_nugget", LearningContentBlock())],
         use_json_field=True,
         blank=True,
-        validators=[validate_single_instance],
     )
 
     search_fields = Page.search_fields + [
