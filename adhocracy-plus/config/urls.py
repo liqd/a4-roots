@@ -224,6 +224,10 @@ if settings.DEBUG:
 
 # generic patterns at the very end
 urlpatterns += [
+    path(
+        "learning-center/",
+        include("apps.learning_nuggets.urls", namespace="learning_nuggets"),
+    ),
     path("", include("apps.organisations.urls")),
     path("", include("wagtail.urls")),
 ]

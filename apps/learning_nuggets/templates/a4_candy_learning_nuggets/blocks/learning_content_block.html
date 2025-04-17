@@ -1,0 +1,36 @@
+{% load i18n wagtailcore_tags wagtailimages_tags %}
+<article class="learning-content">
+    <h2 class="learning-content__title learning-content__title--lg">{{ value.title }}</h2>
+    {% if value.thumbnail %}
+        {% image value.thumbnail fill-420x280 as thumb %}
+        <img src="{{ thumb.url }}"
+             alt="{{ value.title }}"
+             class="learning-content__thumbnail">
+    {% endif %}
+    {% if value.description %}<div class="learning-content__description">{{ value.description|richtext }}</div>{% endif %}
+    {% for block in value.extras %}
+        {% if block.block_type == 'image' and block.value %}
+            {% image block.value fill-420x280 as img %}
+            <img src="{{ img.url }}"
+                 alt="{{ value.title }}"
+                 class="learning-content__extra-image">
+        {% endif %}
+        {% if block.block_type == 'video' and block.value.media %}
+            <div class="learning-content__video">{% include_block block %}</div>
+        {% endif %}
+    {% endfor %}
+    {% if value.extras %}
+        <div class="learning-content__related-resources">
+            <h3 class="learning-content__title">{% translate 'Related Resources' %}</h3>
+            <ul class="document-list">
+                {% for block in value.extras %}
+                    {% if block.block_type == 'document' and block.value %}
+                        <li>
+                            <a href="{{ block.value.url }}" target="_blank" class="document-link">{{ block.value.title }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+</article>

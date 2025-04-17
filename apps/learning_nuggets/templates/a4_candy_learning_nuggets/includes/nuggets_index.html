@@ -1,0 +1,26 @@
+{% load i18n rules learning_nuggets_tags %}
+{% include "a4_candy_learning_nuggets/includes/learning_header.html" %}
+<section class="learning-content">
+    {% for category in categories %}
+        {% get_permission category.permission_level as permission %}
+        <ul class="u-list-reset">
+            {% if permission %}
+                {% has_perm permission request.user as user_may_see_category %}
+                {% if user_may_see_category %}
+                    <li>
+                        <article>
+                            <h2 class="learning-content__title learning-content__title--md">
+                                <a href="{% url 'learning_nuggets:category' category_slug=category.slug %}"
+                                   class="u-no-underline"
+                                   {% if is_ajax %}data-sidebar{% endif %}>{{ category.name }}</a>
+                            </h2>
+                            <p>{{ category.description }}</p>
+                        </article>
+                    </li>
+                {% endif %}
+            </ul>
+        {% endif %}
+    {% empty %}
+        <p>{% translate 'No categories available.' %}</p>
+    {% endfor %}
+</section>
