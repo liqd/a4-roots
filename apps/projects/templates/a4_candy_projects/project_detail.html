@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n rules react_follows thumbnail wagtailcore_tags a4_candy_project_tags offlineevent_tags contrib_tags ckeditor_tags static %}
+{% load i18n rules react_follows thumbnail wagtailcore_tags a4_candy_project_tags offlineevent_tags contrib_tags ckeditor_tags guest_user static %}
 
 {% block title %}{{project.name}} &mdash; {{ block.super }}{% endblock %}
 
@@ -60,7 +60,7 @@
                     <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3">
                         <h1 class="project-header__title">{{ project.name }}</h1>
                         <p class="project-header__description">{{ project.description }}</p>
-                        {% if request.user.is_authenticated %}
+                        {% if request.user.is_authenticated and not request.user|is_guest_user %}
                             {% react_follows project %}
                         {% endif %}
                     </div>

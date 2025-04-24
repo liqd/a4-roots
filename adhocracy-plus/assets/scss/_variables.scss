@@ -1,5 +1,6 @@
 // Define fantasy color variables
 $deep-ocean: #2364aa; // or $dark-blue
+$ocean-green: #4e7b94;
 $misty-lavender: #cfd7e5; // or $ light-purple
 $silver-fog: #cfd6e6; // or $grey
 
@@ -7,7 +8,7 @@ $soft-meadow: #c4d9c6; // or $green (Top ribbon)
 $sky-horizon: #abc6d6; // or $blue (Top ribbon)
 
 // Assign them to Bootstrap role-based variables
-$brand-primary: $deep-ocean;
+$brand-primary: $ocean-green;
 $brand-secondary: $misty-lavender !default;
 $brand-tertiary: $silver-fog !default;
 $brand-quaternary: $sky-horizon !default;

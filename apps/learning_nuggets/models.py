@@ -7,6 +7,7 @@ from wagtail.fields import StreamField
 from wagtail.models import Page
 from wagtail.search import index
 from wagtail.snippets.models import register_snippet
+from wagtail.models import Orderable
 
 from .blocks import LearningContentBlock
 
@@ -56,6 +57,9 @@ class LearningCategory(models.Model):
             update_fields = {"slug"}.union(update_fields)
         super().save(update_fields=update_fields, *args, **kwargs)
 
+    def ordered_nuggets(self):
+        return self.nuggets.all().order_by('order')
+
     def __str__(self):
         return self.name
 
@@ -88,7 +92,7 @@ def validate_single_instance(value):
         raise ValidationError("Only one Learning Nugget is allowed in this field.")
 
 
-class LearningNuggetPage(Page):
+class LearningNuggetPage(Page, Orderable):
     category = models.ForeignKey(
         LearningCategory,
         on_delete=models.SET_NULL,
@@ -110,10 +114,12 @@ class LearningNuggetPage(Page):
     content_panels = Page.content_panels + [
         FieldPanel("category"),
         FieldPanel("content"),
+        FieldPanel('order'),
     ]
 
     parent_page_types = ["LearningCenterPage"]
     subpage_types = []
+    order = models.IntegerField(default=0)
 
     def get_absolute_url(self):
         if self.category:
@@ -125,3 +131,4 @@ class LearningNuggetPage(Page):
 
     class Meta:
         verbose_name = "Learning Nugget Page"
+        ordering = ['order']

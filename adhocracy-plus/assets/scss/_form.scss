@@ -195,3 +195,15 @@ div.cke_focus {
         }
     }
 }
+
+@media (max-width: $breakpoint-xs) {
+    form {
+        button, .proceed-guest-button {
+            width: 100%;
+        }
+
+        .proceed-guest-button {
+            margin-top: 16px;
+        }
+    }
+}
