@@ -13,6 +13,12 @@ def get_permission(permission_level):
     return permissions.get(permission_level, "")
 
 
+@register.simple_tag
+def get_permission_display(permission_level):
+    """For display purposes only - returns capitalized version"""
+    return permission_level.title()
+
+
 @register.filter(name="filter_by_block_type")
 def filter_by_block_type(blocks, block_type):
     """Filters StreamField blocks by their block_type."""

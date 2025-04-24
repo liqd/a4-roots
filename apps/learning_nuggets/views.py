@@ -25,19 +25,37 @@ class AjaxTemplateMixin:
 
 
 class LearningCenterView(AjaxTemplateMixin, ListView):
-    """Main learning center page that shows all categories"""
-
     template_name = "a4_candy_learning_nuggets/learning_center.html"
     ajax_template_name = "a4_candy_learning_nuggets/includes/nuggets_index.html"
-    context_object_name = "categories"
+    context_object_name = "grouped_categories"
     model = LearningCategory
+
+    PERMISSION_ORDER = ["participant", "initiator", "moderator"]
+
+    def get_queryset(self):
+        return super().get_queryset().order_by("order")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # Add the main learning center page
+        categories = list(context.get("grouped_categories", []))
+
+        grouped = {}
+        for category in categories:
+            grouped.setdefault(category.permission_level, []).append(category)
+
+        grouped_categories = []
+        for perm_level in self.PERMISSION_ORDER:
+            if perm_level in grouped:
+                grouped_categories.append(
+                    {"permission_level": perm_level, "categories": grouped[perm_level]}
+                )
+
+        context["grouped_categories"] = grouped_categories
+
         if not self.request.is_ajax:
             page = get_object_or_404(Page, slug="learning-center")
             context["page"] = page.specific
+
         return context
 
 
