@@ -8,9 +8,9 @@
         <h2 class="learning-content__title learning-content__title--md">
             {% get_permission_display group.permission_level %}
         </h2>
-        <ul class="u-list-reset">
+        <ul class="u-list-reset learning-content__categories">
             {% for category in group.categories %}
-                <li>
+                <li class="learning-content__categories__item">
                     <article>
                         <a href="{% url 'learning_nuggets:category' category_slug=category.slug %}"
                            class="u-no-underline"
