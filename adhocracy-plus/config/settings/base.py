@@ -444,6 +444,7 @@ BLEACH_LIST = {
 # Wagtail
 WAGTAIL_SITE_NAME = "adhocracy+"
 WAGTAILIMAGES_IMAGE_MODEL = "a4_candy_cms_images.CustomImage"
+WAGTAILDOCS_MAX_FILE_SIZE = 20 * 1024 * 1024  # 20MB
 
 # adhocracy4
 
@@ -715,8 +716,8 @@ GUEST_USER = {
     "NAME_GENERATOR": "guest_user.functions.generate_uuid_username",
 }
 
-GUEST_USER_REQUIRED_ANON_URL = "/accounts/guests/login";
+GUEST_USER_REQUIRED_ANON_URL = "/accounts/guests/login"
 # Redirects below when guest user is required but currently regular user.
 # Currently only guest dashboard views use this, so redirects to user profile.
-GUEST_USER_REQUIRED_USER_URL = "/account/profile/";
-GUEST_USER_CONVERT_URL = "/account/guest/convert/";
+GUEST_USER_REQUIRED_USER_URL = "/account/profile/"
+GUEST_USER_CONVERT_URL = "/account/guest/convert/"

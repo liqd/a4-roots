@@ -18,7 +18,7 @@ class LearningExtrasBlock(blocks.StreamBlock):
         required=False,
         help_text=_(
             "Upload or select an instructional video to complement the written content "
-            "(MP4 format recommended)"
+            "(MP4 format recommended - 20mb)"
         ),
     )
     document = DocumentChooserBlock(
