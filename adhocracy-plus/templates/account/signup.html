@@ -72,7 +72,7 @@
 
         <div class="u-spacer-bottom-double">
             <button class="btn btn--primary" type="submit">{% translate "Register" %}</button>
-            <a class="btn btn--secondary" href="{{ guest_url_value }}">{% translate "Or proceed as guest" %}</a>
+            <a class="btn btn--secondary proceed-guest-button" href="{{ guest_url_value }}">{% translate "Or proceed as guest" %}</a>
         </div>
     </form>
     {% include "socialaccount/snippets/provider_list.html" with process="login" %}
