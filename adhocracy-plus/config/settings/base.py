@@ -144,8 +144,8 @@ ROOT_URLCONF = "adhocracy-plus.config.urls"
 LOCALE_PATHS = [
     # use the first line in branches and forks to keep the original translations
     # from main branch and overwrite or add extra translations in fork
-    # os.path.join(BASE_DIR, 'locale-fork/locale'),
-    os.path.join(BASE_DIR, "locale-source/locale")
+    os.path.join(BASE_DIR, "locale-fork/locale"),
+    # os.path.join(BASE_DIR, "locale-source/locale")
 ]
 
 TEMPLATES = [
@@ -200,19 +200,19 @@ USE_TZ = True
 LANGUAGES = [
     ("en", _("English")),
     ("de", _("German")),
-    ("nl", _("Dutch")),
-    ("ky", _("Kyrgyz")),
-    ("ru", _("Russian")),
+    # ("nl", _("Dutch")),
+    # ("ky", _("Kyrgyz")),
+    # ("ru", _("Russian")),
 ]
 
 # adding language info for ky
 EXTRA_LANG_INFO = {
-    "ky": {
-        "bidi": False,
-        "code": "ky",
-        "name": "Kyrgyz",
-        "name_local": "Кыргызча",
-    },
+    # "ky": {
+    #     "bidi": False,
+    #     "code": "ky",
+    #     "name": "Kyrgyz",
+    #     "name_local": "Кыргызча",
+    # },
 }
 LANG_INFO = dict(locale.LANG_INFO, **EXTRA_LANG_INFO)
 locale.LANG_INFO = LANG_INFO

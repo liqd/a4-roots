@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-20 15:29+0100\n"
+"POT-Creation-Date: 2025-05-15 11:50+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Luca Thüer, 2023\n"
 "Language-Team: Dutch (https://app.transifex.com/liqd/teams/109316/nl/)\n"
@@ -191,6 +191,75 @@ msgstr "Bewerken"
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:7
 msgid "Report"
 msgstr "Rapporteer"
+
+#: adhocracy4/comments_async/static/comments_async/ai_report.jsx:6
+#: adhocracy4/comments_async/static/comments_async/ai_report.jsx:6
+msgctxt "defakts"
+msgid "The defakt AI has found evidence of disinformation."
+msgstr ""
+
+#: adhocracy4/comments_async/static/comments_async/ai_report.jsx:7
+#: adhocracy4/comments_async/static/comments_async/ai_report.jsx:7
+msgctxt "defakts"
+msgid ""
+"Defakts uses artificial intelligence to check content for disinformation "
+"based on certain linguistic characteristics."
+msgstr ""
+
+#: adhocracy4/comments_async/static/comments_async/ai_report.jsx:8
+#: adhocracy4/comments_async/static/comments_async/ai_report.jsx:8
+#, javascript-format
+msgctxt "defakts"
+msgid ""
+"The AI considers some of the characteristics of disinformation to be "
+"fulfilled based on the following words in the comment. The probability is "
+"given in % for each characteristic."
+msgstr ""
+
+#: adhocracy4/comments_async/static/comments_async/ai_report.jsx:9
+#: adhocracy4/comments_async/static/comments_async/ai_report.jsx:9
+msgctxt "defakts"
+msgid ""
+"If you want to know more about what the characteristics mean, please visit "
+"our [FAQs]. Here you will also find advice on how to respond constructively "
+"to disinformation."
+msgstr ""
+
+#: adhocracy4/comments_async/static/comments_async/ai_report.jsx:10
+#: adhocracy4/comments_async/static/comments_async/ai_report.jsx:10
+msgctxt "defakts"
+msgid "Click to view the AI explanation for reporting this comment."
+msgstr ""
+
+#: adhocracy4/comments_async/static/comments_async/ai_report.jsx:11
+#: adhocracy4/comments_async/static/comments_async/ai_report.jsx:11
+msgctxt "defakts"
+msgid "Click to hide the AI explanation for reporting this comment."
+msgstr ""
+
+#: adhocracy4/comments_async/static/comments_async/ai_report.jsx:12
+#: adhocracy4/comments_async/static/comments_async/ai_report.jsx:12
+msgctxt "defakts"
+msgid "Read more"
+msgstr ""
+
+#: adhocracy4/comments_async/static/comments_async/ai_report.jsx:13
+#: adhocracy4/comments_async/static/comments_async/ai_report.jsx:13
+msgctxt "defakts"
+msgid "Show less"
+msgstr ""
+
+#: adhocracy4/comments_async/static/comments_async/ai_report.jsx:14
+#: adhocracy4/comments_async/static/comments_async/ai_report.jsx:14
+msgctxt "defakts"
+msgid "Show AI info to users"
+msgstr ""
+
+#: adhocracy4/comments_async/static/comments_async/ai_report.jsx:15
+#: adhocracy4/comments_async/static/comments_async/ai_report.jsx:15
+msgctxt "defakts"
+msgid "Hide AI info from users"
+msgstr ""
 
 #: adhocracy4/comments_async/static/comments_async/category_list.jsx:5
 #: adhocracy4/comments_async/static/comments_async/category_list.jsx:5
@@ -942,8 +1011,8 @@ msgid ""
 "Yes, I have read and agree to this organisation's %(linkStart)s terms of use "
 "%(linkEnd)s."
 msgstr ""
-"Ja, ik heb %(linkStart)sde gebruiksvoorwaarden van deze organisatie "
-"gelezen%(linkEnd)s en ga ermee akkoord."
+"Ja, ik heb %(linkStart)sde gebruiksvoorwaarden van deze organisatie gelezen%"
+"(linkEnd)s en ga ermee akkoord."
 
 #: adhocracy4/static/TermsOfUseCheckbox.jsx:6
 #: adhocracy4/static/TermsOfUseCheckbox.jsx:6

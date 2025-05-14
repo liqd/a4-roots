@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-20 15:29+0100\n"
+"POT-Creation-Date: 2025-05-15 11:50+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Luca Thüer, 2023\n"
 "Language-Team: Kyrgyz (https://app.transifex.com/liqd/teams/109316/ky/)\n"
@@ -188,7 +188,7 @@ msgstr "Болжолдуу долбоорду түзүү"
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:27
 #: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:27
-#: apps/account/templates/a4_candy_account/account_deletion.html:48
+#: apps/account/templates/a4_candy_account/account_deletion.html:50
 #: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_form.html:31
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_confirm_delete.html:14
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_moderate_form.html:38
@@ -320,10 +320,13 @@ msgstr "Издөө"
 
 #: adhocracy4/forms/templates/a4forms/includes/form_field.html:5
 #: adhocracy4/forms/templates/a4forms/includes/form_field.html:5
+#: apps/account/templates/a4_candy_account/guest_convert.html:32
 #: apps/contrib/templates/a4_candy_contrib/includes/form_checkbox_field.html:6
 #: apps/contrib/templates/a4_candy_contrib/includes/form_field.html:5
-#: adhocracy-plus/templates/account/signup.html:33
-#: adhocracy-plus/templates/account/signup.html:44
+#: apps/users/templates/a4_candy_users/guest_create.html:41
+#: apps/users/templates/a4_candy_users/guest_create.html:52
+#: adhocracy-plus/templates/account/signup.html:37
+#: adhocracy-plus/templates/account/signup.html:48
 #: adhocracy-plus/templates/socialaccount/signup.html:31
 msgid "This field is required"
 msgstr "Бул тилкени сөзсүз толтуруу керек "
@@ -1368,54 +1371,81 @@ msgstr "Отчет "
 msgid "Password"
 msgstr "Сыр сөз "
 
-#: apps/account/forms.py:71 apps/organisations/mixins.py:58
+#: apps/account/forms.py:74 apps/organisations/mixins.py:58
 msgid "Yes, I have read and agree to this organisation's {}terms of use{}."
 msgstr ""
 "Ооба, мен окудум жана уюмдун кызматтарын колдонуу {}шарттарына{} макулмун."
 
-#: apps/account/templates/a4_candy_account/account_dashboard.html:4
+#: apps/account/templates/a4_candy_account/account_dashboard.html:8
+#: apps/account/templates/a4_candy_account/guest_dashboard.html:6
 msgid "User Dashboard"
 msgstr "Колдонуучунун жеке кабинети "
 
-#: apps/account/templates/a4_candy_account/account_dashboard.html:11
+#: apps/account/templates/a4_candy_account/account_dashboard.html:10
+#: apps/users/templates/a4_candy_users/indicator.html:57
+msgid "Guest Account Settings"
+msgstr ""
+
+#: apps/account/templates/a4_candy_account/account_dashboard.html:20
+#: apps/account/templates/a4_candy_account/guest_dashboard.html:13
 msgid "User Dashboard navigation"
 msgstr "Колдонуучунун жеке кабинети боюнча багыт берүү "
 
-#: apps/account/templates/a4_candy_account/account_dashboard.html:22
+#: apps/account/templates/a4_candy_account/account_dashboard.html:31
 #: apps/users/templates/a4_candy_users/user_detail.html:12
 msgid "Profile"
 msgstr "Профиль "
 
-#: apps/account/templates/a4_candy_account/account_dashboard.html:29
+#: apps/account/templates/a4_candy_account/account_dashboard.html:38
 #: adhocracy-plus/templates/account/password_change.html:5
 #: adhocracy-plus/templates/account/password_change.html:40
 msgid "Change password"
 msgstr "Сыр сөздү өзгөртүү "
 
-#: apps/account/templates/a4_candy_account/account_dashboard.html:36
+#: apps/account/templates/a4_candy_account/account_dashboard.html:45
 msgid "Email addresses"
 msgstr "Электрондук почтанын дареги "
 
-#: apps/account/templates/a4_candy_account/account_dashboard.html:43
+#: apps/account/templates/a4_candy_account/account_dashboard.html:52
 msgid "Account Connections"
 msgstr "Аккаунтка кошулуу "
 
-#: apps/account/templates/a4_candy_account/account_dashboard.html:50
-#: apps/account/templates/a4_candy_account/user_agreements.html:5
-#: apps/account/templates/a4_candy_account/user_agreements.html:7
+#: apps/account/templates/a4_candy_account/account_dashboard.html:59
+#: apps/account/templates/a4_candy_account/account_dashboard.html:97
+#: apps/account/templates/a4_candy_account/guest_dashboard.html:31
+#: apps/account/templates/a4_candy_account/user_agreements.html:6
+#: apps/account/templates/a4_candy_account/user_agreements.html:8
 msgid "User Agreements"
 msgstr "Колдонуучулар келишимдери"
 
-#: apps/account/templates/a4_candy_account/account_dashboard.html:57
+#: apps/account/templates/a4_candy_account/account_dashboard.html:66
+#: apps/account/templates/a4_candy_account/account_dashboard.html:104
 #: apps/account/templates/a4_candy_account/account_deletion.html:12
-#: apps/account/templates/a4_candy_account/account_deletion.html:36
+#: apps/account/templates/a4_candy_account/account_deletion.html:38
+#: apps/account/templates/a4_candy_account/guest_dashboard.html:38
 msgid "Delete account"
 msgstr ""
 
+#: apps/account/templates/a4_candy_account/account_dashboard.html:79
+msgid "Guest user settings navigation"
+msgstr ""
+
+#: apps/account/templates/a4_candy_account/account_dashboard.html:82
+#: apps/account/templates/a4_candy_account/guest_dashboard.html:16
+#: apps/users/templates/a4_candy_users/indicator.html:31
+msgid "Guest"
+msgstr ""
+
+#: apps/account/templates/a4_candy_account/account_dashboard.html:90
+#: apps/account/templates/a4_candy_account/guest_convert.html:9
+#: apps/account/templates/a4_candy_account/guest_dashboard.html:24
+msgid "Convert Account"
+msgstr ""
+
 #: apps/account/templates/a4_candy_account/account_deletion.html:6
-#: apps/account/templates/a4_candy_account/profile.html:5
-msgid "Your user profile"
-msgstr "Сиздин колдонуучу профилиңиз "
+#: apps/account/templates/a4_candy_account/account_deletion.html:51
+msgid "Delete Account"
+msgstr ""
 
 #: apps/account/templates/a4_candy_account/account_deletion.html:13
 msgid ""
@@ -1423,18 +1453,15 @@ msgid ""
 "of all associated data and content, including your comments, ideas & votes."
 msgstr ""
 
-#: apps/account/templates/a4_candy_account/account_deletion.html:14
+#: apps/account/templates/a4_candy_account/account_deletion.html:15
 msgid ""
 "\n"
-"            To confirm your identity, please enter your password to proceed:"
+"                To confirm your identity, please enter your password to "
+"proceed:"
 msgstr ""
 
-#: apps/account/templates/a4_candy_account/account_deletion.html:44
+#: apps/account/templates/a4_candy_account/account_deletion.html:46
 msgid "Are you sure you want to delete your account?"
-msgstr ""
-
-#: apps/account/templates/a4_candy_account/account_deletion.html:49
-msgid "Delete Account"
 msgstr ""
 
 #: apps/account/templates/a4_candy_account/emails/account_deleted.en.email:5
@@ -1491,30 +1518,69 @@ msgstr ""
 "Бул кат %(receiver)s жиберилген. Эгерде Сизде кошумча суроолор пайда болсо, "
 "биз менен %(contact_email)s аркылуу байланышыңыз. "
 
+#: apps/account/templates/a4_candy_account/guest_convert.html:7
+#: apps/account/templates/a4_candy_account/profile.html:5
+msgid "Your user profile"
+msgstr "Сиздин колдонуучу профилиңиз "
+
+#: apps/account/templates/a4_candy_account/guest_convert.html:14
+msgid "Convert to regular account"
+msgstr ""
+
+#: apps/account/templates/a4_candy_account/guest_convert.html:15
+msgid ""
+"You can now convert your guest account into a regular user account. This "
+"means that all your previous posts, comments and ratings will be kept and "
+"assigned to your new user account."
+msgstr ""
+
+#: apps/account/templates/a4_candy_account/guest_convert.html:28
+#, python-format
+msgid ""
+"\n"
+"              I confirm that I have read and accepted the <a "
+"href=\"%(terms_of_use_url)s\" target=\"_blank\">terms of use</a> and the <a "
+"href=\"%(data_protection_policy)s\" target=\"_blank\">data protection "
+"policy</a>.\n"
+"              "
+msgstr ""
+
+#: apps/account/templates/a4_candy_account/guest_convert.html:41
+#: apps/projects/templates/a4_candy_projects/moderatorinvite_detail.html:15
+#: apps/projects/templates/a4_candy_projects/participantinvite_detail.html:15
+#: apps/users/templates/a4_candy_users/indicator.html:73
+#: adhocracy-plus/templates/account/email/unknown_account.en.email:24
+#: adhocracy-plus/templates/account/signup.html:4
+#: adhocracy-plus/templates/account/signup.html:8
+#: adhocracy-plus/templates/account/signup.html:74
+#: adhocracy-plus/templates/socialaccount/signup.html:49
+msgid "Register"
+msgstr "Катталуу"
+
 #: apps/account/templates/a4_candy_account/profile.html:7
 msgid "Your profile"
 msgstr "Сиздин профиль "
 
 #: apps/account/templates/a4_candy_account/profile.html:22
-#: apps/account/templates/a4_candy_account/user_agreements.html:36
+#: apps/account/templates/a4_candy_account/user_agreements.html:37
 #: apps/organisations/templates/a4_candy_organisations/organisation_form.html:47
 #: apps/organisations/templates/a4_candy_organisations/organisation_form_legal_info.html:19
 msgid "Save changes"
 msgstr "Өзгөртүүлөрдү сактоо "
 
-#: apps/account/templates/a4_candy_account/user_agreements.html:8
+#: apps/account/templates/a4_candy_account/user_agreements.html:9
 msgid "Here you can edit all your agreements"
 msgstr "Бул жерде сиз бардык келишимдериңизди өзгөртө аласыз"
 
-#: apps/account/views.py:30
+#: apps/account/views.py:32
 msgid "Your profile was successfully updated."
 msgstr "Сиздин профиль ийгиликтүү жаңыланды "
 
-#: apps/account/views.py:52
+#: apps/account/views.py:76
 msgid "Your account was successfully deleted."
 msgstr ""
 
-#: apps/account/views.py:77
+#: apps/account/views.py:106
 msgid "Your agreements were successfully updated."
 msgstr "Сиздин келишимдериңиз ийгиликтуу жаңыланды."
 
@@ -1684,7 +1750,7 @@ msgstr ""
 "Бюджет боюнча сунуштар менен идеяларды жарыялаңыз, алар тууралуу пикир "
 "калтырыңыз жана баалаңыз. "
 
-#: apps/budgeting/phases.py:19 adhocracy-plus/config/settings/base.py:538
+#: apps/budgeting/phases.py:19 adhocracy-plus/config/settings/base.py:544
 msgid "participatory budgeting"
 msgstr "Жергиликтүү бюджетти коомчулуктун катышуусу менен кабыл алуу "
 
@@ -1854,7 +1920,21 @@ msgstr "Эң көп пикир калтырылгандар "
 msgid "Your budget request has been deleted"
 msgstr "Сиздин бюджет сурамыңыз өчүрүлдү"
 
-#: apps/cms/contacts/models.py:37 apps/users/forms.py:49
+#: apps/cms/blocks.py:132
+msgid "Please insert a short description of the video (character limit 500)."
+msgstr ""
+
+#: apps/cms/blocks.py:137
+msgid ""
+"Please upload or choose a media file with any of the following extensions: "
+"MP4, WebM, MP3, WAV"
+msgstr ""
+
+#: apps/cms/blocks.py:146
+msgid "You can add the video's transcript here (unlimited characters)."
+msgstr ""
+
+#: apps/cms/contacts/models.py:37 apps/users/forms.py:47
 msgid "I am not a robot"
 msgstr "Мен робот эмесмин"
 
@@ -1952,6 +2032,23 @@ msgstr "Көрүүгө кайтуу"
 #: apps/organisations/templates/a4_candy_organisations/communication_form_social_media.html:87
 msgid "Download"
 msgstr "Жүктөө "
+
+#: apps/cms/pages/templates/a4_candy_cms_pages/blocks/video_block.html:9
+msgid "Download audio file"
+msgstr ""
+
+#: apps/cms/pages/templates/a4_candy_cms_pages/blocks/video_block.html:16
+msgid ""
+"To view this video please enable JavaScript, or upgrade to a web browser that"
+msgstr ""
+
+#: apps/cms/pages/templates/a4_candy_cms_pages/blocks/video_block.html:18
+msgid "supports HTML5 video"
+msgstr ""
+
+#: apps/cms/pages/templates/a4_candy_cms_pages/blocks/video_block.html:39
+msgid "Media transcript"
+msgstr ""
 
 #: apps/cms/pages/templates/a4_candy_cms_pages/includes/homepage_hero.html:16
 msgid "Header image: "
@@ -2744,6 +2841,78 @@ msgid ""
 msgstr ""
 "Мен {} колдонуу шарттарын {}  жана {} маалыматтарды коргоо саясатын {}  окуп "
 "чыккандыгымды жана кабыл алганымды тастыктайм."
+
+#: apps/learning_nuggets/blocks.py:13
+msgid ""
+"Upload an image that visually captures the content (recommended size: "
+"600x400px, 3:2 ratio)"
+msgstr ""
+
+#: apps/learning_nuggets/blocks.py:20
+msgid ""
+"Upload or select an instructional video to complement the written content "
+"(MP4 format recommended - 20mb)"
+msgstr ""
+
+#: apps/learning_nuggets/blocks.py:27
+msgid ""
+"Upload related documents such as worksheets, guides, or additional resources "
+"(PDF format recommended)"
+msgstr ""
+
+#: apps/learning_nuggets/blocks.py:43
+msgid ""
+"Enter a clear, concise title for this learning nugget (max 100 characters "
+"recommended)"
+msgstr ""
+
+#: apps/learning_nuggets/blocks.py:50
+msgid ""
+"Provide a comprehensive description of the learning nugget, including key "
+"takeaways and learning objectives"
+msgstr ""
+
+#: apps/learning_nuggets/blocks.py:57
+msgid ""
+"Upload a representative image that visually captures the content "
+"(recommended size: 600x400px, 3:2 ratio)"
+msgstr ""
+
+#: apps/learning_nuggets/blocks.py:64
+msgid "Choose optional content: videos, images, or documents."
+msgstr ""
+
+#: apps/learning_nuggets/templates/a4_candy_learning_nuggets/blocks/learning_content_block.html:27
+msgid "Related Resources"
+msgstr ""
+
+#: apps/learning_nuggets/templates/a4_candy_learning_nuggets/includes/learning_header.html:5
+msgid "Learning Center"
+msgstr ""
+
+#: apps/learning_nuggets/templates/a4_candy_learning_nuggets/includes/learning_sidebar.html:9
+msgid "Go to Learning Center"
+msgstr ""
+
+#: apps/learning_nuggets/templates/a4_candy_learning_nuggets/includes/learning_sidebar.html:13
+msgid "Open Learning Center"
+msgstr ""
+
+#: apps/learning_nuggets/templates/a4_candy_learning_nuggets/includes/nugget_detail.html:13
+msgid "No content available."
+msgstr ""
+
+#: apps/learning_nuggets/templates/a4_candy_learning_nuggets/includes/nuggets_index.html:25
+msgid "No categories available."
+msgstr ""
+
+#: apps/learning_nuggets/templates/a4_candy_learning_nuggets/includes/nuggets_list.html:12
+msgid "Learning Center Home"
+msgstr ""
+
+#: apps/learning_nuggets/templates/a4_candy_learning_nuggets/includes/nuggets_list.html:44
+msgid "No learning nuggets available in this category."
+msgstr ""
 
 #: apps/mapideas/forms.py:26
 msgid "Please locate your proposal on the map."
@@ -3611,7 +3780,7 @@ msgstr ""
 #: apps/organisations/models.py:132
 #: apps/organisations/templates/a4_candy_organisations/organisation_terms_of_use.html:4
 #: apps/organisations/templates/a4_candy_organisations/organisation_terms_of_use.html:16
-#: apps/users/forms.py:40 apps/users/forms.py:194
+#: apps/users/forms.py:44 apps/users/forms.py:245
 #: adhocracy-plus/templates/email_base.html:79
 #: adhocracy-plus/templates/email_base.html:109
 #: adhocracy-plus/templates/footer.html:43
@@ -4169,17 +4338,6 @@ msgstr ""
 msgid "Proceed to login"
 msgstr "Кирүүгө өтүү "
 
-#: apps/projects/templates/a4_candy_projects/moderatorinvite_detail.html:15
-#: apps/projects/templates/a4_candy_projects/participantinvite_detail.html:15
-#: apps/users/templates/a4_candy_users/indicator.html:62
-#: adhocracy-plus/templates/account/email/unknown_account.en.email:24
-#: adhocracy-plus/templates/account/signup.html:4
-#: adhocracy-plus/templates/account/signup.html:7
-#: adhocracy-plus/templates/account/signup.html:70
-#: adhocracy-plus/templates/socialaccount/signup.html:49
-msgid "Register"
-msgstr "Катталуу"
-
 #: apps/projects/templates/a4_candy_projects/moderatorinvite_form.html:12
 msgid ""
 "You were invited by the initiator of the project. If you accept you will be "
@@ -4447,7 +4605,7 @@ msgid "My user Settings"
 msgstr "Менин колдонуучу эрежелерим"
 
 #: apps/userdashboard/templates/a4_candy_userdashboard/base_userdashboard.html:48
-#: apps/users/templates/a4_candy_users/indicator.html:36
+#: apps/users/templates/a4_candy_users/indicator.html:43
 #: apps/users/templates/a4_candy_users/user_detail.html:28
 msgid "Account Settings"
 msgstr "Каттоо эсебинин тууралоосу"
@@ -4600,38 +4758,40 @@ msgstr ""
 msgid "Username/e-mail"
 msgstr "Колдонуучунун аты / электрондук почтасынын дареги "
 
-#: apps/users/forms.py:42 apps/users/forms.py:196 apps/users/models.py:71
+#: apps/users/forms.py:55 apps/users/forms.py:94 apps/users/forms.py:247
+#: apps/users/models.py:71
 msgid "I would like to receive further information"
 msgstr "Мен кошумча маалыматты алгым келет "
 
-#: apps/users/forms.py:44 apps/users/forms.py:198 apps/users/models.py:74
+#: apps/users/forms.py:57 apps/users/forms.py:96 apps/users/forms.py:249
+#: apps/users/models.py:74
 msgid ""
 "Projects you are following can send you additional information via email."
 msgstr ""
 "Сиз катталган долбоорлор электрондук почта аркылуу кошумча маалыматты жибере "
 "алат."
 
-#: apps/users/forms.py:54 apps/users/forms.py:209
+#: apps/users/forms.py:67 apps/users/forms.py:260
 msgid "Your username will appear publicly next to your posts."
 msgstr ""
 "Сиздин колдонуучу атыңыз билдирүүлөрүңүздүн жанында  жалпыга көрүнүп турат. "
 
-#: apps/users/forms.py:82
+#: apps/users/forms.py:133
 msgid "Membership number of IG BCE"
 msgstr "IG BCE мүчөлүк номери "
 
-#: apps/users/forms.py:84
+#: apps/users/forms.py:135
 msgid ""
 "The membership number consists of a seven-digit number and can be found on "
 "the membership card."
 msgstr ""
 "Мүчөлүк номер жети сандык белгиден турат жана мүчөлүк картада жазылган. "
 
-#: apps/users/forms.py:91
+#: apps/users/forms.py:142
 msgid "Date of birth"
 msgstr "Туулган датасы /күнү/"
 
-#: apps/users/forms.py:93
+#: apps/users/forms.py:144
 msgid ""
 "Please also enter your date of birth in the format MM/DD/YYYY for "
 "authentication. Only members of the IG BCE can participate."
@@ -4639,7 +4799,7 @@ msgstr ""
 "Сураныч, тастыктоо үчүн туулган  жылыңызды АЙ/КҮН/ЖЫЛ форматында  жазыңыз. "
 "IG BCE мүчөлөрү гана катыша алат. "
 
-#: apps/users/forms.py:100
+#: apps/users/forms.py:151
 msgid ""
 "I confirm that I have read and accepted the <a href=\"/info/ig-bce-"
 "datenschutz/\" target=\"_blank\">data protection policy</a> of IG BCE."
@@ -4648,11 +4808,11 @@ msgstr ""
 "target=\"_blank\">маалыматтарды коргоо саясатын </a> окуганымды жана кабыл "
 "алганымды тастыктайм."
 
-#: apps/users/forms.py:112 apps/users/forms.py:152
+#: apps/users/forms.py:163 apps/users/forms.py:203
 msgid "Something is wrong with the setup - please try again later"
 msgstr "Тууралоодо көйгөйлөр бар - кийинчирээк кайталап көрүңүз. "
 
-#: apps/users/forms.py:118
+#: apps/users/forms.py:169
 msgid ""
 "There is already a participant with this membership number. Please check "
 "your entry. If this is your membership number, please send an email to "
@@ -4662,7 +4822,7 @@ msgstr ""
 "көрүңүз. Эгерде бул Сиздин мүчөлүк номериңиз болсо, "
 "\"zukunftsgewerkschaft@igbce.de\" дарегине электрондук катты жөнөтүңүз. "
 
-#: apps/users/forms.py:158
+#: apps/users/forms.py:209
 msgid ""
 "Unfortunately, the member number and / or date of birth could not be linked "
 "to an active member account. Please check your input and try again. If you "
@@ -4768,6 +4928,46 @@ msgstr ""
 "Колдонуучу интерфейси жана платформа билдирүүлөрү үчүн ылайыктуу тилди "
 "тандаңыз. "
 
+#: apps/users/templates/a4_candy_users/guest_create.html:4
+msgid "Continue as Guest"
+msgstr ""
+
+#: apps/users/templates/a4_candy_users/guest_create.html:14
+#, python-format
+msgid ""
+"Already have an account? Then please \n"
+"                        <a href=\"%(login_url)s\">log in</a>."
+msgstr ""
+
+#: apps/users/templates/a4_candy_users/guest_create.html:17
+#, python-format
+msgid ""
+"Would you like to create an account? Then \n"
+"                        <a href=\"%(signup_url)s\">click here</a>."
+msgstr ""
+
+#: apps/users/templates/a4_candy_users/guest_create.html:37
+#: adhocracy-plus/templates/account/signup.html:33
+#: adhocracy-plus/templates/socialaccount/signup.html:28
+#, python-format
+msgid ""
+"\n"
+"                I confirm that I have read and accepted the <a "
+"href=\"%(terms_of_use_url)s\" target=\"_blank\">terms of use</a> and the <a "
+"href=\"%(data_protection_policy)s\" target=\"_blank\">data protection "
+"policy</a>.\n"
+"                "
+msgstr ""
+"\n"
+"Мен <a href=\"%(terms_of_use_url)s\" target=\"_blank\">колдонуу шарттарын</"
+"a> жана <a href=\"%(data_protection_policy)s\" "
+"target=\"_blank\">маалыматтарды коргоо саясатын</a> \n"
+"окуганымды жана кабыл алганымды тастыктайм. "
+
+#: apps/users/templates/a4_candy_users/guest_create.html:71
+msgid "Proceed as Guest"
+msgstr ""
+
 #: apps/users/templates/a4_candy_users/indicator.html:4
 #: apps/users/templates/a4_candy_users/indicator.html:11
 #: apps/users/templates/a4_candy_users/indicator.html:13
@@ -4775,32 +4975,33 @@ msgstr ""
 msgid "Menu"
 msgstr "Меню"
 
-#: apps/users/templates/a4_candy_users/indicator.html:24
+#: apps/users/templates/a4_candy_users/indicator.html:26
 #: adhocracy-plus/templates/email_base.html:40
 msgid "Hello"
 msgstr "Саламатсызбы"
 
-#: apps/users/templates/a4_candy_users/indicator.html:33
+#: apps/users/templates/a4_candy_users/indicator.html:39
 msgid "Admin"
 msgstr "Администратор "
 
-#: apps/users/templates/a4_candy_users/indicator.html:35
+#: apps/users/templates/a4_candy_users/indicator.html:42
 msgid "My Overview"
 msgstr "Менин кайра карап чыгуум"
 
-#: apps/users/templates/a4_candy_users/indicator.html:47
+#: apps/users/templates/a4_candy_users/indicator.html:54
+#: apps/users/templates/a4_candy_users/indicator.html:58
 msgid "Help"
 msgstr ""
 
-#: apps/users/templates/a4_candy_users/indicator.html:52
-#: apps/users/templates/a4_candy_users/indicator.html:55
+#: apps/users/templates/a4_candy_users/indicator.html:63
+#: apps/users/templates/a4_candy_users/indicator.html:66
 msgid "Logout"
 msgstr "Чыгуу"
 
-#: apps/users/templates/a4_candy_users/indicator.html:60
+#: apps/users/templates/a4_candy_users/indicator.html:71
 #: adhocracy-plus/templates/account/login.html:4
-#: adhocracy-plus/templates/account/login.html:7
-#: adhocracy-plus/templates/account/login.html:27
+#: adhocracy-plus/templates/account/login.html:8
+#: adhocracy-plus/templates/account/login.html:32
 #: adhocracy-plus/templates/dummy/authenticate_form.html:17
 msgid "Login"
 msgstr "Авторизациялоо "
@@ -4837,131 +5038,131 @@ msgstr "Алардагы акыркы аракеттердин тизмеси"
 msgid "Activities"
 msgstr "Ишмердүүлүк"
 
-#: adhocracy-plus/config/settings/base.py:197
+#: adhocracy-plus/config/settings/base.py:201
 msgid "English"
 msgstr "Англис тили"
 
-#: adhocracy-plus/config/settings/base.py:198
+#: adhocracy-plus/config/settings/base.py:202
 msgid "German"
 msgstr "Немис тили."
 
-#: adhocracy-plus/config/settings/base.py:199
+#: adhocracy-plus/config/settings/base.py:203
 msgid "Dutch"
 msgstr "Голланд тили."
 
-#: adhocracy-plus/config/settings/base.py:200
+#: adhocracy-plus/config/settings/base.py:204
 msgid "Kyrgyz"
 msgstr "Кыргызча"
 
-#: adhocracy-plus/config/settings/base.py:201
+#: adhocracy-plus/config/settings/base.py:205
 msgid "Russian"
 msgstr "Орусча"
 
-#: adhocracy-plus/config/settings/base.py:471
+#: adhocracy-plus/config/settings/base.py:477
 msgid "suggestion"
 msgstr "Сунуш "
 
-#: adhocracy-plus/config/settings/base.py:472
+#: adhocracy-plus/config/settings/base.py:478
 msgid "note"
 msgstr "Эскертүү"
 
-#: adhocracy-plus/config/settings/base.py:473
+#: adhocracy-plus/config/settings/base.py:479
 msgid "question"
 msgstr "Суроо"
 
-#: adhocracy-plus/config/settings/base.py:514
+#: adhocracy-plus/config/settings/base.py:520
 msgid "Pin without icon"
 msgstr "Белгисиз тиркөө"
 
-#: adhocracy-plus/config/settings/base.py:515
+#: adhocracy-plus/config/settings/base.py:521
 msgid "Diamond"
 msgstr "Алмаз"
 
-#: adhocracy-plus/config/settings/base.py:516
+#: adhocracy-plus/config/settings/base.py:522
 msgid "Triangle up"
 msgstr "Үч бурчтук өйдө "
 
-#: adhocracy-plus/config/settings/base.py:517
+#: adhocracy-plus/config/settings/base.py:523
 msgid "Triangle down"
 msgstr "Үч бурчтук ылдый"
 
-#: adhocracy-plus/config/settings/base.py:518
+#: adhocracy-plus/config/settings/base.py:524
 msgid "Ellipse"
 msgstr "Эллипс"
 
-#: adhocracy-plus/config/settings/base.py:519
+#: adhocracy-plus/config/settings/base.py:525
 msgid "Semi circle"
 msgstr "Жарым  айлана"
 
-#: adhocracy-plus/config/settings/base.py:520
+#: adhocracy-plus/config/settings/base.py:526
 msgid "Hexagon"
 msgstr "Алты бурчтук"
 
-#: adhocracy-plus/config/settings/base.py:521
+#: adhocracy-plus/config/settings/base.py:527
 msgid "Rhomboid"
 msgstr "Ромбоид"
 
-#: adhocracy-plus/config/settings/base.py:522
+#: adhocracy-plus/config/settings/base.py:528
 msgid "Star"
 msgstr "Жылдыз"
 
-#: adhocracy-plus/config/settings/base.py:523
+#: adhocracy-plus/config/settings/base.py:529
 msgid "Square"
 msgstr "Төрт бурчтук"
 
-#: adhocracy-plus/config/settings/base.py:524
+#: adhocracy-plus/config/settings/base.py:530
 msgid "Octothorpe"
 msgstr "Торчо"
 
-#: adhocracy-plus/config/settings/base.py:525
+#: adhocracy-plus/config/settings/base.py:531
 msgid "Rectangle"
 msgstr "Тик бурчтук"
 
-#: adhocracy-plus/config/settings/base.py:526
+#: adhocracy-plus/config/settings/base.py:532
 msgid "Circle"
 msgstr "Айлана"
 
-#: adhocracy-plus/config/settings/base.py:527
+#: adhocracy-plus/config/settings/base.py:533
 msgid "Right triangle"
 msgstr "Тик бурчтуу үч бурчтук"
 
-#: adhocracy-plus/config/settings/base.py:528
+#: adhocracy-plus/config/settings/base.py:534
 msgid "Zigzag"
 msgstr "Ийри-буйру сызык"
 
-#: adhocracy-plus/config/settings/base.py:532
+#: adhocracy-plus/config/settings/base.py:538
 msgid "brainstorming"
 msgstr "Жамааттык талкуу"
 
-#: adhocracy-plus/config/settings/base.py:533
+#: adhocracy-plus/config/settings/base.py:539
 msgid "spatial brainstorming"
 msgstr "Көлөмдүү жамааттык талкуу"
 
-#: adhocracy-plus/config/settings/base.py:534
+#: adhocracy-plus/config/settings/base.py:540
 msgid "idea challenge"
 msgstr "Идеяны сынап көрүү"
 
-#: adhocracy-plus/config/settings/base.py:535
+#: adhocracy-plus/config/settings/base.py:541
 msgid "spatial idea challenge"
 msgstr "Идеяны көлөмдүү сыноо"
 
-#: adhocracy-plus/config/settings/base.py:536
+#: adhocracy-plus/config/settings/base.py:542
 msgid "text review"
 msgstr "Текстти карап чыгуу"
 
-#: adhocracy-plus/config/settings/base.py:537
+#: adhocracy-plus/config/settings/base.py:543
 msgid "poll"
 msgstr "Сурамжылоо"
 
-#: adhocracy-plus/config/settings/base.py:539
+#: adhocracy-plus/config/settings/base.py:545
 msgid "interactive event"
 msgstr "Интерактивдүү иш-чара"
 
-#: adhocracy-plus/config/settings/base.py:540
+#: adhocracy-plus/config/settings/base.py:546
 msgid "prioritization"
 msgstr "Ыраатташтыруу"
 
-#: adhocracy-plus/config/settings/base.py:541
+#: adhocracy-plus/config/settings/base.py:547
 msgid "debate"
 msgstr "Дебаттар"
 
@@ -5485,16 +5686,26 @@ msgstr ""
 "сурамын жибериңиз \n"
 "</a>.  "
 
-#: adhocracy-plus/templates/account/login.html:9
+#: adhocracy-plus/templates/account/login.html:11
 #, python-format
 msgid ""
-"If you have not created an account yet, then please <a "
-"href=\"%(signup_url)s\">register</a> first."
+"Would you like to create an account? Then <a href=\"%(signup_url)s\">click "
+"here</a>."
 msgstr ""
-"Эгерде Сиз каттоо эсебин  али ача элек болсоңуз, сураныч, алгач <a "
-"href=\"%(signup_url)s\">катталыңыз</a>."
 
-#: adhocracy-plus/templates/account/login.html:30
+#: adhocracy-plus/templates/account/login.html:13
+#, python-format
+msgid ""
+"Would you like to proceed as a guest? Then <a "
+"href=\"%(guest_url_value)s\">click here</a>."
+msgstr ""
+
+#: adhocracy-plus/templates/account/login.html:33
+#: adhocracy-plus/templates/account/signup.html:75
+msgid "Or proceed as guest"
+msgstr ""
+
+#: adhocracy-plus/templates/account/login.html:36
 msgid "Forgot Password?"
 msgstr "Сыр сөздү унутуп калдыңызбы?"
 
@@ -5583,11 +5794,11 @@ msgstr ""
 msgid "Set your password"
 msgstr ""
 
-#: adhocracy-plus/templates/account/signup.html:10
+#: adhocracy-plus/templates/account/signup.html:11
 msgid "Why register?"
 msgstr ""
 
-#: adhocracy-plus/templates/account/signup.html:14
+#: adhocracy-plus/templates/account/signup.html:15
 #, python-format
 msgid ""
 "Already have an account? Then please\n"
@@ -5596,22 +5807,12 @@ msgstr ""
 "Каттоо эсебиңиз барбы? Анда \n"
 "<a href=\"%(login_url)s\">системага кириңиз</a>."
 
-#: adhocracy-plus/templates/account/signup.html:29
-#: adhocracy-plus/templates/socialaccount/signup.html:28
+#: adhocracy-plus/templates/account/signup.html:18
 #, python-format
 msgid ""
-"\n"
-"                I confirm that I have read and accepted the <a "
-"href=\"%(terms_of_use_url)s\" target=\"_blank\">terms of use</a> and the <a "
-"href=\"%(data_protection_policy)s\" target=\"_blank\">data protection "
-"policy</a>.\n"
-"                "
+"Would you like to proceed as a guest? Then \n"
+"        <a href=\"%(guest_url_value)s\">click here</a>."
 msgstr ""
-"\n"
-"Мен <a href=\"%(terms_of_use_url)s\" target=\"_blank\">колдонуу шарттарын</"
-"a> жана <a href=\"%(data_protection_policy)s\" "
-"target=\"_blank\">маалыматтарды коргоо саясатын</a> \n"
-"окуганымды жана кабыл алганымды тастыктайм. "
 
 #: adhocracy-plus/templates/account/verification_sent.html:10
 msgid ""
@@ -5621,20 +5822,20 @@ msgid ""
 "receive the verification e-mail within a few minutes."
 msgstr ""
 
-#: adhocracy-plus/templates/base.html:58
+#: adhocracy-plus/templates/base.html:67
 msgid "Skip to content "
 msgstr "Контентке өтүү "
 
-#: adhocracy-plus/templates/base.html:99
+#: adhocracy-plus/templates/base.html:110
 #, python-format
 msgid "%(platformname)s is funded by donations."
 msgstr "%(platformname)s ыктыярдуу төгүмдөрдүн эсебинен каржыланат."
 
-#: adhocracy-plus/templates/base.html:101
+#: adhocracy-plus/templates/base.html:112
 msgid "Donate now"
 msgstr "Ыктыярдуу төгүмдү азыр төлөө."
 
-#: adhocracy-plus/templates/base.html:104
+#: adhocracy-plus/templates/base.html:115
 #, python-format
 msgid "Donate now to %(platformname)s"
 msgstr "Азыр %(platformname)s эсебине   ыктыярдуу  төгүмдү төлөө."
