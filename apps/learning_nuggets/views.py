@@ -71,12 +71,6 @@ class LearningCategoryView(AjaxTemplateMixin, DetailView):
             LearningCategory, slug=self.kwargs["category_slug"]
         )
 
-        permission_check = (
-            f"a4_candy_learning_nuggets.view_{category.permission_level}_content"
-        )
-        if not self.request.user.has_perm(permission_check):
-            raise PermissionDenied
-
         return category
 
 
