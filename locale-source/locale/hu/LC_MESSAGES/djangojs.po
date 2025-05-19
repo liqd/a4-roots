@@ -3,12 +3,11 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-20 15:29+0100\n"
+"POT-Creation-Date: 2025-05-19 14:36+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Language-Team: Hungarian (https://app.transifex.com/liqd/teams/109316/hu/)\n"
 "Language: hu\n"
