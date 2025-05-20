@@ -1,4 +1,3 @@
-from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView
 from django.views.generic import ListView
@@ -89,11 +88,5 @@ class LearningNuggetView(AjaxTemplateMixin, DetailView):
         nugget = get_object_or_404(
             LearningNuggetPage, slug=self.kwargs["nugget_slug"], category=category
         )
-
-        permission_check = (
-            f"a4_candy_learning_nuggets.view_{category.permission_level}_content"
-        )
-        if not self.request.user.has_perm(permission_check):
-            raise PermissionDenied
 
         return nugget
