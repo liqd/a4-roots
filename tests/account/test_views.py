@@ -130,8 +130,9 @@ def test_account_deletion(client, user):
     assert User.objects.count() == 0
     assert not User.objects.filter(pk=user.pk).exists()
     assert len(mail.outbox) == 1
-    assert mail.outbox[0].subject == (
-        "Confirmation: Deletion of Your Account on " "adhocracy+"
+    assert (
+        mail.outbox[0].subject
+        == "Confirmation: Deletion of Your Account on ROOTS Beteiligung"
     )
     # assert that user is redirected to homepage
     assert redirect_target(response) == "wagtail_serve"
