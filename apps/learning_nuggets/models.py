@@ -4,10 +4,10 @@ from django.urls import reverse
 from django.utils.text import slugify
 from wagtail.admin.panels import FieldPanel
 from wagtail.fields import StreamField
+from wagtail.models import Orderable
 from wagtail.models import Page
 from wagtail.search import index
 from wagtail.snippets.models import register_snippet
-from wagtail.models import Orderable
 
 from .blocks import LearningContentBlock
 
@@ -20,7 +20,7 @@ class LearningCategory(models.Model):
     permission_level = models.CharField(
         max_length=50,
         choices=[
-            ("participant", "Participant"),
+            ("participant", "Teilnehmer"),
             ("initiator", "Initiator"),
             ("moderator", "Moderator"),
         ],
@@ -58,7 +58,7 @@ class LearningCategory(models.Model):
         super().save(update_fields=update_fields, *args, **kwargs)
 
     def ordered_nuggets(self):
-        return self.nuggets.all().order_by('order')
+        return self.nuggets.all().order_by("order")
 
     def __str__(self):
         return self.name
@@ -114,7 +114,7 @@ class LearningNuggetPage(Page, Orderable):
     content_panels = Page.content_panels + [
         FieldPanel("category"),
         FieldPanel("content"),
-        FieldPanel('order'),
+        FieldPanel("order"),
     ]
 
     parent_page_types = ["LearningCenterPage"]
@@ -131,4 +131,4 @@ class LearningNuggetPage(Page, Orderable):
 
     class Meta:
         verbose_name = "Learning Nugget Page"
-        ordering = ['order']
+        ordering = ["order"]

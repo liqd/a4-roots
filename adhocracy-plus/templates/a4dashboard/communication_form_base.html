@@ -23,13 +23,17 @@
                         {% translate "Social Media" %}
                     </a>
                 </li>
+                <li class="dashboard-nav__page">
+                    <a href="{% url 'a4dashboard:qr-create' organisation_slug=view.organisation.slug %}"
+                       class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == 'qr-create' %}is-active{% endif %}">
+                       {% translate "QR Codes erstellen" %}
+                    </a>
+                </li>
             </ul>
         </div>
     </nav>
-
-
     <div class="col-md-9">
-        {% block communication_form %}{% endblock %}
+        {% block communication_form %}{% endblock communication_form %}
     </div>
 </div>
-{% endblock %}
+{% endblock dashboard_content %}

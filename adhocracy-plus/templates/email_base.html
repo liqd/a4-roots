@@ -11,15 +11,9 @@
            style="width: 100%; max-width: 600px; margin: auto;">
     <tr>
             <td style="padding: 0px; position: relative; top: -4.5em;" align="center">
-                    {% if organisation and organisation.logo %}
-                    <div style="width: 100px; height: 100px; box-shadow: 0 2px 18px 0 rgba(0, 0, 0, 0.08); background-color: #ffffff;">
-                        <img src="cid:organisation_logo" height="80" width="80" alt="{{ organisation.name }} logo" style="margin: 10px;" />
-                    </div>
-                    {% else %}
-                    <div  style="width: 150px; height: 100px; box-shadow: 0 2px 18px 0 rgba(0, 0, 0, 0.08); background-color: #ffffff;">
-                        <img src="cid:logo" height="80" alt="adhocracy-plus logo" style="margin: 10px;" />
-                    </div>
-                    {% endif %}
+                <div  style="width: 150px; height: 100px; box-shadow: 0 2px 18px 0 rgba(0, 0, 0, 0.08); background-color: #ffffff;">
+                    <img src="cid:logo" height="80" alt="ROOTS logo" style="margin: 10px;" />
+                </div>
             </td>
      </tr>
       <tr>
@@ -90,8 +84,7 @@
           <td style="color: #818181; font-size: small; padding-top: 20px; padding-left: 5px; padding-right: 5px;">
               {% block reason %}{% endblock %}
               <p>
-                {% blocktranslate with platformname=settings.a4_candy_cms_settings.OrganisationSettings.platform_name %}{{ platformname }} is a participation platform operated by{% endblocktranslate %}<br />
-                Liquid Democracy e.V., Am Sudhaus 2, D-12053 Berlin
+                ROOTS-Beteiligung ist eine Beteiligungsplattform für Non-Profit Organisationen, die im Rahmen des <a href="https://kmi-netzwerk.org/kmi-roots/">KMI/ROOTS</a> Projektes entstanden ist und von Liquid Democracy e.V. umgesetzt wird.
               </p>
           </td>
       </tr>

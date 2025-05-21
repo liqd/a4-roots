@@ -137,7 +137,7 @@ class ImportantPages(BaseSiteSetting):
 class OrganisationSettings(BaseSiteSetting):
     platform_name = models.CharField(
         max_length=20,
-        default="adhocracy+",
+        default="ROOTS Beteiligung",
         verbose_name="Platform name",
         help_text=(
             "This name appears in the footer of all pages and e-mails "

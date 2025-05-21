@@ -1,0 +1,27 @@
+{% extends "a4dashboard/communication_form_base.html" %}
+{% load i18n %}
+
+{% block title %}{% translate "Settings" %} — {{ block.super }}{% endblock title %}
+
+{% block communication_form %}
+    <div class="col-md-9">
+      <h1 class="u-first-heading">{% translate "QR Codes erstellen" %}</h1>
+
+      <div class="qr-code-info mb-4">
+          <p class="mb-2">
+              {% translate "Mit QR-Codes könnt ihr einfach und direkt auf eure Beteiligungsprojekte verlinken – z. B. auf Plakaten oder Flyern." %}
+          </p>
+          <p class="mb-2">
+              {% translate "Über dieses externe Tool der TU Chemnitz könnt ihr QR-Codes kostenlos erstellen:" %}
+              <br/>
+              <a href="https://www.tu-chemnitz.de/urz/apps/qrcode/" target="_blank">
+                  {% translate "QR-Code-Generator öffnen" %}
+              </a>
+          </p>
+          <p>
+              {% translate "Einfach Projekt-Link einfügen, Code erzeugen und für eure Öffentlichkeitsarbeit nutzen!" %}
+          </p>
+      </div>
+
+    </div>
+{% endblock communication_form %}
