@@ -442,7 +442,7 @@ BLEACH_LIST = {
 }
 
 # Wagtail
-WAGTAIL_SITE_NAME = "adhocracy+"
+WAGTAIL_SITE_NAME = "ROOTS Beteiligung"
 WAGTAILIMAGES_IMAGE_MODEL = "a4_candy_cms_images.CustomImage"
 WAGTAILDOCS_MAX_FILE_SIZE = 20 * 1024 * 1024  # 20MB
 
