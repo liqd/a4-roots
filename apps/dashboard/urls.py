@@ -58,6 +58,11 @@ urlpatterns = [
         organisation_views.DashboardCommunicationContentCreateView.as_view(),
         name="communication-content-create",
     ),
+    path(
+        "communication/content/qr-codes-create/",
+        organisation_views.DashboardCommunicationQRCreateView.as_view(),
+        name="qr-create",
+    ),
 ]
 
 # a4 dashboard urls without organisation slug

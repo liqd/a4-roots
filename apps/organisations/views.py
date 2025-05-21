@@ -129,6 +129,18 @@ class DashboardLegalInformationUpdateView(
         return self.request.path
 
 
+class DashboardCommunicationQRCreateView(
+    a4dashboard_mixins.DashboardBaseMixin, generic.TemplateView
+):
+
+    template_name = "a4_candy_organisations/communication_qr_create.html"
+    permission_required = "a4_candy_organisations.change_organisation"
+
+    def get_permission_object(self):
+        """Required by DashboardBaseMixin (rules_mixins.PermissionRequiredMixin)."""
+        return self.organisation  # Or another object for permission checks
+
+
 class DashboardCommunicationProjectChoiceView(
     a4dashboard_mixins.DashboardBaseMixin, generic.FormView
 ):
