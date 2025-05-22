@@ -6,6 +6,23 @@
     background-color: $bg-light;
 }
 
+.footer__logos {
+    display: flex;
+    flex-direction: row-reverse;
+
+    @media screen and (max-width: $breakpoint-md-down) {
+        justify-content: center;
+    }
+}
+
+.footer__logo {
+    height: 7em;
+    max-height: 7em;
+    max-width: 100%;
+    width: auto;
+    object-fit: contain;
+}
+
 .footer__link {
     padding-right: $padding;
 

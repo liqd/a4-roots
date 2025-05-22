@@ -2,13 +2,19 @@
 {% get_settings use_default_site=True %}
 
 <footer class="footer pt-3 pt-sm-4{% if not ORGANISATION.is_supporting %}{% if settings.a4_candy_cms_settings.ImportantPages.donate_link %} footer__margin-for-banner{% endif %}{% endif %}">
-    {%  with pages=settings.a4_candy_cms_settings.ImportantPages %}
+    {% with pages=settings.a4_candy_cms_settings.ImportantPages %}
     <div class="container">
         <div class="row mt-3 mb-2 justify-content-lg-center">
-            <div class="col-lg-6">
-                <p class="footer__description">
-                    {% blocktranslate with platformname=settings.a4_candy_cms_settings.OrganisationSettings.platform_name %}<a href="/">{{ platformname }}</a> is a platform provided by <a href="https://liqd.net/de/">Liquid Democracy e.V.</a> in Berlin.{% endblocktranslate %} {% if ORGANISATION %}{% blocktranslate %}Only the respective operator of the offer is responsible for the editorial content.{% endblocktranslate %}{% endif %}
-                </p>
+            <div class="row">
+                <div class="col-lg-6">
+                    <p class="footer__description">
+                        ROOTS-Beteiligung ist eine Beteiligungsplattform für Non-Profit Organisationen, die im Rahmen des <a href="https://kmi-netzwerk.org/kmi-roots/">KMI/ROOTS Projektes</a> entstanden ist und von Liquid Democracy e.V. umgesetzt wird.
+                    </p>
+                </div>
+                <div class="col-lg-6 footer__logos">
+                    <img alt="Logo für Regionales Kompetenzzentrum der Arbeitsforschung" src="/static/images/ReKoDa.svg" class="footer__logo"></img>
+                    <img alt="Logo für Bundesministerium für Bildung und Forschung" src="/static/images/BMBF.svg" class="footer__logo"></img>
+                </div>
             </div>
             <div class="col-lg-6">
                 <div class="row">
@@ -26,7 +32,6 @@
             </div>
         </div>
         <div class="row">
-
             <div class="col-12 col-md-8 col-xl-10">
                 <nav class="navi p-0">
                     <ul class="navi__list mb-2 d-sm-flex flex-wrap">
