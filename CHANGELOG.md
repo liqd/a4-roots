@@ -5,6 +5,38 @@ All notable changes to this project will be documented in this file.
 Since version v2306 the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+
+## v2505.1
+
+### Added
+
+- Update to ROOTS logo
+- Update favicons to ROOTS favicons
+- Change san-serif font to PT Sans (woff2), serif font unchanged
+- Top ribbin gradient, colours changed and varibles introduced
+- Update main menu colours to be high contrast
+- Primary buttons are now black
+- Update checkbox and radio to brand blue
+- Update and 500.html template with optimized new ROOTs logo
+- fix missing placebolder avatar images
+
+- **Learning Nuggets App**:
+  - Introduced the **Learning Center** with views for listing learning categories and displaying individual nuggets.
+  - Added the necessary models (`LearningCategory`, `LearningCenterPage`, `LearningNuggetPage`) to add content via Wagtail.
+  - Created the respective URLs and views.
+  - Integrated **AJAX handling** for partial page updates in the Learning Center.
+  - Introduced custom permissions: `view_moderator_content`, `view_initiator_content`, `view_participant_content` for access to learning content based on user roles: **Moderator**, **Initiator**, **Participant**.
+
+- **Wagtail Video Block**:
+  - Added a custom **Video Block** to the `apps/cms` module.
+  - The **Video Block** is now used within the blocks of the **Learning Nuggets**, allowing video content to be embedded and displayed alongside educational materials.
+
+### Fixed
+
+- project label should be `a4-roots` for the deployment to work
+- update square logo
+
+
 ## v2501.4
 
 ### Added
