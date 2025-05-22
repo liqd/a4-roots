@@ -20,11 +20,11 @@ class LearningCategory(models.Model):
     permission_level = models.CharField(
         max_length=50,
         choices=[
-            ("teilnehmer", "Teilnehmer"),
-            ("initiator", "Initiator"),
-            ("moderator", "Moderator"),
+            ("teilnehmer:in", "Teilnehmer:in"),
+            ("initiator:in", "Initiator:in"),
+            ("moderator:in", "Moderator:in"),
         ],
-        default="teilnehmer",
+        default="teilnehmer:in",
     )
     order = models.IntegerField(default=0)
 
