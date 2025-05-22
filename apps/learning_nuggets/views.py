@@ -29,7 +29,7 @@ class LearningCenterView(AjaxTemplateMixin, ListView):
     context_object_name = "grouped_categories"
     model = LearningCategory
 
-    PERMISSION_ORDER = ["teilnehmer", "initiator", "moderator"]
+    PERMISSION_ORDER = ["teilnehmer:in", "initiator:in", "moderator:in"]
 
     def get_queryset(self):
         return super().get_queryset().order_by("order")
