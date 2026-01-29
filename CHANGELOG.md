@@ -6,7 +6,102 @@ Since version v2306 the format is based on [Keep a Changelog](https://keepachang
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
-## v2505.1
+## Unreleased A+
+
+### Changed
+
+- Notification message_templates stored in English, translated at runtime
+- Notification date format always returns DD.MM.YYYY without time
+
+### Fixed
+
+- Fix duplicate notifications bug
+- Fix email variable interpolation
+
+### Fixed
+
+- Interpolation and translation for ModeratorInvite notification
+
+## v2601.2
+
+### Fixed
+
+- Moderator feedback text
+- ModeratorInvitation links
+- Translations
+
+## v2601.1
+
+### Added
+
+- Notification System
+- Use django-polymorphic via adhocracy4
+- Map-based participation modules have a split mode to display ideas next to the map
+- Alert when following project telling user to check email notification settings
+
+### Changed
+
+- Captcha using Prosopo
+- Hide profile pages for inactive accounts (ST-1088)
+- Add visibility toggle to password fields [ST1153]
+- Updated to Django 5.2
+- Improve comment icons styling in SCSS
+- Update translation files for all languages
+- Make title-3 class consistent with h3 browser defaults for improved accessibility
+
+### Fixed
+
+- Follow project button not working on small screens
+- Rotated icons for reporting or sharing comments
+- Pagination button styles
+- Notification text for ModerationFeedback notifications
+
+## v2508.2
+
+### Fixed
+
+- Fix flatpickr configuration to disable native mobile calendars
+- Fix Poll bug, question deletion now works
+
+## v2508.1
+
+### Fixed
+
+- Remove identifier from dashboard item labels
+
+## v2507.1
+
+### Changed
+
+- Change labels of links to manual, 'Help Center', and direct to new a+ manual
+- phase date selection: use flatpickr's ui on mobile instead of native- Disabled languages other than English and German
+- Update make postgresql-create|start|stop for linux OS
+- Update README with manual setup of postgreSQL
+- Deps: Upgraded Django to Version 5.1- **BREAKING CHANGE** A database with geospatial support is now required (e.g spatialite, postgresql with postgis)
+- Use the new `PointSerializerMixin` Project Serializer
+- project admin model to GIS admin model to render the map in the django-admin dashboard
+- Updated dependencies to Django 5.0- MapFilterAndSort: Change Map / List buttons to toggler- poll module diagrams
+- poll documentation
+- Update README.md to include libmagic installation step for MacOS
+
+### Removed
+
+- Removed env variable MANUAL_URL - no longer used- API url `api/login` as it is not in used anymore, we use `api/token` instead. See [docs](https://github.com/liqd/adhocracy-plus/blob/main/docs/authentication.md)
+
+### Added
+
+- captcha required for all SSO social signups- docs for upgrades
+- wiki diagrams links for the modules technical diagrams
+- Added moderator feedback form textarea character limit of 500- postgresql documentation
+- poll, question, answer, vote relation diagram
+
+### Fixed
+
+- Conditional display of dashboard project module menu's "Location" uses identifier instead of label, so translation doesn't break it
+- dashboard/phases: Prevent accidental selection of entire page when using date picker
+
+
+## Roots v2505.1
 
 ### Added
 

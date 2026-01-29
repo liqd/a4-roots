@@ -58,15 +58,6 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
 
     date_joined = models.DateTimeField(editable=False, default=timezone.now)
 
-    get_notifications = models.BooleanField(
-        verbose_name=_("Send me email notifications"),
-        default=True,
-        help_text=_(
-            "Designates whether you want to receive notifications. "
-            "Unselect if you do not want to receive notifications."
-        ),
-    )
-
     get_newsletters = models.BooleanField(
         verbose_name=_("I would like to receive further information"),
         default=False,
@@ -187,7 +178,7 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
         return full_name.strip()
 
     def get_absolute_url(self):
-        return reverse("profile", args=[str(self.username)])
+        return reverse("profile", args=[self.username])
 
     def has_agreed_on_org_terms(self, organisation):
         return OrganisationTermsOfUse.objects.filter(

@@ -11,7 +11,7 @@ from django.utils.translation import get_language
 from django.utils.translation import gettext_lazy as _
 from zeep import Client
 
-from apps.captcha.fields import CaptcheckCaptchaField
+from apps.captcha.fields import ProsopoCaptchaField
 from apps.cms.settings import helpers
 from apps.organisations.models import Member
 from apps.organisations.models import Organisation
@@ -19,10 +19,31 @@ from apps.users.models import User
 
 logger = logging.getLogger(__name__)
 
-CAPTCHA_HELP = _(
-    "Solve the math problem and click on the correct result.<strong>"
-    "If you are having difficulty please contact us  by {}email{}.</strong>"
+PROSOPO_CAPTCHA_HELP = _(
+    "Please complete the captcha verification.<strong>"
+    "If you are having difficulty please contact us by {}email{}.</strong>"
 )
+
+
+class TermsAndCaptchaMixin:
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        if "terms_of_use" not in self.fields:
+            self.fields["terms_of_use"] = forms.BooleanField(label=_("Terms of use"))
+
+        if not getattr(settings, "CAPTCHA", False):
+            return  # Don't add captcha field
+
+        try:
+            self.fields["captcha"] = ProsopoCaptchaField(label=_("I am not a robot"))
+            self.fields["captcha"].help_text = helpers.add_email_link_to_helptext(
+                self.fields["captcha"].help_text, PROSOPO_CAPTCHA_HELP
+            )
+        except Exception as e:
+            logger.warning(
+                f"Could not add Prosopo captcha field, are the PROSOPO_SITE_KEY and PROSOPO_SECRET_KEY set : {e}"
+            )
 
 
 class DefaultLoginForm(LoginForm):
@@ -34,23 +55,11 @@ class DefaultLoginForm(LoginForm):
         self.fields["password"].help_text = ""
         self.fields["login"].widget.attrs["autocomplete"] = "username"
         self.fields["password"].widget.attrs["autocomplete"] = "current-password"
-
-
-class TermsAndCaptchaMixin:
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-        if "terms_of_use" not in self.fields:
-            self.fields["terms_of_use"] = forms.BooleanField(label=_("Terms of use"))
-
-        if getattr(settings, "CAPTCHA_URL", None):
-            self.fields["captcha"] = CaptcheckCaptchaField(label=_("I am not a robot"))
-            self.fields["captcha"].help_text = helpers.add_email_link_to_helptext(
-                self.fields["captcha"].help_text, CAPTCHA_HELP
-            )
+        self.fields["password"].widget.attrs["class"] = "password-toggle"
 
 
 class DefaultSignupForm(TermsAndCaptchaMixin, SignupForm):
+    terms_of_use = forms.BooleanField(label=_("Terms of use"))
     get_newsletters = forms.BooleanField(
         label=_("I would like to receive further information"),
         help_text=_(
@@ -74,6 +83,8 @@ class DefaultSignupForm(TermsAndCaptchaMixin, SignupForm):
         self.fields["email"].widget.attrs["autocomplete"] = "username"
         self.fields["password1"].widget.attrs["autocomplete"] = "new-password"
         self.fields["password2"].widget.attrs["autocomplete"] = "new-password"
+        self.fields["password1"].widget.attrs["class"] = "password-toggle"
+        self.fields["password2"].widget.attrs["class"] = "password-toggle"
 
     def save(self, request):
         user = super().save(request)
@@ -103,7 +114,8 @@ class GuestConvertForm(DefaultSignupForm):
         self.user = kwargs.pop("user", None)
         super().__init__(*args, **kwargs)
 
-        del self.fields["captcha"]
+        if "captcha" in self.fields:
+            del self.fields["captcha"]
 
         self.fields["email"].required = True
         self.fields["username"].required = True
@@ -241,8 +253,7 @@ class IgbceSignupForm(DefaultSignupForm):
         return user
 
 
-class SocialTermsSignupForm(SocialSignupForm):
-    terms_of_use = forms.BooleanField(label=_("Terms of use"))
+class SocialTermsSignupForm(TermsAndCaptchaMixin, SocialSignupForm):
     get_newsletters = forms.BooleanField(
         label=_("I would like to receive further information"),
         help_text=_(

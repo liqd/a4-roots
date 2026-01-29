@@ -39,6 +39,13 @@
                         </a>
                     </li>
                     <li class="dashboard-nav__page">
+                        <a href="{% url 'account_notification_settings' %}"
+                           class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == "account_notification_settings" %}is-active{% endif %}">
+                            <i class="fas fa-bell" aria-hidden="true"></i>
+                            {% translate 'Notification Options' %}
+                        </a>
+                    </li>
+                    <li class="dashboard-nav__page">
                         <a href="{% url 'account_email' %}"
                            class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == "account_email" %}is-active{% endif %}">
                             <i class="far fa-envelope" aria-hidden="true"></i>
@@ -112,7 +119,7 @@
 {% endif %}
 
         <div class="col-md-6">
-            {% block dashboard_content %}{% endblock %}
+            {% block dashboard_content %}{% endblock dashboard_content %}
         </div>
 
     </div>
