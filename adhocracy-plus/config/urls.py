@@ -11,7 +11,6 @@ from django.views.generic import TemplateView
 from django.views.i18n import JavaScriptCatalog
 from django_ckeditor_5 import views as ckeditor5_views
 from rest_framework import routers
-from rest_framework.authtoken.views import obtain_auth_token
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.views import TokenRefreshView
 from rest_framework_simplejwt.views import TokenVerifyView
@@ -101,6 +100,7 @@ urlpatterns = [
     path("account/", include("apps.account.urls")),
     path("profile/", include("apps.users.urls")),
     path("userdashboard/", include("apps.userdashboard.urls")),
+    # Captcha URLs removed - no longer needed
     # this needs to be above i18n/ to make the overwrite work
     path("i18n/setlang/", set_language_overwrite, name="set_language"),
     path("i18n/", include(i18n)),
@@ -114,7 +114,6 @@ urlpatterns = [
     path("api/", include(router.urls)),
     re_path(r"^api/account/", AccountViewSet.as_view(), name="api-account"),
     # API JWT authentication
-    re_path(r"^api/login", obtain_auth_token, name="api-login"),
     path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_jwt"),
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path("api/token/verify/", TokenVerifyView.as_view(), name="token_verify"),

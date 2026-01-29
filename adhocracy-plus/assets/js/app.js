@@ -8,6 +8,7 @@ import '../../../apps/dashboard/assets/ajax_modal.js'
 import '../../../apps/maps/assets/map-address.js'
 import '../../../apps/moderatorremark/assets/idea_remarks.js'
 import '../../../apps/newsletters/assets/dynamic_fields.js'
+import '../../../apps/mapideas/assets/js/map_list_view.js'
 
 // expose react components
 import {
@@ -70,7 +71,42 @@ function init () {
 }
 
 document.addEventListener('DOMContentLoaded', init, false)
+document.addEventListener('DOMContentLoaded', function () {
+  // Add toggle buttons to password fields
+  document.querySelectorAll('.password-toggle').forEach(function (passwordField) {
+    // Create wrapper
+    const wrapper = document.createElement('div')
+    wrapper.className = 'password-field-wrapper'
 
+    // Wrap the password field
+    passwordField.parentNode.insertBefore(wrapper, passwordField)
+    wrapper.appendChild(passwordField)
+
+    // Create toggle button
+    const toggleBtn = document.createElement('button')
+    toggleBtn.type = 'button'
+    toggleBtn.className = 'password-toggle-btn'
+    toggleBtn.innerHTML = '<i class="fas fa-eye"></i>'
+    toggleBtn.setAttribute('aria-label', 'Show password')
+
+    // Add toggle functionality
+    toggleBtn.addEventListener('click', function () {
+      const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password'
+      passwordField.setAttribute('type', type)
+
+      // Update button icon and aria-label
+      if (type === 'text') {
+        this.innerHTML = '<i class="fas fa-eye-slash"></i>'
+        this.setAttribute('aria-label', 'Hide password')
+      } else {
+        this.innerHTML = '<i class="fas fa-eye"></i>'
+        this.setAttribute('aria-label', 'Show password')
+      }
+    })
+
+    wrapper.appendChild(toggleBtn)
+  })
+})
 export function getCurrentPath () {
   return location.pathname
 }
