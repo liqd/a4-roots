@@ -1,9 +1,7 @@
-"""Views for summarization service."""
-
 from django.shortcuts import render
 from django.views import View
 
-from .services import SummarizationService
+from .services import AIService
 
 
 class SummarizationTestView(View):
@@ -29,7 +27,7 @@ class SummarizationTestView(View):
 
         if text:
             try:
-                service = SummarizationService(provider_handle=provider_handle)
+                service = AIService(provider_handle=provider_handle)
                 summary = service.summarize(text, max_length=max_length)
                 context["summary"] = summary
                 context["original_length"] = len(text)

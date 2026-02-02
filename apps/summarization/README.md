@@ -10,9 +10,9 @@ Copy `adhocracy-plus/config/settings/local.py.template` to `adhocracy-plus/confi
 ## Usage
 
 ```python
-from apps.summarization.services import SummarizationService
+from apps.summarization.services import AIService
 
-service = SummarizationService(provider_handle="openrouter")
+service = AIService(provider_handle="openrouter")
 summary = service.summarize(text="Long text...", max_length=500)
 ```
 

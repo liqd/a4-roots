@@ -1,24 +1,12 @@
 """Provider implementation for AI services."""
 
+from abc import ABC
+
 from django.conf import settings
 from pydantic import BaseModel
 from pydantic_ai import Agent
 from pydantic_ai.models.openai import OpenAIChatModel
 from pydantic_ai.providers.openai import OpenAIProvider
-
-
-class SummaryRequest(BaseModel):
-    """Request model for summarization."""
-
-    text: str
-    max_length: int = 500
-
-
-class SummaryResponse(BaseModel):
-    """Response model for summarization."""
-
-    summary: str
-    provider: str
 
 
 class ProviderConfig:
@@ -60,12 +48,11 @@ class ProviderConfig:
             ValueError: If provider configuration is missing or invalid
         """
         # Get provider configurations from settings
-        provider_configs = getattr(settings, "SUMMARIZATION_PROVIDERS", {})
+        provider_configs = getattr(settings, "AI_PROVIDERS", {})
 
         if not provider_configs:
             raise ValueError(
-                "SUMMARIZATION_PROVIDERS not configured. "
-                "Please configure providers in local.py"
+                "AI_PROVIDERS not configured. " "Please configure providers in local.py"
             )
 
         if handle not in provider_configs:
@@ -79,7 +66,9 @@ class ProviderConfig:
 
         # Validate required fields
         required_fields = ["api_key", "model_name", "base_url"]
-        missing_fields = [field for field in required_fields if field not in config_dict]
+        missing_fields = [
+            field for field in required_fields if field not in config_dict
+        ]
         if missing_fields:
             raise ValueError(
                 f"Provider configuration '{handle}' is missing required fields: "
@@ -94,6 +83,11 @@ class ProviderConfig:
         )
 
 
+class AIRequest(ABC):
+    def prompt(self) -> str:
+        raise NotImplementedError("Subclasses must implement prompt()")
+
+
 class AIProvider:
     """Unified provider for AI services using OpenAI-compatible APIs."""
 
@@ -105,39 +99,51 @@ class AIProvider:
             config: Provider configuration object
         """
         self.config = config
-        
+
         # All providers are OpenAI-compatible
         # Create OpenAIProvider directly with base_url and api_key
         provider = OpenAIProvider(
             base_url=config.base_url,
             api_key=config.api_key,
         )
-        
+
         self.model = OpenAIChatModel(
             model_name=config.model_name,
             provider=provider,
         )
-        
-        self.agent = Agent(
-            model=self.model,
-            system_prompt="Du bist ein hilfreicher Assistent, der Texte prägnant zusammenfasst.",
-        )
 
-    def summarize(self, request: SummaryRequest) -> SummaryResponse:
+    def request(self, request: AIRequest, result_type: type[BaseModel]) -> BaseModel:
         """
-        Summarize text.
+        Execute a request with structured input and output.
 
         Args:
-            request: Summary request with text and max_length
+            request: Pydantic BaseModel with request data
+            result_type: Pydantic BaseModel class for structured output
 
         Returns:
-            SummaryResponse with summary and provider handle
+            Structured response as BaseModel instance
         """
-        prompt = (
-            f"Fasse den folgenden Text in maximal {request.max_length} Zeichen zusammen:\n\n"
-            f"{request.text}"
+        # Get system prompt from settings
+        system_prompt = getattr(
+            settings,
+            "SYSTEM_PROMPT",
+            "",
         )
-        result = self.agent.run_sync(prompt)
-        # AgentRunResult has output attribute, not data
-        summary = str(result.output).strip()
-        return SummaryResponse(summary=summary, provider=self.config.handle)
+
+        # Create agent with output_type for structured output
+        agent = Agent(
+            model=self.model,
+            system_prompt=system_prompt,
+            output_type=result_type,
+        )
+
+        # Convert request to prompt string using prompt() method
+        result = agent.run_sync(request.prompt())
+        # result.output is already an instance of result_type
+        response = result.output
+
+        # Set provider handle if response has provider field
+        if hasattr(response, "provider"):
+            response.provider = self.config.handle
+
+        return response
