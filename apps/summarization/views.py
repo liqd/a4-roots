@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.views import View
 
 from .services import AIService
+from .services import SummaryRequest
+from .services import SummaryResponse
 
 
 class SummarizationTestView(View):
@@ -28,10 +30,12 @@ class SummarizationTestView(View):
         if text:
             try:
                 service = AIService(provider_handle=provider_handle)
-                summary = service.summarize(text, max_length=max_length)
-                context["summary"] = summary
+                summary_request = SummaryRequest(text=text, max_length=max_length)
+                response = service.provider.request(summary_request, result_type=SummaryResponse)
+                context["summary"] = response.summary
+                context["key_points"] = response.key_points
                 context["original_length"] = len(text)
-                context["summary_length"] = len(summary)
+                context["summary_length"] = len(response.summary)
             except Exception as e:
                 context["error"] = str(e)
 
