@@ -1,0 +1,230 @@
+#!/usr/bin/env python
+"""
+Test script for summarization service.
+
+Usage:
+    python manage.py shell < apps/summarization/test_summarization.py
+    # or
+    python apps/summarization/test_summarization.py --provider openrouter
+"""
+
+import argparse
+import os
+import sys
+
+# Setup Django environment if running as standalone script
+if __name__ == "__main__" and not os.environ.get("DJANGO_SETTINGS_MODULE"):
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "adhocracy-plus.config.settings")
+    import django
+
+    django.setup()
+
+from apps.summarization.services import SummarizationService
+
+# Long example text for testing
+LONG_TEXT = (
+    """
+Artificial intelligence has made enormous progress in recent years and is now used in many areas.
+From speech processing to image analysis to predictions and decision support - AI systems are finding
+application in almost all industries.
+
+The development of Large Language Models (LLMs) such as GPT, Claude or DeepSeek has revolutionized the possibilities of
+text processing. These models can understand, generate and summarize texts, which
+opens up numerous use cases.
+
+OpenRouter.ai provides centralized access to various AI models via a unified API.
+This significantly simplifies the integration of AI functions into applications, as developers do not need to
+implement a separate integration for each provider.
+
+OVHcloud provides secure AI endpoints that enable companies to use AI models without
+their data being used for training. This is particularly important for companies with strict
+data protection requirements.
+
+RouterLab provides access to various AI models such as Kimi K2.5, which are specifically optimized for certain use cases.
+The platform enables developers to quickly test and compare different models.
+
+Text summarization is one of the most common applications of AI systems. It enables
+long documents to be quickly captured, important information extracted and content presented compactly.
+This is particularly useful for research, content creation and knowledge management.
+
+Modern summarization algorithms use various techniques, from simple extraction methods to
+abstractive approaches that generate new formulations. The quality of summaries depends
+on many factors, including the complexity of the original text, the desired length and the
+model used.
+
+The integration of AI summarization functions into web applications requires careful planning.
+Developers must consider aspects such as latency, costs, data protection and user-friendliness.
+Flexible provider abstractions enable the use of different backends without changing the application logic.
+"""
+    * 2
+)  # Repeat to make it even longer
+
+
+def print_separator(char="=", length=80):
+    """Print a separator line."""
+    print(char * length)
+
+
+def _run_validations(
+    summary: str, max_length: int, original_length: int
+) -> tuple[list[str], list[str]]:
+    """Run validation checks on summary."""
+    validations_passed = []
+    validations_failed = []
+
+    if len(summary) <= max_length:
+        validations_passed.append("Length within limit")
+    else:
+        validations_failed.append(
+            f"Length exceeds limit ({len(summary)} > {max_length})"
+        )
+
+    if len(summary) < original_length:
+        validations_passed.append("Summary is shorter than original")
+    else:
+        validations_failed.append("Summary is not shorter than original")
+
+    if len(summary) > 0:
+        validations_passed.append("Summary is not empty")
+    else:
+        validations_failed.append("Summary is empty")
+
+    # Check for relevant keywords
+    keywords = ["AI", "summary", "models", "text", "systems", "application"]
+    found_keywords = [kw for kw in keywords if kw.lower() in summary.lower()]
+    if found_keywords:
+        validations_passed.append(
+            f"Contains relevant keywords: {', '.join(found_keywords)}"
+        )
+    else:
+        validations_failed.append("Does not contain relevant keywords")
+
+    return validations_passed, validations_failed
+
+
+def _print_statistics(summary: str, original_length: int):
+    """Print statistics about the summary."""
+    compression_ratio = (len(summary) / original_length) * 100 if original_length else 0
+    reduction = original_length - len(summary)
+
+    print("STATISTICS:")
+    print(f"  Original Length:       {original_length} characters")
+    print(f"  Summary Length:        {len(summary)} characters")
+    print(f"  Compression:           {compression_ratio:.2f}%")
+    print(f"  Reduction:             {reduction} characters")
+    print_separator()
+
+
+def test_summarization(provider_handle: str = None, max_length: int = 500):
+    """
+    Test the summarization service.
+
+    Args:
+        provider_handle: Provider handle to use (default: from settings)
+        max_length: Maximum length of summary in characters
+    """
+    from django.conf import settings
+
+    print_separator()
+    print("AI SUMMARIZATION SERVICE TEST")
+    print_separator()
+
+    if not provider_handle:
+        provider_handle = getattr(
+            settings, "SUMMARIZATION_PROVIDER_HANDLE", "openrouter"
+        )
+
+    print(f"Provider Handle: {provider_handle}")
+    print(f"Maximum Length: {max_length} characters")
+    print_separator()
+
+    try:
+        print("Initializing service...")
+        service = SummarizationService(provider_handle=provider_handle)
+        print("✓ Service successfully initialized")
+        print(f"  Model: {service.provider.config.model_name}")
+        print(f"  Base URL: {service.provider.config.base_url}")
+        api_key = service.provider.config.api_key
+        if api_key:
+            masked_key = api_key[:10] + "..." if len(api_key) > 10 else "***"
+            print(f"  API Key: {masked_key}")
+        print_separator()
+
+        print("ORIGINAL TEXT:")
+        print("-" * 80)
+        print(LONG_TEXT[:500] + "...")  # Print first 500 chars
+        print(f"Length: {len(LONG_TEXT)} characters")
+        print_separator()
+
+        print("Generating summary...")
+        summary = service.summarize(LONG_TEXT, max_length=max_length)
+        print("✓ Summary successfully created")
+        print_separator()
+
+        print("SUMMARY:")
+        print("-" * 80)
+        print(summary)
+        print(f"Length: {len(summary)} characters")
+        print_separator()
+
+        _print_statistics(summary, len(LONG_TEXT))
+
+        validations_passed, validations_failed = _run_validations(
+            summary, max_length, len(LONG_TEXT)
+        )
+
+        print("VALIDATION:")
+        for validation in validations_passed:
+            print(f"  ✓ {validation}")
+        for validation in validations_failed:
+            print(f"  ✗ {validation}")
+        print_separator()
+
+        if not validations_failed:
+            print("✓ ALL VALIDATIONS PASSED")
+        else:
+            print("✗ SOME VALIDATIONS FAILED")
+
+        print_separator()
+
+    except ValueError as e:
+        print(f"ERROR during configuration or initialization: {e}")
+        sys.exit(1)
+    except Exception as e:
+        print(f"ERROR during summary generation: {e}")
+        import traceback
+
+        traceback.print_exc()
+        sys.exit(1)
+
+
+def main():
+    """Main entry point."""
+    parser = argparse.ArgumentParser(
+        description="Test script for summarization service"
+    )
+    parser.add_argument(
+        "--provider",
+        choices=["openrouter", "ovhcloud", "routerlab"],
+        default=None,
+        help="Provider handle to use (default: from SUMMARIZATION_PROVIDER_HANDLE setting or 'openrouter')",
+    )
+    parser.add_argument(
+        "--max-length",
+        type=int,
+        default=500,
+        help="Maximum length of summary in characters (default: 500)",
+    )
+
+    args = parser.parse_args()
+
+    test_summarization(provider_handle=args.provider, max_length=args.max_length)
+
+
+# Execute when run directly or via manage.py shell
+# When run via shell < script.py, the code is executed directly
+if __name__ == "__main__":
+    main()
+else:
+    # When run via shell < script.py, execute with defaults
+    test_summarization()
