@@ -25,3 +25,8 @@ venv/bin/python manage.py shell < apps/summarization/test_summarization.py
 venv/bin/python apps/summarization/test_summarization.py --provider openrouter
 ```
 
+## Web Interface
+
+A web-based test interface is available at `/summarization/test/` for interactive testing of the summarization service. 
+
+
