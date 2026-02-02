@@ -1,3 +1,5 @@
+import os
+
 # Prosopo Captcha Configuration
 # Get your keys from: https://docs.prosopo.io/en/basics/
 CAPTCHA = True #or False
@@ -6,9 +8,10 @@ PROSOPO_SECRET_KEY = "your_actual_secret_key_here"
 
 # Summarization service configuration
 # Configure AI providers for text summarization
-SUMMARIZATION_PROVIDER_HANDLE = "ovhcloud"  # Default provider to use
+AI_PROVIDER = "ovhcloud"  # Default provider to use
+SYSTEM_PROMPT = "Du bist ein hilfreicher Assistent, der Texte prägnant zusammenfasst."  # System prompt for the AI agent
 
-SUMMARIZATION_PROVIDERS = {
+AI_PROVIDERS = {
     "ovhcloud": {
         "api_key": os.getenv("OVHCLOUD_API_KEY", ""),
         "model_name": "gpt-oss-120b",

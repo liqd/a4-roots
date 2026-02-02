@@ -26,7 +26,7 @@ if __name__ == "__main__" and not os.environ.get("DJANGO_SETTINGS_MODULE"):
 
     django.setup()
 
-from apps.summarization.services import SummarizationService
+from apps.summarization.services import AIService
 
 # Long example text for testing
 LONG_TEXT = (
@@ -137,9 +137,7 @@ def test_summarization(provider_handle: str = None, max_length: int = 500):
     print_separator()
 
     if not provider_handle:
-        provider_handle = getattr(
-            settings, "SUMMARIZATION_PROVIDER_HANDLE", "openrouter"
-        )
+        provider_handle = getattr(settings, "AI_PROVIDER", "openrouter")
 
     print(f"Provider Handle: {provider_handle}")
     print(f"Maximum Length: {max_length} characters")
@@ -147,7 +145,7 @@ def test_summarization(provider_handle: str = None, max_length: int = 500):
 
     try:
         print("Initializing service...")
-        service = SummarizationService(provider_handle=provider_handle)
+        service = AIService(provider_handle=provider_handle)
         print("✓ Service successfully initialized")
         print(f"  Model: {service.provider.config.model_name}")
         print(f"  Base URL: {service.provider.config.base_url}")
@@ -214,7 +212,7 @@ def main():
         "--provider",
         choices=["openrouter", "ovhcloud", "routerlab"],
         default=None,
-        help="Provider handle to use (default: from SUMMARIZATION_PROVIDER_HANDLE setting or 'openrouter')",
+        help="Provider handle to use (default: from AI_PROVIDER setting or 'openrouter')",
     )
     parser.add_argument(
         "--max-length",
