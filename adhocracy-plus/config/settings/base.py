@@ -113,6 +113,7 @@ INSTALLED_APPS = (
     "apps.projects",
     "apps.userdashboard",
     "apps.learning_nuggets",
+    "apps.summarization",
     # Apps defining phases
     "apps.activities",
     "apps.budgeting",
@@ -729,3 +730,8 @@ GUEST_USER_REQUIRED_ANON_URL = "/accounts/guests/login"
 # Currently only guest dashboard views use this, so redirects to user profile.
 GUEST_USER_REQUIRED_USER_URL = "/account/profile/"
 GUEST_USER_CONVERT_URL = "/account/guest/convert/"
+
+# Summarization service configuration
+# Default provider handle (can be overridden in local.py)
+SUMMARIZATION_PROVIDER_HANDLE = os.getenv("SUMMARIZATION_PROVIDER_HANDLE", "openrouter")
+# Provider configurations should be defined in local.py as SUMMARIZATION_PROVIDERS dict

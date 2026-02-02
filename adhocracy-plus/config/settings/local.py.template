@@ -3,3 +3,25 @@
 CAPTCHA = True #or False
 PROSOPO_SITE_KEY = "your_actual_site_key_here"
 PROSOPO_SECRET_KEY = "your_actual_secret_key_here"
+
+# Summarization service configuration
+# Configure AI providers for text summarization
+SUMMARIZATION_PROVIDER_HANDLE = "openrouter"  # Default provider to use
+
+SUMMARIZATION_PROVIDERS = {
+    "openrouter": {
+        "api_key": os.getenv("OPENROUTER_API_KEY", ""),
+        "model_name": "deepseek/deepseek-chat",
+        "base_url": "https://openrouter.ai/api/v1",
+    },
+    "ovhcloud": {
+        "api_key": os.getenv("OVHCLOUD_API_KEY", ""),
+        "model_name": "gpt-oss-120b",
+        "base_url": "https://api.endpoints.ovhcloud.com/v1",
+    },
+    "routerlab": {
+        "api_key": os.getenv("ROUTERLAB_API_KEY", ""),
+        "model_name": "kimi-k2.5",
+        "base_url": "https://api.routerlab.ch/v1",
+    },
+}
