@@ -82,6 +82,9 @@
             font-size: 12px;
             color: #666;
         }
+        .key-points {
+            margin-top: 15px;
+        }
     </style>
 </head>
 <body>
@@ -117,6 +120,16 @@
         <div class="result">
             <h2>Summary:</h2>
             <div class="summary">{{ summary }}</div>
+            {% if key_points %}
+            <div class="key-points">
+                <h3>Key Points:</h3>
+                <ul>
+                    {% for point in key_points %}
+                    <li>{{ point }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
             <div class="stats">
                 Original: {{ original_length }} characters | 
                 Summary: {{ summary_length }} characters | 

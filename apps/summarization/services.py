@@ -2,6 +2,7 @@
 
 from django.conf import settings
 from pydantic import BaseModel
+from pydantic import Field
 
 from .providers import AIProvider
 from .providers import AIRequest
@@ -58,5 +59,9 @@ class SummaryRequest(AIRequest):
 class SummaryResponse(BaseModel):
     """Response model for summarization."""
 
-    summary: str
+    summary: str = Field(description="Die Zusammenfassung des Textes")
+    key_points: list[str] = Field(
+        default_factory=list,
+        description="Wichtige Punkte oder Stichworte aus dem Text"
+    )
     provider: str

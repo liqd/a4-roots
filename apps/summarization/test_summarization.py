@@ -27,6 +27,8 @@ if __name__ == "__main__" and not os.environ.get("DJANGO_SETTINGS_MODULE"):
     django.setup()
 
 from apps.summarization.services import AIService
+from apps.summarization.services import SummaryRequest
+from apps.summarization.services import SummaryResponse
 
 # Long example text for testing
 LONG_TEXT = (
@@ -162,20 +164,28 @@ def test_summarization(provider_handle: str = None, max_length: int = 500):
         print_separator()
 
         print("Generating summary...")
-        summary = service.summarize(LONG_TEXT, max_length=max_length)
+        request = SummaryRequest(text=LONG_TEXT, max_length=max_length)
+        response = service.provider.request(request, result_type=SummaryResponse)
         print("✓ Summary successfully created")
         print_separator()
 
         print("SUMMARY:")
         print("-" * 80)
-        print(summary)
-        print(f"Length: {len(summary)} characters")
+        print(response.summary)
+        print(f"Length: {len(response.summary)} characters")
         print_separator()
 
-        _print_statistics(summary, len(LONG_TEXT))
+        if response.key_points:
+            print("KEY POINTS:")
+            print("-" * 80)
+            for i, point in enumerate(response.key_points, 1):
+                print(f"  {i}. {point}")
+            print_separator()
+
+        _print_statistics(response.summary, len(LONG_TEXT))
 
         validations_passed, validations_failed = _run_validations(
-            summary, max_length, len(LONG_TEXT)
+            response.summary, max_length, len(LONG_TEXT)
         )
 
         print("VALIDATION:")
