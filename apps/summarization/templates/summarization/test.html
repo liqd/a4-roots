@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Summarization Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-top: 0;
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        input[type="number"], select {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 15px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            border-left: 4px solid #007bff;
+        }
+        .error {
+            background-color: #f8d7da;
+            border-left-color: #dc3545;
+            color: #721c24;
+        }
+        .summary {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #d4edda;
+            border-radius: 4px;
+            border-left: 4px solid #28a745;
+        }
+        .stats {
+            margin-top: 10px;
+            font-size: 12px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AI Summarization Test</h1>
+        
+        <form method="post">
+            {% csrf_token %}
+            
+            <label for="text">Text to summarize:</label>
+            <textarea name="text" id="text" required>{{ text }}</textarea>
+            
+            <label for="max_length">Maximum length (characters):</label>
+            <input type="number" name="max_length" id="max_length" value="{{ max_length }}" min="50" max="2000" required>
+            
+            <label for="provider">Provider:</label>
+            <select name="provider" id="provider">
+                <option value="ovhcloud" {% if provider == "ovhcloud" %}selected{% endif %}>OVHcloud</option>
+                <option value="routerlab" {% if provider == "routerlab" %}selected{% endif %}>RouterLab</option>
+                <option value="openrouter" {% if provider == "openrouter" %}selected{% endif %}>OpenRouter</option>
+            </select>
+            
+            <button type="submit">Summarize</button>
+        </form>
+        
+        {% if error %}
+        <div class="result error">
+            <strong>Error:</strong> {{ error }}
+        </div>
+        {% endif %}
+        
+        {% if summary %}
+        <div class="result">
+            <h2>Summary:</h2>
+            <div class="summary">{{ summary }}</div>
+            <div class="stats">
+                Original: {{ original_length }} characters | 
+                Summary: {{ summary_length }} characters | 
+                Compression: {% widthratio summary_length original_length 100 %}% 
+                ({{ original_length|add:"-"|add:summary_length }} characters saved)
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
+

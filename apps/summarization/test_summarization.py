@@ -14,6 +14,13 @@ import sys
 
 # Setup Django environment if running as standalone script
 if __name__ == "__main__" and not os.environ.get("DJANGO_SETTINGS_MODULE"):
+    # Add project root to Python path so adhocracy-plus module can be found
+    project_root = os.path.dirname(
+        os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    )
+    if project_root not in sys.path:
+        sys.path.insert(0, project_root)
+
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "adhocracy-plus.config.settings")
     import django
 
