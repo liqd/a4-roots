@@ -20,7 +20,7 @@ AI_PROVIDERS = {
     "routerlab": {
         "api_key": os.getenv("ROUTERLAB_API_KEY", ""),
         "model_name": "kimi-k2.5",
-        "base_url": "https://api.routerlab.ch/v1",
+        "base_url": "https://routerlab.ch/v1",
     },
     "openrouter": {
         "api_key": os.getenv("OPENROUTER_API_KEY", ""),
@@ -28,3 +28,9 @@ AI_PROVIDERS = {
         "base_url": "https://openrouter.ai/api/v1",
     }
 }
+
+# Summarization service configuration
+# Maximum file size for image uploads (in bytes, default: 10MB)
+SUMMARIZATION_MAX_FILE_SIZE = 10 * 1024 * 1024
+# Allowed image file extensions for uploads
+SUMMARIZATION_ALLOWED_IMAGE_TYPES = [".png", ".jpg", ".jpeg", ".pdf"]
