@@ -1,10 +1,12 @@
 """Provider implementation for AI services."""
 
 from abc import ABC
+from pathlib import Path
 
 from django.conf import settings
 from pydantic import BaseModel
 from pydantic_ai import Agent
+from pydantic_ai.messages import BinaryImage
 from pydantic_ai.models.openai import OpenAIChatModel
 from pydantic_ai.providers.openai import OpenAIProvider
 
@@ -139,6 +141,75 @@ class AIProvider:
 
         # Convert request to prompt string using prompt() method
         result = agent.run_sync(request.prompt())
+        # result.output is already an instance of result_type
+        response = result.output
+
+        # Set provider handle if response has provider field
+        if hasattr(response, "provider"):
+            response.provider = self.config.handle
+
+        return response
+
+    def request_with_image(
+        self, request: AIRequest, result_type: type[BaseModel], image_paths: list[Path]
+    ) -> BaseModel:
+        """
+        Execute a request with images using vision API.
+
+        Args:
+            request: Pydantic BaseModel with request data
+            result_type: Pydantic BaseModel class for structured output
+            image_paths: List of paths to image files (Path objects)
+
+        Returns:
+            Structured response as BaseModel instance
+        """
+        # Get system prompt from settings
+        system_prompt = getattr(
+            settings,
+            "SYSTEM_PROMPT",
+            "",
+        )
+
+        # Create agent with output_type for structured output
+        # Increase output_retries for vision requests as they may need more attempts
+        agent = Agent(
+            model=self.model,
+            system_prompt=system_prompt,
+            output_type=result_type,
+            output_retries=3,  # Allow more retries for vision output validation
+        )
+
+        # Ensure all paths are Path objects
+        image_paths = [Path(p) if not isinstance(p, Path) else p for p in image_paths]
+
+        # Read images and create BinaryImage objects
+        image_contents = []
+        for img_path in image_paths:
+            if not img_path.exists():
+                raise FileNotFoundError(f"Image file not found: {img_path}")
+            
+            # Determine media type from file extension
+            ext = img_path.suffix.lower()
+            media_type_map = {
+                ".jpg": "image/jpeg",
+                ".jpeg": "image/jpeg",
+                ".png": "image/png",
+                ".pdf": "application/pdf",
+            }
+            media_type = media_type_map.get(ext, "image/jpeg")
+            
+            # Read file and create BinaryImage
+            with open(img_path, "rb") as f:
+                image_data = f.read()
+            
+            image_contents.append(BinaryImage(data=image_data, media_type=media_type))
+
+        # Combine prompt text with images as UserContent sequence
+        user_content = [request.prompt()] + image_contents
+
+        # Run with user_content (not images parameter)
+        result = agent.run_sync(user_content)
         # result.output is already an instance of result_type
         response = result.output
 

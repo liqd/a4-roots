@@ -85,17 +85,28 @@
         .key-points {
             margin-top: 15px;
         }
+        .file-hint {
+            color: #666;
+            display: block;
+            margin-top: 5px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>AI Summarization Test</h1>
         
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             
             <label for="text">Text to summarize:</label>
-            <textarea name="text" id="text" required>{{ text }}</textarea>
+            <textarea name="text" id="text">{{ text }}</textarea>
+            
+            <label for="image">Or upload an image:</label>
+            <input type="file" name="image" id="image" accept=".png,.jpg,.jpeg,.pdf">
+            <small class="file-hint">
+                Supported formats: PNG, JPG, JPEG, PDF (max 10MB)
+            </small>
             
             <label for="max_length">Maximum length (characters):</label>
             <input type="number" name="max_length" id="max_length" value="{{ max_length }}" min="50" max="2000" required>
@@ -130,12 +141,19 @@
                 </ul>
             </div>
             {% endif %}
+            {% if uploaded_filename %}
+            <div class="stats">
+                Uploaded file: {{ uploaded_filename }} | 
+                Summary: {{ summary_length }} characters
+            </div>
+            {% elif original_length %}
             <div class="stats">
                 Original: {{ original_length }} characters | 
                 Summary: {{ summary_length }} characters | 
                 Compression: {% widthratio summary_length original_length 100 %}% 
                 ({{ original_length|add:"-"|add:summary_length }} characters saved)
             </div>
+            {% endif %}
         </div>
         {% endif %}
     </div>
