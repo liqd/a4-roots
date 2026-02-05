@@ -6,8 +6,10 @@ from pathlib import Path
 from django.conf import settings
 from pydantic import BaseModel
 from pydantic_ai import Agent
+from pydantic_ai.messages import BinaryContent
 from pydantic_ai.messages import BinaryImage
 from pydantic_ai.models.openai import OpenAIChatModel
+from pydantic_ai.models.openai import OpenAIResponsesModel
 from pydantic_ai.providers.openai import OpenAIProvider
 
 
@@ -109,7 +111,14 @@ class AIProvider:
             api_key=config.api_key,
         )
 
+        # Use OpenAIChatModel for regular text requests (compatible with all providers)
         self.model = OpenAIChatModel(
+            model_name=config.model_name,
+            provider=provider,
+        )
+
+        # Use OpenAIResponsesModel for image/PDF requests (better handling of file annotations)
+        self.responses_model = OpenAIResponsesModel(
             model_name=config.model_name,
             provider=provider,
         )
@@ -172,9 +181,10 @@ class AIProvider:
         )
 
         # Create agent with output_type for structured output
+        # Use OpenAIResponsesModel for image/PDF requests (better handling of file annotations)
         # Increase output_retries for vision requests as they may need more attempts
         agent = Agent(
-            model=self.model,
+            model=self.responses_model,
             system_prompt=system_prompt,
             output_type=result_type,
             output_retries=3,  # Allow more retries for vision output validation
@@ -183,14 +193,14 @@ class AIProvider:
         # Ensure all paths are Path objects
         image_paths = [Path(p) if not isinstance(p, Path) else p for p in image_paths]
 
-        # Read images and create BinaryImage objects
-        image_contents = []
-        for img_path in image_paths:
-            if not img_path.exists():
-                raise FileNotFoundError(f"Image file not found: {img_path}")
-            
+        # Read files and create BinaryImage or BinaryContent objects
+        file_contents = []
+        for file_path in image_paths:
+            if not file_path.exists():
+                raise FileNotFoundError(f"File not found: {file_path}")
+
             # Determine media type from file extension
-            ext = img_path.suffix.lower()
+            ext = file_path.suffix.lower()
             media_type_map = {
                 ".jpg": "image/jpeg",
                 ".jpeg": "image/jpeg",
@@ -198,15 +208,22 @@ class AIProvider:
                 ".pdf": "application/pdf",
             }
             media_type = media_type_map.get(ext, "image/jpeg")
-            
-            # Read file and create BinaryImage
-            with open(img_path, "rb") as f:
-                image_data = f.read()
-            
-            image_contents.append(BinaryImage(data=image_data, media_type=media_type))
 
-        # Combine prompt text with images as UserContent sequence
-        user_content = [request.prompt()] + image_contents
+            # Read file
+            with open(file_path, "rb") as f:
+                file_data = f.read()
+
+            # Use BinaryImage for images, BinaryContent for PDFs and other documents
+            if media_type.startswith("image/"):
+                file_contents.append(BinaryImage(data=file_data, media_type=media_type))
+            else:
+                # For PDFs and other documents, use BinaryContent
+                file_contents.append(
+                    BinaryContent(data=file_data, media_type=media_type)
+                )
+
+        # Combine prompt text with files as UserContent sequence
+        user_content = [request.prompt()] + file_contents
 
         # Run with user_content (not images parameter)
         result = agent.run_sync(user_content)
