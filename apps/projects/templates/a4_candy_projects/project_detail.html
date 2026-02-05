@@ -59,6 +59,25 @@
                 <div class="mb-5 u-z-index--0">
                     <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3">
                         <h1 class="project-header__title">{{ project.name }}</h1>
+                        
+                        <!-- Summary section -->
+
+                        <button hx-get="{% url 'project-generate-summary' organisation_slug=project.organisation.slug slug=project.slug %}" 
+                                hx-target="#summary-container"
+                                hx-indicator="#summary-loading"
+                                class="btn btn-primary">
+                            Magic Summary
+                        </button>
+
+                        <div id="summary-loading" class="htmx-indicator mt-2">
+                            <div class="spinner-border spinner-border-sm" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                            <span class="ml-2">Generating AI summary...</span>
+                        </div>
+
+                        <div id="summary-container" class="mt-3"></div>
+                        <!-- End summary section -->
                         <p class="project-header__description">{{ project.description }}</p>
                         {% if request.user.is_authenticated and not request.user|is_guest_user %}
                             {% react_follows project %}

@@ -1,0 +1,35 @@
+<div class="card">
+    <div class="card-header bg-light">
+        <h5 class="mb-0">AI Project Summary</h5>
+    </div>
+    <div class="card-body">
+        {% for item in summary_items %}
+        <div class="mb-4">
+            <h6>{{ item.title }}</h6>
+            <p>{{ item.summary }}</p>
+            {% if item.key_points %}
+            <h6 class="small">Key Points:</h6>
+            <ul class="small">
+                {% for point in item.key_points %}
+                <li>{{ point }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+        {% endfor %}
+        
+        {% if module_items %}
+        <hr>
+        <h6>Module Summaries:</h6>
+        {% for module in module_items %}
+        <div class="mb-3">
+            <strong>{{ module.module_name }}</strong>
+            <span class="badge badge-{{ module.phase_status }} ml-2">
+                {{ module.phase_status }}
+            </span>
+            <p class="small mb-1">{{ module.summary }}</p>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+</div>
