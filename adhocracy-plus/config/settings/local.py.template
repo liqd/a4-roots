@@ -26,6 +26,11 @@ AI_PROVIDERS = {
         "api_key": os.getenv("OPENROUTER_API_KEY", ""),
         "model_name": "deepseek/deepseek-chat",
         "base_url": "https://openrouter.ai/api/v1",
+    },
+    "mistral": {
+        "api_key": os.getenv("MISTRAL_API_KEY", ""),
+        "model_name": "mistral-large-latest",
+        "base_url": "https://api.mistral.ai",
     }
 }
 

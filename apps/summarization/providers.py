@@ -6,8 +6,10 @@ from pathlib import Path
 from django.conf import settings
 from pydantic import BaseModel
 from pydantic_ai import Agent
+from pydantic_ai.models.mistral import MistralModel
 from pydantic_ai.models.openai import OpenAIChatModel
 from pydantic_ai.models.openai import OpenAIResponsesModel
+from pydantic_ai.providers.mistral import MistralProvider
 from pydantic_ai.providers.openai import OpenAIProvider
 
 from .utils import read_document
@@ -110,12 +112,20 @@ class AIProvider:
             "",
         )
 
-        # All providers are OpenAI-compatible
-        # Create OpenAIProvider directly with base_url and api_key
-        self.provider = OpenAIProvider(
-            base_url=config.base_url,
-            api_key=config.api_key,
-        )
+        # Use MistralProvider for Mistral, OpenAIProvider for others
+        if config.handle == "mistral":
+            self.provider = MistralProvider(
+                api_key=config.api_key,
+                base_url=config.base_url,
+            )
+            self.is_mistral = True
+        else:
+            # All other providers are OpenAI-compatible
+            self.provider = OpenAIProvider(
+                base_url=config.base_url,
+                api_key=config.api_key,
+            )
+            self.is_mistral = False
 
     def _set_provider_handle(self, response: BaseModel) -> None:
         """
@@ -138,16 +148,23 @@ class AIProvider:
         Returns:
             Structured response as BaseModel instance
         """
-        # Use OpenAIChatModel for regular text requests (compatible with all providers)
-        model = OpenAIChatModel(
-            model_name=self.config.model_name,
-            provider=self.provider,
-        )
+        # Use MistralModel for Mistral, OpenAIChatModel for others
+        if self.is_mistral:
+            model = MistralModel(
+                self.config.model_name,
+                provider=self.provider,
+            )
+        else:
+            model = OpenAIChatModel(
+                model_name=self.config.model_name,
+                provider=self.provider,
+            )
 
         agent = Agent(
             model=model,
             system_prompt=self.system_prompt,
             output_type=result_type,
+            tools=[],  # Disable tool_calls to avoid validation errors with non-standard providers
         )
 
         result = agent.run_sync(request.prompt())
@@ -171,17 +188,26 @@ class AIProvider:
         Returns:
             Structured response as BaseModel instance
         """
-        # Use OpenAIResponsesModel for image/PDF requests (better handling of file annotations)
-        responses_model = OpenAIResponsesModel(
-            model_name=self.config.model_name,
-            provider=self.provider,
-        )
+        # Use MistralModel for Mistral, OpenAIResponsesModel for others
+        # Note: Mistral may not support vision/multimodal requests
+        if self.is_mistral:
+            model = MistralModel(
+                self.config.model_name,
+                provider=self.provider,
+            )
+        else:
+            # Use OpenAIResponsesModel for image/PDF requests (better handling of file annotations)
+            model = OpenAIResponsesModel(
+                model_name=self.config.model_name,
+                provider=self.provider,
+            )
 
         agent = Agent(
-            model=responses_model,
+            model=model,
             system_prompt=self.system_prompt,
             output_type=result_type,
             output_retries=3,  # Allow more retries for vision output validation
+            tools=[],  # Disable tool_calls to avoid validation errors with non-standard providers
         )
 
         # Read document file and create appropriate content object

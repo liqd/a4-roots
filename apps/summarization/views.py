@@ -36,7 +36,7 @@ class SummarizationTestView(View):
             "text": text,
             "prompt": prompt,
             "default_prompt": default_prompt,
-            "provider": provider_handle or "openrouter",
+            "provider": provider_handle or "ovhcloud",
             "summary": None,
             "error": None,
             "key_points": None,

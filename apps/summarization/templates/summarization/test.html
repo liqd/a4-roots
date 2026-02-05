@@ -116,9 +116,10 @@
             
             <label for="provider">Provider:</label>
             <select name="provider" id="provider">
-                <option value="ovhcloud" {% if provider == "ovhcloud" %}selected{% endif %}>OVHcloud</option>
-                <option value="routerlab" {% if provider == "routerlab" %}selected{% endif %}>RouterLab</option>
+                <option value="ovhcloud" {% if not provider or provider == "ovhcloud" %}selected{% endif %}>OVHcloud</option>
                 <option value="openrouter" {% if provider == "openrouter" %}selected{% endif %}>OpenRouter</option>
+                <option value="routerlab" {% if provider == "routerlab" %}selected{% endif %}>RouterLab</option>
+                <option value="mistral" {% if provider == "mistral" %}selected{% endif %}>Mistral</option>
             </select>
             
             <button type="submit">Summarize</button>
