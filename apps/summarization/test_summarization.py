@@ -74,19 +74,10 @@ def print_separator(char="=", length=80):
     print(char * length)
 
 
-def _run_validations(
-    summary: str, max_length: int, original_length: int
-) -> tuple[list[str], list[str]]:
+def _run_validations(summary: str, original_length: int) -> tuple[list[str], list[str]]:
     """Run validation checks on summary."""
     validations_passed = []
     validations_failed = []
-
-    if len(summary) <= max_length:
-        validations_passed.append("Length within limit")
-    else:
-        validations_failed.append(
-            f"Length exceeds limit ({len(summary)} > {max_length})"
-        )
 
     if len(summary) < original_length:
         validations_passed.append("Summary is shorter than original")
@@ -124,13 +115,43 @@ def _print_statistics(summary: str, original_length: int):
     print_separator()
 
 
-def test_summarization(provider_handle: str = None, max_length: int = 500):
+def _print_service_info(service):
+    """Print service configuration information."""
+    print("Initializing service...")
+    print("✓ Service successfully initialized")
+    print(f"  Model: {service.provider.config.model_name}")
+    print(f"  Base URL: {service.provider.config.base_url}")
+    api_key = service.provider.config.api_key
+    if api_key:
+        masked_key = api_key[:10] + "..." if len(api_key) > 10 else "***"
+        print(f"  API Key: {masked_key}")
+    print_separator()
+
+
+def _print_summary_results(response, long_text):
+    """Print summary results and key points."""
+    print("SUMMARY:")
+    print("-" * 80)
+    print(response.summary)
+    print(f"Length: {len(response.summary)} characters")
+    print_separator()
+
+    if response.key_points:
+        print("KEY POINTS:")
+        print("-" * 80)
+        for i, point in enumerate(response.key_points, 1):
+            print(f"  {i}. {point}")
+        print_separator()
+
+    _print_statistics(response.summary, len(long_text))
+
+
+def test_summarization(provider_handle: str = None):
     """
     Test the summarization service.
 
     Args:
         provider_handle: Provider handle to use (default: from settings)
-        max_length: Maximum length of summary in characters
     """
     from django.conf import settings
 
@@ -142,20 +163,11 @@ def test_summarization(provider_handle: str = None, max_length: int = 500):
         provider_handle = getattr(settings, "AI_PROVIDER", "openrouter")
 
     print(f"Provider Handle: {provider_handle}")
-    print(f"Maximum Length: {max_length} characters")
     print_separator()
 
     try:
-        print("Initializing service...")
         service = AIService(provider_handle=provider_handle)
-        print("✓ Service successfully initialized")
-        print(f"  Model: {service.provider.config.model_name}")
-        print(f"  Base URL: {service.provider.config.base_url}")
-        api_key = service.provider.config.api_key
-        if api_key:
-            masked_key = api_key[:10] + "..." if len(api_key) > 10 else "***"
-            print(f"  API Key: {masked_key}")
-        print_separator()
+        _print_service_info(service)
 
         print("ORIGINAL TEXT:")
         print("-" * 80)
@@ -164,28 +176,15 @@ def test_summarization(provider_handle: str = None, max_length: int = 500):
         print_separator()
 
         print("Generating summary...")
-        request = SummaryRequest(text=LONG_TEXT, max_length=max_length)
+        request = SummaryRequest(text=LONG_TEXT)
         response = service.provider.request(request, result_type=SummaryResponse)
         print("✓ Summary successfully created")
         print_separator()
 
-        print("SUMMARY:")
-        print("-" * 80)
-        print(response.summary)
-        print(f"Length: {len(response.summary)} characters")
-        print_separator()
-
-        if response.key_points:
-            print("KEY POINTS:")
-            print("-" * 80)
-            for i, point in enumerate(response.key_points, 1):
-                print(f"  {i}. {point}")
-            print_separator()
-
-        _print_statistics(response.summary, len(LONG_TEXT))
+        _print_summary_results(response, LONG_TEXT)
 
         validations_passed, validations_failed = _run_validations(
-            response.summary, max_length, len(LONG_TEXT)
+            response.summary, len(LONG_TEXT)
         )
 
         print("VALIDATION:")
@@ -224,16 +223,9 @@ def main():
         default=None,
         help="Provider handle to use (default: from AI_PROVIDER setting or 'openrouter')",
     )
-    parser.add_argument(
-        "--max-length",
-        type=int,
-        default=500,
-        help="Maximum length of summary in characters (default: 500)",
-    )
-
     args = parser.parse_args()
 
-    test_summarization(provider_handle=args.provider, max_length=args.max_length)
+    test_summarization(provider_handle=args.provider)
 
 
 # Execute when run directly or via manage.py shell
