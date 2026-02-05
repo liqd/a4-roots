@@ -108,9 +108,6 @@
                 Supported formats: PNG, JPG, JPEG, PDF (max 10MB)
             </small>
             
-            <label for="max_length">Maximum length (characters):</label>
-            <input type="number" name="max_length" id="max_length" value="{{ max_length }}" min="50" max="2000" required>
-            
             <label for="provider">Provider:</label>
             <select name="provider" id="provider">
                 <option value="ovhcloud" {% if provider == "ovhcloud" %}selected{% endif %}>OVHcloud</option>

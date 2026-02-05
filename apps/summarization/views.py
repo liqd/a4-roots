@@ -20,13 +20,11 @@ class SummarizationTestView(View):
     def post(self, request):
         """Process summarization request."""
         text = request.POST.get("text", "")
-        max_length = int(request.POST.get("max_length", 500))
         provider_handle = request.POST.get("provider", None)
         uploaded_file = request.FILES.get("doc", None)
 
         context = {
             "text": text,
-            "max_length": max_length,
             "provider": provider_handle or "openrouter",
             "summary": None,
             "error": None,
@@ -66,9 +64,7 @@ class SummarizationTestView(View):
 
             try:
                 service = AIService(provider_handle=provider_handle)
-                summary = service.multimodal_summarize(
-                    tmp_file_path, max_length=max_length
-                )
+                summary = service.multimodal_summarize(tmp_file_path)
                 context["summary"] = summary
                 context["summary_length"] = len(summary)
                 context["uploaded_filename"] = uploaded_file.name
@@ -83,7 +79,7 @@ class SummarizationTestView(View):
         elif text:
             try:
                 service = AIService(provider_handle=provider_handle)
-                summary_request = SummaryRequest(text=text, max_length=max_length)
+                summary_request = SummaryRequest(text=text)
                 response = service.provider.request(
                     summary_request, result_type=SummaryResponse
                 )

@@ -28,13 +28,12 @@ class AIService:
         config = ProviderConfig.from_handle(provider_handle)
         self.provider = AIProvider(config)
 
-    def summarize(self, text: str, max_length: int = 500) -> str:
+    def summarize(self, text: str) -> str:
         """
         Summarize text.
 
         Args:
             text: Text to summarize
-            max_length: Maximum length of summary in characters
 
         Returns:
             Summarized text
@@ -42,17 +41,16 @@ class AIService:
         Raises:
             Exception: If summarization fails
         """
-        request = SummaryRequest(text=text, max_length=max_length)
+        request = SummaryRequest(text=text)
         response = self.provider.request(request, result_type=SummaryResponse)
         return response.summary
 
-    def multimodal_summarize(self, doc_path: str | Path, max_length: int = 500) -> str:
+    def multimodal_summarize(self, doc_path: str | Path) -> str:
         """
         Summarize a document/image using vision API.
 
         Args:
             doc_path: Path to the document/image file
-            max_length: Maximum length of summary in characters
 
         Returns:
             Summarized text
@@ -64,7 +62,7 @@ class AIService:
         if not doc_path.exists():
             raise FileNotFoundError(f"Document file not found: {doc_path}")
 
-        request = MultimodalSummaryRequest(doc_path=doc_path, max_length=max_length)
+        request = MultimodalSummaryRequest(doc_path=doc_path)
         response = self.provider.multimodal_request(
             request, result_type=SummaryResponse, doc_path=doc_path
         )
@@ -73,28 +71,26 @@ class AIService:
 
 class SummaryRequest(AIRequest):
 
-    def __init__(self, text: str, max_length: int = 500) -> None:
+    def __init__(self, text: str) -> None:
         super().__init__()
         self.text = text
-        self.max_length = max_length
 
     def prompt(self) -> str:
-        return f"Fasse den folgenden Text in maximal {self.max_length} Zeichen zusammen:\n\n{self.text}"
+        return f"Fasse den folgenden Text zusammen:\n\n{self.text}"
 
 
 class MultimodalSummaryRequest(AIRequest):
     """Request model for multimodal document summarization."""
 
-    def __init__(self, doc_path: str | Path, max_length: int = 500) -> None:
+    def __init__(self, doc_path: str | Path) -> None:
         super().__init__()
         self.doc_path = Path(doc_path)
-        self.max_length = max_length
 
     def prompt(self) -> str:
         return (
-            f"Fasse dieses Dokument/Bild in maximal {self.max_length} Zeichen zusammen. "
-            f"Beschreibe den Inhalt und die wichtigsten Informationen. "
-            f"Gib deine Antwort als strukturierte Zusammenfassung zurück."
+            "Fasse dieses Dokument/Bild zusammen. "
+            "Beschreibe den Inhalt und die wichtigsten Informationen. "
+            "Gib deine Antwort als strukturierte Zusammenfassung zurück."
         )
 
 

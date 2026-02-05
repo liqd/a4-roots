@@ -13,7 +13,7 @@ Copy `adhocracy-plus/config/settings/local.py.template` to `adhocracy-plus/confi
 from apps.summarization.services import AIService
 
 service = AIService(provider_handle="openrouter")
-summary = service.summarize(text="Long text...", max_length=500)
+summary = service.summarize(text="Long text...")
 ```
 
 ## Testing
