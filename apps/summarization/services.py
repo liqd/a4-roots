@@ -28,12 +28,13 @@ class AIService:
         config = ProviderConfig.from_handle(provider_handle)
         self.provider = AIProvider(config)
 
-    def summarize(self, text: str) -> str:
+    def summarize(self, text: str, prompt: str | None = None) -> str:
         """
         Summarize text.
 
         Args:
             text: Text to summarize
+            prompt: Optional custom prompt (default prompt will be used if not provided)
 
         Returns:
             Summarized text
@@ -41,16 +42,19 @@ class AIService:
         Raises:
             Exception: If summarization fails
         """
-        request = SummaryRequest(text=text)
+        request = SummaryRequest(text=text, prompt=prompt)
         response = self.provider.request(request, result_type=SummaryResponse)
         return response.summary
 
-    def multimodal_summarize(self, doc_path: str | Path) -> str:
+    def multimodal_summarize(
+        self, doc_path: str | Path, prompt: str | None = None
+    ) -> str:
         """
         Summarize a document/image using vision API.
 
         Args:
             doc_path: Path to the document/image file
+            prompt: Optional custom prompt (default prompt will be used if not provided)
 
         Returns:
             Summarized text
@@ -62,7 +66,7 @@ class AIService:
         if not doc_path.exists():
             raise FileNotFoundError(f"Document file not found: {doc_path}")
 
-        request = MultimodalSummaryRequest(doc_path=doc_path)
+        request = MultimodalSummaryRequest(doc_path=doc_path, prompt=prompt)
         response = self.provider.multimodal_request(
             request, result_type=SummaryResponse, doc_path=doc_path
         )
@@ -70,28 +74,35 @@ class AIService:
 
 
 class SummaryRequest(AIRequest):
+    """Request model for text summarization."""
 
-    def __init__(self, text: str) -> None:
+    DEFAULT_PROMPT = "Fasse den folgenden Text zusammen:"
+
+    def __init__(self, text: str, prompt: str | None = None) -> None:
         super().__init__()
         self.text = text
+        self.prompt_text = prompt or self.DEFAULT_PROMPT
 
     def prompt(self) -> str:
-        return f"Fasse den folgenden Text zusammen:\n\n{self.text}"
+        return f"{self.prompt_text}\n\n{self.text}"
 
 
 class MultimodalSummaryRequest(AIRequest):
     """Request model for multimodal document summarization."""
 
-    def __init__(self, doc_path: str | Path) -> None:
+    DEFAULT_PROMPT = (
+        "Fasse dieses Dokument/Bild zusammen. "
+        "Beschreibe den Inhalt und die wichtigsten Informationen. "
+        "Gib deine Antwort als strukturierte Zusammenfassung zurück."
+    )
+
+    def __init__(self, doc_path: str | Path, prompt: str | None = None) -> None:
         super().__init__()
         self.doc_path = Path(doc_path)
+        self.prompt_text = prompt or self.DEFAULT_PROMPT
 
     def prompt(self) -> str:
-        return (
-            "Fasse dieses Dokument/Bild zusammen. "
-            "Beschreibe den Inhalt und die wichtigsten Informationen. "
-            "Gib deine Antwort als strukturierte Zusammenfassung zurück."
-        )
+        return self.prompt_text
 
 
 class SummaryResponse(BaseModel):

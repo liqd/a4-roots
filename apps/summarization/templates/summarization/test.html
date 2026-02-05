@@ -99,6 +99,12 @@
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             
+            <label for="prompt">Custom Prompt:</label>
+            <textarea name="prompt" id="prompt" rows="3">{% if prompt %}{{ prompt }}{% else %}{{ default_prompt }}{% endif %}</textarea>
+            <small class="file-hint">
+                Default prompt is pre-filled. You can modify it as needed.
+            </small>
+            
             <label for="text">Text to summarize:</label>
             <textarea name="text" id="text">{{ text }}</textarea>
             

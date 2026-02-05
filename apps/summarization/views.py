@@ -6,6 +6,7 @@ from django.shortcuts import render
 from django.views import View
 
 from .services import AIService
+from .services import MultimodalSummaryRequest
 from .services import SummaryRequest
 from .services import SummaryResponse
 
@@ -15,16 +16,26 @@ class SummarizationTestView(View):
 
     def get(self, request):
         """Display test form."""
-        return render(request, "summarization/test.html")
+        # Use multimodal default prompt as it's more general
+        default_prompt = MultimodalSummaryRequest.DEFAULT_PROMPT
+        context = {
+            "default_prompt": default_prompt,
+        }
+        return render(request, "summarization/test.html", context)
 
     def post(self, request):
         """Process summarization request."""
         text = request.POST.get("text", "")
+        prompt = request.POST.get("prompt", "")
         provider_handle = request.POST.get("provider", None)
         uploaded_file = request.FILES.get("doc", None)
 
+        default_prompt = MultimodalSummaryRequest.DEFAULT_PROMPT
+
         context = {
             "text": text,
+            "prompt": prompt,
+            "default_prompt": default_prompt,
             "provider": provider_handle or "openrouter",
             "summary": None,
             "error": None,
@@ -64,7 +75,9 @@ class SummarizationTestView(View):
 
             try:
                 service = AIService(provider_handle=provider_handle)
-                summary = service.multimodal_summarize(tmp_file_path)
+                summary = service.multimodal_summarize(
+                    tmp_file_path, prompt=prompt if prompt else None
+                )
                 context["summary"] = summary
                 context["summary_length"] = len(summary)
                 context["uploaded_filename"] = uploaded_file.name
@@ -79,7 +92,9 @@ class SummarizationTestView(View):
         elif text:
             try:
                 service = AIService(provider_handle=provider_handle)
-                summary_request = SummaryRequest(text=text)
+                summary_request = SummaryRequest(
+                    text=text, prompt=prompt if prompt else None
+                )
                 response = service.provider.request(
                     summary_request, result_type=SummaryResponse
                 )
