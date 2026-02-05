@@ -40,6 +40,11 @@ urlpatterns = [
         views.ModuleDetailView.as_view(),
         name="module-detail",
     ),
+    re_path(
+        r'^(?P<slug>[-\w_]+)/export-to-summary/$',
+        views.ProjectExportToSummaryView.as_view(),
+        name='project-export-to-summary'
+    ),
 ]
 
 urlpatterns += a4_projects_urls

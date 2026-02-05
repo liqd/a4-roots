@@ -27,9 +27,10 @@ from apps.projects.models import ProjectInsight
 from . import dashboard
 from . import forms
 from . import models
+from .export_utils import generate_full_export
+import json
 
 User = get_user_model()
-
 
 class ParticipantInviteDetailView(generic.DetailView):
     model = models.ParticipantInvite
@@ -342,3 +343,22 @@ class ModuleDetailView(PermissionRequiredMixin, PhaseDispatchMixin):
         if "module" not in kwargs:
             kwargs["module"] = self.module
         return super().get_context_data(**kwargs)
+
+class ProjectExportToSummaryView(PermissionRequiredMixin, generic.DetailView):
+    model = models.Project
+    slug_url_kwarg = 'slug'
+    permission_required = "a4projects.view_project"
+    template_name = "a4_candy_projects/export_to_summary.html"
+    
+    def get_permission_object(self):
+        return self.get_object()
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        project = self.get_object()
+        
+        export_data = generate_full_export(project)
+        context['json_text'] = json.dumps(export_data, ensure_ascii=False)
+        
+        return context
+    

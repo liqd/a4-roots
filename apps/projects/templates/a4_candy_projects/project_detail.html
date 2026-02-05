@@ -59,6 +59,10 @@
                 <div class="mb-5 u-z-index--0">
                     <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3">
                         <h1 class="project-header__title">{{ project.name }}</h1>
+                        <a href="{% url 'project-export-to-summary' organisation_slug=project.organisation.slug slug=project.slug %}" 
+                            class="btn btn-primary">
+                            Magic Summary
+                        </a>
                         <p class="project-header__description">{{ project.description }}</p>
                         {% if request.user.is_authenticated and not request.user|is_guest_user %}
                             {% react_follows project %}
