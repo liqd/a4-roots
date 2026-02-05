@@ -6,11 +6,11 @@ from pathlib import Path
 from django.conf import settings
 from pydantic import BaseModel
 from pydantic_ai import Agent
-from pydantic_ai.messages import BinaryContent
-from pydantic_ai.messages import BinaryImage
 from pydantic_ai.models.openai import OpenAIChatModel
 from pydantic_ai.models.openai import OpenAIResponsesModel
 from pydantic_ai.providers.openai import OpenAIProvider
+
+from .utils import read_document
 
 
 class ProviderConfig:
@@ -104,24 +104,28 @@ class AIProvider:
         """
         self.config = config
 
+        self.system_prompt = getattr(
+            settings,
+            "SYSTEM_PROMPT",
+            "",
+        )
+
         # All providers are OpenAI-compatible
         # Create OpenAIProvider directly with base_url and api_key
-        provider = OpenAIProvider(
+        self.provider = OpenAIProvider(
             base_url=config.base_url,
             api_key=config.api_key,
         )
 
-        # Use OpenAIChatModel for regular text requests (compatible with all providers)
-        self.model = OpenAIChatModel(
-            model_name=config.model_name,
-            provider=provider,
-        )
+    def _set_provider_handle(self, response: BaseModel) -> None:
+        """
+        Set provider handle on response if it has a provider field.
 
-        # Use OpenAIResponsesModel for image/PDF requests (better handling of file annotations)
-        self.responses_model = OpenAIResponsesModel(
-            model_name=config.model_name,
-            provider=provider,
-        )
+        Args:
+            response: Response object to modify
+        """
+        if hasattr(response, "provider"):
+            response.provider = self.config.handle
 
     def request(self, request: AIRequest, result_type: type[BaseModel]) -> BaseModel:
         """
@@ -134,28 +138,22 @@ class AIProvider:
         Returns:
             Structured response as BaseModel instance
         """
-        # Get system prompt from settings
-        system_prompt = getattr(
-            settings,
-            "SYSTEM_PROMPT",
-            "",
+        # Use OpenAIChatModel for regular text requests (compatible with all providers)
+        model = OpenAIChatModel(
+            model_name=self.config.model_name,
+            provider=self.provider,
         )
 
-        # Create agent with output_type for structured output
         agent = Agent(
-            model=self.model,
-            system_prompt=system_prompt,
+            model=model,
+            system_prompt=self.system_prompt,
             output_type=result_type,
         )
 
-        # Convert request to prompt string using prompt() method
         result = agent.run_sync(request.prompt())
-        # result.output is already an instance of result_type
         response = result.output
 
-        # Set provider handle if response has provider field
-        if hasattr(response, "provider"):
-            response.provider = self.config.handle
+        self._set_provider_handle(response)
 
         return response
 
@@ -173,62 +171,27 @@ class AIProvider:
         Returns:
             Structured response as BaseModel instance
         """
-        # Get system prompt from settings
-        system_prompt = getattr(
-            settings,
-            "SYSTEM_PROMPT",
-            "",
+        # Use OpenAIResponsesModel for image/PDF requests (better handling of file annotations)
+        responses_model = OpenAIResponsesModel(
+            model_name=self.config.model_name,
+            provider=self.provider,
         )
 
-        # Create agent with output_type for structured output
-        # Use OpenAIResponsesModel for image/PDF requests (better handling of file annotations)
-        # Increase output_retries for vision requests as they may need more attempts
         agent = Agent(
-            model=self.responses_model,
-            system_prompt=system_prompt,
+            model=responses_model,
+            system_prompt=self.system_prompt,
             output_type=result_type,
             output_retries=3,  # Allow more retries for vision output validation
         )
 
-        # Ensure path is a Path object
-        doc_path = Path(doc_path) if not isinstance(doc_path, Path) else doc_path
+        # Read document file and create appropriate content object
+        file_content = read_document(doc_path)
 
-        # Read file and create BinaryImage or BinaryContent object
-        file_contents = []
-        if not doc_path.exists():
-            raise FileNotFoundError(f"File not found: {doc_path}")
-
-        # Determine media type from file extension
-        ext = doc_path.suffix.lower()
-        media_type_map = {
-            ".jpg": "image/jpeg",
-            ".jpeg": "image/jpeg",
-            ".png": "image/png",
-            ".pdf": "application/pdf",
-        }
-        media_type = media_type_map.get(ext, "image/jpeg")
-
-        # Read file
-        with open(doc_path, "rb") as f:
-            file_data = f.read()
-
-        # Use BinaryImage for images, BinaryContent for PDFs and other documents
-        if media_type.startswith("image/"):
-            file_contents.append(BinaryImage(data=file_data, media_type=media_type))
-        else:
-            # For PDFs and other documents, use BinaryContent
-            file_contents.append(BinaryContent(data=file_data, media_type=media_type))
-
-        # Combine prompt text with files as UserContent sequence
-        user_content = [request.prompt()] + file_contents
-
-        # Run with user_content (not images parameter)
+        # Combine prompt text with file content as UserContent sequence
+        user_content = [request.prompt(), file_content]
         result = agent.run_sync(user_content)
-        # result.output is already an instance of result_type
         response = result.output
 
-        # Set provider handle if response has provider field
-        if hasattr(response, "provider"):
-            response.provider = self.config.handle
+        self._set_provider_handle(response)
 
         return response
