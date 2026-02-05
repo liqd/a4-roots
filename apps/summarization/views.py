@@ -76,7 +76,9 @@ class SummarizationTestView(View):
             try:
                 service = AIService(provider_handle=provider_handle)
                 summary = service.multimodal_summarize(
-                    tmp_file_path, prompt=prompt if prompt else None
+                    tmp_file_path,
+                    text=text if text else None,
+                    prompt=prompt if prompt else None,
                 )
                 context["summary"] = summary
                 context["summary_length"] = len(summary)
