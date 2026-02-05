@@ -47,13 +47,14 @@ class AIService:
         return response.summary
 
     def multimodal_summarize(
-        self, doc_path: str | Path, prompt: str | None = None
+        self, doc_path: str | Path, text: str | None = None, prompt: str | None = None
     ) -> str:
         """
         Summarize a document/image using vision API.
 
         Args:
             doc_path: Path to the document/image file
+            text: Optional text to include in the analysis
             prompt: Optional custom prompt (default prompt will be used if not provided)
 
         Returns:
@@ -66,7 +67,7 @@ class AIService:
         if not doc_path.exists():
             raise FileNotFoundError(f"Document file not found: {doc_path}")
 
-        request = MultimodalSummaryRequest(doc_path=doc_path, prompt=prompt)
+        request = MultimodalSummaryRequest(doc_path=doc_path, text=text, prompt=prompt)
         response = self.provider.multimodal_request(
             request, result_type=SummaryResponse, doc_path=doc_path
         )
@@ -93,15 +94,20 @@ class MultimodalSummaryRequest(AIRequest):
     DEFAULT_PROMPT = (
         "Fasse dieses Dokument/Bild zusammen. "
         "Beschreibe den Inhalt und die wichtigsten Informationen. "
-        "Gib deine Antwort als strukturierte Zusammenfassung zurück."
+        "Gib deine Antwort als strukturierte Zusammenfassung zurück:"
     )
 
-    def __init__(self, doc_path: str | Path, prompt: str | None = None) -> None:
+    def __init__(
+        self, doc_path: str | Path, text: str | None = None, prompt: str | None = None
+    ) -> None:
         super().__init__()
         self.doc_path = Path(doc_path)
         self.prompt_text = prompt or self.DEFAULT_PROMPT
+        self.text = text
 
     def prompt(self) -> str:
+        if self.text:
+            return self.prompt_text + "\n\nText:\n" + self.text
         return self.prompt_text
 
 
