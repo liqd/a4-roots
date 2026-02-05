@@ -46,12 +46,12 @@ class AIService:
         response = self.provider.request(request, result_type=SummaryResponse)
         return response.summary
 
-    def summarize_image(self, image_path: str | Path, max_length: int = 500) -> str:
+    def multimodal_summarize(self, doc_path: str | Path, max_length: int = 500) -> str:
         """
-        Summarize an image using vision API.
+        Summarize a document/image using vision API.
 
         Args:
-            image_path: Path to the image file
+            doc_path: Path to the document/image file
             max_length: Maximum length of summary in characters
 
         Returns:
@@ -60,13 +60,13 @@ class AIService:
         Raises:
             Exception: If summarization fails
         """
-        image_path = Path(image_path)
-        if not image_path.exists():
-            raise FileNotFoundError(f"Image file not found: {image_path}")
+        doc_path = Path(doc_path)
+        if not doc_path.exists():
+            raise FileNotFoundError(f"Document file not found: {doc_path}")
 
-        request = ImageSummaryRequest(image_path=image_path, max_length=max_length)
-        response = self.provider.request_with_image(
-            request, result_type=SummaryResponse, image_paths=[image_path]
+        request = MultimodalSummaryRequest(doc_path=doc_path, max_length=max_length)
+        response = self.provider.multimodal_request(
+            request, result_type=SummaryResponse, doc_path=doc_path
         )
         return response.summary
 
@@ -82,17 +82,17 @@ class SummaryRequest(AIRequest):
         return f"Fasse den folgenden Text in maximal {self.max_length} Zeichen zusammen:\n\n{self.text}"
 
 
-class ImageSummaryRequest(AIRequest):
-    """Request model for image summarization."""
+class MultimodalSummaryRequest(AIRequest):
+    """Request model for multimodal document summarization."""
 
-    def __init__(self, image_path: str | Path, max_length: int = 500) -> None:
+    def __init__(self, doc_path: str | Path, max_length: int = 500) -> None:
         super().__init__()
-        self.image_path = Path(image_path)
+        self.doc_path = Path(doc_path)
         self.max_length = max_length
 
     def prompt(self) -> str:
         return (
-            f"Fasse dieses Bild in maximal {self.max_length} Zeichen zusammen. "
+            f"Fasse dieses Dokument/Bild in maximal {self.max_length} Zeichen zusammen. "
             f"Beschreibe den Inhalt und die wichtigsten Informationen. "
             f"Gib deine Antwort als strukturierte Zusammenfassung zurück."
         )
@@ -104,6 +104,6 @@ class SummaryResponse(BaseModel):
     summary: str = Field(description="Die Zusammenfassung des Textes oder Bildes")
     key_points: list[str] = Field(
         default_factory=list,
-        description="Wichtige Punkte oder Stichworte aus dem Text oder Bild"
+        description="Wichtige Punkte oder Stichworte aus dem Text oder Bild",
     )
     provider: str = Field(default="", description="Provider name (set automatically)")

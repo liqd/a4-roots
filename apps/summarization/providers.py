@@ -159,16 +159,16 @@ class AIProvider:
 
         return response
 
-    def request_with_image(
-        self, request: AIRequest, result_type: type[BaseModel], image_paths: list[Path]
+    def multimodal_request(
+        self, request: AIRequest, result_type: type[BaseModel], doc_path: Path
     ) -> BaseModel:
         """
-        Execute a request with images using vision API.
+        Execute a multimodal request with images/PDFs using vision API.
 
         Args:
             request: Pydantic BaseModel with request data
             result_type: Pydantic BaseModel class for structured output
-            image_paths: List of paths to image files (Path objects)
+            doc_path: Path to image or PDF file (Path object)
 
         Returns:
             Structured response as BaseModel instance
@@ -190,37 +190,34 @@ class AIProvider:
             output_retries=3,  # Allow more retries for vision output validation
         )
 
-        # Ensure all paths are Path objects
-        image_paths = [Path(p) if not isinstance(p, Path) else p for p in image_paths]
+        # Ensure path is a Path object
+        doc_path = Path(doc_path) if not isinstance(doc_path, Path) else doc_path
 
-        # Read files and create BinaryImage or BinaryContent objects
+        # Read file and create BinaryImage or BinaryContent object
         file_contents = []
-        for file_path in image_paths:
-            if not file_path.exists():
-                raise FileNotFoundError(f"File not found: {file_path}")
+        if not doc_path.exists():
+            raise FileNotFoundError(f"File not found: {doc_path}")
 
-            # Determine media type from file extension
-            ext = file_path.suffix.lower()
-            media_type_map = {
-                ".jpg": "image/jpeg",
-                ".jpeg": "image/jpeg",
-                ".png": "image/png",
-                ".pdf": "application/pdf",
-            }
-            media_type = media_type_map.get(ext, "image/jpeg")
+        # Determine media type from file extension
+        ext = doc_path.suffix.lower()
+        media_type_map = {
+            ".jpg": "image/jpeg",
+            ".jpeg": "image/jpeg",
+            ".png": "image/png",
+            ".pdf": "application/pdf",
+        }
+        media_type = media_type_map.get(ext, "image/jpeg")
 
-            # Read file
-            with open(file_path, "rb") as f:
-                file_data = f.read()
+        # Read file
+        with open(doc_path, "rb") as f:
+            file_data = f.read()
 
-            # Use BinaryImage for images, BinaryContent for PDFs and other documents
-            if media_type.startswith("image/"):
-                file_contents.append(BinaryImage(data=file_data, media_type=media_type))
-            else:
-                # For PDFs and other documents, use BinaryContent
-                file_contents.append(
-                    BinaryContent(data=file_data, media_type=media_type)
-                )
+        # Use BinaryImage for images, BinaryContent for PDFs and other documents
+        if media_type.startswith("image/"):
+            file_contents.append(BinaryImage(data=file_data, media_type=media_type))
+        else:
+            # For PDFs and other documents, use BinaryContent
+            file_contents.append(BinaryContent(data=file_data, media_type=media_type))
 
         # Combine prompt text with files as UserContent sequence
         user_content = [request.prompt()] + file_contents
