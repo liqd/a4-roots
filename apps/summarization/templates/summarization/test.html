@@ -72,6 +72,7 @@
         }
         .summary {
             margin-top: 15px;
+            margin-bottom: 20px;
             padding: 15px;
             background-color: #d4edda;
             border-radius: 4px;
@@ -85,10 +86,34 @@
         .key-points {
             margin-top: 15px;
         }
+        .key-points ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        .key-points li {
+            margin: 5px 0;
+        }
         .file-hint {
             color: #666;
             display: block;
             margin-top: 5px;
+        }
+        h2 {
+            color: #333;
+            margin-top: 20px;
+            margin-bottom: 15px;
+        }
+        h3 {
+            color: #555;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -131,31 +156,61 @@
         </div>
         {% endif %}
         
-        {% if summary %}
+        {% if summary_response %}
         <div class="result">
-            <h2>Summary:</h2>
-            <div class="summary">{{ summary }}</div>
-            {% if key_points %}
-            <div class="key-points">
-                <h3>Key Points:</h3>
-                <ul>
-                    {% for point in key_points %}
-                    <li>{{ point }}</li>
-                    {% endfor %}
-                </ul>
+            {% if summary_response.summary_items %}
+            <h2>Summary Items:</h2>
+            {% for item in summary_response.summary_items %}
+            <div class="summary">
+                {% if item.title %}
+                <h3>{{ item.title }}</h3>
+                {% endif %}
+                <p>{{ item.summary }}</p>
+                {% if item.key_points %}
+                <div class="key-points">
+                    <strong>Key Points:</strong>
+                    <ul>
+                        {% for point in item.key_points %}
+                        <li>{{ point }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
             </div>
+            {% endfor %}
             {% endif %}
+            
+            {% if summary_response.module_items %}
+            <h2>Module Items:</h2>
+            {% for module in summary_response.module_items %}
+            <div class="summary">
+                <h3>{{ module.module_name }}</h3>
+                <p><strong>Phase Status:</strong> {{ module.phase_status }}</p>
+                {% if module.link %}
+                <p><strong>Link:</strong> <a href="{{ module.link }}" target="_blank">{{ module.link }}</a></p>
+                {% endif %}
+                <p>{{ module.summary }}</p>
+                {% if module.key_points %}
+                <div class="key-points">
+                    <strong>Key Points:</strong>
+                    <ul>
+                        {% for point in module.key_points %}
+                        <li>{{ point }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+            {% endif %}
+            
             {% if uploaded_filename %}
             <div class="stats">
-                Uploaded file: {{ uploaded_filename }} | 
-                Summary: {{ summary_length }} characters
+                Uploaded file: {{ uploaded_filename }}
             </div>
             {% elif original_length %}
             <div class="stats">
-                Original: {{ original_length }} characters | 
-                Summary: {{ summary_length }} characters | 
-                Compression: {% widthratio summary_length original_length 100 %}% 
-                ({{ original_length|add:"-"|add:summary_length }} characters saved)
+                Original: {{ original_length }} characters
             </div>
             {% endif %}
         </div>

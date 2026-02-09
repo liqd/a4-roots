@@ -5,10 +5,9 @@ from django.conf import settings
 from django.shortcuts import render
 from django.views import View
 
+from .models import SummaryResponse
 from .services import AIService
 from .services import MultimodalSummaryRequest
-from .services import SummaryRequest
-from .services import SummaryResponse
 
 
 class SummarizationTestView(View):
@@ -37,11 +36,9 @@ class SummarizationTestView(View):
             "prompt": prompt,
             "default_prompt": default_prompt,
             "provider": provider_handle or "ovhcloud",
-            "summary": None,
+            "summary_response": None,
             "error": None,
-            "key_points": None,
             "original_length": 0,
-            "summary_length": 0,
         }
 
         # Handle document/image upload
@@ -75,13 +72,13 @@ class SummarizationTestView(View):
 
             try:
                 service = AIService(provider_handle=provider_handle)
-                summary = service.multimodal_summarize(
+                response = service.multimodal_summarize(
                     tmp_file_path,
                     text=text if text else None,
                     prompt=prompt if prompt else None,
+                    result_type=SummaryResponse,
                 )
-                context["summary"] = summary
-                context["summary_length"] = len(summary)
+                context["summary_response"] = response
                 context["uploaded_filename"] = uploaded_file.name
             except Exception as e:
                 context["error"] = str(e)
@@ -94,16 +91,13 @@ class SummarizationTestView(View):
         elif text:
             try:
                 service = AIService(provider_handle=provider_handle)
-                summary_request = SummaryRequest(
-                    text=text, prompt=prompt if prompt else None
+                response = service.summarize(
+                    text=text,
+                    prompt=prompt if prompt else None,
+                    result_type=SummaryResponse,
                 )
-                response = service.provider.request(
-                    summary_request, result_type=SummaryResponse
-                )
-                context["summary"] = response.summary
-                context["key_points"] = response.key_points
+                context["summary_response"] = response
                 context["original_length"] = len(text)
-                context["summary_length"] = len(response.summary)
             except Exception as e:
                 context["error"] = str(e)
 
