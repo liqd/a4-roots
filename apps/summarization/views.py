@@ -5,7 +5,7 @@ from django.conf import settings
 from django.shortcuts import render
 from django.views import View
 
-from .models import SummaryResponse
+from .pydantic_models import SummaryResponse
 from .services import AIService
 from .services import MultimodalSummaryRequest
 

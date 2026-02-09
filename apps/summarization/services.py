@@ -1,26 +1,24 @@
 """Service for text summarization using AI providers."""
 
+import json
 from pathlib import Path
 
 from django.conf import settings
 from pydantic import BaseModel
 
-from .models import SummaryItem
+from .models import ProjectSummary
 from .providers import AIProvider
 from .providers import AIRequest
 from .providers import ProviderConfig
+from .pydantic_models import SummaryItem
+from .pydantic_models import SummaryResponse
 
 
 class AIService:
     """Service for summarizing text using configured AI provider."""
 
     def __init__(self, provider_handle: str = None):
-        """
-        Initialize AI service.
-
-        Args:
-            provider_handle: Optional provider handle to override settings
-        """
+        """Initialize AI service."""
         provider_handle = provider_handle or getattr(
             settings, "AI_PROVIDER", "openrouter"
         )
@@ -34,22 +32,43 @@ class AIService:
         prompt: str | None = None,
         result_type: type[BaseModel] = SummaryItem,
     ) -> BaseModel:
-        """
-        Summarize text.
-
-        Args:
-            text: Text to summarize
-            prompt: Optional custom prompt (default prompt will be used if not provided)
-            result_type: Pydantic BaseModel class for structured output (default: SummaryItem)
-
-        Returns:
-            Structured response as BaseModel instance
-
-        Raises:
-            Exception: If summarization fails
-        """
+        """Summarize text."""
         request = SummaryRequest(text=text, prompt=prompt)
         response = self.provider.request(request, result_type=result_type)
+        return response
+
+    def project_summarize(
+        self,
+        project,
+        text: str,
+        prompt: str | None = None,
+        result_type: type[BaseModel] = SummaryResponse,
+    ) -> BaseModel:
+        """Summarize text for a project with caching support."""
+        request = SummaryRequest(text=text, prompt=prompt)
+
+        # Check cache
+        cached = ProjectSummary.get_cached_summary(
+            project=project,
+            prompt=request.prompt_text,
+            input_text=text,
+        )
+        if cached:
+            print("****** Cached summary found ******")
+            return SummaryResponse(**cached.response_data)
+
+        # Generate new summary
+        response = self.provider.request(request, result_type=result_type)
+
+        # Save to cache if result is SummaryResponse
+        if isinstance(response, SummaryResponse):
+            ProjectSummary.objects.create(
+                project=project,
+                prompt=request.prompt_text,
+                input_text_hash=ProjectSummary.compute_hash(text),
+                response_data=json.loads(response.model_dump_json()),
+            )
+
         return response
 
     def multimodal_summarize(
@@ -59,25 +78,7 @@ class AIService:
         prompt: str | None = None,
         result_type: type[BaseModel] = SummaryItem,
     ) -> BaseModel:
-        """
-        Summarize a document/image using vision API.
-
-        Args:
-            doc_path: Path to the document/image file
-            text: Optional text to include in the analysis
-            prompt: Optional custom prompt (default prompt will be used if not provided)
-            result_type: Pydantic BaseModel class for structured output (default: SummaryItem)
-
-        Returns:
-            Structured response as BaseModel instance
-
-        Raises:
-            Exception: If summarization fails
-        """
-        doc_path = Path(doc_path)
-        if not doc_path.exists():
-            raise FileNotFoundError(f"Document file not found: {doc_path}")
-
+        """Summarize a document/image using vision API."""
         request = MultimodalSummaryRequest(doc_path=doc_path, text=text, prompt=prompt)
         response = self.provider.multimodal_request(
             request, result_type=result_type, doc_path=doc_path
@@ -90,7 +91,8 @@ class SummaryRequest(AIRequest):
 
     DEFAULT_PROMPT = (
         "Fasse den folgenden Text zusammen. "
-        "Gib deine Antwort als strukturiertes JSON zurück, das dem erwarteten Format entspricht."
+        "Gib deine Antwort als strukturiertes JSON zurück, das dem erwarteten Format entspricht. "
+        "Erstelle dabei mehrere Summary-Items und Module-Items falls relevant."
     )
 
     def __init__(self, text: str, prompt: str | None = None) -> None:
@@ -116,6 +118,8 @@ class MultimodalSummaryRequest(AIRequest):
     ) -> None:
         super().__init__()
         self.doc_path = Path(doc_path)
+        if not self.doc_path.exists():
+            raise FileNotFoundError(f"Document file not found: {self.doc_path}")
         self.prompt_text = prompt or self.DEFAULT_PROMPT
         self.text = text
 

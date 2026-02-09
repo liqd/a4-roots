@@ -26,9 +26,9 @@ if __name__ == "__main__" and not os.environ.get("DJANGO_SETTINGS_MODULE"):
 
     django.setup()
 
-from apps.summarization.models import SummaryItem
+from adhocracy4.projects.models import Project
+from apps.summarization.pydantic_models import SummaryResponse
 from apps.summarization.services import AIService
-from apps.summarization.services import SummaryRequest
 
 # Long example text for testing
 LONG_TEXT = (
@@ -128,31 +128,120 @@ def _print_service_info(service):
     print_separator()
 
 
-def _print_summary_results(response, long_text):
+def _print_summary_results(response: SummaryResponse, long_text: str):
     """Print summary results and key points."""
-    print("SUMMARY:")
-    print("-" * 80)
-    print(response.summary)
-    print(f"Length: {len(response.summary)} characters")
-    print_separator()
-
-    if response.key_points:
-        print("KEY POINTS:")
+    if response.summary_items:
+        print("SUMMARY ITEMS:")
         print("-" * 80)
-        for i, point in enumerate(response.key_points, 1):
-            print(f"  {i}. {point}")
+        for item in response.summary_items:
+            print(f"\nTitle: {item.title}")
+            print(f"Summary: {item.summary}")
+            if item.key_points:
+                print("Key Points:")
+                for i, point in enumerate(item.key_points, 1):
+                    print(f"  {i}. {point}")
         print_separator()
 
-    _print_statistics(response.summary, len(long_text))
+    if response.module_items:
+        print("MODULE ITEMS:")
+        print("-" * 80)
+        for module in response.module_items:
+            print(f"\nModule: {module.module_name}")
+            print(f"Phase Status: {module.phase_status}")
+            print(f"Summary: {module.summary}")
+            if module.key_points:
+                print("Key Points:")
+                for i, point in enumerate(module.key_points, 1):
+                    print(f"  {i}. {point}")
+        print_separator()
+
+    # Calculate total summary length
+    total_length = sum(len(item.summary) for item in response.summary_items)
+    if total_length > 0:
+        print("STATISTICS:")
+        print(f"  Original Length:       {len(long_text)} characters")
+        print(f"  Total Summary Length:  {total_length} characters")
+        compression_ratio = (
+            (total_length / len(long_text)) * 100 if len(long_text) else 0
+        )
+        reduction = len(long_text) - total_length
+        print(f"  Compression:           {compression_ratio:.2f}%")
+        print(f"  Reduction:             {reduction} characters")
+        print_separator()
+
+
+def _get_or_create_test_project():
+    """Get existing project or create a test project."""
+    project = Project.objects.first()
+    if project:
+        return project
+
+    print("No project found. Creating a test project...")
+    try:
+        from django.contrib.auth import get_user_model
+
+        from apps.organisations.models import Organisation
+
+        User = get_user_model()
+
+        organisation = Organisation.objects.first()
+        if not organisation:
+            organisation = Organisation.objects.create(
+                name="Test Organisation",
+                description="Test organisation for summarization",
+            )
+            user = User.objects.first()
+            if user:
+                organisation.initiators.add(user)
+            print(f"✓ Created test organisation: {organisation.name}")
+
+        project = Project.objects.create(
+            name="Test Project",
+            description="Test project for summarization",
+            organisation=organisation,
+        )
+        print(f"✓ Created test project: {project.name}")
+        return project
+    except Exception as e:
+        print(f"Could not create test project: {e}")
+        import traceback
+
+        traceback.print_exc()
+        print(
+            "\nPlease create a project manually in the admin or use an existing project."
+        )
+        sys.exit(1)
+
+
+def _validate_response(response: SummaryResponse, original_length: int):
+    """Validate the summary response."""
+    validations_passed = []
+    validations_failed = []
+
+    if not response.summary_items:
+        validations_failed.append("No summary items generated")
+        return validations_passed, validations_failed
+
+    total_summary_length = sum(len(item.summary) for item in response.summary_items)
+    if total_summary_length < original_length:
+        validations_passed.append("Summary is shorter than original")
+    else:
+        validations_failed.append("Summary is not shorter than original")
+
+    if total_summary_length > 0:
+        validations_passed.append("Summary is not empty")
+    else:
+        validations_failed.append("Summary is empty")
+
+    validations_passed.append(f"Summary contains {len(response.summary_items)} items")
+    if response.module_items:
+        validations_passed.append(f"Module contains {len(response.module_items)} items")
+
+    return validations_passed, validations_failed
 
 
 def test_summarization(provider_handle: str = None):
-    """
-    Test the summarization service.
-
-    Args:
-        provider_handle: Provider handle to use (default: from settings)
-    """
+    """Test the summarization service."""
     from django.conf import settings
 
     print_separator()
@@ -171,20 +260,25 @@ def test_summarization(provider_handle: str = None):
 
         print("ORIGINAL TEXT:")
         print("-" * 80)
-        print(LONG_TEXT[:500] + "...")  # Print first 500 chars
+        print(LONG_TEXT[:500] + "...")
         print(f"Length: {len(LONG_TEXT)} characters")
         print_separator()
 
-        print("Generating summary...")
-        request = SummaryRequest(text=LONG_TEXT)
-        response = service.provider.request(request, result_type=SummaryItem)
+        project = _get_or_create_test_project()
+
+        print("Generating summary with project_summarize...")
+        response = service.project_summarize(
+            project=project,
+            text=LONG_TEXT,
+            result_type=SummaryResponse,
+        )
         print("✓ Summary successfully created")
         print_separator()
 
         _print_summary_results(response, LONG_TEXT)
 
-        validations_passed, validations_failed = _run_validations(
-            response.summary, len(LONG_TEXT)
+        validations_passed, validations_failed = _validate_response(
+            response, len(LONG_TEXT)
         )
 
         print("VALIDATION:")
