@@ -4,8 +4,8 @@ from pathlib import Path
 
 from django.conf import settings
 from pydantic import BaseModel
-from pydantic import Field
 
+from .models import SummaryItem
 from .providers import AIProvider
 from .providers import AIRequest
 from .providers import ProviderConfig
@@ -28,27 +28,37 @@ class AIService:
         config = ProviderConfig.from_handle(provider_handle)
         self.provider = AIProvider(config)
 
-    def summarize(self, text: str, prompt: str | None = None) -> str:
+    def summarize(
+        self,
+        text: str,
+        prompt: str | None = None,
+        result_type: type[BaseModel] = SummaryItem,
+    ) -> BaseModel:
         """
         Summarize text.
 
         Args:
             text: Text to summarize
             prompt: Optional custom prompt (default prompt will be used if not provided)
+            result_type: Pydantic BaseModel class for structured output (default: SummaryItem)
 
         Returns:
-            Summarized text
+            Structured response as BaseModel instance
 
         Raises:
             Exception: If summarization fails
         """
         request = SummaryRequest(text=text, prompt=prompt)
-        response = self.provider.request(request, result_type=SummaryResponse)
-        return response.summary
+        response = self.provider.request(request, result_type=result_type)
+        return response
 
     def multimodal_summarize(
-        self, doc_path: str | Path, text: str | None = None, prompt: str | None = None
-    ) -> str:
+        self,
+        doc_path: str | Path,
+        text: str | None = None,
+        prompt: str | None = None,
+        result_type: type[BaseModel] = SummaryItem,
+    ) -> BaseModel:
         """
         Summarize a document/image using vision API.
 
@@ -56,9 +66,10 @@ class AIService:
             doc_path: Path to the document/image file
             text: Optional text to include in the analysis
             prompt: Optional custom prompt (default prompt will be used if not provided)
+            result_type: Pydantic BaseModel class for structured output (default: SummaryItem)
 
         Returns:
-            Summarized text
+            Structured response as BaseModel instance
 
         Raises:
             Exception: If summarization fails
@@ -69,15 +80,18 @@ class AIService:
 
         request = MultimodalSummaryRequest(doc_path=doc_path, text=text, prompt=prompt)
         response = self.provider.multimodal_request(
-            request, result_type=SummaryResponse, doc_path=doc_path
+            request, result_type=result_type, doc_path=doc_path
         )
-        return response.summary
+        return response
 
 
 class SummaryRequest(AIRequest):
     """Request model for text summarization."""
 
-    DEFAULT_PROMPT = "Fasse den folgenden Text zusammen:"
+    DEFAULT_PROMPT = (
+        "Fasse den folgenden Text zusammen. "
+        "Gib deine Antwort als strukturiertes JSON zurück, das dem erwarteten Format entspricht."
+    )
 
     def __init__(self, text: str, prompt: str | None = None) -> None:
         super().__init__()
@@ -94,7 +108,7 @@ class MultimodalSummaryRequest(AIRequest):
     DEFAULT_PROMPT = (
         "Fasse dieses Dokument/Bild zusammen. "
         "Beschreibe den Inhalt und die wichtigsten Informationen. "
-        "Gib deine Antwort als strukturierte Zusammenfassung zurück:"
+        "Gib deine Antwort als strukturiertes JSON zurück, das dem erwarteten Format entspricht."
     )
 
     def __init__(
@@ -109,14 +123,3 @@ class MultimodalSummaryRequest(AIRequest):
         if self.text:
             return self.prompt_text + "\n\nText:\n" + self.text
         return self.prompt_text
-
-
-class SummaryResponse(BaseModel):
-    """Response model for summarization."""
-
-    summary: str = Field(description="Die Zusammenfassung des Textes oder Bildes")
-    key_points: list[str] = Field(
-        default_factory=list,
-        description="Wichtige Punkte oder Stichworte aus dem Text oder Bild",
-    )
-    provider: str = Field(default="", description="Provider name (set automatically)")

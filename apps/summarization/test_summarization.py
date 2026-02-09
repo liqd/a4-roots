@@ -26,9 +26,9 @@ if __name__ == "__main__" and not os.environ.get("DJANGO_SETTINGS_MODULE"):
 
     django.setup()
 
+from apps.summarization.models import SummaryItem
 from apps.summarization.services import AIService
 from apps.summarization.services import SummaryRequest
-from apps.summarization.services import SummaryResponse
 
 # Long example text for testing
 LONG_TEXT = (
@@ -177,7 +177,7 @@ def test_summarization(provider_handle: str = None):
 
         print("Generating summary...")
         request = SummaryRequest(text=LONG_TEXT)
-        response = service.provider.request(request, result_type=SummaryResponse)
+        response = service.provider.request(request, result_type=SummaryItem)
         print("✓ Summary successfully created")
         print_separator()
 
