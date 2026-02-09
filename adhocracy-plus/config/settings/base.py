@@ -14,10 +14,10 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 # General settings
 CONTACT_EMAIL = "contact@domain"
 
-# Link to a dokuwiki instance containing a manual for aplus
-# Leave blank to disable
-# For guest users this is hardcoded in indicator.html
-APLUS_MANUAL_URL = ""
+# Deprecated: Link to a dokuwiki instance containing a manual for aplus
+#             Unused - Replaced by manual_link which is set inside Wagtail
+#
+# APLUS_MANUAL_URL = ""
 
 # Application definition
 
@@ -26,15 +26,18 @@ INSTALLED_APPS = (
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
+    "django.contrib.gis",
     "django.contrib.sessions",
     "django.contrib.sitemaps",
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.humanize",
+    "csp",
     "django_ckeditor_5",
     "widget_tweaks",
     "rest_framework",
     "rest_framework.authtoken",
+    "rest_framework_gis",
     # JWT authentication
     "rest_framework_simplejwt.token_blacklist",
     "django_filters",
@@ -129,10 +132,10 @@ MIDDLEWARE = (
     "csp.middleware.CSPMiddleware",
     "django_cloudflare_push.middleware.push_middleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    "apps.users.middleware.SetUserLanguageCookieMiddleware",
     "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "apps.users.middleware.SetUserLanguageCookieMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
     "allauth.account.middleware.AccountMiddleware",
@@ -157,7 +160,6 @@ TEMPLATES = [
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
-                "django.template.context_processors.debug",
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
@@ -175,7 +177,7 @@ WSGI_APPLICATION = "adhocracy-plus.config.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
+        "ENGINE": "django.contrib.gis.db.backends.spatialite",
         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
         "TEST": {
             "NAME": os.path.join(BASE_DIR, "test_db.sqlite3"),
@@ -200,22 +202,22 @@ USE_TZ = True
 LANGUAGES = [
     ("en", _("English")),
     ("de", _("German")),
-    ("nl", _("Dutch")),
-    ("ky", _("Kyrgyz")),
-    ("ru", _("Russian")),
+    # ("nl", _("Dutch")),
+    # ("ky", _("Kyrgyz")),
+    # ("ru", _("Russian")),
 ]
 
 # adding language info for ky
-EXTRA_LANG_INFO = {
-    "ky": {
-        "bidi": False,
-        "code": "ky",
-        "name": "Kyrgyz",
-        "name_local": "Кыргызча",
-    },
-}
-LANG_INFO = dict(locale.LANG_INFO, **EXTRA_LANG_INFO)
-locale.LANG_INFO = LANG_INFO
+# EXTRA_LANG_INFO = {
+#     "ky": {
+#         "bidi": False,
+#         "code": "ky",
+#         "name": "Kyrgyz",
+#         "name_local": "Кыргызча",
+#     },
+# }
+# LANG_INFO = dict(locale.LANG_INFO, **EXTRA_LANG_INFO)
+# locale.LANG_INFO = LANG_INFO
 
 PARLER_LANGUAGES = {
     1: [{"code": language_code} for language_code, language in LANGUAGES],
@@ -284,9 +286,9 @@ AUTHENTICATION_BACKENDS = (
 )
 
 ACCOUNT_ADAPTER = "apps.users.adapters.AccountAdapter"
-ACCOUNT_AUTHENTICATION_METHOD = "username_email"
+ACCOUNT_LOGIN_METHODS = {"username", "email"}
+ACCOUNT_SIGNUP_FIELDS = ["email*", "username*", "password1*", "password2*"]
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3
-ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_FORMS = {
     "signup": "apps.users.forms.DefaultSignupForm",
@@ -296,7 +298,6 @@ ACCOUNT_RATE_LIMITS = {"login_failed": "10/5m/ip"}
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
 ACCOUNT_USERNAME_MIN_LENGTH = 5
-ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_PREVENT_ENUMERATION = "strict"
 SOCIALACCOUNT_AUTO_SIGNUP = False
 SOCIALACCOUNT_EMAIL_VERIFICATION = "none"
@@ -562,17 +563,24 @@ A4_ACTIONS_PHASE_ENDS_HOURS = 48
 
 A4_USE_ORGANISATION_TERMS_OF_USE = True
 
-# Disable CSP by default
-CSP_REPORT_ONLY = True
-CSP_DEFAULT_SRC = ["'self'", "'unsafe-inline'", "'unsafe-eval'", "data:", "blob:", "*"]
+# Content Security Policy (CSP) - django-csp 4.0 format
+CONTENT_SECURITY_POLICY = {
+    "REPORT_ONLY": True,
+    "DIRECTIVES": {
+        "default-src": [
+            "'self'",
+            "'unsafe-inline'",
+            "'unsafe-eval'",
+            "data:",
+            "blob:",
+            "*",
+        ],
+    },
+}
 
 SITE_ID = 1  # overwrite this in local.py if needed
 
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
-
-# Add a Captcheck captcha URL in the production server's local.py to use it
-# Captcha software we use: https://source.netsyms.com/Netsyms/Captcheck
-CAPTCHA_URL = ""
 
 # Add insights for project if insight model exists
 INSIGHT_MODEL = "a4_candy_projects.ProjectInsight"

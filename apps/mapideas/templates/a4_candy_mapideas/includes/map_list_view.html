@@ -1,0 +1,25 @@
+{% extends "a4_candy_contrib/includes/map_list_view_base.html" %}
+{% load i18n discovery_tags static maps_tags module_tags contrib_tags %}
+
+{% block map_content %}
+{% if object_list %}
+{% if object_list.0|has_feature:"rate" %}
+    {% map_display_points object_list module.settings_instance.polygon %}
+{% else %}
+    {% map_display_points object_list module.settings_instance.polygon 'true' %}
+{% endif %}
+{% else %}
+{% map_display_points object_list module.settings_instance.polygon %}
+{% endif %}
+{% endblock map_content %}
+
+{% block list_content %}
+<ul class="u-list-reset">
+    {% for object in paginated_list %}
+        {% include "a4_candy_mapideas/includes/mapidea_list_item.html" with object=object %}
+    {% empty %}
+        {% translate "Nothing to show" %}
+    {% endfor %}
+</ul>
+{% endblock list_content %}
+

@@ -47,12 +47,13 @@
                         {{ organisation.name }}
                     </a>
                 {% endfor %}
-                {% settings_value "APLUS_MANUAL_URL" as manual_url %}
-                {% if manual_url %}
-                    <a class="dropdown-item"
-                    href="{{ manual_url }}/{{ LANGUAGE_CODE }}:start"
-                    target="_blank">{% translate 'Help' %}</a>
-                {% endif %}
+                {% with pages=settings.a4_candy_cms_settings.ImportantPages %}
+                    {% if pages.manual_link %}
+                        <a  class="dropdown-item"
+                            href="{{ pages.manual_link }}"
+                            target="_blank">{% translate 'Help Center' %}</a>
+                    {% endif %}
+                {% endwith %}
             {% else %} 
                 <a class="dropdown-item" href="{% url 'guest_convert' %}">{% translate 'Guest Account Settings' %}</a>
                 <a class="dropdown-item" href="https://manual.adhocracy.plus/de:start" target="_blank">{% translate "Help" %}</a>

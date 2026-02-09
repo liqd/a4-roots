@@ -1,5 +1,8 @@
 from django.urls import path, include
 
+from apps.notifications.views import NotificationSettingsView
+from apps.notifications.views import TriggerAllNotificationTasksView
+
 from . import views
 
 urlpatterns = [
@@ -14,6 +17,16 @@ urlpatterns = [
         "agreements/",
         views.OrganisationTermsOfUseUpdateView.as_view(),
         name="user_agreements",
+    ),
+    path(
+        "notification-settings/",
+        NotificationSettingsView.as_view(),
+        name="account_notification_settings",
+    ),
+    path(
+        "trigger-all-tasks/",
+        TriggerAllNotificationTasksView.as_view(),
+        name="trigger_all_notification_tasks",
     ),
     path("guest/", include([
         path("convert/", views.GuestConvertView.as_view(), name="guest_convert"),

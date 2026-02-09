@@ -8,6 +8,7 @@ from tests.helpers import GuestUserCreator
 from tests.helpers import get_emails_for_address
 
 
+@override_settings(CAPTCHA=False)
 @pytest.mark.django_db
 def test_signup_user_newsletter_checked(client):
     resp = client.post(
@@ -19,7 +20,6 @@ def test_signup_user_newsletter_checked(client):
             "password1": "password",
             "password2": "password",
             "terms_of_use": "on",
-            "captcha": "testpass:0",
         },
     )
     assert resp.status_code == 302
@@ -27,6 +27,7 @@ def test_signup_user_newsletter_checked(client):
     assert user.get_newsletters
 
 
+@override_settings(CAPTCHA=False)
 @pytest.mark.django_db
 def test_signup_user_newsletter_not_checked(client):
     resp = client.post(
@@ -37,7 +38,6 @@ def test_signup_user_newsletter_not_checked(client):
             "password1": "password",
             "password2": "password",
             "terms_of_use": "on",
-            "captcha": "testpass:0",
         },
     )
     assert resp.status_code == 302
@@ -45,6 +45,7 @@ def test_signup_user_newsletter_not_checked(client):
     assert not user.get_newsletters
 
 
+@override_settings(CAPTCHA=False)
 @pytest.mark.django_db
 def test_signup_user_unchecked_terms_of_use(client):
     resp = client.post(
@@ -54,7 +55,6 @@ def test_signup_user_unchecked_terms_of_use(client):
             "email": "mail@example.com",
             "password1": "password",
             "password2": "password",
-            "captcha": "testpass:0",
         },
     )
     assert User.objects.count() == 0

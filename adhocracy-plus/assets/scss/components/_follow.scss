@@ -2,11 +2,16 @@
     .alert {
         margin-top: $r-spacer;
     }
+    
+    a .fas.fa-external-link-alt {
+        margin-left: 0.25em;
+        text-decoration: none !important;
+    }
 }
 
 .a4-btn--follow:before,
 .a4-btn--following:before {
-    font-family: "Font Awesome\ 5 Free", sans-serif;
+    font-family: "Font Awesome\ 7 Free", sans-serif;
     font-weight: 900;
     margin-right: 0.3em;
 }
