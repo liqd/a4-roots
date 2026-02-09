@@ -1,42 +1,72 @@
-"""Pydantic models for summarization responses."""
+"""Django models for summarization."""
 
-from pydantic import BaseModel
-from pydantic import Field
+import hashlib
+
+from django.db import models
+from django.utils import timezone
+
+from adhocracy4.projects.models import Project
 
 
-class SummaryItem(BaseModel):
-    """Response model for summarization."""
+class ProjectSummary(models.Model):
+    """Stores AI-generated summaries for projects."""
 
-    title: str = Field(description="Title of the summary")
-    summary: str = Field(description="Die Zusammenfassung des Textes oder Bildes")
-    key_points: list[str] = Field(
-        default_factory=list,
-        description="Wichtige Punkte oder Stichworte aus dem Text oder Bild",
+    project = models.ForeignKey(
+        Project,
+        on_delete=models.CASCADE,
+        related_name="summaries",
+        verbose_name="Project",
+    )
+    prompt = models.TextField(
+        verbose_name="Prompt",
+        help_text="The prompt used for summarization",
+    )
+    input_text_hash = models.CharField(
+        max_length=64,
+        db_index=True,
+        verbose_name="Input Text Hash",
+        help_text="SHA256 hash of the input text for quick comparison",
+    )
+    response_data = models.JSONField(
+        verbose_name="Response Data",
+        help_text="The complete SummaryResponse data structure",
+    )
+    created_at = models.DateTimeField(
+        default=timezone.now,
+        verbose_name="Created At",
+        help_text="Timestamp when the summary was created",
     )
 
+    class Meta:
+        verbose_name = "Project Summary"
+        verbose_name_plural = "Project Summaries"
+        ordering = ["-created_at"]
+        indexes = [
+            models.Index(fields=["project", "input_text_hash"]),
+        ]
 
-class ModuleItem(BaseModel):
-    """Response model for module summarization."""
+    def __str__(self):
+        return f"Summary for {self.project} ({self.created_at})"
 
-    module_name: str = Field(description="Name of the module")
-    summary: str = Field(description="Summary of the module")
-    key_points: list[str] = Field(
-        default_factory=list, description="Key points of the module"
-    )
-    phase_status: str = Field(
-        description="Status der Phase: 'past' (Vergangenheit), 'active' (läuft gerade), 'upcoming' (Zukunft)"
-    )
-    link: str = Field(description="Link to the module")
+    @staticmethod
+    def compute_hash(text: str) -> str:
+        """Compute SHA256 hash of the input text."""
+        return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
+    @classmethod
+    def get_cached_summary(cls, project: Project, prompt: str, input_text: str):
+        """
+        Get cached summary if it exists for the given project, prompt and input text.
 
-class SummaryResponse(BaseModel):
-    """Response model for summarization."""
+        Args:
+            project: The project instance
+            prompt: The prompt used
+            input_text: The input text to summarize
 
-    summary_items: list[SummaryItem] = Field(
-        default_factory=list,
-        description="Liste von Zusammenfassungs-Items. Jedes Item enthält: title (Titel), summary (Zusammenfassung), key_points (Liste von wichtigen Punkten)",
-    )
-    module_items: list[ModuleItem] = Field(
-        default_factory=list,
-        description="Liste von Modul-Items. Jedes Item enthält: module_name (Modulname), summary (Zusammenfassung), key_points (Liste von wichtigen Punkten), phase_status (past/active/upcoming), link (Link zum Modul)",
-    )
+        Returns:
+            ProjectSummary instance or None if not found
+        """
+        input_hash = cls.compute_hash(input_text)
+        return cls.objects.filter(
+            project=project, prompt=prompt, input_text_hash=input_hash
+        ).first()
