@@ -90,9 +90,9 @@ class SummaryRequest(AIRequest):
     """Request model for text summarization."""
 
     DEFAULT_PROMPT = (
-        "Fasse den folgenden Text zusammen. "
-        "Gib deine Antwort als strukturiertes JSON zurück, das dem erwarteten Format entspricht. "
-        "Erstelle dabei mehrere Summary-Items und Module-Items falls relevant."
+        "Summarize the following text. "
+        "Return your answer as structured JSON that matches the expected format. "
+        "Create multiple summary_items and module_items if relevant."
     )
 
     def __init__(self, text: str, prompt: str | None = None) -> None:
@@ -108,9 +108,9 @@ class MultimodalSummaryRequest(AIRequest):
     """Request model for multimodal document summarization."""
 
     DEFAULT_PROMPT = (
-        "Fasse dieses Dokument/Bild zusammen. "
-        "Beschreibe den Inhalt und die wichtigsten Informationen. "
-        "Gib deine Antwort als strukturiertes JSON zurück, das dem erwarteten Format entspricht."
+        "Summarize this document/image. "
+        "Describe the content and the most important information. "
+        "Return your answer as structured JSON that matches the expected format."
     )
 
     def __init__(
