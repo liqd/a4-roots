@@ -9,7 +9,10 @@ PROSOPO_SECRET_KEY = "your_actual_secret_key_here"
 # Summarization service configuration
 # Configure AI providers for text summarization
 AI_PROVIDER = "ovhcloud"  # Default provider to use
-SYSTEM_PROMPT = "Du bist ein hilfreicher Assistent, der Texte prägnant zusammenfasst."  # System prompt for the AI agent
+SYSTEM_PROMPT = (
+    "You are a helpful assistant that summarizes texts concisely. "
+    "Return structured JSON that matches the expected output format."
+)  # System prompt for the AI agent
 
 AI_PROVIDERS = {
     "ovhcloud": {
