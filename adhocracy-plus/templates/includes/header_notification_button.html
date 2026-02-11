@@ -1,10 +1,10 @@
-{% load static notification_tags %}
+{% load static notification_tags guest_user %}
 {% unread_notifications_count as unread_count %}
 
 <a href="{% url 'userdashboard-notifications' %}" 
    class="btn btn-default position-relative rounded-circle notifications_btn d-flex align-items-center justify-content-center" 
    aria-label="Notifications"
-   {% if user.is_authenticated %}
+   {% if user.is_authenticated or user.is_guest_user %}
         hx-get="{% url 'notification-count-partial' %}"
         hx-trigger="updateNotificationCount from:body, every 15s"
         hx-target=".notification-badge-container"
