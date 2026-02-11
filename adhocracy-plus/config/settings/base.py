@@ -113,6 +113,7 @@ INSTALLED_APPS = (
     "apps.projects",
     "apps.userdashboard",
     "apps.learning_nuggets",
+    "apps.summarization",
     # Apps defining phases
     "apps.activities",
     "apps.budgeting",

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Summarization Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-top: 0;
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        input[type="number"], select {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 15px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            border-left: 4px solid #007bff;
+        }
+        .error {
+            background-color: #f8d7da;
+            border-left-color: #dc3545;
+            color: #721c24;
+        }
+        .summary {
+            margin-top: 15px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #d4edda;
+            border-radius: 4px;
+            border-left: 4px solid #28a745;
+        }
+        .stats {
+            margin-top: 10px;
+            font-size: 12px;
+            color: #666;
+        }
+        .key-points {
+            margin-top: 15px;
+        }
+        .key-points ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        .key-points li {
+            margin: 5px 0;
+        }
+        .file-hint {
+            color: #666;
+            display: block;
+            margin-top: 5px;
+        }
+        h2 {
+            color: #333;
+            margin-top: 20px;
+            margin-bottom: 15px;
+        }
+        h3 {
+            color: #555;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AI Summarization Test</h1>
+        
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <label for="prompt">Custom Prompt:</label>
+            <textarea name="prompt" id="prompt" rows="3">{% if prompt %}{{ prompt }}{% else %}{{ default_prompt }}{% endif %}</textarea>
+            <small class="file-hint">
+                Default prompt is pre-filled. You can modify it as needed.
+            </small>
+            
+            <label for="text">Text to summarize:</label>
+            <textarea name="text" id="text">{{ text }}</textarea>
+            
+            <label for="doc">Or upload a document/image:</label>
+            <input type="file" name="doc" id="doc" accept=".png,.jpg,.jpeg,.pdf">
+            <small class="file-hint">
+                Supported formats: PNG, JPG, JPEG, PDF (max 10MB)
+            </small>
+            
+            <label for="provider">Provider:</label>
+            <select name="provider" id="provider">
+                <option value="ovhcloud" {% if not provider or provider == "ovhcloud" %}selected{% endif %}>OVHcloud</option>
+                <option value="openrouter" {% if provider == "openrouter" %}selected{% endif %}>OpenRouter</option>
+                <option value="routerlab" {% if provider == "routerlab" %}selected{% endif %}>RouterLab</option>
+                <option value="mistral" {% if provider == "mistral" %}selected{% endif %}>Mistral</option>
+            </select>
+            
+            <button type="submit">Summarize</button>
+        </form>
+        
+        {% if error %}
+        <div class="result error">
+            <strong>Error:</strong> {{ error }}
+        </div>
+        {% endif %}
+        
+        {% if summary_response %}
+        <div class="result">
+            {% if summary_response.summary_items %}
+            <h2>Summary Items:</h2>
+            {% for item in summary_response.summary_items %}
+            <div class="summary">
+                {% if item.title %}
+                <h3>{{ item.title }}</h3>
+                {% endif %}
+                <p>{{ item.summary }}</p>
+                {% if item.key_points %}
+                <div class="key-points">
+                    <strong>Key Points:</strong>
+                    <ul>
+                        {% for point in item.key_points %}
+                        <li>{{ point }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+            {% endif %}
+            
+            {% if summary_response.module_items %}
+            <h2>Module Items:</h2>
+            {% for module in summary_response.module_items %}
+            <div class="summary">
+                <h3>{{ module.module_name }}</h3>
+                <p><strong>Phase Status:</strong> {{ module.phase_status }}</p>
+                {% if module.link %}
+                <p><strong>Link:</strong> <a href="{{ module.link }}" target="_blank">{{ module.link }}</a></p>
+                {% endif %}
+                <p>{{ module.summary }}</p>
+                {% if module.key_points %}
+                <div class="key-points">
+                    <strong>Key Points:</strong>
+                    <ul>
+                        {% for point in module.key_points %}
+                        <li>{{ point }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+            {% endif %}
+            
+            {% if uploaded_filename %}
+            <div class="stats">
+                Uploaded file: {{ uploaded_filename }}
+            </div>
+            {% elif original_length %}
+            <div class="stats">
+                Original: {{ original_length }} characters
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
+
