@@ -1,9 +1,11 @@
 """Service for text summarization using AI providers."""
 
 import json
+from datetime import timedelta
 from pathlib import Path
 
 from django.conf import settings
+from django.utils import timezone
 from pydantic import BaseModel
 
 from .models import ProjectSummary
@@ -12,7 +14,12 @@ from .providers import AIRequest
 from .providers import ProviderConfig
 from .pydantic_models import SummaryItem
 from .pydantic_models import SummaryResponse
-from .pydantic_models import ProjectSummaryResponse 
+
+PROJECT_SUMMARY_RATE_LIMIT_MINUTES = (
+    5  # Minimum minutes between summary generations per project
+)
+SUMMARY_GLOBAL_LIMIT_PER_HOUR = 100  # Maximum summaries per hour across all projects
+
 
 class AIService:
     """Service for summarizing text using configured AI provider."""
@@ -44,20 +51,49 @@ class AIService:
         prompt: str | None = None,
         result_type: type[BaseModel] = ProjectSummaryResponse,  # Changed from SummaryResponse
     ) -> BaseModel:
-        """Summarize text for a project with caching support."""
+        """Summarize text for a project with caching and rate limiting support."""
         request = SummaryRequest(text=text, prompt=prompt)
 
-        # Cache disabled for dev work
+        # Get the most recent summary for this project
+        latest_project_summary = (
+            ProjectSummary.objects.filter(project=project)
+            .order_by("-created_at")
+            .first()
+        )
 
-        # # Check cache
-        # cached = ProjectSummary.get_cached_summary(
-        #     project=project,
-        #     prompt=request.prompt_text,
-        #     input_text=text,
-        # )
-        # if cached:
-        #     print("****** Cached summary found ******")
-        #     return ProjectSummaryResponse(**cached.response_data)  # Changed
+        # Only proceed with cache/rate limit checks if project has existing summaries
+        if latest_project_summary:
+            time_since_last = timezone.now() - latest_project_summary.created_at
+
+            # Rate limit: too soon since last generation
+            if time_since_last < timedelta(minutes=PROJECT_SUMMARY_RATE_LIMIT_MINUTES):
+                print(
+                    f"****** Using rate-limited summary from {latest_project_summary.created_at} (within {PROJECT_SUMMARY_RATE_LIMIT_MINUTES} min per project) ******"
+                )
+                return SummaryResponse(**latest_project_summary.response_data)
+
+            # Global limit: only check if project was active in the last hour
+            if time_since_last < timedelta(hours=1):
+                global_limit_time = timezone.now() - timedelta(hours=1)
+                recent_global_count = ProjectSummary.objects.filter(
+                    created_at__gte=global_limit_time
+                ).count()
+
+                if recent_global_count >= SUMMARY_GLOBAL_LIMIT_PER_HOUR:
+                    print(
+                        f"****** Global rate limit reached ({recent_global_count}/{SUMMARY_GLOBAL_LIMIT_PER_HOUR} in last hour) ******"
+                    )
+                    print(
+                        f"****** Using most recent summary from {latest_project_summary.created_at} ******"
+                    )
+                    return SummaryResponse(**latest_project_summary.response_data)
+
+            current_hash = ProjectSummary.compute_hash(text)
+            if latest_project_summary.input_text_hash == current_hash:
+                print(
+                    "****** Cached summary found (exact match via hash comparison) ******"
+                )
+                return SummaryResponse(**latest_project_summary.response_data)
 
         # Generate new summary
         print("****** Generating new summary ******")
