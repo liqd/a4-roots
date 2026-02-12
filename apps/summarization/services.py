@@ -98,17 +98,9 @@ class AIService:
                     )
                     return SummaryResponse(**latest_project_summary.response_data)
 
-            current_hash = ProjectSummary.compute_hash(text)
-            if latest_project_summary.input_text_hash == current_hash:
-                print(
-                    "****** Cached summary found (exact match via hash comparison) ******"
-                )
-                return SummaryResponse(**latest_project_summary.response_data)
-
-        # Generate new summary
+        # No existing summary OR all cache/rate limit checks passed - generate new summary
         print("****** Generating new summary ******")
         print(f"Prompt: {request.prompt()[:500]}...")
-
         response = self.provider.request(request, result_type=result_type)
 
         # Save to cache if result is ProjectSummaryResponse
