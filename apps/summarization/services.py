@@ -12,6 +12,7 @@ from .models import ProjectSummary
 from .providers import AIProvider
 from .providers import AIRequest
 from .providers import ProviderConfig
+from .pydantic_models import ProjectSummaryResponse
 from .pydantic_models import SummaryItem
 from .pydantic_models import SummaryResponse
 
@@ -49,7 +50,9 @@ class AIService:
         project,
         text: str,
         prompt: str | None = None,
-        result_type: type[BaseModel] = ProjectSummaryResponse,  # Changed from SummaryResponse
+        result_type: type[
+            BaseModel
+        ] = ProjectSummaryResponse,  # Changed from SummaryResponse
     ) -> BaseModel:
         """Summarize text for a project with caching and rate limiting support."""
         request = SummaryRequest(text=text, prompt=prompt)
@@ -119,12 +122,13 @@ class AIService:
             )
         return response
 
+
 class SummaryRequest(AIRequest):
     """Request model for text summarization."""
-    
+
     DEFAULT_PROMPT = """
         You are a JSON generator. Return ONLY valid JSON. No explanations, no markdown, no code blocks.
-        
+
         Schema:
         {
         "title": "Zusammenfassung der Beteiligung",
@@ -160,11 +164,11 @@ class SummaryRequest(AIRequest):
             }
         ]
         }
-        
+
         Extract real data from the project export. Use actual numbers and content.
         Respond with ONLY the JSON object.
         """
-    
+
     def __init__(self, text: str, prompt: str | None = None) -> None:
         super().__init__()
         self.text = text
