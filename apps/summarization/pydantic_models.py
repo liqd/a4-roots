@@ -106,5 +106,27 @@ class ProjectSummaryResponse(BaseModel):
 
     upcoming_modules: list[ModuleSummary] = Field(
         default_factory=list,
-        description="Modules that are upcoming (phase_status='upcoming')",
+        description="Modules that are upcoming (phase_status='upcoming')"
+    )
+
+class DocumentInputItem(BaseModel):
+    """Single document input item with handle and URL."""
+    
+    handle: str = Field(description="Unique identifier/handle for the document")
+    url: str = Field(description="URL of the document")
+
+
+class DocumentSummaryItem(BaseModel):
+    """Response model for a single document summary with handle."""
+    
+    handle: str = Field(description="Unique identifier/handle for the document")
+    summary: str = Field(description="Summary of the document content")
+
+
+class DocumentSummaryResponse(BaseModel):
+    """Response model for multiple document summaries."""
+    
+    documents: list[DocumentSummaryItem] = Field(
+        default_factory=list,
+        description="List of document summaries, each with handle and summary",
     )
