@@ -1,5 +1,6 @@
 import re
 
+# import json
 from adhocracy4.comments.models import Comment
 from adhocracy4.polls.models import Poll
 from apps.debate.models import Subject
@@ -8,6 +9,23 @@ from apps.documents.models import Paragraph
 from apps.ideas.models import Idea
 from apps.offlineevents.models import OfflineEvent
 from apps.topicprio.models import Topic
+
+
+def get_module_status(module):
+    """
+    Return the status of a module based on its phases.
+
+    Returns:
+        str: 'past', 'active', or 'future'
+    """
+
+    # Use the existing queryset methods
+    if module.module_has_finished:
+        return "past"
+    elif module.active_phase:
+        return "active"
+    else:
+        return "future"
 
 
 def extract_attachments(text):
@@ -123,6 +141,7 @@ def generate_full_export(project):
         "offline_events": export_offline_events_full(project),
         "stats": calculate_stats(project),
     }
+    # print(json.dumps(export))
     return export
 
 
@@ -145,6 +164,7 @@ def export_ideas_full(project):
         ideas_data.append(
             {
                 "id": idea.id,
+                "active_status": get_module_status(idea.module),
                 "url": idea.get_absolute_url(),
                 "name": idea.name,
                 "description": str(idea.description),
@@ -223,7 +243,8 @@ def export_polls_full(project):
         polls_data.append(
             {
                 "id": poll.id,
-                "description": poll.description,
+                "active_status": get_module_status(poll.module),
+                "description": poll.module.description,
                 "url": poll.get_absolute_url(),
                 "module_name": poll.module.name,
                 "questions": questions_list,
@@ -256,6 +277,7 @@ def export_topics_full(project):
         topics_data.append(
             {
                 "id": topic.id,
+                "active_status": get_module_status(topic.module),
                 "url": topic.get_absolute_url(),
                 "name": topic.name,
                 "description": str(topic.description),
