@@ -126,3 +126,35 @@
         align-self: center;
     }
 }
+
+.summary-prompt-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border: 1px solid gray;
+    border-radius: 0.375rem;
+    width: 80%;
+    margin: auto;
+}
+
+.summary-text {
+    width: 75%;
+    padding-right: 2rem;
+}
+
+.summary-title {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.summary-description {
+    margin-bottom: 0;
+}
+
+.summary-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}

@@ -59,6 +59,7 @@
                 <div class="mb-5 u-z-index--0">
                     <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3">
                         <h1 class="project-header__title">{{ project.name }}</h1>
+                        
                         <p class="project-header__description">{{ project.description }}</p>
                         {% if request.user.is_authenticated and not request.user|is_guest_user %}
                             {% react_follows project %}
@@ -180,6 +181,32 @@
 
                     {% elif view.is_project_view %}
                     <div class="row">
+
+                        <!-- Summary section -->
+                        <div class="summary-prompt-card">
+                            <div class="summary-text">
+                                <strong class="summary-title">Need an overview of what's happened so far?</strong>
+                                <p class="summary-description">You can use AI to summarise the main inputs and discussions and catch up quickly.</p>
+                            </div>
+                            <div class="summary-button">
+                                <button hx-get="{% url 'project-generate-summary' organisation_slug=project.organisation.slug slug=project.slug %}" 
+                                        hx-target="#summary-container"
+                                        hx-indicator="#summary-loading"
+                                        class="btn btn-primary">
+                                    <i class="fa fa-wand-magic-sparkles mr-2"></i> Summarise with AI
+                                </button>
+                            </div>
+                        </div>
+
+                          <div id="summary-loading" class="htmx-indicator mt-2">
+                                    <div class="spinner-border spinner-border-sm" role="status">
+                                        <span class="a4-sr-only">Loading...</span>
+                                    </div>
+                                    <span class="ml-2">Generating AI summary...</span>
+                                </div>
+                        
+                        <div id="summary-container" class="mt-3"></div>
+                        <!-- End summary section -->
                         <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
                             <ul class="l-tiles-3">
                             {% for module in modules %}

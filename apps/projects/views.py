@@ -1,10 +1,13 @@
 import itertools
+import json
 
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.sites.shortcuts import get_current_site
+from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
+from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
@@ -23,10 +26,13 @@ from adhocracy4.projects.mixins import PhaseDispatchMixin
 from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.projects.mixins import ProjectModuleDispatchMixin
 from apps.projects.models import ProjectInsight
+from apps.summarization.pydantic_models import SummaryResponse, ProjectSummaryResponse
+from apps.summarization.services import AIService
 
 from . import dashboard
 from . import forms
 from . import models
+from .export_utils import generate_full_export
 
 User = get_user_model()
 
@@ -342,3 +348,44 @@ class ModuleDetailView(PermissionRequiredMixin, PhaseDispatchMixin):
         if "module" not in kwargs:
             kwargs["module"] = self.module
         return super().get_context_data(**kwargs)
+
+
+class ProjectGenerateSummaryView(PermissionRequiredMixin, generic.DetailView):
+    model = models.Project
+    slug_url_kwarg = "slug"
+    permission_required = "a4projects.view_project"
+
+    def get_permission_object(self):
+        return self.get_object()
+
+    def _generate_export_data(self, project):
+        export_data = generate_full_export(project)
+        return export_data
+
+    def get(self, request, *args, **kwargs):
+        project = self.get_object()
+
+        try:
+            export_data = self._generate_export_data(project)
+            json_text = json.dumps(export_data, indent=2)
+
+            service = AIService()
+            response = service.project_summarize(
+                project=project, text=json_text, result_type=ProjectSummaryResponse
+            )
+
+            # Render HTML fragment
+            html = render_to_string(
+                "a4_candy_projects/_summary_fragment.html",
+                {
+                    "response": response,
+                    "project": project,
+                },
+            )
+
+            return HttpResponse(html)
+
+        except Exception as e:
+            return HttpResponse(
+                f'<div class="alert alert-danger">Error: {str(e)}</div>'
+            )

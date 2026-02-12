@@ -1,0 +1,504 @@
+import re
+
+from adhocracy4.comments.models import Comment
+from adhocracy4.polls.models import Poll
+from apps.debate.models import Subject
+from apps.documents.models import Chapter
+from apps.documents.models import Paragraph
+from apps.ideas.models import Idea
+from apps.topicprio.models import Topic
+
+
+def extract_attachments(text):
+    """Extract upload links from HTML text"""
+    if not text:
+        return []
+
+    # Find all links containing /uploads/
+    pattern = r'href="([^"]*?/uploads/[^"]*?)"'
+    attachments = re.findall(pattern, text)
+
+    return attachments
+
+
+def generate_full_export(project):
+    """Generate complete project export data"""
+    return {
+        "project": {
+            "name": project.name,
+            "description": project.description,
+            "description_attachments": extract_attachments(project.description),
+            "slug": project.slug,
+            "organisation": project.organisation.name,
+            "result": project.result,
+            "result_attachments": extract_attachments(project.result),
+            "url": project.get_absolute_url(),
+        },
+        "ideas": export_ideas_full(project),
+        "polls": export_polls_full(project),
+        "topics": export_topics_full(project),
+        "debates": export_debates_full(project),
+        "documents": export_documents_full(project),
+        "stats": calculate_stats(project),
+    }
+
+
+def export_ideas_full(project):
+    """Export all ideas with full data"""
+    ideas_data = []
+    ideas = (
+        Idea.objects.filter(module__project=project)
+        .select_related("creator", "category")
+        .prefetch_related("labels", "comments__creator", "ratings__creator")
+    )
+
+    for idea in ideas:
+        # Get comments for this idea
+        comments_list = []
+        for comment in idea.comments.all():
+            comments_list.append(
+                {
+                    "id": comment.id,
+                    "text": comment.comment,
+                    "creator": comment.creator.username if comment.creator else None,
+                    "created": comment.created.isoformat(),
+                    "is_removed": comment.is_removed,
+                    "is_censored": comment.is_censored,
+                    "is_blocked": comment.is_blocked,
+                }
+            )
+
+        # Get ratings for this idea
+        ratings_list = []
+        for rating in idea.ratings.all():
+            ratings_list.append(
+                {
+                    "id": rating.id,
+                    "value": rating.value,
+                    "creator": rating.creator.username if rating.creator else None,
+                    "created": rating.created.isoformat(),
+                }
+            )
+
+        ideas_data.append(
+            {
+                "id": idea.id,
+                "url": idea.get_absolute_url(),
+                "name": idea.name,
+                "description": str(idea.description),
+                "attachments": extract_attachments(str(idea.description)),
+                "creator": idea.creator.username if idea.creator else None,
+                "created": idea.created.isoformat(),
+                "reference_number": idea.reference_number,
+                "category": idea.category.name if idea.category else None,
+                "labels": [label.name for label in idea.labels.all()],
+                "comment_count": idea.comments.count(),
+                "comments": comments_list,
+                "rating_count": idea.ratings.count(),
+                "ratings": ratings_list,
+                "module_id": idea.module.id,
+                "module_name": idea.module.name,
+                "images": [i.name for i in idea._a4images_current_images],
+            }
+        )
+
+    return ideas_data
+
+
+def export_polls_full(project):
+    """Export all polls with full data"""
+
+    polls_data = []
+    polls = Poll.objects.filter(module__project=project).prefetch_related(
+        "questions__choices__votes__creator",
+        "questions__choices__votes__other_vote",
+        "questions__answers__creator",
+        "comments__creator",
+    )
+
+    for poll in polls:
+        questions_list = []
+        for question in poll.questions.all().order_by("weight"):
+            choices_list = []
+            for choice in question.choices.all().order_by("weight"):
+                votes_list = []
+                for vote in choice.votes.all():
+                    vote_data = {
+                        "creator": vote.creator.username if vote.creator else None,
+                        "created": vote.created.isoformat(),
+                    }
+                    if hasattr(vote, "other_vote"):
+                        vote_data["other_answer"] = vote.other_vote.answer
+                    votes_list.append(vote_data)
+
+                choices_list.append(
+                    {
+                        "label": choice.label,
+                        "is_other_choice": choice.is_other_choice,
+                        "vote_count": choice.votes.count(),
+                        "votes": votes_list,
+                    }
+                )
+
+            answers_list = []
+            for answer in question.answers.all():
+                answers_list.append(
+                    {
+                        "answer": answer.answer,
+                        "creator": answer.creator.username if answer.creator else None,
+                        "created": answer.created.isoformat(),
+                    }
+                )
+
+            questions_list.append(
+                {
+                    "label": question.label,
+                    "multiple_choice": question.multiple_choice,
+                    "is_open": question.is_open,
+                    "choices": choices_list,
+                    "answers": answers_list,
+                    "vote_count": sum(c["vote_count"] for c in choices_list),
+                }
+            )
+
+        # Get comments for this poll
+        comments_list = []
+        for comment in poll.comments.all():
+            comments_list.append(
+                {
+                    "id": comment.id,
+                    "text": comment.comment,
+                    "creator": comment.creator.username if comment.creator else None,
+                    "created": comment.created.isoformat(),
+                }
+            )
+
+        polls_data.append(
+            {
+                "id": poll.id,
+                "url": poll.get_absolute_url(),
+                "module_name": poll.module.name,
+                "questions": questions_list,
+                "comments": comments_list,
+                "comment_count": poll.comments.count(),
+                "total_votes": sum(q["vote_count"] for q in questions_list),
+            }
+        )
+
+    return polls_data
+
+
+def export_topics_full(project):
+    """Export all topics with full data"""
+
+    topics_data = []
+    topics = (
+        Topic.objects.filter(module__project=project)
+        .select_related("creator", "category")
+        .prefetch_related("labels", "comments__creator", "ratings__creator")
+    )
+
+    for topic in topics:
+        # Get comments for this topic
+        comments_list = []
+        for comment in topic.comments.all():
+            comments_list.append(
+                {
+                    "id": comment.id,
+                    "text": comment.comment,
+                    "creator": comment.creator.username if comment.creator else None,
+                    "created": comment.created.isoformat(),
+                    "is_removed": comment.is_removed,
+                    "is_censored": comment.is_censored,
+                    "is_blocked": comment.is_blocked,
+                }
+            )
+
+        # Get ratings for this topic
+        ratings_list = []
+        for rating in topic.ratings.all():
+            ratings_list.append(
+                {
+                    "id": rating.id,
+                    "value": rating.value,
+                    "creator": rating.creator.username if rating.creator else None,
+                    "created": rating.created.isoformat(),
+                }
+            )
+
+        topics_data.append(
+            {
+                "id": topic.id,
+                "url": topic.get_absolute_url(),
+                "name": topic.name,
+                "description": str(topic.description),
+                "creator": topic.creator.username if topic.creator else None,
+                "created": topic.created.isoformat(),
+                "reference_number": topic.reference_number,
+                "category": topic.category.name if topic.category else None,
+                "labels": [label.name for label in topic.labels.all()],
+                "comment_count": topic.comments.count(),
+                "comments": comments_list,
+                "rating_count": topic.ratings.count(),
+                "ratings": ratings_list,
+                "module_id": topic.module.id,
+                "module_name": topic.module.name,
+            }
+        )
+
+    return topics_data
+
+
+def export_documents_full(project):
+    """Export all document chapters and paragraphs with comments"""
+
+    documents_data = []
+    chapters = (
+        Chapter.objects.filter(module__project=project)
+        .select_related("creator")
+        .prefetch_related(
+            "paragraphs__comments__creator",
+            "paragraphs__comments__ratings__creator",
+            "comments__creator",
+            "comments__ratings__creator",
+        )
+        .order_by("weight")
+    )
+
+    for chapter in chapters:
+        # Get chapter comments
+        chapter_comments = []
+        for comment in chapter.comments.all():
+            chapter_comments.append(
+                {
+                    "id": comment.id,
+                    "text": comment.comment,
+                    "creator": comment.creator.username if comment.creator else None,
+                    "created": comment.created.isoformat(),
+                    "is_removed": comment.is_removed,
+                    "is_censored": comment.is_censored,
+                    "is_blocked": comment.is_blocked,
+                    "ratings": [
+                        {
+                            "id": rating.id,
+                            "value": rating.value,
+                            "creator": (
+                                rating.creator.username if rating.creator else None
+                            ),
+                        }
+                        for rating in comment.ratings.all()
+                    ],
+                }
+            )
+
+        # Get paragraphs for this chapter
+        paragraphs_list = []
+        for paragraph in chapter.paragraphs.all().order_by("weight"):
+            # Get paragraph comments
+            paragraph_comments = []
+            for comment in paragraph.comments.all():
+                paragraph_comments.append(
+                    {
+                        "id": comment.id,
+                        "text": comment.comment,
+                        "creator": (
+                            comment.creator.username if comment.creator else None
+                        ),
+                        "created": comment.created.isoformat(),
+                        "is_removed": comment.is_removed,
+                        "is_censored": comment.is_censored,
+                        "is_blocked": comment.is_blocked,
+                        "ratings": [
+                            {
+                                "id": rating.id,
+                                "value": rating.value,
+                                "creator": (
+                                    rating.creator.username if rating.creator else None
+                                ),
+                            }
+                            for rating in comment.ratings.all()
+                        ],
+                    }
+                )
+
+            paragraphs_list.append(
+                {
+                    "id": paragraph.id,
+                    "name": paragraph.name,
+                    "text": str(paragraph.text),
+                    "attachments": extract_attachments(str(paragraph.text)),
+                    "weight": paragraph.weight,
+                    "created": paragraph.created.isoformat(),
+                    "comment_count": paragraph.comments.count(),
+                    "comments": paragraph_comments,
+                }
+            )
+
+        documents_data.append(
+            {
+                "id": chapter.id,
+                "name": chapter.name,
+                "url": chapter.get_absolute_url(),
+                "weight": chapter.weight,
+                "creator": chapter.creator.username if chapter.creator else None,
+                "created": chapter.created.isoformat(),
+                "module_id": chapter.module.id,
+                "module_name": chapter.module.name,
+                "prev_chapter_id": chapter.prev.id if chapter.prev else None,
+                "next_chapter_id": chapter.next.id if chapter.next else None,
+                "paragraph_count": chapter.paragraphs.count(),
+                "paragraphs": paragraphs_list,
+                "chapter_comment_count": chapter.comments.count(),
+                "chapter_comments": chapter_comments,
+                "total_paragraph_comments": sum(
+                    p["comment_count"] for p in paragraphs_list
+                ),
+            }
+        )
+
+    return documents_data
+
+
+def export_debates_full(project):
+    """Export all debate subjects with comments"""
+
+    debates_data = []
+    subjects = (
+        Subject.objects.filter(module__project=project)
+        .select_related("creator")
+        .prefetch_related("comments__creator", "comments__ratings__creator")
+    )
+
+    for subject in subjects:
+        # Get comments for this subject
+        comments_list = []
+        for comment in subject.comments.all():
+            comments_list.append(
+                {
+                    "id": comment.id,
+                    "text": comment.comment,
+                    "creator": comment.creator.username if comment.creator else None,
+                    "created": comment.created.isoformat(),
+                    "is_removed": comment.is_removed,
+                    "is_censored": comment.is_censored,
+                    "is_blocked": comment.is_blocked,
+                    "comment_categories": comment.comment_categories,
+                    "is_moderator_marked": comment.is_moderator_marked,
+                    "is_reviewed": comment.is_reviewed,
+                    "ratings": [
+                        {
+                            "id": rating.id,
+                            "value": rating.value,
+                            "creator": (
+                                rating.creator.username if rating.creator else None
+                            ),
+                        }
+                        for rating in comment.ratings.all()
+                    ],
+                }
+            )
+
+        debates_data.append(
+            {
+                "id": subject.id,
+                "name": subject.name,
+                "description": subject.description,
+                "creator": subject.creator.username if subject.creator else None,
+                "created": subject.created.isoformat(),
+                "reference_number": subject.reference_number,
+                "slug": subject.slug,
+                "module_id": subject.module.id,
+                "module_name": subject.module.name,
+                "comment_count": subject.comments.count(),
+                "comments": comments_list,
+                "comment_creator_count": subject.comment_creator_count,
+                "last_three_creators": (
+                    [creator.username for creator in subject.last_three_creators]
+                    if subject.last_three_creators
+                    else []
+                ),
+            }
+        )
+
+    return debates_data
+
+
+def calculate_stats(project):
+    """Calculate statistics for the export"""
+    # Get counts
+    ideas_count = Idea.objects.filter(module__project=project).count()
+    polls_count = Poll.objects.filter(module__project=project).count()
+    topics_count = Topic.objects.filter(module__project=project).count()
+    debates = Subject.objects.filter(module__project=project)
+    chapters_count = Chapter.objects.filter(module__project=project).count()
+
+    # Get paragraph count
+    paragraphs_count = sum(
+        chapter.paragraphs.count()
+        for chapter in Chapter.objects.filter(module__project=project)
+    )
+
+    # Count comments on chapters
+    chapter_comments_count = Comment.objects.filter(
+        content_type__model="chapter",
+        object_pk__in=Chapter.objects.filter(module__project=project).values_list(
+            "id", flat=True
+        ),
+    ).count()
+
+    # Count comments on paragraphs
+    paragraph_comments_count = Comment.objects.filter(
+        content_type__model="paragraph",
+        object_pk__in=Paragraph.objects.filter(
+            chapter__module__project=project
+        ).values_list("id", flat=True),
+    ).count()
+
+    # Get comment counts
+    ideas_comments = (
+        sum(
+            Idea.objects.get(pk=idea.id).comments.count()
+            for idea in Idea.objects.filter(module__project=project)
+        )
+        if ideas_count > 0
+        else 0
+    )
+
+    polls_comments = (
+        sum(
+            Poll.objects.get(pk=poll.id).comments.count()
+            for poll in Poll.objects.filter(module__project=project)
+        )
+        if polls_count > 0
+        else 0
+    )
+
+    topics_comments = (
+        sum(
+            Topic.objects.get(pk=topic.id).comments.count()
+            for topic in Topic.objects.filter(module__project=project)
+        )
+        if topics_count > 0
+        else 0
+    )
+
+    total_debate_comments = sum(debate.comments.count() for debate in debates)
+    total_document_comments = chapter_comments_count + paragraph_comments_count
+    total_comments = (
+        ideas_comments
+        + polls_comments
+        + topics_comments
+        + total_document_comments
+        + total_debate_comments
+    )
+
+    return {
+        "total_ideas": ideas_count,
+        "total_polls": polls_count,
+        "total_topics": topics_count,
+        "total_debates": debates.count(),
+        "total_comments": total_comments,
+        "total_chapters": chapters_count,
+        "total_paragraphs": paragraphs_count,
+        "total_participants": project.participants.count(),
+    }
