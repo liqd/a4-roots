@@ -52,6 +52,7 @@ class AIService:
         result_type: type[
             BaseModel
         ] = ProjectSummaryResponse,  # Changed from SummaryResponse
+        is_rate_limit: bool = True,
     ) -> BaseModel:
         """Summarize text for a project with caching and rate limiting support."""
         request = SummaryRequest(text=text, prompt=prompt)
@@ -64,7 +65,7 @@ class AIService:
         )
 
         # Only proceed with cache/rate limit checks if project has existing summaries
-        if latest_project_summary:
+        if is_rate_limit and latest_project_summary:
             # Check 1: Exact content match
             current_hash = ProjectSummary.compute_hash(text)
             if latest_project_summary.input_text_hash == current_hash:

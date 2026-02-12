@@ -271,6 +271,7 @@ def test_summarization(provider_handle: str = None):
             project=project,
             text=LONG_TEXT,
             result_type=SummaryResponse,
+            rate_limit=False,
         )
         print("✓ Summary successfully created")
         print_separator()
