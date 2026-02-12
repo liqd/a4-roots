@@ -22,6 +22,8 @@ class ProviderConfig:
         model_name: str,
         base_url: str,
         handle: str,
+        supports_images: bool = True,
+        supports_documents: bool = False,
     ):
         """
         Initialize provider configuration.
@@ -31,11 +33,15 @@ class ProviderConfig:
             model_name: Name of the model to use
             base_url: Base URL for the API
             handle: Unique identifier/name for this provider configuration
+            supports_images: Whether this provider supports image processing via vision API
+            supports_documents: Whether this provider supports document processing (PDFs, etc.)
         """
         self.api_key = api_key
         self.model_name = model_name
         self.base_url = base_url
         self.handle = handle
+        self.supports_images = supports_images
+        self.supports_documents = supports_documents
 
     @classmethod
     def from_handle(cls, handle: str) -> "ProviderConfig":
@@ -84,6 +90,8 @@ class ProviderConfig:
             model_name=config_dict["model_name"],
             base_url=config_dict["base_url"],
             handle=handle,
+            supports_images=config_dict.get("supports_images", True),
+            supports_documents=config_dict.get("supports_documents", False),
         )
 
 
@@ -199,16 +207,18 @@ class AIProvider:
         Returns:
             Structured response as BaseModel instance
         """
-        # Use MistralModel for Mistral, OpenAIResponsesModel for others
+        # Use MistralModel for Mistral, OpenAIChatModel for others
         # Note: Mistral may not support vision/multimodal requests
+        # Note: OpenAIResponsesModel uses /v1/responses endpoint which is not supported by all providers
+        # Use OpenAIChatModel instead for better compatibility
         if self.is_mistral:
             model = MistralModel(
                 self.config.model_name,
                 provider=self.provider,
             )
         else:
-            # Use OpenAIResponsesModel for image requests (better handling of file annotations)
-            model = OpenAIResponsesModel(
+            # Use OpenAIChatModel for image requests (better compatibility with OpenAI-compatible APIs)
+            model = OpenAIChatModel(
                 model_name=self.config.model_name,
                 provider=self.provider,
             )

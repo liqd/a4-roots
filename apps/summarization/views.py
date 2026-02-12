@@ -112,6 +112,9 @@ class DocumentSummarizationTestView(View):
         """Process document summarization request."""
         prompt = request.POST.get("prompt", "")
         provider_handle = request.POST.get("provider", None)
+        if provider_handle == "":
+            provider_handle = None
+        print(f"DEBUG: provider_handle from form: {provider_handle}")
         documents_json = request.POST.get("documents", "")
 
         context = {
@@ -147,7 +150,7 @@ class DocumentSummarizationTestView(View):
                 
                 # Process documents
                 service = AIService(document_provider_handle=provider_handle)
-                response = service.request_document(
+                response = service.request_vision(
                     documents=documents,
                     prompt=prompt if prompt else None,
                 )

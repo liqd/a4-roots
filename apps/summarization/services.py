@@ -15,8 +15,12 @@ from .pydantic_models import ProjectSummaryResponse
 from .pydantic_models import SummaryItem
 from .pydantic_models import ProjectSummaryResponse
 from .pydantic_models import DocumentSummaryResponse
+from .pydantic_models import DocumentInputItem
 from .pydantic_models import DocumentSummaryItem
-from .pydantic_models import DocumentInputItem 
+from .pydantic_models import DocumentSummaryResponse
+from .pydantic_models import ProjectSummaryResponse
+from .pydantic_models import SummaryItem
+
 
 
 PROJECT_SUMMARY_RATE_LIMIT_MINUTES = (
@@ -28,7 +32,9 @@ SUMMARY_GLOBAL_LIMIT_PER_HOUR = 100  # Maximum summaries per hour across all pro
 class AIService:
     """Service for summarizing text using configured AI provider."""
 
-    def __init__(self, provider_handle: str = None, document_provider_handle: str = None):
+    def __init__(
+        self, provider_handle: str = None, document_provider_handle: str = None
+    ):
         """Initialize AI service."""
         provider_handle = provider_handle or getattr(
             settings, "AI_PROVIDER", "openrouter"
@@ -36,20 +42,33 @@ class AIService:
         # ProviderConfig loads configuration from settings automatically
         config = ProviderConfig.from_handle(provider_handle)
         self.provider = AIProvider(config)
-        
+
         # Separate provider for document processing
+        # Normalize empty string to None
+        if document_provider_handle == "":
+            document_provider_handle = None
         document_provider_handle = document_provider_handle or getattr(
             settings, "AI_DOCUMENT_PROVIDER", None
         )
         if document_provider_handle:
+            print(f"Using document provider: {document_provider_handle}")
             doc_config = ProviderConfig.from_handle(document_provider_handle)
+            print(
+                f"Document provider config: model={doc_config.model_name}, base_url={doc_config.base_url}, handle={doc_config.handle}"
+            )
             self.document_provider = AIProvider(doc_config)
+            print(
+                f"Document provider initialized: is_mistral={self.document_provider.is_mistral}"
+            )
         else:
+            print(
+                f"No document provider specified, using default provider: {provider_handle}"
+            )
             # Fallback to same provider if no document provider specified
             self.document_provider = self.provider
 
     def summarize_generic(
-        self,   
+        self,
         request_object: AIRequest,
         result_type: type[BaseModel] = SummaryItem,
     ) -> BaseModel:
@@ -67,8 +86,6 @@ class AIService:
         request = SummaryRequest(text=text, prompt=prompt)
         response = self.provider.request(request, result_type=result_type)
         return response
-
-        
 
     def project_summarize(
         self,
@@ -132,7 +149,7 @@ class AIService:
         # Save to cache if result is ProjectSummaryResponse
         if isinstance(response, ProjectSummaryResponse):
             print(" ------------------ >>>>>>>>>>. CREATED THE PROJECT SUMMARY")
-            text = getattr(request, 'text', '')
+            text = getattr(request, "text", "")
             ProjectSummary.objects.create(
                 project=project,
                 prompt=request.prompt_text,
@@ -141,76 +158,104 @@ class AIService:
             )
         return response
 
-    def request_document(
+    def request_vision(
         self,
         documents: list[DocumentInputItem],
         prompt: str | None = None,
     ) -> DocumentSummaryResponse:
         """
         Summarize multiple documents with handles.
-        
+
         Args:
             documents: List of DocumentInputItem objects, each with handle and url
             prompt: Optional custom prompt for summarization
-            
+
         Returns:
             DocumentSummaryResponse with list of DocumentSummaryItem objects
         """
-        # Collect all URLs and maintain handle mapping
+        # Check if provider supports documents directly
+        document_urls = []
+        document_handle_list = []
         image_urls = []
-        handle_mapping = {}  # Maps URL to handle
-        
+        image_handle_list = []
+
         for doc in documents:
-            image_urls.append(doc.url)
-            handle_mapping[doc.url] = doc.handle
-        
-        # Create a single request with all image URLs
-        # Use a custom prompt that includes handles for each document
+            if (
+                not self.document_provider.config.supports_documents
+                and doc.is_document()
+            ):
+                document_urls.append(doc.url)
+                document_handle_list.append(doc.handle)
+
+            else:
+                image_urls.append(doc.url)
+                image_handle_list.append(doc.handle)
+
+        # Process documents via fallback if needed
+        document_results = []
+        if len(document_urls):
+            results1 = self.request_documents(document_urls, document_handle_list)
+            document_results = results1.documents
+
+        # Process images via vision API
+        image_results = []
+        if len(image_urls):
+            results2 = self.request_images(image_urls, image_handle_list, prompt)
+            image_results = results2.documents
+
+        # Combine results
+        all_results = image_results + document_results
+
+        return DocumentSummaryResponse(documents=all_results)
+
+    def request_images(
+        self,
+        image_urls: list[str],
+        image_handle_list: list[str],
+        prompt: str | None = None,
+    ) -> DocumentSummaryResponse:
         if prompt:
             custom_prompt = prompt
         else:
-            # Build prompt with handles
-            handle_list = ", ".join([f'"{doc.handle}"' for doc in documents])
             custom_prompt = (
                 f"Summarize each document separately. "
-                f"The documents are provided in order with the following handles: {handle_list}. "
+                f"The documents are provided in order with the following handles: {image_handle_list}. "
                 f"Return a list of summaries, one for each document in the same order. "
                 f"Each summary should include the handle and describe the content and most important information of that document."
             )
-        
+
         request = MultimodalSummaryRequest(
             image_urls=image_urls,
             prompt=custom_prompt,
         )
-        
-        # Use document provider for processing
-        # Request DocumentSummaryResponse which contains a list
-        try:
-            response = self.document_provider.request(
-                request,
-                result_type=DocumentSummaryResponse,
-            )
-            
-            # Use the summaries directly from response
-            # The LLM should have included the handles in the response based on the prompt
-            results = response.documents
-            
-        except Exception as e:
-            # If error, create error entries for all documents
-            print(f"Error processing documents: {str(e)}")
-            results = []
-            for doc in documents:
-                results.append(
-                    DocumentSummaryItem(
-                        handle=doc.handle,
-                        summary=f"Error: {str(e)}",
-                    )
+        return self.document_provider.request(
+            request, result_type=DocumentSummaryResponse
+        )
+
+    def request_documents(
+        self,
+        document_urls: list[str],
+        document_handle_list: list[str],
+    ) -> DocumentSummaryResponse:
+        # TODO: Implement document processing fallback
+        # This should extract text from PDFs and other document formats,
+        # then process them using text summarization
+
+        # Placeholder: return error for all documents
+        results = []
+        for handle in document_handle_list:
+            results.append(
+                DocumentSummaryItem(
+                    handle=handle,
+                    summary="Error: Document processing not yet implemented",
                 )
-        
+            )
+
         return DocumentSummaryResponse(documents=results)
 
 
 # TODO: Move to a providers.py ?
+
 
 class SummaryRequest(AIRequest):
     """Request model for text summarization."""
@@ -273,8 +318,10 @@ class SummaryRequest(AIRequest):
 
 # TODO: Move to a providers.py ?
 
+
 class MultimodalSummaryRequest(AIRequest):
     """Request model for multimodal document summarization."""
+
     vision_support = True
 
     DEFAULT_PROMPT = (
@@ -302,6 +349,7 @@ class MultimodalSummaryRequest(AIRequest):
 
 class DocumentRequest(AIRequest):
     """Request model for document summarization with handle."""
+
     vision_support = True
 
     DEFAULT_PROMPT = (
@@ -316,7 +364,7 @@ class DocumentRequest(AIRequest):
         prompt: str | None = None,
     ) -> None:
         super().__init__()
-        self.image_urls = [url] 
+        self.image_urls = [url]
         self.prompt_text = prompt or self.DEFAULT_PROMPT
 
     def prompt(self) -> str:

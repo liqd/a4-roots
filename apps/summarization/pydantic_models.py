@@ -114,6 +114,21 @@ class DocumentInputItem(BaseModel):
     
     handle: str = Field(description="Unique identifier/handle for the document")
     url: str = Field(description="URL of the document")
+    
+    def is_image(self) -> bool:
+        """Check if the URL points to an image file."""
+        image_extensions = (
+            ".jpg", ".jpeg", ".png", ".gif", ".webp",
+            ".mpo", ".heif", ".avif", ".bmp", ".tiff", ".tif"
+        )
+        url_lower = self.url.lower()
+        return any(url_lower.endswith(ext) for ext in image_extensions)
+    
+    def is_document(self) -> bool:
+        """Check if the URL points to a document file (non-image)."""
+        document_extensions = (".pdf", ".doc", ".docx", ".txt", ".rtf", ".odt")
+        url_lower = self.url.lower()
+        return any(url_lower.endswith(ext) for ext in document_extensions)
 
 
 class DocumentSummaryItem(BaseModel):
