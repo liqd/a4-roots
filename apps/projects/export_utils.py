@@ -6,6 +6,7 @@ from apps.debate.models import Subject
 from apps.documents.models import Chapter
 from apps.documents.models import Paragraph
 from apps.ideas.models import Idea
+from apps.offlineevents.models import OfflineEvent
 from apps.topicprio.models import Topic
 
 
@@ -119,6 +120,7 @@ def generate_full_export(project):
         "topics": export_topics_full(project),
         "debates": export_debates_full(project),
         "documents": export_documents_full(project),
+        "offline_events": export_offline_events_full(project),
         "stats": calculate_stats(project),
     }
     return export
@@ -352,6 +354,32 @@ def export_debates_full(project):
         )
 
     return debates_data
+
+
+def export_offline_events_full(project):
+    """Export all offline events for a project"""
+
+    events_data = []
+    events = OfflineEvent.objects.filter(project=project)
+
+    for event in events:
+        events_data.append(
+            {
+                "id": event.id,
+                "name": event.name,
+                "event_type": event.event_type,
+                "date": event.date.isoformat(),
+                "description": str(event.description),
+                "attachments": extract_attachments(str(event.description)),
+                "slug": event.slug,
+                "url": event.get_absolute_url(),
+                "timeline_index": event.get_timeline_index,
+                "created": event.created.isoformat(),
+                "modified": event.modified.isoformat() if event.modified else None,
+            }
+        )
+
+    return events_data
 
 
 def calculate_stats(project):
