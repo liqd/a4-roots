@@ -120,6 +120,55 @@ def extract_ratings(queryset):
     return ratings_list
 
 
+def restructure_by_module_status(export):
+    """
+    Restructure export data by module status (past/active/future).
+    """
+    grouped = {
+        "project": export["project"],
+        "stats": export["stats"],
+        "past": [],
+        "active": [],
+        "future": [],
+    }
+
+    # Filter each item type by its active_status
+    for item in export.get("ideas", []):
+        grouped[item["active_status"]].append(item)
+
+    for item in export.get("polls", []):
+        grouped[item["active_status"]].append(item)
+
+    for item in export.get("topics", []):
+        grouped[item["active_status"]].append(item)
+
+    for item in export.get("debates", []):
+        grouped[item["active_status"]].append(item)
+
+    for chapter in export.get("documents", []):
+        grouped[chapter["active_status"]].append(chapter)
+        for paragraph in chapter.get("paragraphs", []):
+            paragraph["module_start"] = chapter.get("module_start")
+            paragraph["module_end"] = chapter.get("module_end")
+            paragraph["active_status"] = chapter.get("active_status")
+            grouped[paragraph["active_status"]].append(paragraph)
+
+    for item in export.get("offline_events", []):
+        from dateutil.parser import parse
+        from django.utils import timezone
+
+        now = timezone.now()
+        event_date = parse(item["date"])
+        if event_date < now:
+            grouped["past"].append(item)
+        elif event_date > now:
+            grouped["future"].append(item)
+        else:
+            grouped["active"].append(item)
+
+    return grouped
+
+
 def generate_full_export(project):
     """Generate complete project export data"""
     export = {
@@ -141,8 +190,9 @@ def generate_full_export(project):
         "offline_events": export_offline_events_full(project),
         "stats": calculate_stats(project),
     }
-    # print(json.dumps(export))
-    return export
+    structured = restructure_by_module_status(export)
+    # print(json.dumps(structured))
+    return structured
 
 
 def export_ideas_full(project):
@@ -165,6 +215,8 @@ def export_ideas_full(project):
             {
                 "id": idea.id,
                 "active_status": get_module_status(idea.module),
+                "module_start": str(idea.module.module_start),
+                "module_end": str(idea.module.module_end),
                 "url": idea.get_absolute_url(),
                 "name": idea.name,
                 "description": str(idea.description),
@@ -244,6 +296,8 @@ def export_polls_full(project):
             {
                 "id": poll.id,
                 "active_status": get_module_status(poll.module),
+                "module_start": str(poll.module.module_start),
+                "module_end": str(poll.module.module_end),
                 "description": poll.module.description,
                 "url": poll.get_absolute_url(),
                 "module_name": poll.module.name,
@@ -278,6 +332,8 @@ def export_topics_full(project):
             {
                 "id": topic.id,
                 "active_status": get_module_status(topic.module),
+                "module_start": str(topic.module.module_start),
+                "module_end": str(topic.module.module_end),
                 "url": topic.get_absolute_url(),
                 "name": topic.name,
                 "description": str(topic.description),
@@ -333,6 +389,9 @@ def export_documents_full(project):
                 "url": chapter.get_absolute_url(),
                 "weight": chapter.weight,
                 "created": chapter.created.isoformat(),
+                "active_status": get_module_status(chapter.module),
+                "module_start": str(chapter.module.module_start),
+                "module_end": str(chapter.module.module_end),
                 "module_id": chapter.module.id,
                 "module_name": chapter.module.name,
                 "prev_chapter_id": chapter.prev.id if chapter.prev else None,
@@ -368,6 +427,9 @@ def export_debates_full(project):
                 "created": subject.created.isoformat(),
                 "reference_number": subject.reference_number,
                 "slug": subject.slug,
+                "active_status": get_module_status(subject.module),
+                "module_start": str(subject.module.module_start),
+                "module_end": str(subject.module.module_end),
                 "module_id": subject.module.id,
                 "module_name": subject.module.name,
                 "comment_count": subject.comments.count(),
