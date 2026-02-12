@@ -158,3 +158,25 @@
     justify-content: center;
     height: 100%;
 }
+
+.summary {
+    &__see-more {
+        background-color: $blue-light;
+        padding: 1em;
+    }
+
+    &__section-header {
+        font-size: 2rem;
+    }
+
+    &__section-accordion-title {
+        border-bottom: 0;
+    }
+}
+
+.module-summary {
+    &__header-text {
+        font-weight: bold;
+        font-size: 1.5rem;
+    }
+}

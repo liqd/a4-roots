@@ -326,7 +326,7 @@ def export_topics_full(project):
         comments_list = extract_comments(topic.comments.all())
 
         # Get ratings for this topic
-        ratings_list = extract_ratings(topic.comments.all())
+        ratings_list = extract_ratings(topic.ratings.all())
 
         topics_data.append(
             {

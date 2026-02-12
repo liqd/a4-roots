@@ -1,0 +1,39 @@
+<div class="mb-4" id="{{ id }}">
+    {% for module in modules %}
+    <div>
+        <div id="heading-{{ forloop.counter }}">
+            <div class="module-summary__header">
+                <span class="module-summary__header-text">Module: {{ module.module_name }}</span>
+                <span class="badge badge-secondary ml-2">
+                   {% if id == "pastModulesAccordion" %}
+                        <span class="badge badge-secondary ml-2">abgeschlossen</span>
+                    {% elif id == "currentModulesAccordion" %}
+                        <span class="badge badge-primary ml-2">aktiv</span>
+                    {% elif id == "upcomingModulesAccordion" %}
+                        <span class="badge badge-info ml-2">geplant</span>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+        <div id="module-{{ module.module_name|slugify }}">
+            <div>
+                <p>Goals of the module: {{ module.purpose }}</p>
+                
+                {% if module.main_sentiments %}
+                <p>Main sentiments from user contributions:</p>
+                <ul class="small">
+                    {% for sentiment in module.main_sentiments %}
+                    <li>{{ sentiment }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <p class="summary__see-more">
+                    <i class="fa fa-map"></i>
+                    To see what happened in module {{ module.module_name }}, 
+                    <a href="{{ module.link }}" class="small" target="_blank">click here</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
