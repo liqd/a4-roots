@@ -14,7 +14,6 @@ from .providers import AIRequest
 from .providers import ProviderConfig
 from .pydantic_models import ProjectSummaryResponse
 from .pydantic_models import SummaryItem
-from .pydantic_models import SummaryResponse
 
 PROJECT_SUMMARY_RATE_LIMIT_MINUTES = (
     5  # Minimum minutes between summary generations per project
@@ -72,7 +71,7 @@ class AIService:
                 print(
                     "****** Cached summary found (exact match via hash comparison) ******"
                 )
-                return SummaryResponse(**latest_project_summary.response_data)
+                return ProjectSummaryResponse(**latest_project_summary.response_data)
 
             # Check 2: Per-project rate limiting
             time_since_last = timezone.now() - latest_project_summary.created_at
@@ -80,7 +79,7 @@ class AIService:
                 print(
                     f"****** Using rate-limited summary from {latest_project_summary.created_at} (within {PROJECT_SUMMARY_RATE_LIMIT_MINUTES} min per project) ******"
                 )
-                return SummaryResponse(**latest_project_summary.response_data)
+                return ProjectSummaryResponse(**latest_project_summary.response_data)
 
             # Check 3: Global rate limiting - only if project was last summarized in the last hour
             if time_since_last < timedelta(hours=1):
@@ -96,7 +95,9 @@ class AIService:
                     print(
                         f"****** Using most recent summary from {latest_project_summary.created_at} ******"
                     )
-                    return SummaryResponse(**latest_project_summary.response_data)
+                    return ProjectSummaryResponse(
+                        **latest_project_summary.response_data
+                    )
 
         # No existing summary OR all cache/rate limit checks passed - generate new summary
         print("****** Generating new summary ******")
@@ -104,7 +105,7 @@ class AIService:
         response = self.provider.request(request, result_type=result_type)
 
         # Save to cache if result is ProjectSummaryResponse
-        if isinstance(response, ProjectSummaryResponse):  # Changed
+        if isinstance(response, ProjectSummaryResponse):
             print(" ------------------ >>>>>>>>>>. CREATED THE PROJECT SUMMARY")
             ProjectSummary.objects.create(
                 project=project,
