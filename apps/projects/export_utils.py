@@ -40,7 +40,6 @@ def extract_comments(queryset, include_ratings=True, include_children=True):
         comment_data = {
             "id": comment.id,
             "text": comment.comment,
-            "creator": comment.creator.username if comment.creator else None,
             "created": comment.created.isoformat(),
             "is_removed": comment.is_removed,
             "is_censored": comment.is_censored,
@@ -60,7 +59,6 @@ def extract_comments(queryset, include_ratings=True, include_children=True):
                 {
                     "id": rating.id,
                     "value": rating.value,
-                    "creator": rating.creator.username if rating.creator else None,
                 }
                 for rating in comment.ratings.all()
             ]
@@ -97,7 +95,6 @@ def extract_ratings(queryset):
             {
                 "id": rating.id,
                 "value": rating.value,
-                "creator": rating.creator.username if rating.creator else None,
                 "created": rating.created.isoformat(),
             }
         )
@@ -132,8 +129,8 @@ def export_ideas_full(project):
     ideas_data = []
     ideas = (
         Idea.objects.filter(module__project=project)
-        .select_related("creator", "category")
-        .prefetch_related("labels", "comments__creator", "ratings__creator")
+        .select_related("category")
+        .prefetch_related("labels")
     )
 
     for idea in ideas:
@@ -150,7 +147,6 @@ def export_ideas_full(project):
                 "name": idea.name,
                 "description": str(idea.description),
                 "attachments": extract_attachments(str(idea.description)),
-                "creator": idea.creator.username if idea.creator else None,
                 "created": idea.created.isoformat(),
                 "reference_number": idea.reference_number,
                 "category": idea.category.name if idea.category else None,
@@ -173,10 +169,7 @@ def export_polls_full(project):
 
     polls_data = []
     polls = Poll.objects.filter(module__project=project).prefetch_related(
-        "questions__choices__votes__creator",
         "questions__choices__votes__other_vote",
-        "questions__answers__creator",
-        "comments__creator",
     )
 
     for poll in polls:
@@ -187,7 +180,6 @@ def export_polls_full(project):
                 votes_list = []
                 for vote in choice.votes.all():
                     vote_data = {
-                        "creator": vote.creator.username if vote.creator else None,
                         "created": vote.created.isoformat(),
                     }
                     if hasattr(vote, "other_vote"):
@@ -208,7 +200,6 @@ def export_polls_full(project):
                 answers_list.append(
                     {
                         "answer": answer.answer,
-                        "creator": answer.creator.username if answer.creator else None,
                         "created": answer.created.isoformat(),
                     }
                 )
@@ -248,8 +239,8 @@ def export_topics_full(project):
     topics_data = []
     topics = (
         Topic.objects.filter(module__project=project)
-        .select_related("creator", "category")
-        .prefetch_related("labels", "comments__creator", "ratings__creator")
+        .select_related("category")
+        .prefetch_related("labels")
     )
 
     for topic in topics:
@@ -265,7 +256,6 @@ def export_topics_full(project):
                 "url": topic.get_absolute_url(),
                 "name": topic.name,
                 "description": str(topic.description),
-                "creator": topic.creator.username if topic.creator else None,
                 "created": topic.created.isoformat(),
                 "reference_number": topic.reference_number,
                 "category": topic.category.name if topic.category else None,
@@ -286,17 +276,7 @@ def export_documents_full(project):
     """Export all document chapters and paragraphs with comments"""
 
     documents_data = []
-    chapters = (
-        Chapter.objects.filter(module__project=project)
-        .select_related("creator")
-        .prefetch_related(
-            "paragraphs__comments__creator",
-            "paragraphs__comments__ratings__creator",
-            "comments__creator",
-            "comments__ratings__creator",
-        )
-        .order_by("weight")
-    )
+    chapters = Chapter.objects.filter(module__project=project)
 
     for chapter in chapters:
         # Get chapter comments
@@ -327,7 +307,6 @@ def export_documents_full(project):
                 "name": chapter.name,
                 "url": chapter.get_absolute_url(),
                 "weight": chapter.weight,
-                "creator": chapter.creator.username if chapter.creator else None,
                 "created": chapter.created.isoformat(),
                 "module_id": chapter.module.id,
                 "module_name": chapter.module.name,
@@ -350,11 +329,7 @@ def export_debates_full(project):
     """Export all debate subjects with comments"""
 
     debates_data = []
-    subjects = (
-        Subject.objects.filter(module__project=project)
-        .select_related("creator")
-        .prefetch_related("comments__creator", "comments__ratings__creator")
-    )
+    subjects = Subject.objects.filter(module__project=project)
 
     for subject in subjects:
         # Get comments for this subject
@@ -365,7 +340,6 @@ def export_debates_full(project):
                 "id": subject.id,
                 "name": subject.name,
                 "description": subject.description,
-                "creator": subject.creator.username if subject.creator else None,
                 "created": subject.created.isoformat(),
                 "reference_number": subject.reference_number,
                 "slug": subject.slug,
@@ -374,11 +348,6 @@ def export_debates_full(project):
                 "comment_count": subject.comments.count(),
                 "comments": comments_list,
                 "comment_creator_count": subject.comment_creator_count,
-                "last_three_creators": (
-                    [creator.username for creator in subject.last_three_creators]
-                    if subject.last_three_creators
-                    else []
-                ),
             }
         )
 
