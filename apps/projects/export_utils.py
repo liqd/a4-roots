@@ -223,6 +223,7 @@ def export_polls_full(project):
         polls_data.append(
             {
                 "id": poll.id,
+                "description": poll.description,
                 "url": poll.get_absolute_url(),
                 "module_name": poll.module.name,
                 "questions": questions_list,
