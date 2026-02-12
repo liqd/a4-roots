@@ -39,52 +39,8 @@
                 </div>
 
                 <!-- Past Modules Accordion -->
-                <div class="accordion mb-4" id="pastModulesAccordion">
-                    {% for module in response.past_modules %}
-                    <div class="card mb-2 border">
-                        <div class="card-header bg-white p-0" id="past-heading-{{ forloop.counter }}">
-                            <a id="past-module-header-{{ module.module_name|slugify }}" 
-                               href="#past-module-{{ module.module_name|slugify }}" 
-                               class="accordion__title collapsed d-block p-3" 
-                               aria-haspopup="true" 
-                               aria-expanded="false" 
-                               data-bs-toggle="collapse"
-                               data-bs-target="#past-module-{{ module.module_name|slugify }}">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <span>
-                                        <strong>{{ module.module_name }}</strong>
-                                        <span class="badge badge-secondary ml-2">abgeschlossen</span>
-                                        <small class="ml-2 text-muted">
-                                            <i class="fa fa-clock-o mr-1"></i> ⏱️
-                                        </small>
-                                    </span>
-                                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
-                                </div>
-                            </a>
-                        </div>
-                        <div id="past-module-{{ module.module_name|slugify }}" 
-                             class="accordion__body collapse" 
-                             aria-labelledby="past-heading-{{ forloop.counter }}" 
-                             data-bs-parent="#pastModulesAccordion">
-                            <div class="card-body">
-                                <h6 class="small font-weight-bold">Purpose</h6>
-                                <p class="small">{{ module.purpose }}</p>
-                                
-                                {% if module.main_sentiments %}
-                                <h6 class="small font-weight-bold mt-3">Main sentiments from user contributions:</h6>
-                                <ul class="small">
-                                    {% for sentiment in module.main_sentiments %}
-                                    <li>{{ sentiment }}</li>
-                                    {% endfor %}
-                                </ul>
-                                {% endif %}
-                                
-                                <a href="{{ module.link }}" class="small" target="_blank">To see what happened in module {{ module.module_name }}, click here.</a>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
+                {% include "a4_candy_projects/_summary_section.html" with modules=response.past_modules id="pastModulesAccordion" %}
+
                 {% endif %}
 
                 <!-- What is currently happening -->
@@ -94,59 +50,10 @@
                     <h6 class="text-uppercase small text-muted">Zusammenfassung der aktuellen Beteiligung</h6>
                     <p>{{ response.current_summary }}</p>
                 </div>
-
                 <!-- Active Modules Accordion -->
-                <div class="accordion mb-4" id="currentModulesAccordion">
-                    {% for module in response.current_modules %}
-                    <div class="card mb-2 border-primary">
-                        <div class="card-header bg-primary text-white p-0" id="current-heading-{{ forloop.counter }}">
-                            <a id="current-module-header-{{ module.module_name|slugify }}" 
-                               href="#current-module-{{ module.module_name|slugify }}" 
-                               class="accordion__title collapsed d-block p-3 text-white" 
-                               aria-haspopup="true" 
-                               aria-expanded="false" 
-                               data-bs-toggle="collapse"
-                               data-bs-target="#current-module-{{ module.module_name|slugify }}">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <span>
-                                        <strong>{{ module.module_name }}</strong>
-                                        <span class="badge badge-light ml-2">aktiv</span>
-                                        <small class="ml-2">
-                                            <i class="fa fa-clock-o mr-1"></i> ⏱️
-                                        </small>
-                                    </span>
-                                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
-                                </div>
-                            </a>
-                        </div>
-                        <div id="current-module-{{ module.module_name|slugify }}" 
-                             class="accordion__body collapse" 
-                             aria-labelledby="current-heading-{{ forloop.counter }}" 
-                             data-bs-parent="#currentModulesAccordion">
-                            <div class="card-body">
-                                <h6 class="small font-weight-bold">Purpose</h6>
-                                <p class="small">{{ module.purpose }}</p>
-                                
-                                {% if module.main_sentiments %}
-                                <h6 class="small font-weight-bold mt-3">Main sentiments from user contributions:</h6>
-                                <ul class="small">
-                                    {% for sentiment in module.main_sentiments %}
-                                    <li>{{ sentiment }}</li>
-                                    {% endfor %}
-                                </ul>
-                                {% endif %}
-                                
-                                {% if module.first_content %}
-                                <h6 class="small font-weight-bold mt-3">First content in this module:</h6>
-                                <p class="small">{{ module.first_content }}</p>
-                                {% endif %}
-                                
-                                <a href="{{ module.link }}" class="small" target="_blank">To see and participate in the module {{ module.module_name }}, click here.</a>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
+                {% include "a4_candy_projects/_summary_section.html" with modules=response.current_modules id="currentModulesAccordion" %}
+
+                
                 {% endif %}
 
                 <!-- What will happen -->
@@ -158,42 +65,8 @@
                 </div>
 
                 <!-- Upcoming Modules Accordion -->
-                <div class="accordion mb-4" id="upcomingModulesAccordion">
-                    {% for module in response.upcoming_modules %}
-                    <div class="card mb-2 border">
-                        <div class="card-header bg-light p-0" id="upcoming-heading-{{ forloop.counter }}">
-                            <a id="upcoming-module-header-{{ module.module_name|slugify }}" 
-                               href="#upcoming-module-{{ module.module_name|slugify }}" 
-                               class="accordion__title collapsed d-block p-3" 
-                               aria-haspopup="true" 
-                               aria-expanded="false" 
-                               data-bs-toggle="collapse"
-                               data-bs-target="#upcoming-module-{{ module.module_name|slugify }}">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <span>
-                                        <strong>{{ module.module_name }}</strong>
-                                        <span class="badge badge-info ml-2">geplant</span>
-                                        <small class="ml-2 text-muted">
-                                            <i class="fa fa-clock-o mr-1"></i> ⏱️
-                                        </small>
-                                    </span>
-                                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
-                                </div>
-                            </a>
-                        </div>
-                        <div id="upcoming-module-{{ module.module_name|slugify }}" 
-                             class="accordion__body collapse" 
-                             aria-labelledby="upcoming-heading-{{ forloop.counter }}" 
-                             data-bs-parent="#upcomingModulesAccordion">
-                            <div class="card-body">
-                                <h6 class="small font-weight-bold">Purpose</h6>
-                                <p class="small">{{ module.purpose }}</p>
-                                <a href="{{ module.link }}" class="small" target="_blank">To see what will happen in module {{ module.module_name }}, click here.</a>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
+                {% include "a4_candy_projects/_summary_section.html" with modules=response.upcoming_modules id="upcomingModulesAccordion" %}
+
                 {% endif %}
 
                 <!-- Feedback -->
