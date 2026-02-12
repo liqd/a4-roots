@@ -1,18 +1,16 @@
 """Provider implementation for AI services."""
 
 from abc import ABC
-from pathlib import Path
 
 from django.conf import settings
 from pydantic import BaseModel
 from pydantic_ai import Agent
+from pydantic_ai import ImageUrl
 from pydantic_ai.models.mistral import MistralModel
 from pydantic_ai.models.openai import OpenAIChatModel
 from pydantic_ai.models.openai import OpenAIResponsesModel
 from pydantic_ai.providers.mistral import MistralProvider
 from pydantic_ai.providers.openai import OpenAIProvider
-
-from .utils import read_document
 
 
 class ProviderConfig:
@@ -90,6 +88,7 @@ class ProviderConfig:
 
 
 class AIRequest(ABC):
+    vision_support = False
     def prompt(self) -> str:
         raise NotImplementedError("Subclasses must implement prompt()")
 
@@ -137,9 +136,9 @@ class AIProvider:
         if hasattr(response, "provider"):
             response.provider = self.config.handle
 
-    def request(self, request: AIRequest, result_type: type[BaseModel]) -> BaseModel:
+    def text_request(self, request: AIRequest, result_type: type[BaseModel]) -> BaseModel:
         """
-        Execute a request with structured input and output.
+        Execute a text request with structured input and output.
 
         Args:
             request: Pydantic BaseModel with request data
@@ -174,16 +173,28 @@ class AIProvider:
 
         return response
 
+    def request(self, request: AIRequest, result_type: type[BaseModel]) -> BaseModel:
+        """
+            Automatically determines if it's a text or multimodal request.
+        """
+        # TODO: Check if the PROVIDER supports multimodal requests, or switch the Provider automaticly ?
+        # Check if request supports vision (multimodal request)
+        if getattr(request, "vision_support", False):
+            image_urls = getattr(request, "image_urls", None) or []
+            return self.multimodal_request(request, result_type, image_urls)
+        else:
+            return self.text_request(request, result_type)
+
     def multimodal_request(
-        self, request: AIRequest, result_type: type[BaseModel], doc_path: Path
+        self, request: AIRequest, result_type: type[BaseModel], image_urls: list[str]
     ) -> BaseModel:
         """
-        Execute a multimodal request with images/PDFs using vision API.
+        Execute a multimodal request with images using vision API.
 
         Args:
             request: Pydantic BaseModel with request data
             result_type: Pydantic BaseModel class for structured output
-            doc_path: Path to image or PDF file (Path object)
+            image_urls: List of image URLs to include in the request
 
         Returns:
             Structured response as BaseModel instance
@@ -196,7 +207,7 @@ class AIProvider:
                 provider=self.provider,
             )
         else:
-            # Use OpenAIResponsesModel for image/PDF requests (better handling of file annotations)
+            # Use OpenAIResponsesModel for image requests (better handling of file annotations)
             model = OpenAIResponsesModel(
                 model_name=self.config.model_name,
                 provider=self.provider,
@@ -210,11 +221,30 @@ class AIProvider:
             tools=[],  # Disable tool_calls to avoid validation errors with non-standard providers
         )
 
-        # Read document file and create appropriate content object
-        file_content = read_document(doc_path)
+        # Build user content with prompt and image URLs
+        # Filter URLs to only include supported formats
+        # Both Mistral and OpenAI-compatible providers support images and PDFs
+        supported_extensions = (
+            ".jpg", ".jpeg", ".png", ".gif", ".webp",
+            ".mpo", ".heif", ".avif", ".bmp", ".tiff", ".tif",
+            ".pdf"  # PDFs supported by Mistral Vision and OpenAI-compatible providers
+        )
 
-        # Combine prompt text with file content as UserContent sequence
-        user_content = [request.prompt(), file_content]
+        filtered_urls = []
+        for url in image_urls:
+            url_lower = url.lower()
+            # Check if URL ends with supported extension
+            if any(url_lower.endswith(ext) for ext in supported_extensions):
+                filtered_urls.append(url)
+            else:
+                # Log warning for unsupported formats
+                format_type = "PDF" if url_lower.endswith(".pdf") else "SVG" if url_lower.endswith(".svg") else "unknown"
+                print(f"Warning: Skipping unsupported {format_type} format: {url}")
+
+        user_content = [request.prompt()]
+        for url in filtered_urls:
+            user_content.append(ImageUrl(url=url))
+
         result = agent.run_sync(user_content)
         response = result.output
 

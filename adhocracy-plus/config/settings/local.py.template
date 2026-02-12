@@ -8,7 +8,8 @@ PROSOPO_SECRET_KEY = "your_actual_secret_key_here"
 
 # Summarization service configuration
 # Configure AI providers for text summarization
-AI_PROVIDER = "ovhcloud"  # Default provider to use
+AI_PROVIDER = "ovhcloud"  # Default provider to use for text summarization
+AI_DOCUMENT_PROVIDER = "routerlab"  # Default provider to use for document summarization
 SYSTEM_PROMPT = (
     "You are a helpful assistant that summarizes texts concisely. "
     "Return structured JSON that matches the expected output format."

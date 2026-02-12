@@ -133,10 +133,16 @@
             <label for="text">Text to summarize:</label>
             <textarea name="text" id="text">{{ text }}</textarea>
             
-            <label for="doc">Or upload a document/image:</label>
-            <input type="file" name="doc" id="doc" accept=".png,.jpg,.jpeg,.pdf">
+            <label for="image_urls">Image URLs (one per line or comma-separated):</label>
+            <textarea name="image_urls" id="image_urls" rows="3" placeholder="https://example.com/image1.jpg&#10;https://example.com/image2.png"></textarea>
             <small class="file-hint">
-                Supported formats: PNG, JPG, JPEG, PDF (max 10MB)
+                Enter image URLs, one per line or separated by commas.
+            </small>
+            
+            <label for="json_data">Or provide JSON data to extract image URLs from:</label>
+            <textarea name="json_data" id="json_data" rows="5" placeholder='{"image": "https://example.com/image.jpg", ...}'></textarea>
+            <small class="file-hint">
+                JSON data will be scanned for image URLs automatically.
             </small>
             
             <label for="provider">Provider:</label>
@@ -153,6 +159,17 @@
         {% if error %}
         <div class="result error">
             <strong>Error:</strong> {{ error }}
+        </div>
+        {% endif %}
+        
+        {% if image_urls %}
+        <div class="result">
+            <strong>Image URLs used:</strong>
+            <ul>
+                {% for url in image_urls %}
+                <li><a href="{{ url }}" target="_blank">{{ url }}</a></li>
+                {% endfor %}
+            </ul>
         </div>
         {% endif %}
         
