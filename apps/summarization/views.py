@@ -5,9 +5,9 @@ from django.conf import settings
 from django.shortcuts import render
 from django.views import View
 
-from .pydantic_models import SummaryResponse
+from .pydantic_models import ProjectSummaryResponse
 from .services import AIService
-from .services import MultimodalSummaryRequest
+from .services import SummaryRequest
 
 
 class SummarizationTestView(View):
@@ -16,7 +16,7 @@ class SummarizationTestView(View):
     def get(self, request):
         """Display test form."""
         # Use multimodal default prompt as it's more general
-        default_prompt = MultimodalSummaryRequest.DEFAULT_PROMPT
+        default_prompt = SummaryRequest.DEFAULT_PROMPT
         context = {
             "default_prompt": default_prompt,
         }
@@ -29,7 +29,7 @@ class SummarizationTestView(View):
         provider_handle = request.POST.get("provider", None)
         uploaded_file = request.FILES.get("doc", None)
 
-        default_prompt = MultimodalSummaryRequest.DEFAULT_PROMPT
+        default_prompt = SummaryRequest.DEFAULT_PROMPT
 
         context = {
             "text": text,
@@ -76,7 +76,7 @@ class SummarizationTestView(View):
                     tmp_file_path,
                     text=text if text else None,
                     prompt=prompt if prompt else None,
-                    result_type=SummaryResponse,
+                    result_type=ProjectSummaryResponse,
                 )
                 context["summary_response"] = response
                 context["uploaded_filename"] = uploaded_file.name
@@ -94,7 +94,7 @@ class SummarizationTestView(View):
                 response = service.summarize(
                     text=text,
                     prompt=prompt if prompt else None,
-                    result_type=SummaryResponse,
+                    result_type=ProjectSummaryResponse,
                 )
                 context["summary_response"] = response
                 context["original_length"] = len(text)
