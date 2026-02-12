@@ -126,3 +126,32 @@
         align-self: center;
     }
 }
+.summary-prompt-card {
+    display: flex;
+    align-items: center; /* Vertically centers all children */
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border: 1px solid #dee2e6;
+    border-radius: 0.375rem;
+    width: 80%;
+    margin: auto;
+}
+.summary-text {
+    width: 75%;
+    padding-right: 2rem;
+}
+.summary-title {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+.summary-description {
+    margin-bottom: 0;
+    color: #6c757d;
+}
+.summary-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}

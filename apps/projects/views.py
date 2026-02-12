@@ -26,7 +26,7 @@ from adhocracy4.projects.mixins import PhaseDispatchMixin
 from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.projects.mixins import ProjectModuleDispatchMixin
 from apps.projects.models import ProjectInsight
-from apps.summarization.pydantic_models import SummaryResponse
+from apps.summarization.pydantic_models import SummaryResponse, ProjectSummaryResponse
 from apps.summarization.services import AIService
 
 from . import dashboard
@@ -371,15 +371,14 @@ class ProjectGenerateSummaryView(PermissionRequiredMixin, generic.DetailView):
 
             service = AIService()
             response = service.project_summarize(
-                project=project, text=json_text, result_type=SummaryResponse
+                project=project, text=json_text, result_type=ProjectSummaryResponse
             )
 
             # Render HTML fragment
             html = render_to_string(
                 "a4_candy_projects/_summary_fragment.html",
                 {
-                    "summary_items": response.summary_items,
-                    "module_items": response.module_items,
+                    "response": response,
                     "project": project,
                 },
             )
