@@ -21,18 +21,21 @@ def extract_attachments(text):
     return attachments
 
 
-def extract_comments(queryset, include_ratings=True):
+def extract_comments(queryset, include_ratings=True, include_children=True):
     """
     Extract comments from any model with a 'comments' GenericRelation.
+    Recursively includes child comments.
 
     Args:
         queryset: Comment queryset (e.g., obj.comments.all())
         include_ratings: Whether to include ratings on comments
+        include_children: Whether to recursively include child comments
 
     Returns:
-        List of comment dictionaries
+        List of comment dictionaries with nested 'replies' key
     """
     comments_list = []
+
     for comment in queryset:
         comment_data = {
             "id": comment.id,
@@ -61,6 +64,17 @@ def extract_comments(queryset, include_ratings=True):
                 }
                 for rating in comment.ratings.all()
             ]
+
+        # Recursively include child comments
+        if include_children and hasattr(comment, "child_comments"):
+            child_comments = comment.child_comments.all()
+            if child_comments.exists():
+                comment_data["replies"] = extract_comments(
+                    child_comments,
+                    include_ratings=include_ratings,
+                    include_children=True,
+                )
+                comment_data["reply_count"] = child_comments.count()
 
         comments_list.append(comment_data)
 
@@ -92,7 +106,7 @@ def extract_ratings(queryset):
 
 def generate_full_export(project):
     """Generate complete project export data"""
-    return {
+    export = {
         "project": {
             "name": project.name,
             "description": project.description,
@@ -110,6 +124,7 @@ def generate_full_export(project):
         "documents": export_documents_full(project),
         "stats": calculate_stats(project),
     }
+    return export
 
 
 def export_ideas_full(project):
