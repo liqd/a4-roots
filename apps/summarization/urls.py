@@ -10,4 +10,5 @@ app_name = "summarization"
 urlpatterns = [
     path("", RedirectView.as_view(url="test/", permanent=False), name="index"),
     path("test/", views.SummarizationTestView.as_view(), name="test"),
+    path("test-documents/", views.DocumentSummarizationTestView.as_view(), name="test-documents"),
 ]
