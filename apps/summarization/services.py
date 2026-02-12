@@ -54,7 +54,7 @@ class AIService:
         """Summarize text for a project with caching and rate limiting support."""
         request = SummaryRequest(text=text, prompt=prompt)
 
-        # Get the most recent summary for this project
+        # Get the most recent summary for this project (single query for all checks)
         latest_project_summary = (
             ProjectSummary.objects.filter(project=project)
             .order_by("-created_at")
@@ -63,16 +63,23 @@ class AIService:
 
         # Only proceed with cache/rate limit checks if project has existing summaries
         if latest_project_summary:
-            time_since_last = timezone.now() - latest_project_summary.created_at
+            # Check 1: Exact content match
+            current_hash = ProjectSummary.compute_hash(text)
+            if latest_project_summary.input_text_hash == current_hash:
+                print(
+                    "****** Cached summary found (exact match via hash comparison) ******"
+                )
+                return SummaryResponse(**latest_project_summary.response_data)
 
-            # Rate limit: too soon since last generation
+            # Check 2: Per-project rate limiting
+            time_since_last = timezone.now() - latest_project_summary.created_at
             if time_since_last < timedelta(minutes=PROJECT_SUMMARY_RATE_LIMIT_MINUTES):
                 print(
                     f"****** Using rate-limited summary from {latest_project_summary.created_at} (within {PROJECT_SUMMARY_RATE_LIMIT_MINUTES} min per project) ******"
                 )
                 return SummaryResponse(**latest_project_summary.response_data)
 
-            # Global limit: only check if project was active in the last hour
+            # Check 3: Global rate limiting - only if project was last summarized in the last hour
             if time_since_last < timedelta(hours=1):
                 global_limit_time = timezone.now() - timedelta(hours=1)
                 recent_global_count = ProjectSummary.objects.filter(
