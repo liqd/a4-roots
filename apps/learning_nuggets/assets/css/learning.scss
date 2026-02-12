@@ -90,6 +90,14 @@
 
 .learning-content:last-child  {
   padding-bottom: 3rem;
+
+  // h2 is added by wagtail without a class, hence the nots
+  & h2:not(.learning-content__title, .learning-content__title--lg, .learning-content__title--md) {
+    font-family: $font-family-base;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+  }
 }
 
 .learning-content__title {
