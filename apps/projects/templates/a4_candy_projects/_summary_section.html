@@ -1,44 +1,37 @@
-<div class="accordion mb-4" id="{{ id }}">
+<div class="mb-4" id="{{ id }}">
     {% for module in modules %}
-    <div class="card mb-2 border">
-        <div class="card-header bg-white p-0" id="past-heading-{{ forloop.counter }}">
-            <a id="past-module-header-{{ module.module_name|slugify }}" 
-                href="#past-module-{{ module.module_name|slugify }}" 
-                class="accordion__title collapsed d-block p-3" 
-                aria-haspopup="true" 
-                aria-expanded="false" 
-                data-bs-toggle="collapse"
-                data-bs-target="#past-module-{{ module.module_name|slugify }}">
-                <div class="d-flex justify-content-between align-items-center">
-                    <span>
-                        <strong>{{ module.module_name }}</strong>
+    <div>
+        <div id="heading-{{ forloop.counter }}">
+            <div class="module-summary__header">
+                <span class="module-summary__header-text">Module: {{ module.module_name }}</span>
+                <span class="badge badge-secondary ml-2">
+                   {% if id == "pastModulesAccordion" %}
                         <span class="badge badge-secondary ml-2">abgeschlossen</span>
-                        <small class="ml-2 text-muted">
-                            <i class="fa fa-clock-o mr-1"></i> ⏱️
-                        </small>
-                    </span>
-                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
-                </div>
-            </a>
+                    {% elif id == "currentModulesAccordion" %}
+                        <span class="badge badge-primary ml-2">aktiv</span>
+                    {% elif id == "upcomingModulesAccordion" %}
+                        <span class="badge badge-info ml-2">geplant</span>
+                    {% endif %}
+                </span>
+            </div>
         </div>
-        <div id="past-module-{{ module.module_name|slugify }}" 
-                class="accordion__body collapse" 
-                aria-labelledby="past-heading-{{ forloop.counter }}" 
-                data-bs-parent="#pastModulesAccordion">
-            <div class="card-body">
-                <h6 class="small font-weight-bold">Purpose</h6>
-                <p class="small">{{ module.purpose }}</p>
+        <div id="module-{{ module.module_name|slugify }}">
+            <div>
+                <p>Goals of the module: {{ module.purpose }}</p>
                 
                 {% if module.main_sentiments %}
-                <h6 class="small font-weight-bold mt-3">Main sentiments from user contributions:</h6>
+                <p>Main sentiments from user contributions:</p>
                 <ul class="small">
                     {% for sentiment in module.main_sentiments %}
                     <li>{{ sentiment }}</li>
                     {% endfor %}
                 </ul>
                 {% endif %}
-                
-                <a href="{{ module.link }}" class="small" target="_blank">To see what happened in module {{ module.module_name }}, click here.</a>
+                <p class="summary__see-more">
+                    <i class="fa fa-map"></i>
+                    To see what happened in module {{ module.module_name }}, 
+                    <a href="{{ module.link }}" class="small" target="_blank">click here</a>
+                </p>
             </div>
         </div>
     </div>

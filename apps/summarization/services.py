@@ -127,6 +127,8 @@ class SummaryRequest(AIRequest):
         {
         "title": "Zusammenfassung der Beteiligung",
         "stats": {"participants": 0, "contributions": 0, "modules": 0},
+        "general_summary": "string",
+        "general_goals": ["string"],
         "past_summary": "string",
         "past_modules": [
             {

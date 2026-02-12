@@ -1,9 +1,10 @@
 """Pydantic models for summarization responses."""
 
+from typing import Optional
+
 from pydantic import BaseModel
 from pydantic import Field
-from datetime import datetime
-from typing import Optional
+
 
 class SummaryItem(BaseModel):
     """Response model for summarization."""
@@ -49,12 +50,13 @@ class SummaryResponse(BaseModel):
         ),
     )
 
+
 """Pydantic models for summarization responses."""
 
 
 class Stats(BaseModel):
     """Statistics for the project summary header."""
-    
+
     participants: int = Field(description="Number of participants")
     contributions: int = Field(description="Total number of contributions")
     modules: int = Field(description="Number of modules in the project")
@@ -62,53 +64,48 @@ class Stats(BaseModel):
 
 class ModuleSummary(BaseModel):
     """Response model for module summarization."""
-    
+
     module_name: str = Field(description="Name of the module")
     purpose: str = Field(description="Goal/purpose of the module")
     main_sentiments: list[str] = Field(
         default_factory=list,
-        description="Main sentiments or key points from user contributions"
+        description="Main sentiments or key points from user contributions",
     )
     phase_status: str = Field(
         description="Phase status: 'past', 'active', or 'upcoming'"
     )
     link: str = Field(description="Link to the module")
     first_content: Optional[str] = Field(
-        None, 
-        description="First content/early signs (for active modules)"
+        None, description="First content/early signs (for active modules)"
     )
 
 
 class ProjectSummaryResponse(BaseModel):
     """Response model for complete project summarization."""
-    
+
     # Header
     title: str = Field(default="Zusammenfassung der Beteiligung")
-    
+
     # Stats box
     stats: Stats = Field(description="Participation statistics")
-    
+
+    general_summary: str = Field(description="General summary of the entire project")
+    general_goals: list[str] = Field(description="Overall goals of the project")
     # Timeline sections
-    past_summary: str = Field(
-        description="Summary of what has happened so far"
-    )
+    past_summary: str = Field(description="Summary of what has happened so far")
     past_modules: list[ModuleSummary] = Field(
         default_factory=list,
-        description="Modules that are completed (phase_status='past')"
+        description="Modules that are completed (phase_status='past')",
     )
-    
-    current_summary: str = Field(
-        description="Summary of what is currently happening"
-    )
+
+    current_summary: str = Field(description="Summary of what is currently happening")
     current_modules: list[ModuleSummary] = Field(
         default_factory=list,
-        description="Modules that are active (phase_status='active')"
+        description="Modules that are active (phase_status='active')",
     )
-    
-    upcoming_summary: str = Field(
-        description="Summary of what will happen"
-    )
+
+    upcoming_summary: str = Field(description="Summary of what will happen")
     upcoming_modules: list[ModuleSummary] = Field(
         default_factory=list,
-        description="Modules that are upcoming (phase_status='upcoming')"
+        description="Modules that are upcoming (phase_status='upcoming')",
     )
