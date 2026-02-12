@@ -21,6 +21,75 @@ def extract_attachments(text):
     return attachments
 
 
+def extract_comments(queryset, include_ratings=True):
+    """
+    Extract comments from any model with a 'comments' GenericRelation.
+
+    Args:
+        queryset: Comment queryset (e.g., obj.comments.all())
+        include_ratings: Whether to include ratings on comments
+
+    Returns:
+        List of comment dictionaries
+    """
+    comments_list = []
+    for comment in queryset:
+        comment_data = {
+            "id": comment.id,
+            "text": comment.comment,
+            "creator": comment.creator.username if comment.creator else None,
+            "created": comment.created.isoformat(),
+            "is_removed": comment.is_removed,
+            "is_censored": comment.is_censored,
+            "is_blocked": comment.is_blocked,
+        }
+
+        # Optional fields
+        if hasattr(comment, "comment_categories") and comment.comment_categories:
+            comment_data["comment_categories"] = comment.comment_categories
+        if hasattr(comment, "is_moderator_marked"):
+            comment_data["is_moderator_marked"] = comment.is_moderator_marked
+        if hasattr(comment, "is_reviewed"):
+            comment_data["is_reviewed"] = comment.is_reviewed
+
+        if include_ratings and hasattr(comment, "ratings"):
+            comment_data["ratings"] = [
+                {
+                    "id": rating.id,
+                    "value": rating.value,
+                    "creator": rating.creator.username if rating.creator else None,
+                }
+                for rating in comment.ratings.all()
+            ]
+
+        comments_list.append(comment_data)
+
+    return comments_list
+
+
+def extract_ratings(queryset):
+    """
+    Extract ratings from any model with a 'ratings' GenericRelation.
+
+    Args:
+        queryset: Rating queryset (e.g., obj.ratings.all())
+
+    Returns:
+        List of rating dictionaries
+    """
+    ratings_list = []
+    for rating in queryset:
+        ratings_list.append(
+            {
+                "id": rating.id,
+                "value": rating.value,
+                "creator": rating.creator.username if rating.creator else None,
+                "created": rating.created.isoformat(),
+            }
+        )
+    return ratings_list
+
+
 def generate_full_export(project):
     """Generate complete project export data"""
     return {
@@ -54,31 +123,10 @@ def export_ideas_full(project):
 
     for idea in ideas:
         # Get comments for this idea
-        comments_list = []
-        for comment in idea.comments.all():
-            comments_list.append(
-                {
-                    "id": comment.id,
-                    "text": comment.comment,
-                    "creator": comment.creator.username if comment.creator else None,
-                    "created": comment.created.isoformat(),
-                    "is_removed": comment.is_removed,
-                    "is_censored": comment.is_censored,
-                    "is_blocked": comment.is_blocked,
-                }
-            )
+        comments_list = extract_comments(idea.comments.all())
 
         # Get ratings for this idea
-        ratings_list = []
-        for rating in idea.ratings.all():
-            ratings_list.append(
-                {
-                    "id": rating.id,
-                    "value": rating.value,
-                    "creator": rating.creator.username if rating.creator else None,
-                    "created": rating.created.isoformat(),
-                }
-            )
+        ratings_list = extract_ratings(idea.ratings.all())
 
         ideas_data.append(
             {
@@ -162,16 +210,7 @@ def export_polls_full(project):
             )
 
         # Get comments for this poll
-        comments_list = []
-        for comment in poll.comments.all():
-            comments_list.append(
-                {
-                    "id": comment.id,
-                    "text": comment.comment,
-                    "creator": comment.creator.username if comment.creator else None,
-                    "created": comment.created.isoformat(),
-                }
-            )
+        comments_list = extract_comments(poll.comments.all())
 
         polls_data.append(
             {
@@ -200,31 +239,10 @@ def export_topics_full(project):
 
     for topic in topics:
         # Get comments for this topic
-        comments_list = []
-        for comment in topic.comments.all():
-            comments_list.append(
-                {
-                    "id": comment.id,
-                    "text": comment.comment,
-                    "creator": comment.creator.username if comment.creator else None,
-                    "created": comment.created.isoformat(),
-                    "is_removed": comment.is_removed,
-                    "is_censored": comment.is_censored,
-                    "is_blocked": comment.is_blocked,
-                }
-            )
+        comments_list = extract_comments(topic.comments.all())
 
         # Get ratings for this topic
-        ratings_list = []
-        for rating in topic.ratings.all():
-            ratings_list.append(
-                {
-                    "id": rating.id,
-                    "value": rating.value,
-                    "creator": rating.creator.username if rating.creator else None,
-                    "created": rating.created.isoformat(),
-                }
-            )
+        ratings_list = extract_ratings(topic.comments.all())
 
         topics_data.append(
             {
@@ -267,59 +285,13 @@ def export_documents_full(project):
 
     for chapter in chapters:
         # Get chapter comments
-        chapter_comments = []
-        for comment in chapter.comments.all():
-            chapter_comments.append(
-                {
-                    "id": comment.id,
-                    "text": comment.comment,
-                    "creator": comment.creator.username if comment.creator else None,
-                    "created": comment.created.isoformat(),
-                    "is_removed": comment.is_removed,
-                    "is_censored": comment.is_censored,
-                    "is_blocked": comment.is_blocked,
-                    "ratings": [
-                        {
-                            "id": rating.id,
-                            "value": rating.value,
-                            "creator": (
-                                rating.creator.username if rating.creator else None
-                            ),
-                        }
-                        for rating in comment.ratings.all()
-                    ],
-                }
-            )
+        chapter_comments = extract_comments(chapter.comments.all())
 
         # Get paragraphs for this chapter
         paragraphs_list = []
         for paragraph in chapter.paragraphs.all().order_by("weight"):
             # Get paragraph comments
-            paragraph_comments = []
-            for comment in paragraph.comments.all():
-                paragraph_comments.append(
-                    {
-                        "id": comment.id,
-                        "text": comment.comment,
-                        "creator": (
-                            comment.creator.username if comment.creator else None
-                        ),
-                        "created": comment.created.isoformat(),
-                        "is_removed": comment.is_removed,
-                        "is_censored": comment.is_censored,
-                        "is_blocked": comment.is_blocked,
-                        "ratings": [
-                            {
-                                "id": rating.id,
-                                "value": rating.value,
-                                "creator": (
-                                    rating.creator.username if rating.creator else None
-                                ),
-                            }
-                            for rating in comment.ratings.all()
-                        ],
-                    }
-                )
+            paragraph_comments = extract_comments(paragraph.comments.all())
 
             paragraphs_list.append(
                 {
@@ -371,32 +343,7 @@ def export_debates_full(project):
 
     for subject in subjects:
         # Get comments for this subject
-        comments_list = []
-        for comment in subject.comments.all():
-            comments_list.append(
-                {
-                    "id": comment.id,
-                    "text": comment.comment,
-                    "creator": comment.creator.username if comment.creator else None,
-                    "created": comment.created.isoformat(),
-                    "is_removed": comment.is_removed,
-                    "is_censored": comment.is_censored,
-                    "is_blocked": comment.is_blocked,
-                    "comment_categories": comment.comment_categories,
-                    "is_moderator_marked": comment.is_moderator_marked,
-                    "is_reviewed": comment.is_reviewed,
-                    "ratings": [
-                        {
-                            "id": rating.id,
-                            "value": rating.value,
-                            "creator": (
-                                rating.creator.username if rating.creator else None
-                            ),
-                        }
-                        for rating in comment.ratings.all()
-                    ],
-                }
-            )
+        comments_list = extract_comments(subject.comments.all())
 
         debates_data.append(
             {
