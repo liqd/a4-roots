@@ -20,11 +20,15 @@ def get_module_status(module):
     """
 
     # Use the existing queryset methods
-    if module.module_has_finished:
-        return "past"
-    elif module.active_phase:
-        return "active"
-    else:
+    try:
+        if module.module_has_finished:
+            return "past"
+        elif module.active_phase:
+            return "active"
+        else:
+            return "future"
+    except (TypeError, ValueError):
+        # Fallback if module_has_finished or active_phase fail due to None datetime values
         return "future"
 
 
