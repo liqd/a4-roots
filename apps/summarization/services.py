@@ -1,8 +1,7 @@
 """Service for text summarization using AI providers."""
 import json
-from datetime import timedelta
-from pathlib import Path
 import logging
+from datetime import timedelta
 
 from django.conf import settings
 from django.utils import timezone
@@ -13,10 +12,6 @@ from .models import ProjectSummary
 from .providers import AIProvider
 from .providers import AIRequest
 from .providers import ProviderConfig
-from .pydantic_models import ProjectSummaryResponse
-from .pydantic_models import SummaryItem
-from .pydantic_models import ProjectSummaryResponse
-from .pydantic_models import DocumentSummaryResponse
 from .pydantic_models import DocumentInputItem
 from .pydantic_models import DocumentSummaryItem
 from .pydantic_models import DocumentSummaryResponse
@@ -25,7 +20,6 @@ from .pydantic_models import SummaryItem
 from .utils import extract_text_from_document
 
 logger = logging.getLogger(__name__)
-
 
 
 PROJECT_SUMMARY_RATE_LIMIT_MINUTES = (
@@ -57,14 +51,6 @@ class AIService:
         else:
             self.document_provider = self.provider
 
-    def summarize_generic(
-        self,
-        request_object: AIRequest,
-        result_type: type[BaseModel] = SummaryItem,
-    ) -> BaseModel:
-        response = self.provider.request(request_object, result_type=result_type)
-        return response
-
     def summarize(
         self,
         text: str,
@@ -88,6 +74,10 @@ class AIService:
     ) -> BaseModel:
         """Summarize text for a project with caching and rate limiting support."""
         request = SummaryRequest(text=text, prompt=prompt)
+<<<<<<< HEAD
+=======
+
+>>>>>>> ae82e33b (apps/summerization: Correct (merging) Bugs)
         # Get the most recent summary for this project (single query for all checks)
         latest_project_summary = (
             ProjectSummary.objects.filter(project=project)
