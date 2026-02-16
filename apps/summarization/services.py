@@ -129,7 +129,6 @@ class SummaryRequest(AIRequest):
         "stats": {"participants": 0, "contributions": 0, "modules": 0},
         "general_summary": "string",
         "general_goals": ["string"],
-        "past_summary": "string",
         "past_modules": [
             {
             "module_name": "string",
@@ -139,18 +138,15 @@ class SummaryRequest(AIRequest):
             "link": "string"
             }
         ],
-        "current_summary": "string",
         "current_modules": [
             {
             "module_name": "string",
             "purpose": "string",
-            "main_sentiments": ["string"],
-            "first_content": "string",
+            "first_content": ["string"],
             "phase_status": "active",
             "link": "string"
             }
         ],
-        "upcoming_summary": "string",
         "upcoming_modules": [
             {
             "module_name": "string",

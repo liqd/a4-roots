@@ -67,15 +67,15 @@ class ModuleSummary(BaseModel):
 
     module_name: str = Field(description="Name of the module")
     purpose: str = Field(description="Goal/purpose of the module")
-    main_sentiments: list[str] = Field(
+    main_sentiments: Optional[list[str]] = Field(
         default_factory=list,
-        description="Main sentiments or key points from user contributions",
+        description="Main sentiments or key points from user contributions (for past modules)",
     )
     phase_status: str = Field(
         description="Phase status: 'past', 'active', or 'upcoming'"
     )
     link: str = Field(description="Link to the module")
-    first_content: Optional[str] = Field(
+    first_content: Optional[list[str]] = Field(
         None, description="First content/early signs (for active modules)"
     )
 
@@ -92,19 +92,16 @@ class ProjectSummaryResponse(BaseModel):
     general_summary: str = Field(description="General summary of the entire project")
     general_goals: list[str] = Field(description="Overall goals of the project")
     # Timeline sections
-    past_summary: str = Field(description="Summary of what has happened so far")
     past_modules: list[ModuleSummary] = Field(
         default_factory=list,
         description="Modules that are completed (phase_status='past')",
     )
 
-    current_summary: str = Field(description="Summary of what is currently happening")
     current_modules: list[ModuleSummary] = Field(
         default_factory=list,
         description="Modules that are active (phase_status='active')",
     )
 
-    upcoming_summary: str = Field(description="Summary of what will happen")
     upcoming_modules: list[ModuleSummary] = Field(
         default_factory=list,
         description="Modules that are upcoming (phase_status='upcoming')",
