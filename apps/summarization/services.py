@@ -21,6 +21,7 @@ from .pydantic_models import DocumentSummaryItem
 from .pydantic_models import DocumentSummaryResponse
 from .pydantic_models import ProjectSummaryResponse
 from .pydantic_models import SummaryItem
+from .utils import extract_text_from_document
 
 
 
@@ -248,20 +249,43 @@ class AIService:
         document_urls: list[str],
         document_handle_list: list[str],
     ) -> DocumentSummaryResponse:
-        # TODO: Implement document processing fallback
-        # This should extract text from PDFs and other document formats,
-        # then process them using text summarization
-
-        # Placeholder: return error for all documents
+        """
+        Process documents by extracting text from PDFs and DOCX files.
+        
+        The extracted text is used directly as the summary, without AI processing.
+        
+        Args:
+            document_urls: List of document URLs
+            document_handle_list: List of document handles corresponding to URLs
+            
+        Returns:
+            DocumentSummaryResponse with list of DocumentSummaryItem objects
+        """
         results = []
-        for handle in document_handle_list:
-            results.append(
-                DocumentSummaryItem(
-                    handle=handle,
-                    summary="Error: Document processing not yet implemented",
+        
+        # Process each document
+        for url, handle in zip(document_urls, document_handle_list):
+            try:
+                # Extract text from document
+                extracted_text = extract_text_from_document(url)
+                
+                # Use extracted text directly as summary
+                results.append(
+                    DocumentSummaryItem(
+                        handle=handle,
+                        summary=extracted_text,
+                    )
                 )
-            )
-
+            except Exception as e:
+                # Create error entry if extraction fails
+                error_message = f"Error: {str(e)}"
+                results.append(
+                    DocumentSummaryItem(
+                        handle=handle,
+                        summary=error_message,
+                    )
+                )
+        
         return DocumentSummaryResponse(documents=results)
 
 
