@@ -128,10 +128,6 @@ class AIService:
         # Save to cache if result is ProjectSummaryResponse
         if isinstance(response, ProjectSummaryResponse):
             print(" ------------------ >>>>>>>>>>. CREATED THE PROJECT SUMMARY")
-        response = self.provider.request(request, result_type=result_type)
-
-        if isinstance(response, ProjectSummaryResponse):
-            text = getattr(request, "text", "")
             ProjectSummary.objects.create(
                 project=project,
                 prompt=request.prompt_text,
