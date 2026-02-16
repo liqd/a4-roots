@@ -3,10 +3,12 @@
 import json
 from datetime import timedelta
 from pathlib import Path
+import logging
 
 from django.conf import settings
 from django.utils import timezone
 from pydantic import BaseModel
+from sentry_sdk import capture_exception
 
 from .models import ProjectSummary
 from .providers import AIProvider
@@ -22,6 +24,8 @@ from .pydantic_models import DocumentSummaryResponse
 from .pydantic_models import ProjectSummaryResponse
 from .pydantic_models import SummaryItem
 from .utils import extract_text_from_document
+
+logger = logging.getLogger(__name__)
 
 
 
@@ -45,28 +49,13 @@ class AIService:
         config = ProviderConfig.from_handle(provider_handle)
         self.provider = AIProvider(config)
 
-        # Separate provider for document processing
-        # Normalize empty string to None
-        if document_provider_handle == "":
-            document_provider_handle = None
         document_provider_handle = document_provider_handle or getattr(
             settings, "AI_DOCUMENT_PROVIDER", None
         )
         if document_provider_handle:
-            print(f"Using document provider: {document_provider_handle}")
             doc_config = ProviderConfig.from_handle(document_provider_handle)
-            print(
-                f"Document provider config: model={doc_config.model_name}, base_url={doc_config.base_url}, handle={doc_config.handle}"
-            )
             self.document_provider = AIProvider(doc_config)
-            print(
-                f"Document provider initialized: is_mistral={self.document_provider.is_mistral}"
-            )
         else:
-            print(
-                f"No document provider specified, using default provider: {provider_handle}"
-            )
-            # Fallback to same provider if no document provider specified
             self.document_provider = self.provider
 
     def summarize_generic(
@@ -74,7 +63,6 @@ class AIService:
         request_object: AIRequest,
         result_type: type[BaseModel] = SummaryItem,
     ) -> BaseModel:
-        print(f"Summarizing generic with request: {request_object.prompt()}")
         response = self.provider.request(request_object, result_type=result_type)
         return response
 
@@ -161,6 +149,9 @@ class AIService:
         # Save to cache if result is ProjectSummaryResponse
         if isinstance(response, ProjectSummaryResponse):
             print(" ------------------ >>>>>>>>>>. CREATED THE PROJECT SUMMARY")
+        response = self.provider.request(request, result_type=result_type)
+
+        if isinstance(response, ProjectSummaryResponse):
             text = getattr(request, "text", "")
             ProjectSummary.objects.create(
                 project=project,
@@ -175,17 +166,7 @@ class AIService:
         documents: list[DocumentInputItem],
         prompt: str | None = None,
     ) -> DocumentSummaryResponse:
-        """
-        Summarize multiple documents with handles.
-
-        Args:
-            documents: List of DocumentInputItem objects, each with handle and url
-            prompt: Optional custom prompt for summarization
-
-        Returns:
-            DocumentSummaryResponse with list of DocumentSummaryItem objects
-        """
-        # Check if provider supports documents directly
+        """Process documents and images, return combined summaries."""
         document_urls = []
         document_handle_list = []
         image_urls = []
@@ -198,27 +179,21 @@ class AIService:
             ):
                 document_urls.append(doc.url)
                 document_handle_list.append(doc.handle)
-
             else:
                 image_urls.append(doc.url)
                 image_handle_list.append(doc.handle)
 
-        # Process documents via fallback if needed
         document_results = []
-        if len(document_urls):
+        if document_urls:
             results1 = self.request_documents(document_urls, document_handle_list)
             document_results = results1.documents
 
-        # Process images via vision API
         image_results = []
-        if len(image_urls):
+        if image_urls:
             results2 = self.request_images(image_urls, image_handle_list, prompt)
             image_results = results2.documents
 
-        # Combine results
-        all_results = image_results + document_results
-
-        return DocumentSummaryResponse(documents=all_results)
+        return DocumentSummaryResponse(documents=image_results + document_results)
 
     def request_images(
         self,
@@ -249,43 +224,22 @@ class AIService:
         document_urls: list[str],
         document_handle_list: list[str],
     ) -> DocumentSummaryResponse:
-        """
-        Process documents by extracting text from PDFs and DOCX files.
-        
-        The extracted text is used directly as the summary, without AI processing.
-        
-        Args:
-            document_urls: List of document URLs
-            document_handle_list: List of document handles corresponding to URLs
-            
-        Returns:
-            DocumentSummaryResponse with list of DocumentSummaryItem objects
-        """
+        """Extract text from PDFs and DOCX files, return as summaries."""
         results = []
-        
-        # Process each document
+
         for url, handle in zip(document_urls, document_handle_list):
             try:
-                # Extract text from document
                 extracted_text = extract_text_from_document(url)
-                
-                # Use extracted text directly as summary
                 results.append(
-                    DocumentSummaryItem(
-                        handle=handle,
-                        summary=extracted_text,
-                    )
+                    DocumentSummaryItem(handle=handle, summary=extracted_text)
                 )
             except Exception as e:
-                # Create error entry if extraction fails
-                error_message = f"Error: {str(e)}"
-                results.append(
-                    DocumentSummaryItem(
-                        handle=handle,
-                        summary=error_message,
-                    )
+                logger.error(
+                    f"Failed to extract text from document {handle} ({url}): {str(e)}",
+                    exc_info=True,
                 )
-        
+                capture_exception(e)
+
         return DocumentSummaryResponse(documents=results)
 
 
@@ -300,7 +254,7 @@ class SummaryRequest(AIRequest):
 
         Schema:
         {
-        "title": "Zusammenfassung der Beteiligung",
+        "title": "Summary of participation",
         "stats": {"participants": 0, "contributions": 0, "modules": 0},
         "general_summary": "string",
         "general_goals": ["string"],

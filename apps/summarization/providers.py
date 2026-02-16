@@ -8,7 +8,6 @@ from pydantic_ai import Agent
 from pydantic_ai import ImageUrl
 from pydantic_ai.models.mistral import MistralModel
 from pydantic_ai.models.openai import OpenAIChatModel
-from pydantic_ai.models.openai import OpenAIResponsesModel
 from pydantic_ai.providers.mistral import MistralProvider
 from pydantic_ai.providers.openai import OpenAIProvider
 
@@ -97,6 +96,7 @@ class ProviderConfig:
 
 class AIRequest(ABC):
     vision_support = False
+
     def prompt(self) -> str:
         raise NotImplementedError("Subclasses must implement prompt()")
 
@@ -144,7 +144,9 @@ class AIProvider:
         if hasattr(response, "provider"):
             response.provider = self.config.handle
 
-    def text_request(self, request: AIRequest, result_type: type[BaseModel]) -> BaseModel:
+    def text_request(
+        self, request: AIRequest, result_type: type[BaseModel]
+    ) -> BaseModel:
         """
         Execute a text request with structured input and output.
 
@@ -183,7 +185,7 @@ class AIProvider:
 
     def request(self, request: AIRequest, result_type: type[BaseModel]) -> BaseModel:
         """
-            Automatically determines if it's a text or multimodal request.
+        Automatically determines if it's a text or multimodal request.
         """
         # TODO: Check if the PROVIDER supports multimodal requests, or switch the Provider automaticly ?
         # Check if request supports vision (multimodal request)
@@ -193,6 +195,7 @@ class AIProvider:
         else:
             return self.text_request(request, result_type)
 
+    # TODO: Deprectaed ? Use separate Vison Requests instead ?
     def multimodal_request(
         self, request: AIRequest, result_type: type[BaseModel], image_urls: list[str]
     ) -> BaseModel:
@@ -235,9 +238,18 @@ class AIProvider:
         # Filter URLs to only include supported formats
         # Both Mistral and OpenAI-compatible providers support images and PDFs
         supported_extensions = (
-            ".jpg", ".jpeg", ".png", ".gif", ".webp",
-            ".mpo", ".heif", ".avif", ".bmp", ".tiff", ".tif",
-            ".pdf"  # PDFs supported by Mistral Vision and OpenAI-compatible providers
+            ".jpg",
+            ".jpeg",
+            ".png",
+            ".gif",
+            ".webp",
+            ".mpo",
+            ".heif",
+            ".avif",
+            ".bmp",
+            ".tiff",
+            ".tif",
+            ".pdf",  # PDFs supported by Mistral Vision and OpenAI-compatible providers
         )
 
         filtered_urls = []
@@ -246,10 +258,6 @@ class AIProvider:
             # Check if URL ends with supported extension
             if any(url_lower.endswith(ext) for ext in supported_extensions):
                 filtered_urls.append(url)
-            else:
-                # Log warning for unsupported formats
-                format_type = "PDF" if url_lower.endswith(".pdf") else "SVG" if url_lower.endswith(".svg") else "unknown"
-                print(f"Warning: Skipping unsupported {format_type} format: {url}")
 
         user_content = [request.prompt()]
         for url in filtered_urls:
