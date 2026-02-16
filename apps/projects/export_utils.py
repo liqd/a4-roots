@@ -409,6 +409,88 @@ def export_documents_full(project):
     return documents_data
 
 
+def collect_document_attachments(export_data, request):
+    """
+    Collect all document attachments from project fields (description, result).
+
+    Args:
+        export_data: The full export dictionary (as returned by generate_full_export())
+        request: Django Request object for build_absolute_uri()
+
+    Returns:
+        tuple: (documents_dict, handle_to_source)
+            - documents_dict: {handle: absolute_url, ...}
+            - handle_to_source: {handle: "project_description" | "project_result", ...}
+    """
+    documents_dict = {}
+    handle_to_source = {}
+
+    project_data = export_data.get("project", {})
+
+    # Collect attachments from description field
+    description_attachments = project_data.get("description_attachments", [])
+    for attachment_index, attachment_url in enumerate(description_attachments):
+        handle = f"project_description_attachment_{attachment_index}"
+        absolute_url = request.build_absolute_uri(attachment_url)
+        documents_dict[handle] = absolute_url
+        handle_to_source[handle] = "project_description"
+
+    # Collect attachments from result field
+    result_attachments = project_data.get("result_attachments", [])
+    for attachment_index, attachment_url in enumerate(result_attachments):
+        handle = f"project_result_attachment_{attachment_index}"
+        absolute_url = request.build_absolute_uri(attachment_url)
+        documents_dict[handle] = absolute_url
+        handle_to_source[handle] = "project_result"
+
+    return documents_dict, handle_to_source
+
+
+def integrate_document_summaries(
+    export_data: dict,
+    document_summaries: list,
+    handle_to_source: dict[str, str],
+):
+    """
+    Integrate document summaries into export_data by project field source.
+
+    Args:
+        export_data: Export dictionary (modified in-place)
+        document_summaries: List of DocumentSummaryItem objects
+        handle_to_source: Mapping from handle to source field ("project_description", "project_result")
+    """
+    # Initialize document_summaries structure
+    project_summaries = {
+        "description": [],
+        "result": [],
+    }
+
+    # Group summaries by source field
+    for summary_item in document_summaries:
+        handle = summary_item.handle
+        source = handle_to_source.get(handle)
+
+        if source == "project_description":
+            project_summaries["description"].append(
+                {
+                    "handle": summary_item.handle,
+                    "summary": summary_item.summary,
+                }
+            )
+        elif source == "project_result":
+            project_summaries["result"].append(
+                {
+                    "handle": summary_item.handle,
+                    "summary": summary_item.summary,
+                }
+            )
+
+    # Integrate summaries into export_data
+    if "project" not in export_data:
+        export_data["project"] = {}
+    export_data["project"]["document_summaries"] = project_summaries
+
+
 def export_debates_full(project):
     """Export all debate subjects with comments"""
 

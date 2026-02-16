@@ -174,6 +174,27 @@ class AIService:
 
         return DocumentSummaryResponse(documents=image_results + document_results)
 
+    def request_vision_dict(
+        self,
+        documents_dict: dict[str, str],
+        prompt: str | None = None,
+    ) -> DocumentSummaryResponse:
+        """
+        Process documents from dictionary format.
+
+        Args:
+            documents_dict: Dictionary mapping handles to absolute URLs
+            prompt: Optional prompt for summarization
+
+        Returns:
+            DocumentSummaryResponse with summaries for all documents
+        """
+        document_items = [
+            DocumentInputItem(handle=handle, url=url)
+            for handle, url in documents_dict.items()
+        ]
+        return self.request_vision(documents=document_items, prompt=prompt)
+
     def request_images(
         self,
         image_urls: list[str],
