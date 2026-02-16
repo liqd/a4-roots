@@ -122,20 +122,20 @@
             {% csrf_token %}
             
             <label for="documents">Documents (JSON format):</label>
-            <textarea name="documents" id="documents" rows="10" placeholder='{"doc1": "https://example.com/doc1.pdf", "doc2": "https://example.com/doc2.pdf"}'>{{ documents_json|default:'{"doc1": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/00_2103_Pinguin_-_Petermann_Island_%28Antarktische_Halbinsel%29.jpg/500px-00_2103_Pinguin_-_Petermann_Island_%28Antarktische_Halbinsel%29.jpg", "doc2": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Berliner_Fernsehturm%2C_Sicht_vom_Neptunbrunnen_-_Berlin_Mitte.jpg/330px-Berliner_Fernsehturm%2C_Sicht_vom_Neptunbrunnen_-_Berlin_Mitte.jpg", "doc3": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Maduraci%C3%B3n_del_tomate_%28Solanum_lycopersicum%29.jpg/500px-Maduraci%C3%B3n_del_tomate_%28Solanum_lycopersicum%29.jpg"}' }}</textarea>
+            <textarea name="documents" id="documents" rows="10" placeholder='{"doc1": "https://example.com/doc1.pdf", "doc2": "https://example.com/doc2.docx"}'>{{ documents_json|default:'{"doc1": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/00_2103_Pinguin_-_Petermann_Island_%28Antarktische_Halbinsel%29.jpg/500px-00_2103_Pinguin_-_Petermann_Island_%28Antarktische_Halbinsel%29.jpg", "doc2": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Berliner_Fernsehturm%2C_Sicht_vom_Neptunbrunnen_-_Berlin_Mitte.jpg/330px-Berliner_Fernsehturm%2C_Sicht_vom_Neptunbrunnen_-_Berlin_Mitte.jpg", "doc3": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Maduraci%C3%B3n_del_tomate_%28Solanum_lycopersicum%29.jpg/500px-Maduraci%C3%B3n_del_tomate_%28Solanum_lycopersicum%29.jpg", "demokratie_pdf": "https://www.rbb-online.de/schulstunde-wir-gesucht/unterrichtsmaterial/Werte/demokratie_schlau.file.html/1_A_2_Demokratie_4.pdf", "sample_docx": "https://www2.hu-berlin.de/stadtlabor/wp-content/uploads/2021/12/sample3.docx"}' }}</textarea>
             <small class="file-hint">
                 Provide documents as JSON. Either as a dictionary (handle -> URL) or as a list of objects with handle and url fields.
             </small>
             <div class="example">
                 <strong>Example formats:</strong><br>
-                Dictionary: <code>{"doc1": "https://upload.wikimedia.org/...", "doc2": "https://upload.wikimedia.org/...", "doc3": "https://upload.wikimedia.org/..."}</code><br>
-                List: <code>[{"handle": "doc1", "url": "https://upload.wikimedia.org/..."}, {"handle": "doc2", "url": "https://upload.wikimedia.org/..."}, {"handle": "doc3", "url": "https://upload.wikimedia.org/..."}]</code>
+                Dictionary: <code>{"doc1": "https://upload.wikimedia.org/...", "demokratie_pdf": "https://www.rbb-online.de/.../1_A_2_Demokratie_4.pdf", "sample_docx": "https://www2.hu-berlin.de/.../sample3.docx"}</code><br>
+                List: <code>[{"handle": "doc1", "url": "https://upload.wikimedia.org/..."}, {"handle": "demokratie_pdf", "url": "https://www.rbb-online.de/.../1_A_2_Demokratie_4.pdf"}, {"handle": "sample_docx", "url": "https://www2.hu-berlin.de/.../sample3.docx"}]</code>
             </div>
             
             <label for="prompt">Custom Prompt (optional):</label>
             <textarea name="prompt" id="prompt" rows="5" placeholder="Leave empty to use default prompt">{{ prompt|default:"Summarize each document separately. The documents are provided in order with the following handles: \"doc1\", \"doc2\", \"doc3\". Return a list of summaries, one for each document in the same order. Each summary should include the handle and describe the content and most important information of that document." }}</textarea>
             <small class="file-hint">
-                Optional custom prompt. If empty, a default prompt will be used that includes the document handles.
+                Optional custom prompt. If empty, a default prompt will be used that includes the image handles. Note: PDF and DOCX documents are processed separately and don't need to be included in the prompt.
             </small>
             
             <label for="provider">Provider:</label>
