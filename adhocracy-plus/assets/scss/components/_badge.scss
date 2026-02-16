@@ -72,3 +72,15 @@
         font-size: $font-size-xs;
     }
 }
+
+.badge.badge--module__completed{
+    background-color: $silver-fog;
+}
+
+.badge.badge--module__ongoing{
+    background-color: $grass-green;
+}
+
+.badge.badge--module__upcoming{
+    background-color: $silver-fog;
+}

@@ -1,39 +1,82 @@
-<div class="mb-4" id="{{ id }}">
-    {% for module in modules %}
-    <div>
-        <div id="heading-{{ forloop.counter }}">
-            <div class="module-summary__header">
-                <span class="module-summary__header-text">Module: {{ module.module_name }}</span>
-                <span class="badge badge-secondary ml-2">
-                   {% if id == "pastModulesAccordion" %}
-                        <span class="badge badge-secondary ml-2">abgeschlossen</span>
-                    {% elif id == "currentModulesAccordion" %}
-                        <span class="badge badge-primary ml-2">aktiv</span>
-                    {% elif id == "upcomingModulesAccordion" %}
-                        <span class="badge badge-info ml-2">geplant</span>
+{% load i18n %}
+<div class="mb-4 summary__section-container">
+    <div class="p-0" id="{{ id }}-heading">
+        <a href="#{{ id }}-collapse" 
+           class="accordion__title d-block summary__section-accordion-title" 
+           data-bs-toggle="collapse"
+           data-bs-target="#{{ id }}-collapse">
+            <div class="d-flex justify-content-between align-items-center">
+                <span class="summary__section-header">
+                    {% if id == "pastModules" %}
+                        {% trans 'Summary of what has happened so far' %}
+                    {% elif id == "currentModules" %}
+                        {% trans 'Summary of what is currently happening' %}
+                    {% elif id == "upcomingModules" %}
+                        {% trans 'Summary of what will happen' %}
                     {% endif %}
                 </span>
+                <i class="fa fa-chevron-down" aria-hidden="true"></i>
             </div>
-        </div>
-        <div id="module-{{ module.module_name|slugify }}">
-            <div>
-                <p>Goals of the module: {{ module.purpose }}</p>
-                
-                {% if module.main_sentiments %}
-                <p>Main sentiments from user contributions:</p>
-                <ul class="small">
-                    {% for sentiment in module.main_sentiments %}
-                    <li>{{ sentiment }}</li>
-                    {% endfor %}
-                </ul>
+        </a>
+    </div>
+    <div id="{{ id }}-collapse" class="collapse show" aria-labelledby="{{ id }}-heading">
+        <div>
+                {% if id == "pastModules" %}
+                    <p>{% trans 'The participation phases of the modules in this section are finished. You can no longer contribute. In this section you can find summaries of the modules and the main topics that were discussed.' %}</p>
+                {% elif id == "currentModules" %}
+                    <p>{% trans 'The participation phases of the modules in this section are currently ongoing. You can contribute to the modules at this stage. In this section you can find summaries of the modules and the topics that are being discussed.' %}</p>
+                {% elif id == "upcomingModules" %}
+                    <p>{% trans 'The participation phases of the modules in this section have not started yet. You cannot contribute to the modules at this stage. In this section you can find summaries of the planned modules and their objectives.' %}
+                    </p>
                 {% endif %}
-                <p class="summary__see-more">
-                    <i class="fa fa-map"></i>
-                    To see what happened in module {{ module.module_name }}, 
-                    <a href="{{ module.link }}" class="small" target="_blank">click here</a>
-                </p>
+            <div class="mb-4" id="{{ id }}">
+                {% for module in modules %}
+                <div class="module-summary__container">
+                    <div id="heading-{{ forloop.counter }}">
+                        <div class="module-summary__header">
+                            <span class="module-summary__header-text">Module: {{ module.module_name }}
+                            {% if id == "pastModules" %}
+                                <span class="badge badge--module__completed ml-2">abgeschlossen</span>
+                            {% elif id == "currentModules" %}
+                                <span class="badge badge--module__ongoing ml-2">aktiv</span>
+                            {% elif id == "upcomingModules" %}
+                                <span class="badge badge--module__future ml-2">geplant</span>
+                            {% endif %}
+                            </span>
+                        </div>
+                    </div>
+                    <div id="module-{{ module.module_name|slugify }}">
+                        <div>
+                            <p>Goals of the module: {{ module.purpose }}</p>
+                            
+                            {% if module.main_sentiments %}
+                            <p>{% trans 'Main sentiments from user contributions' %}:</p>
+                            <ul class="small">
+                                {% for sentiment in module.main_sentiments %}
+                                <li>{{ sentiment }}</li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                            {% if module.first_content %}
+                                <p>{% trans 'First content in this module' %}</p>
+                                <ul class="small">
+                                    {% for content in module.first_content %}
+                                    <li>{{ content }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                            <p class="summary__see-more">
+                                <i class="fa fa-map"></i>
+                                {% blocktranslate %}
+                                    To see what happened in module {{ module.module_name }}, 
+                                    <a href="{{ module.link }}" class="small module-summary__link" target="_blank">click here</a>
+                                {% endblocktranslate %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
             </div>
         </div>
     </div>
-    {% endfor %}
 </div>

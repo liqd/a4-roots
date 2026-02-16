@@ -160,17 +160,52 @@
 }
 
 .summary {
+    &__title {
+        padding-left: 1em;
+    }
+
+    &__container {
+        width: 90%;
+        margin: auto;
+        padding: 1rem;
+    }
+
+    &__section-container {
+        border-top: 1px solid grey;
+        margin-top: 0.5em;
+        padding-top: 1em;
+    }
+
+    &__stats {
+        background-color: $blue-light;
+        font-size: 1.5rem;
+        
+        &-number {
+            color: $deep-ocean;
+            line-height: 1rem;
+        }
+
+        &-text {
+            font-size: 1rem;
+            margin-top: 0;
+        }
+    }
+
     &__see-more {
         background-color: $blue-light;
         padding: 1em;
     }
 
     &__section-header {
-        font-size: 2rem;
+        font-size: 1.75rem;
+        font-weight: bold;
     }
 
     &__section-accordion-title {
         border-bottom: 0;
+        text-decoration: none;
+        padding: 0;
+        padding-bottom: 1rem;
     }
 }
 
@@ -178,5 +213,15 @@
     &__header-text {
         font-weight: bold;
         font-size: 1.5rem;
+    }
+
+    &__container {
+        border-top: 1px solid $silver-fog;
+        padding-top: 1em;
+    }
+
+    &__link {
+        color: $deep-ocean;
+        font-weight: bold;
     }
 }
