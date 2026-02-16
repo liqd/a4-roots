@@ -135,6 +135,8 @@ MIDDLEWARE = (
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
+    # "apps.notifications.middleware.DebugAuthMiddleware",
+    # "apps.notifications.middleware.ExemptNotificationEndpointMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "apps.users.middleware.SetUserLanguageCookieMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
