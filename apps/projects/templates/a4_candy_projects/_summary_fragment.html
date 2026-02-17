@@ -40,17 +40,27 @@
                 </div>
             </div>
         </div>
+        {% if project.result %}
+        <div class="summary__results-link">
+            {% trans 'To read all the results of this participation' %}
+            <a href="{{ project.get_absolute_url }}#tabpanel-project-{{ project.pk }}-result" 
+                class="small module-summary__link" 
+                target="_blank">
+                    {% trans 'click here' %}
+                </a>    
+        </div>
+        {% endif %}
 
         {% if response.past_modules %}
-            {% include "a4_candy_projects/_summary_section.html" with modules=response.past_modules id="pastModules" %}
+            {% include "a4_candy_projects/_summary_section.html" with project=project modules=response.past_modules id="pastModules" %}
         {% endif %}
 
         {% if response.current_modules %}
-            {% include "a4_candy_projects/_summary_section.html" with modules=response.current_modules id="currentModules" %}
+            {% include "a4_candy_projects/_summary_section.html" with project=project modules=response.current_modules id="currentModules" %}
         {% endif %}
 
         {% if response.upcoming_modules %}
-            {% include "a4_candy_projects/_summary_section.html" with modules=response.upcoming_modules id="upcomingModules" %}
+            {% include "a4_candy_projects/_summary_section.html" with project=project modules=response.upcoming_modules id="upcomingModules" %}
         {% endif %}
 
         <!-- Feedback -->

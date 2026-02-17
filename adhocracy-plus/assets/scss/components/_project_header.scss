@@ -170,6 +170,11 @@
         border-top: 0;
     }
 
+    &__results-link {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+
     &__accordion:last-child {
         border-bottom: 0;
     }
@@ -231,6 +236,10 @@
         font-size: 1.5rem;
     }
 
+    &__goals {
+        padding-top: 0.5rem;
+    }
+
     &__container {
         border-top: 1px solid $silver-fog;
         padding-top: 1em;
@@ -240,6 +249,23 @@
         color: $deep-ocean;
         font-weight: bold;
     }
+}
+
+.summary-error{
+    &__container {
+        text-align: center;
+    } 
+    &__header {
+        font-size: 1.5em;
+        font-weight: bold;
+    } 
+    &__text {
+        font-size: 1em;
+    }   
+    &__report {
+        font-size: 1em;
+    } 
+
 }
 
 
