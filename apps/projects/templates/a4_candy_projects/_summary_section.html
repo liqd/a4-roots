@@ -1,5 +1,4 @@
-{% load i18n a4_candy_project_tags %}
-
+{% load i18n %}
 <div class="mb-4 summary__section-container">
     <div class="p-0" id="{{ id }}-heading">
         <a href="#{{ id }}-collapse" 
@@ -16,7 +15,7 @@
                         {% trans 'Summary of what will happen' %}
                     {% endif %}
                 </span>
-                <i class="fas fa-sort-down" aria-hidden="true"></i>
+                <i class="fa fa-chevron-down" aria-hidden="true"></i>
             </div>
         </a>
     </div>
@@ -45,15 +44,8 @@
                             {% endif %}
                             </span>
                         </div>
-                        <div>
-                            {% with module_obj=project.modules.all|get_module_by_id:module.module_id %}
-                            <small class="text-muted">
-                              {% trans 'Active participation' %}: {{ module_obj.module_start|date:"M d H:i" }} - {{ module_obj.module_end|date:"M d H:i" }}
-                            </small>
-                            {% endwith %}
-                        </div>
                     </div>
-                    <div class="module-summary__goals" id="module-{{ module.module_name|slugify }}">
+                    <div id="module-{{ module.module_name|slugify }}">
                         <div>
                             <p>Goals of the module: {{ module.purpose }}</p>
                             
