@@ -389,6 +389,8 @@ class ProjectGenerateSummaryView(PermissionRequiredMixin, generic.DetailView):
             return HttpResponse(html)
 
         except Exception as e:
-            return HttpResponse(
-                f'<div class="alert alert-danger">Error: {str(e)}</div>'
+            html = render_to_string(
+                "a4_candy_projects/_summary_error.html"
             )
+            return HttpResponse(html)
+

@@ -42,3 +42,7 @@ def get_num_entries(module):
     )
 
     return item_count
+
+@register.filter
+def get_module_by_id(queryset, id):
+    return queryset.filter(id=id).first()

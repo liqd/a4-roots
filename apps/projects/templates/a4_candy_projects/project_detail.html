@@ -30,6 +30,32 @@
 {% block extra_js %}
   {{ block.super }}
     <script type="text/javascript" src="{% static 'dsgvo_video_embed.js' %}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if URL has result tab hash and activate it
+            if (window.location.hash.includes('-result')) {
+                
+                document.querySelectorAll('.tab').forEach(tab => {
+                    tab.classList.remove('active');
+                    tab.setAttribute('aria-expanded', 'false');
+                });
+                document.querySelectorAll('.tabpanel').forEach(panel => {
+                    panel.classList.remove('active');
+                    panel.setAttribute('aria-expanded', 'false');
+                });
+                
+                const resultTab = document.getElementById('tab-project-{{ project.pk }}-result');
+                const resultPanel = document.getElementById('tabpanel-project-{{ project.pk }}-result');
+                
+                if (resultTab && resultPanel) {
+                    resultTab.classList.add('active');
+                    resultTab.setAttribute('aria-expanded', 'true');
+                    resultPanel.classList.add('active');
+                    resultPanel.setAttribute('aria-expanded', 'true');
+                }
+            }
+        });
+    </script>
 {% endblock %}
 {% block extra_messages %}
 <div class="u-bg-light py-md-5">

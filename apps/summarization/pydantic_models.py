@@ -65,6 +65,8 @@ class Stats(BaseModel):
 class ModuleSummary(BaseModel):
     """Response model for module summarization."""
 
+    id: int = Field(description="ID")
+    module_id: int = Field(description="ID of the module")
     module_name: str = Field(description="Name of the module")
     purpose: str = Field(description="Goal/purpose of the module")
     main_sentiments: Optional[list[str]] = Field(
