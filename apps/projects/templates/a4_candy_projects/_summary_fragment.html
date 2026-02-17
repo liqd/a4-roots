@@ -1,67 +1,63 @@
 {% load i18n %}
 
-<div class="card">
-    <div class="cl-example">
-        <div class="accordion">
-            <a id="summary-header" href="#summary" aria-haspopup="true" aria-expanded="false" data-bs-toggle="collapse">
-                <div class="d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0 summary__title">{% trans 'Zusammenfassung der Beteiligung' %} <i class="fas fa-info-circle"></i></h5>
-                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+<div class="accordion summary__accordion">
+    <a id="summary-header" class="accordion__title" href="#summary" aria-haspopup="true" aria-expanded="true" data-bs-toggle="collapse">
+        <div class="d-flex justify-content-between align-items-center">
+            <span class="mb-0 summary__title">{% trans 'Zusammenfassung der Beteiligung' %}</span>
+            <i class="fas fa-sort-down" aria-hidden="true"></i>
+        </div>
+    </a>
+    <div class="accordion__body collapse show" id="summary" aria-labelledby="summary-header">
+        <div>
+            <h2>General info</h2>
+            <p>{{ response.general_summary }}</p>
+            {% if response.general_goals %}
+                <p>Goals of the project: </p>
+                <ul>
+                    {% for goal in response.general_goals %}
+                    <li>{{ goal }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        <!-- Stats Card -->
+        <div class="summary__stats p-3 rounded">
+            <div class="row text-center">
+                <div class="col-4">
+                    <span class="d-block mb-0 summary__stats-number">{{ response.stats.participants|default:"0" }}</span>
+                    <span class="text-muted summary__stats-text">{% trans 'Participants' %}</span>
+                    <!-- <small class="text-muted">Teilnehmende</small> -->
                 </div>
-            </a>
-            <div class="accordion__body collapse show" id="summary" aria-labelledby="summary-header">
-                <div>
-                    <h2>General info</h2>
-                    <p>{{ response.general_summary }}</p>
-                    {% if response.general_goals %}
-                        <p>Goals of the project: </p>
-                        <ul>
-                            {% for goal in response.general_goals %}
-                            <li>{{ goal }}</li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
+                <div class="col-4">
+                    <span class="d-block mb-0 summary__stats-number">{{ response.stats.contributions|default:"0" }}</span>
+                    <small class="text-muted summary__stats-text">{% trans 'Contributions' %}</small>
+                    <!-- <small class="text-muted">Beiträge</small> -->
                 </div>
-                <!-- Stats Card -->
-                <div class="summary__stats p-3 rounded">
-                    <div class="row text-center">
-                        <div class="col-4">
-                            <span class="d-block mb-0 summary__stats-number">{{ response.stats.participants|default:"0" }}</span>
-                            <span class="text-muted summary__stats-text">{% trans 'Participants' %}</span>
-                            <!-- <small class="text-muted">Teilnehmende</small> -->
-                        </div>
-                        <div class="col-4">
-                            <span class="d-block mb-0 summary__stats-number">{{ response.stats.contributions|default:"0" }}</span>
-                            <small class="text-muted summary__stats-text">{% trans 'Contributions' %}</small>
-                            <!-- <small class="text-muted">Beiträge</small> -->
-                        </div>
-                        <div class="col-4">
-                            <span class="d-block mb-0 summary__stats-number">{{ response.stats.modules|default:"0" }}</span>
-                            <small class="text-muted summary__stats-text">{% trans 'Modules' %}</small>
-                            <!-- <small class="text-muted">Modulen</small> -->
-                        </div>
-                    </div>
-                </div>
-
-                {% if response.past_modules %}
-                    {% include "a4_candy_projects/_summary_section.html" with modules=response.past_modules id="pastModules" %}
-                {% endif %}
-
-                {% if response.current_modules %}
-                    {% include "a4_candy_projects/_summary_section.html" with modules=response.current_modules id="currentModules" %}
-                {% endif %}
-
-                {% if response.upcoming_modules %}
-                    {% include "a4_candy_projects/_summary_section.html" with modules=response.upcoming_modules id="upcomingModules" %}
-                {% endif %}
-
-                <!-- Feedback -->
-                <hr class="my-4">
-                <div class="d-flex justify-content-between align-items-center text-muted small">
-                    <span>⏱️ Actualisieren</span>
-                    <span>War diese Zusammenfassung hilfreich?</span>
+                <div class="col-4">
+                    <span class="d-block mb-0 summary__stats-number">{{ response.stats.modules|default:"0" }}</span>
+                    <small class="text-muted summary__stats-text">{% trans 'Modules' %}</small>
+                    <!-- <small class="text-muted">Modulen</small> -->
                 </div>
             </div>
+        </div>
+
+        {% if response.past_modules %}
+            {% include "a4_candy_projects/_summary_section.html" with modules=response.past_modules id="pastModules" %}
+        {% endif %}
+
+        {% if response.current_modules %}
+            {% include "a4_candy_projects/_summary_section.html" with modules=response.current_modules id="currentModules" %}
+        {% endif %}
+
+        {% if response.upcoming_modules %}
+            {% include "a4_candy_projects/_summary_section.html" with modules=response.upcoming_modules id="upcomingModules" %}
+        {% endif %}
+
+        <!-- Feedback -->
+        <hr class="my-4">
+        <div class="d-flex justify-content-between align-items-center text-muted small">
+            <span>⏱️ Actualisieren</span>
+            <span>War diese Zusammenfassung hilfreich?</span>
         </div>
     </div>
 </div>

@@ -1,0 +1,38 @@
+<style>
+.loading-spinner {
+    display: none;
+}
+.htmx-request .hide-when-loading {
+    display: none;
+}
+.htmx-request .loading-spinner {
+    display: block !important;
+}
+</style>
+
+
+<!-- Summary section -->
+<div id="summary-card" class="summary-prompt-card" hx-indicator="this">
+    <div class="hide-when-loading">
+        <div class="summary-text">
+            <strong class="summary-title">Need an overview of what's happened so far?</strong>
+            <p class="summary-description">You can use AI to summarise the main inputs and discussions and catch up quickly.</p>
+        </div>
+        <div class="summary-button">
+            <button hx-get="{% url 'project-generate-summary' organisation_slug=project.organisation.slug slug=project.slug %}" 
+                    hx-target="#summary-card"
+                    hx-swap="innerHTML"
+                    class="btn btn-primary">
+                <i class="fa fa-wand-magic-sparkles mr-2"></i> Summarise with AI
+            </button>
+        </div>
+    </div>
+    <div class="htmx-indicator loading-spinner">
+        <div class="spinner-border spinner-border-sm" role="status">
+            <span class="a4-sr-only">Loading...</span>
+        </div>
+        <span class="ml-2">Generating AI summary...</span>
+    </div>
+</div>
+
+<!-- End summary section -->
