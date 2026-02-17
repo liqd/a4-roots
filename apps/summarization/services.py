@@ -1,4 +1,5 @@
 """Service for text summarization using AI providers."""
+
 import json
 from datetime import timedelta
 from pathlib import Path
@@ -55,12 +56,14 @@ class AIService:
     ) -> BaseModel:
         """Summarize text for a project with caching and rate limiting support."""
         request = SummaryRequest(text=text, prompt=prompt)
+
         # Get the most recent summary for this project (single query for all checks)
         latest_project_summary = (
             ProjectSummary.objects.filter(project=project)
             .order_by("-created_at")
             .first()
         )
+
         # Only proceed with cache/rate limit checks if project has existing summaries
         if is_rate_limit and latest_project_summary:
             # Check 1: Exact content match
@@ -128,8 +131,6 @@ class SummaryRequest(AIRequest):
         "general_goals": ["string"],
         "past_modules": [
             {
-            "id": "int",
-            "module_id": "int",
             "module_name": "string",
             "purpose": "string",
             "main_sentiments": ["string"],
@@ -139,8 +140,6 @@ class SummaryRequest(AIRequest):
         ],
         "current_modules": [
             {
-            "id": "int",
-            "module_id": "int",
             "module_name": "string",
             "purpose": "string",
             "first_content": ["string"],
@@ -150,8 +149,6 @@ class SummaryRequest(AIRequest):
         ],
         "upcoming_modules": [
             {
-            "id": "int",
-            "module_id": "int",
             "module_name": "string",
             "purpose": "string",
             "phase_status": "upcoming",
