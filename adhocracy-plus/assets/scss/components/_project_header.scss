@@ -158,13 +158,12 @@
     height: 100%;
 }
 
-#summary-header {
-    text-decoration: none !important;
-    border-bottom: 0;
-    padding-top: 1em;
-}
-
 .summary {
+    &__header {
+       text-decoration: none !important;
+        border-bottom: 0;
+        padding-top: 1em;
+    }
 
     &__accordion {
         border-top: 0;
@@ -255,13 +254,16 @@
     &__container {
         text-align: center;
     } 
+
     &__header {
         font-size: 1.5em;
         font-weight: bold;
-    } 
+    }
+
     &__text {
         font-size: 1em;
-    }   
+    }
+   
     &__report {
         font-size: 1em;
     } 
