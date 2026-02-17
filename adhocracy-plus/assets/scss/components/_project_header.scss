@@ -128,7 +128,6 @@
 }
 
 .summary-prompt-card {
-    display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 1rem;
@@ -160,8 +159,29 @@
 }
 
 .summary {
+    &__header {
+       text-decoration: none !important;
+        border-bottom: 0;
+        padding-top: 1em;
+    }
+
+    &__accordion {
+        border-top: 0;
+    }
+
+    &__results-link {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+
+    &__accordion:last-child {
+        border-bottom: 0;
+    }
+
     &__title {
-        padding-left: 1em;
+        font-size: 1.75rem;
+        font-weight: bold;
+        text-decoration: none !important;
     }
 
     &__container {
@@ -215,6 +235,10 @@
         font-size: 1.5rem;
     }
 
+    &__goals {
+        padding-top: 0.5rem;
+    }
+
     &__container {
         border-top: 1px solid $silver-fog;
         padding-top: 1em;
@@ -224,4 +248,42 @@
         color: $deep-ocean;
         font-weight: bold;
     }
+}
+
+.summary-error{
+    &__container {
+        text-align: center;
+    } 
+
+    &__header {
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+
+    &__text {
+        font-size: 1em;
+    }
+   
+    &__report {
+        font-size: 1em;
+    } 
+
+}
+
+
+.fa-sort-down {
+    transition: transform 0.3s ease;
+    display: inline-block;
+    transform-origin: center center;
+}
+
+/* When NOT collapsed (open by default) - arrow points up */
+.accordion__title:not(.collapsed) .fa-sort-down {
+    transform: rotate(180deg);
+    margin-top: 0.25em;
+}
+
+/* When collapsed (after clicking) - arrow points down */
+.accordion__title.collapsed .fa-sort-down {
+    transform: rotate(0deg);
 }
