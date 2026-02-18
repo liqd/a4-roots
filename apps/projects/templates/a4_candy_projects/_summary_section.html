@@ -75,10 +75,8 @@
                             {% endif %}
                             <p class="summary__see-more">
                                 <i class="fa fa-map"></i>
-                                {% blocktranslate %}
-                                    To see what happened in module {{ module.module_name }}, 
-                                    <a href="{{ module.link }}" class="small module-summary__link" target="_blank">click here</a>
-                                {% endblocktranslate %}
+                                {% trans 'To see what happened in module' %} {{ module.module_name }}, 
+                                <a href="{{ module.link }}" class="small module-summary__link" target="_blank">{% trans 'click here' %}</a>
                             </p>
                         </div>
                     </div>
