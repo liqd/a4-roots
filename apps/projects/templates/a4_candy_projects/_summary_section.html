@@ -1,4 +1,5 @@
-{% load i18n %}
+{% load i18n a4_candy_project_tags %}
+
 <div class="mb-4 summary__section-container">
     <div class="p-0" id="{{ id }}-heading">
         <a href="#{{ id }}-collapse" 
@@ -15,7 +16,7 @@
                         {% trans 'Summary of what will happen' %}
                     {% endif %}
                 </span>
-                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                <i class="fas fa-sort-down" aria-hidden="true"></i>
             </div>
         </a>
     </div>
@@ -44,8 +45,15 @@
                             {% endif %}
                             </span>
                         </div>
+                        <div>
+                            {% with module_obj=project.modules|get_module_by_id:module.module_id %}
+                            <small class="text-muted">
+                              {% trans 'Active participation' %}: {{ module_obj.module_start|date:"M d H:i" }} - {{ module_obj.module_end|date:"M d H:i" }}
+                            </small>
+                            {% endwith %}
+                        </div>
                     </div>
-                    <div id="module-{{ module.module_name|slugify }}">
+                    <div class="module-summary__goals" id="module-{{ module.module_name|slugify }}">
                         <div>
                             <p>Goals of the module: {{ module.purpose }}</p>
                             
@@ -67,10 +75,8 @@
                             {% endif %}
                             <p class="summary__see-more">
                                 <i class="fa fa-map"></i>
-                                {% blocktranslate %}
-                                    To see what happened in module {{ module.module_name }}, 
-                                    <a href="{{ module.link }}" class="small module-summary__link" target="_blank">click here</a>
-                                {% endblocktranslate %}
+                                {% trans 'To see what happened in module' %} {{ module.module_name }}, 
+                                <a href="{{ module.link }}" class="small module-summary__link" target="_blank">{% trans 'click here' %}</a>
                             </p>
                         </div>
                     </div>
