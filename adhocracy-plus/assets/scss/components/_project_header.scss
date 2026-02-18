@@ -156,6 +156,11 @@
     flex-direction: column;
     justify-content: center;
     height: 100%;
+    margin-top: 1em;
+
+    > button {
+        margin: auto;
+    } 
 }
 
 .summary {
