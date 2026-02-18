@@ -75,12 +75,15 @@
 
 .badge.badge--module__completed{
     background-color: $silver-fog;
+    color: $print-black;
 }
 
 .badge.badge--module__ongoing{
-    background-color: $grass-green;
+    background-color: $liqd-green;
+    color: $print-black;
 }
 
 .badge.badge--module__upcoming{
     background-color: $silver-fog;
+    color: $print-black;
 }

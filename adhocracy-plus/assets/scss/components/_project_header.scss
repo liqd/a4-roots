@@ -156,6 +156,11 @@
     flex-direction: column;
     justify-content: center;
     height: 100%;
+    margin-top: 1em;
+
+    > button {
+        margin: auto;
+    } 
 }
 
 .summary {
@@ -165,13 +170,26 @@
         padding-top: 1em;
     }
 
+    &__header-text {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
     &__accordion {
         border-top: 0;
     }
 
     &__results-link {
-        padding-top: 0.5rem;
+        padding-top: 1rem;
         padding-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+
+        > i {
+            color: $deep-ocean;
+        }
     }
 
     &__accordion:last-child {
@@ -188,7 +206,7 @@
         width: 90%;
         margin: auto;
         padding: 1rem;
-        border: 1px solid gray;
+        border: 1px solid $silver-fog;
         border-radius: 0.375rem;
     }
 
@@ -204,27 +222,48 @@
     }
 
     &__stats {
-        background-color: $blue-light;
+        background-color: $liqd-blue;
         font-size: 1.5rem;
+        
+        .row {
+            min-height: 100px;
+            align-items: center;
+        }
         
         &-number {
             color: $deep-ocean;
-            line-height: 1rem;
+            margin-bottom: 0; 
+            line-height: 1.2;
         }
 
         &-text {
             font-size: 1rem;
-            margin-top: 0;
+            line-height: 1.2;
+            margin-top: -0.25rem; 
         }
     }
 
     &__see-more {
-        background-color: $blue-light;
+        background-color: $liqd-blue;
         padding: 1em;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+
+        > i {
+            color: $deep-ocean;
+        }
+
+        > span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem; 
+        }
     }
 
     &__section-header {
-        font-size: 1.75rem;
+        font-size: 1.5rem;
         font-weight: bold;
     }
 
@@ -240,6 +279,10 @@
     &__header-text {
         font-weight: bold;
         font-size: 1.5rem;
+    }
+
+    &__icon {
+        filter: invert(32%) sepia(40%) saturate(1939%) hue-rotate(185deg) brightness(90%) contrast(87%);
     }
 
     &__goals {

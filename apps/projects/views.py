@@ -389,8 +389,6 @@ class ProjectGenerateSummaryView(PermissionRequiredMixin, generic.DetailView):
             return HttpResponse(html)
 
         except Exception as e:
-            html = render_to_string(
-                "a4_candy_projects/_summary_error.html"
-            )
+            print(e)
+            html = render_to_string("a4_candy_projects/_summary_error.html")
             return HttpResponse(html)
-
