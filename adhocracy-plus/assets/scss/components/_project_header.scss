@@ -188,6 +188,13 @@
         width: 90%;
         margin: auto;
         padding: 1rem;
+        border: 1px solid gray;
+        border-radius: 0.375rem;
+    }
+
+    &__container:empty {
+        height: 0;
+        border: 0;
     }
 
     &__section-container {
