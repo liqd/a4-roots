@@ -46,7 +46,7 @@
                             </span>
                         </div>
                         <div>
-                            {% with module_obj=project.modules.all|get_module_by_id:module.module_id %}
+                            {% with module_obj=project.modules|get_module_by_id:module.module_id %}
                             <small class="text-muted">
                               {% trans 'Active participation' %}: {{ module_obj.module_start|date:"M d H:i" }} - {{ module_obj.module_end|date:"M d H:i" }}
                             </small>

@@ -43,6 +43,13 @@ def get_num_entries(module):
 
     return item_count
 
+
 @register.filter
 def get_module_by_id(queryset, id):
-    return queryset.filter(id=id).first()
+    """Get a module by ID from a queryset, return None if id is None or invalid"""
+    if not id:
+        return None
+    try:
+        return queryset.filter(id=id).first()
+    except (ValueError, TypeError):
+        return None
