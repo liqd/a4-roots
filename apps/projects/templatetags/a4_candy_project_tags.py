@@ -53,3 +53,23 @@ def get_module_by_id(queryset, id):
         return queryset.filter(id=id).first()
     except (ValueError, TypeError):
         return None
+
+
+@register.filter
+def module_image(module_name):
+    MODULE_IMAGES = {
+        "brainstorming": "images/brainstorming.svg",
+        "map-brainstorming": "images/map-brainstorming.svg",
+        "idea-collection": "images/agenda-setting.svg",
+        "idea-challenge": "images/agenda-setting.svg",
+        "map-idea-collection": "images/map-idea-collection.svg",
+        "map-idea-challenge": "images/map-idea-collection.svg",
+        "text-review": "images/text-review.svg",
+        "poll": "images/poll.svg",
+        "participatory-budgeting": "images/participatory-budgeting.svg",
+        "interactive-event": "images/live-discussion.svg",
+        "topic-prioritization": "images/priorization.svg",
+        "prioritization": "images/priorization.svg",
+        "debate": "images/debate.svg",
+    }
+    return MODULE_IMAGES.get(module_name.lower(), "images/default.svg")
