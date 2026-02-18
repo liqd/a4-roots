@@ -140,9 +140,7 @@
             
             <label for="provider">Provider:</label>
             <select name="provider" id="provider">
-                <option value="routerlab" {% if not provider or provider == "routerlab" %}selected{% endif %}>RouterLab (kimi-k2.5)</option>
-                <option value="ovhcloud" {% if provider == "ovhcloud" %}selected{% endif %}>OVHcloud</option>
-                <option value="openrouter" {% if provider == "openrouter" %}selected{% endif %}>OpenRouter</option>
+                <option value="ovhcloud" {% if not provider or provider == "ovhcloud" %}selected{% endif %}>OVHcloud</option>
                 <option value="mistral" {% if provider == "mistral" %}selected{% endif %}>Mistral</option>
             </select>
             

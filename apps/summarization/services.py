@@ -1,4 +1,5 @@
 """Service for text summarization using AI providers."""
+
 import json
 import logging
 from datetime import timedelta
@@ -35,21 +36,30 @@ class AIService:
         self, provider_handle: str = None, document_provider_handle: str = None
     ):
         """Initialize AI service."""
-        provider_handle = provider_handle or getattr(
-            settings, "AI_PROVIDER", "openrouter"
-        )
+        # Check if provider_handle is provided or configured in settings
+        if not provider_handle:
+            provider_handle = getattr(settings, "AI_PROVIDER", None)
+            if not provider_handle:
+                raise ValueError(
+                    "No provider configured. "
+                    "Either pass provider_handle to AIService() or set AI_PROVIDER in settings."
+                )
+
         # ProviderConfig loads configuration from settings automatically
         config = ProviderConfig.from_handle(provider_handle)
         self.provider = AIProvider(config)
 
-        document_provider_handle = document_provider_handle or getattr(
-            settings, "AI_DOCUMENT_PROVIDER", None
-        )
-        if document_provider_handle:
-            doc_config = ProviderConfig.from_handle(document_provider_handle)
-            self.document_provider = AIProvider(doc_config)
-        else:
-            self.document_provider = self.provider
+        # Check if document_provider_handle is provided or configured in settings
+        if not document_provider_handle:
+            document_provider_handle = getattr(settings, "AI_DOCUMENT_PROVIDER", None)
+            if not document_provider_handle:
+                raise ValueError(
+                    "No document provider configured. "
+                    "Either pass document_provider_handle to AIService() or set AI_DOCUMENT_PROVIDER in settings."
+                )
+
+        doc_config = ProviderConfig.from_handle(document_provider_handle)
+        self.document_provider = AIProvider(doc_config)
 
     def summarize(
         self,
@@ -74,10 +84,6 @@ class AIService:
     ) -> BaseModel:
         """Summarize text for a project with caching and rate limiting support."""
         request = SummaryRequest(text=text, prompt=prompt)
-<<<<<<< HEAD
-=======
-
->>>>>>> ae82e33b (apps/summerization: Correct (merging) Bugs)
         # Get the most recent summary for this project (single query for all checks)
         latest_project_summary = (
             ProjectSummary.objects.filter(project=project)

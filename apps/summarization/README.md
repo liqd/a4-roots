@@ -24,7 +24,7 @@ summary = service.summarize(text="Long text...")
 from apps.summarization.services import AIService
 from apps.summarization.pydantic_models import DocumentInputItem
 
-service = AIService(document_provider_handle="routerlab")
+service = AIService(document_provider_handle="mistral")
 
 # Prepare documents (PDFs, DOCX, images)
 documents = [
