@@ -20,11 +20,15 @@ def get_module_status(module):
     """
 
     # Use the existing queryset methods
-    if module.module_has_finished:
-        return "past"
-    elif module.active_phase:
-        return "active"
-    else:
+    try:
+        if module.module_has_finished:
+            return "past"
+        elif module.active_phase:
+            return "active"
+        else:
+            return "future"
+    except (TypeError, ValueError):
+        # Fallback if module_has_finished or active_phase fail due to None datetime values
         return "future"
 
 
@@ -33,9 +37,15 @@ def extract_attachments(text):
     if not text:
         return []
 
-    # Find all links containing /uploads/
-    pattern = r'href="([^"]*?/uploads/[^"]*?)"'
-    attachments = re.findall(pattern, text)
+    # Find all links containing /uploads/ (both href and src attributes)
+    pattern_href = r'href="([^"]*?/uploads/[^"]*?)"'
+    pattern_src = r'src="([^"]*?/uploads/[^"]*?)"'
+
+    attachments_href = re.findall(pattern_href, text)
+    attachments_src = re.findall(pattern_src, text)
+
+    # Combine and deduplicate
+    attachments = list(dict.fromkeys(attachments_href + attachments_src))
 
     return attachments
 
@@ -171,15 +181,27 @@ def restructure_by_module_status(export):
 
 def generate_full_export(project):
     """Generate complete project export data"""
+    description_attachments = extract_attachments(project.description)
+    information_attachments = (
+        extract_attachments(project.information)
+        if hasattr(project, "information")
+        else []
+    )
+    result_attachments = extract_attachments(project.result)
+
     export = {
         "project": {
             "name": project.name,
             "description": project.description,
-            "description_attachments": extract_attachments(project.description),
+            "description_attachments": description_attachments,
+            "information": (
+                project.information if hasattr(project, "information") else None
+            ),
+            "information_attachments": information_attachments,
             "slug": project.slug,
             "organisation": project.organisation.name,
             "result": project.result,
-            "result_attachments": extract_attachments(project.result),
+            "result_attachments": result_attachments,
             "url": project.get_absolute_url(),
         },
         "ideas": export_ideas_full(project),
@@ -407,6 +429,88 @@ def export_documents_full(project):
         )
 
     return documents_data
+
+
+def collect_document_attachments(export_data, request):
+    """
+    Collect all document attachments from project fields (information, result).
+
+    Args:
+        export_data: The full export dictionary (as returned by generate_full_export())
+        request: Django Request object for build_absolute_uri()
+
+    Returns:
+        tuple: (documents_dict, handle_to_source)
+            - documents_dict: {handle: absolute_url, ...}
+            - handle_to_source: {handle: "project_information" | "project_result", ...}
+    """
+    documents_dict = {}
+    handle_to_source = {}
+
+    project_data = export_data.get("project", {})
+
+    # Collect attachments from information field
+    information_attachments = project_data.get("information_attachments", [])
+    for attachment_index, attachment_url in enumerate(information_attachments):
+        handle = f"project_information_attachment_{attachment_index}"
+        absolute_url = request.build_absolute_uri(attachment_url)
+        documents_dict[handle] = absolute_url
+        handle_to_source[handle] = "project_information"
+
+    # Collect attachments from result field
+    result_attachments = project_data.get("result_attachments", [])
+    for attachment_index, attachment_url in enumerate(result_attachments):
+        handle = f"project_result_attachment_{attachment_index}"
+        absolute_url = request.build_absolute_uri(attachment_url)
+        documents_dict[handle] = absolute_url
+        handle_to_source[handle] = "project_result"
+
+    return documents_dict, handle_to_source
+
+
+def integrate_document_summaries(
+    export_data: dict,
+    document_summaries: list,
+    handle_to_source: dict[str, str],
+):
+    """
+    Integrate document summaries into export_data by project field source.
+
+    Args:
+        export_data: Export dictionary (modified in-place)
+        document_summaries: List of DocumentSummaryItem objects
+        handle_to_source: Mapping from handle to source field ("project_information", "project_result")
+    """
+    # Initialize document_summaries structure
+    project_summaries = {
+        "information": [],
+        "result": [],
+    }
+
+    # Group summaries by source field
+    for summary_item in document_summaries:
+        handle = summary_item.handle
+        source = handle_to_source.get(handle)
+
+        if source == "project_information":
+            project_summaries["information"].append(
+                {
+                    "handle": summary_item.handle,
+                    "summary": summary_item.summary,
+                }
+            )
+        elif source == "project_result":
+            project_summaries["result"].append(
+                {
+                    "handle": summary_item.handle,
+                    "summary": summary_item.summary,
+                }
+            )
+
+    # Integrate summaries into export_data
+    if "project" not in export_data:
+        export_data["project"] = {}
+    export_data["project"]["document_summaries"] = project_summaries
 
 
 def export_debates_full(project):

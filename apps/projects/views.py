@@ -1,5 +1,6 @@
 import itertools
 import json
+import logging
 
 from django.contrib import messages
 from django.contrib.auth import get_user_model
@@ -15,6 +16,7 @@ from django.utils.translation import ngettext
 from django.views import generic
 from rules.contrib.views import LoginRequiredMixin
 from rules.contrib.views import PermissionRequiredMixin
+from sentry_sdk import capture_exception
 
 from adhocracy4.dashboard import mixins as a4dashboard_mixins
 from adhocracy4.dashboard import signals as a4dashboard_signals
@@ -32,9 +34,13 @@ from apps.summarization.services import AIService
 from . import dashboard
 from . import forms
 from . import models
+from .export_utils import collect_document_attachments
 from .export_utils import generate_full_export
+from .export_utils import integrate_document_summaries
 
 User = get_user_model()
+
+logger = logging.getLogger(__name__)
 
 
 class ParticipantInviteDetailView(generic.DetailView):
@@ -367,6 +373,30 @@ class ProjectGenerateSummaryView(PermissionRequiredMixin, generic.DetailView):
 
         try:
             export_data = self._generate_export_data(project)
+
+            # Collect and summarize document attachments
+            documents_dict, handle_to_source = collect_document_attachments(
+                export_data, request
+            )
+
+            if documents_dict:
+                try:
+                    service = AIService()
+                    document_response = service.request_vision_dict(
+                        documents_dict=documents_dict
+                    )
+                    integrate_document_summaries(
+                        export_data,
+                        document_response.documents,
+                        handle_to_source,
+                    )
+                except Exception as e:
+                    logger.error(
+                        f"Failed to summarize documents for project {project.slug}: {str(e)}",
+                        exc_info=True,
+                    )
+                    capture_exception(e)
+
             json_text = json.dumps(export_data, indent=2)
 
             service = AIService()

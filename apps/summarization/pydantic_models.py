@@ -86,7 +86,7 @@ class ProjectSummaryResponse(BaseModel):
     """Response model for complete project summarization."""
 
     # Header
-    title: str = Field(default="Zusammenfassung der Beteiligung")
+    title: str = Field(default="Summary of participation")
 
     # Stats box
     stats: Stats = Field(description="Participation statistics")
@@ -107,4 +107,51 @@ class ProjectSummaryResponse(BaseModel):
     upcoming_modules: list[ModuleSummary] = Field(
         default_factory=list,
         description="Modules that are upcoming (phase_status='upcoming')",
+    )
+
+
+class DocumentInputItem(BaseModel):
+    """Single document input item with handle and URL."""
+
+    handle: str = Field(description="Unique identifier/handle for the document")
+    url: str = Field(description="URL of the document")
+
+    def is_image(self) -> bool:
+        """Check if the URL points to an image file."""
+        image_extensions = (
+            ".jpg",
+            ".jpeg",
+            ".png",
+            ".gif",
+            ".webp",
+            ".mpo",
+            ".heif",
+            ".avif",
+            ".bmp",
+            ".tiff",
+            ".tif",
+        )
+        url_lower = self.url.lower()
+        return any(url_lower.endswith(ext) for ext in image_extensions)
+
+    def is_document(self) -> bool:
+        """Check if the URL points to a document file (non-image)."""
+        document_extensions = (".pdf", ".doc", ".docx", ".txt", ".rtf", ".odt")
+        url_lower = self.url.lower()
+        return any(url_lower.endswith(ext) for ext in document_extensions)
+
+
+class DocumentSummaryItem(BaseModel):
+    """Response model for a single document summary with handle."""
+
+    handle: str = Field(description="Unique identifier/handle for the document")
+    summary: str = Field(description="Summary of the document content")
+
+
+class DocumentSummaryResponse(BaseModel):
+    """Response model for multiple document summaries."""
+
+    documents: list[DocumentSummaryItem] = Field(
+        default_factory=list,
+        description="List of document summaries, each with handle and summary",
     )

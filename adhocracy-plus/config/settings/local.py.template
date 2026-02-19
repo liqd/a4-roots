@@ -1,5 +1,3 @@
-import os
-
 # Prosopo Captcha Configuration
 # Get your keys from: https://docs.prosopo.io/en/basics/
 CAPTCHA = True #or False
@@ -8,30 +6,34 @@ PROSOPO_SECRET_KEY = "your_actual_secret_key_here"
 
 # Summarization service configuration
 # Configure AI providers for text summarization
-AI_PROVIDER = "ovhcloud"  # Default provider to use
+AI_PROVIDER = "ovhcloud"  # Default provider to use for text summarization
+AI_DOCUMENT_PROVIDER = "mistral"  # Default provider to use for document summarization
 SYSTEM_PROMPT = (
     "You are a helpful assistant that summarizes texts concisely. "
-    "Return structured JSON that matches the expected output format."
+    "Return structured JSON that matches the expected output format. You always answer in German"
 )  # System prompt for the AI agent
 
 AI_PROVIDERS = {
     "ovhcloud": {
-        "api_key": os.getenv("OVHCLOUD_API_KEY", ""),
+        "api_key": "your_ovhcloud_api_key_here",
         "model_name": "gpt-oss-120b",
         "base_url": "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1",
     },
+    # Vision LLM with images AND doc summarization possebilities
     "routerlab": {
-        "api_key": os.getenv("ROUTERLAB_API_KEY", ""),
+        "api_key": "your_routerlab_api_key_here",
         "model_name": "kimi-k2.5",
         "base_url": "https://routerlab.ch/v1",
+        "supports_documents": True,
     },
     "openrouter": {
-        "api_key": os.getenv("OPENROUTER_API_KEY", ""),
+        "api_key": "your_openrouter_api_key_here",
         "model_name": "deepseek/deepseek-chat",
         "base_url": "https://openrouter.ai/api/v1",
     },
-    "mistral": {
-        "api_key": os.getenv("MISTRAL_API_KEY", ""),
+    # Vision LLM with images but without doc summarization possebilities
+    "mistral": { 
+        "api_key": "your_mistral_api_key_here",
         "model_name": "mistral-large-latest",
         "base_url": "https://api.mistral.ai",
     }

@@ -133,17 +133,9 @@
             <label for="text">Text to summarize:</label>
             <textarea name="text" id="text">{{ text }}</textarea>
             
-            <label for="doc">Or upload a document/image:</label>
-            <input type="file" name="doc" id="doc" accept=".png,.jpg,.jpeg,.pdf">
-            <small class="file-hint">
-                Supported formats: PNG, JPG, JPEG, PDF (max 10MB)
-            </small>
-            
             <label for="provider">Provider:</label>
             <select name="provider" id="provider">
                 <option value="ovhcloud" {% if not provider or provider == "ovhcloud" %}selected{% endif %}>OVHcloud</option>
-                <option value="openrouter" {% if provider == "openrouter" %}selected{% endif %}>OpenRouter</option>
-                <option value="routerlab" {% if provider == "routerlab" %}selected{% endif %}>RouterLab</option>
                 <option value="mistral" {% if provider == "mistral" %}selected{% endif %}>Mistral</option>
             </select>
             
