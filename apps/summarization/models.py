@@ -2,6 +2,7 @@
 
 import hashlib
 
+from django.conf import settings
 from django.db import models
 from django.utils import timezone
 
@@ -70,3 +71,23 @@ class ProjectSummary(models.Model):
         return cls.objects.filter(
             project=project, prompt=prompt, input_text_hash=input_hash
         ).first()
+
+
+class SummaryFeedback(models.Model):
+    FEEDBACK_CHOICES = (
+        ("positive", "Positive"),
+        ("negative", "Negative"),
+    )
+
+    summary = models.ForeignKey(
+        "ProjectSummary", on_delete=models.CASCADE, related_name="feedback"
+    )
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True
+    )
+    feedback = models.CharField(max_length=10, choices=FEEDBACK_CHOICES)
+    session_key = models.CharField(max_length=40, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = [["summary", "user"], ["summary", "session_key"]]

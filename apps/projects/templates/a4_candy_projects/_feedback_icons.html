@@ -1,0 +1,20 @@
+{% load i18n %}
+<span class="summary-feedback">
+    <span>{% trans 'War diese Zusammenfassung hilfreich?' %}</span>
+    <button hx-post="{% url 'project-summary-feedback' organisation_slug=project.organisation.slug slug=project.slug %}" 
+            hx-vals='{"feedback": "positive", "summary_id": "{{ summary_id }}", "csrfmiddlewaretoken": "{{ csrf_token }}"}'
+            hx-target="closest .summary-feedback"
+            hx-swap="outerHTML"
+            class="feedback-btn {% if user_feedback == 'positive' %}active{% endif %}"
+            type="button">
+        <i class="fa-{% if user_feedback == 'positive' %}solid{% else %}regular{% endif %} fa-thumbs-up"></i>
+    </button>
+    <button hx-post="{% url 'project-summary-feedback' organisation_slug=project.organisation.slug slug=project.slug %}" 
+            hx-vals='{"feedback": "negative", "summary_id": "{{ summary_id }}", "csrfmiddlewaretoken": "{{ csrf_token }}"}'
+            hx-target="closest .summary-feedback"
+            hx-swap="outerHTML"
+            class="feedback-btn {% if user_feedback == 'negative' %}active{% endif %}"
+            type="button">
+        <i class="fa-{% if user_feedback == 'negative' %}solid{% else %}regular{% endif %} fa-thumbs-down"></i>
+    </button>
+</span>
