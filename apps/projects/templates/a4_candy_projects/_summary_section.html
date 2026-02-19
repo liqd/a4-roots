@@ -75,7 +75,9 @@
                             {% endif %}
                             <p class="summary__see-more">
                                 <span>
+                                    {% if module_obj %}
                                     <img class="tile__module-icon module-summary__icon" alt="{{ module.module_name }} icon" aria-hidden="true" src="{% static 'images/icon-'|add:module_obj.blueprint_type|lower|add:'.svg' %}" />
+                                    {% endif %}
                                     {% trans 'To see what happened in module' %} {{ module.module_name }}, 
                                     <a href="{{ module.link }}" class="small module-summary__link" target="_blank">{% trans 'click here' %}</a>
                                 </span>
