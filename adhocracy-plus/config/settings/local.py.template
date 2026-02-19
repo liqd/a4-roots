@@ -44,3 +44,6 @@ AI_PROVIDERS = {
 SUMMARIZATION_MAX_FILE_SIZE = 10 * 1024 * 1024
 # Allowed image file extensions for uploads
 SUMMARIZATION_ALLOWED_IMAGE_TYPES = [".png", ".jpg", ".jpeg", ".pdf"]
+# Maximum age in minutes for using cached summary as fallback on error (0 = disabled)
+# If a summary generation fails, a cached version will be used if it's not older than this value
+PROJECT_SUMMARY_FALLBACK_MAX_AGE_MINUTES = 60  # Use cached summary up to 60 minutes old on error

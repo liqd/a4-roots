@@ -72,6 +72,87 @@ class AIService:
         response = self.provider.request(request, result_type=result_type)
         return response
 
+    def _check_cache_and_rate_limits(
+        self, project, text: str, latest_project_summary
+    ) -> ProjectSummaryResponse | None:
+        """Check cache and rate limits, return cached summary if applicable."""
+        if not latest_project_summary:
+            return None
+
+        # Check 1: Exact content match
+        current_hash = ProjectSummary.compute_hash(text)
+        if latest_project_summary.input_text_hash == current_hash:
+            logger.debug(
+                f"Cached summary found (exact match via hash comparison) for project {project.id}"
+            )
+            return ProjectSummaryResponse(**latest_project_summary.response_data)
+
+        # Check 2: Per-project rate limiting
+        time_since_last = timezone.now() - latest_project_summary.created_at
+        if time_since_last < timedelta(minutes=PROJECT_SUMMARY_RATE_LIMIT_MINUTES):
+            logger.debug(
+                f"Using rate-limited summary from {latest_project_summary.created_at} "
+                f"(within {PROJECT_SUMMARY_RATE_LIMIT_MINUTES} min per project) for project {project.id}"
+            )
+            return ProjectSummaryResponse(**latest_project_summary.response_data)
+
+        # Check 3: Global rate limiting
+        if time_since_last < timedelta(hours=1):
+            global_limit_time = timezone.now() - timedelta(hours=1)
+            recent_global_count = ProjectSummary.objects.filter(
+                created_at__gte=global_limit_time
+            ).count()
+
+            if recent_global_count >= SUMMARY_GLOBAL_LIMIT_PER_HOUR:
+                logger.debug(
+                    f"Global rate limit reached ({recent_global_count}/{SUMMARY_GLOBAL_LIMIT_PER_HOUR} in last hour), "
+                    f"using most recent summary from {latest_project_summary.created_at} for project {project.id}"
+                )
+                return ProjectSummaryResponse(**latest_project_summary.response_data)
+
+        return None
+
+    def _try_fallback_cache(
+        self, latest_project_summary
+    ) -> ProjectSummaryResponse | None:
+        """Try to use cached fallback on error."""
+        fallback_max_age_minutes = getattr(
+            settings, "PROJECT_SUMMARY_FALLBACK_MAX_AGE_MINUTES", 0
+        )
+        logger.debug(
+            f"Fallback check: max_age_minutes={fallback_max_age_minutes}, "
+            f"latest_project_summary exists={latest_project_summary is not None}"
+        )
+
+        if fallback_max_age_minutes == 0:
+            logger.debug("Fallback disabled (max_age_minutes=0)")
+            return None
+
+        if not latest_project_summary:
+            logger.debug("No cached summary available for fallback")
+            return None
+
+        time_since_cached = timezone.now() - latest_project_summary.created_at
+        max_age = timedelta(minutes=fallback_max_age_minutes)
+        age_minutes = time_since_cached.total_seconds() / 60
+
+        logger.debug(
+            f"Fallback age check: {age_minutes:.1f} min <= {fallback_max_age_minutes} min? "
+            f"{age_minutes <= fallback_max_age_minutes}"
+        )
+
+        if time_since_cached <= max_age:
+            logger.debug(
+                f"Using cached fallback summary from {latest_project_summary.created_at} "
+                f"(age: {age_minutes:.1f} min, max: {fallback_max_age_minutes} min)"
+            )
+            return ProjectSummaryResponse(**latest_project_summary.response_data)
+        else:
+            logger.debug(
+                f"Cached summary too old ({age_minutes:.1f} min > {fallback_max_age_minutes} min) - not using fallback"
+            )
+        return None
+
     def project_summarize(
         self,
         project,
@@ -84,63 +165,53 @@ class AIService:
     ) -> BaseModel:
         """Summarize text for a project with caching and rate limiting support."""
         request = SummaryRequest(text=text, prompt=prompt)
-        # Get the most recent summary for this project (single query for all checks)
         latest_project_summary = (
             ProjectSummary.objects.filter(project=project)
             .order_by("-created_at")
             .first()
         )
-        # Only proceed with cache/rate limit checks if project has existing summaries
-        if is_rate_limit and latest_project_summary:
-            # Check 1: Exact content match
-            current_hash = ProjectSummary.compute_hash(text)
-            if latest_project_summary.input_text_hash == current_hash:
-                print(
-                    "****** Cached summary found (exact match via hash comparison) ******"
-                )
-                return ProjectSummaryResponse(**latest_project_summary.response_data)
 
-            # Check 2: Per-project rate limiting
-            time_since_last = timezone.now() - latest_project_summary.created_at
-            if time_since_last < timedelta(minutes=PROJECT_SUMMARY_RATE_LIMIT_MINUTES):
-                print(
-                    f"****** Using rate-limited summary from {latest_project_summary.created_at} (within {PROJECT_SUMMARY_RATE_LIMIT_MINUTES} min per project) ******"
-                )
-                return ProjectSummaryResponse(**latest_project_summary.response_data)
-
-            # Check 3: Global rate limiting - only if project was last summarized in the last hour
-            if time_since_last < timedelta(hours=1):
-                global_limit_time = timezone.now() - timedelta(hours=1)
-                recent_global_count = ProjectSummary.objects.filter(
-                    created_at__gte=global_limit_time
-                ).count()
-
-                if recent_global_count >= SUMMARY_GLOBAL_LIMIT_PER_HOUR:
-                    print(
-                        f"****** Global rate limit reached ({recent_global_count}/{SUMMARY_GLOBAL_LIMIT_PER_HOUR} in last hour) ******"
-                    )
-                    print(
-                        f"****** Using most recent summary from {latest_project_summary.created_at} ******"
-                    )
-                    return ProjectSummaryResponse(
-                        **latest_project_summary.response_data
-                    )
-
-        # No existing summary OR all cache/rate limit checks passed - generate new summary
-        print("****** Generating new summary ******")
-        print(f"Prompt: {request.prompt()[:500]}...")
-        response = self.provider.request(request, result_type=result_type)
-
-        # Save to cache if result is ProjectSummaryResponse
-        if isinstance(response, ProjectSummaryResponse):
-            print(" ------------------ >>>>>>>>>>. CREATED THE PROJECT SUMMARY")
-            ProjectSummary.objects.create(
-                project=project,
-                prompt=request.prompt_text,
-                input_text_hash=ProjectSummary.compute_hash(text),
-                response_data=json.loads(response.model_dump_json()),
+        # Check cache and rate limits
+        if is_rate_limit:
+            cached_response = self._check_cache_and_rate_limits(
+                project, text, latest_project_summary
             )
-        return response
+            if cached_response:
+                return cached_response
+
+        # Generate new summary
+        logger.info(f"Generating new summary for project {project.id} ({project.slug})")
+        logger.debug(f"Prompt preview: {request.prompt()[:500]}...")
+        try:
+            response = self.provider.request(request, result_type=result_type)
+
+            if isinstance(response, ProjectSummaryResponse):
+                logger.info(
+                    f"Created new project summary for project {project.id} ({project.slug})"
+                )
+                ProjectSummary.objects.create(
+                    project=project,
+                    prompt=request.prompt_text,
+                    input_text_hash=ProjectSummary.compute_hash(text),
+                    response_data=json.loads(response.model_dump_json()),
+                )
+            return response
+        except Exception as e:
+            logger.error(
+                f"Error during summary generation for project {project.id} ({project.slug}): {str(e)} - NOT CACHING",
+                exc_info=True,
+            )
+            capture_exception(e)
+            fallback_response = self._try_fallback_cache(latest_project_summary)
+            if fallback_response:
+                logger.info(
+                    f"Using fallback cache for project {project.id} after error"
+                )
+                return fallback_response
+            logger.warning(
+                f"Re-raising exception - no valid fallback available for project {project.id}"
+            )
+            raise
 
     def request_vision(
         self,

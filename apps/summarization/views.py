@@ -12,7 +12,6 @@ class SummarizationTestView(View):
 
     def get(self, request):
         """Display test form."""
-        # Use multimodal default prompt as it's more general
         default_prompt = SummaryRequest.DEFAULT_PROMPT
         context = {
             "default_prompt": default_prompt,

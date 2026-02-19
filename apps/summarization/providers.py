@@ -1,5 +1,6 @@
 """Provider implementation for AI services."""
 
+import logging
 from abc import ABC
 
 from django.conf import settings
@@ -10,6 +11,9 @@ from pydantic_ai.models.mistral import MistralModel
 from pydantic_ai.models.openai import OpenAIChatModel
 from pydantic_ai.providers.mistral import MistralProvider
 from pydantic_ai.providers.openai import OpenAIProvider
+from sentry_sdk import capture_exception
+
+logger = logging.getLogger(__name__)
 
 
 class ProviderConfig:
@@ -176,12 +180,20 @@ class AIProvider:
             tools=[],  # Disable tool_calls to avoid validation errors with non-standard providers
         )
 
-        result = agent.run_sync(request.prompt())
-        response = result.output
+        try:
+            result = agent.run_sync(request.prompt())
+            response = result.output
 
-        self._set_provider_handle(response)
+            self._set_provider_handle(response)
 
-        return response
+            return response
+        except Exception as e:
+            logger.error(
+                f"AI text request failed with provider {self.config.handle} (model: {self.config.model_name}): {str(e)}",
+                exc_info=True,
+            )
+            capture_exception(e)
+            raise
 
     def request(self, request: AIRequest, result_type: type[BaseModel]) -> BaseModel:
         """
@@ -263,9 +275,18 @@ class AIProvider:
         for url in filtered_urls:
             user_content.append(ImageUrl(url=url))
 
-        result = agent.run_sync(user_content)
-        response = result.output
+        try:
+            result = agent.run_sync(user_content)
+            response = result.output
 
-        self._set_provider_handle(response)
+            self._set_provider_handle(response)
 
-        return response
+            return response
+        except Exception as e:
+            logger.error(
+                f"AI multimodal request failed with provider {self.config.handle} (model: {self.config.model_name}, "
+                f"images: {len(filtered_urls)}): {str(e)}",
+                exc_info=True,
+            )
+            capture_exception(e)
+            raise
