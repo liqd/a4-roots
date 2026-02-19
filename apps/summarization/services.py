@@ -82,16 +82,17 @@ class AIService:
         # Check 1: Exact content match
         current_hash = ProjectSummary.compute_hash(text)
         if latest_project_summary.input_text_hash == current_hash:
-            print(
-                "****** Cached summary found (exact match via hash comparison) ******"
+            logger.debug(
+                f"Cached summary found (exact match via hash comparison) for project {project.id}"
             )
             return ProjectSummaryResponse(**latest_project_summary.response_data)
 
         # Check 2: Per-project rate limiting
         time_since_last = timezone.now() - latest_project_summary.created_at
         if time_since_last < timedelta(minutes=PROJECT_SUMMARY_RATE_LIMIT_MINUTES):
-            print(
-                f"****** Using rate-limited summary from {latest_project_summary.created_at} (within {PROJECT_SUMMARY_RATE_LIMIT_MINUTES} min per project) ******"
+            logger.debug(
+                f"Using rate-limited summary from {latest_project_summary.created_at} "
+                f"(within {PROJECT_SUMMARY_RATE_LIMIT_MINUTES} min per project) for project {project.id}"
             )
             return ProjectSummaryResponse(**latest_project_summary.response_data)
 
@@ -103,11 +104,9 @@ class AIService:
             ).count()
 
             if recent_global_count >= SUMMARY_GLOBAL_LIMIT_PER_HOUR:
-                print(
-                    f"****** Global rate limit reached ({recent_global_count}/{SUMMARY_GLOBAL_LIMIT_PER_HOUR} in last hour) ******"
-                )
-                print(
-                    f"****** Using most recent summary from {latest_project_summary.created_at} ******"
+                logger.debug(
+                    f"Global rate limit reached ({recent_global_count}/{SUMMARY_GLOBAL_LIMIT_PER_HOUR} in last hour), "
+                    f"using most recent summary from {latest_project_summary.created_at} for project {project.id}"
                 )
                 return ProjectSummaryResponse(**latest_project_summary.response_data)
 
@@ -120,37 +119,37 @@ class AIService:
         fallback_max_age_minutes = getattr(
             settings, "PROJECT_SUMMARY_FALLBACK_MAX_AGE_MINUTES", 0
         )
-        print(
-            f"****** Fallback check: max_age_minutes={fallback_max_age_minutes}, "
-            f"latest_project_summary exists={latest_project_summary is not None} ******"
+        logger.debug(
+            f"Fallback check: max_age_minutes={fallback_max_age_minutes}, "
+            f"latest_project_summary exists={latest_project_summary is not None}"
         )
 
         if fallback_max_age_minutes == 0:
-            print("****** Fallback disabled (max_age_minutes=0) ******")
+            logger.debug("Fallback disabled (max_age_minutes=0)")
             return None
 
         if not latest_project_summary:
-            print("****** No cached summary available for fallback ******")
+            logger.debug("No cached summary available for fallback")
             return None
 
         time_since_cached = timezone.now() - latest_project_summary.created_at
         max_age = timedelta(minutes=fallback_max_age_minutes)
         age_minutes = time_since_cached.total_seconds() / 60
 
-        print(
-            f"****** Fallback age check: {age_minutes:.1f} min <= {fallback_max_age_minutes} min? "
-            f"{age_minutes <= fallback_max_age_minutes} ******"
+        logger.debug(
+            f"Fallback age check: {age_minutes:.1f} min <= {fallback_max_age_minutes} min? "
+            f"{age_minutes <= fallback_max_age_minutes}"
         )
 
         if time_since_cached <= max_age:
-            print(
-                f"****** Using cached fallback summary from {latest_project_summary.created_at} "
-                f"(age: {age_minutes:.1f} min, max: {fallback_max_age_minutes} min) ******"
+            logger.debug(
+                f"Using cached fallback summary from {latest_project_summary.created_at} "
+                f"(age: {age_minutes:.1f} min, max: {fallback_max_age_minutes} min)"
             )
             return ProjectSummaryResponse(**latest_project_summary.response_data)
         else:
-            print(
-                f"****** Cached summary too old ({age_minutes:.1f} min > {fallback_max_age_minutes} min) - not using fallback ******"
+            logger.debug(
+                f"Cached summary too old ({age_minutes:.1f} min > {fallback_max_age_minutes} min) - not using fallback"
             )
         return None
 
@@ -181,13 +180,15 @@ class AIService:
                 return cached_response
 
         # Generate new summary
-        print("****** Generating new summary ******")
-        print(f"Prompt: {request.prompt()[:500]}...")
+        logger.info(f"Generating new summary for project {project.id} ({project.slug})")
+        logger.debug(f"Prompt preview: {request.prompt()[:500]}...")
         try:
             response = self.provider.request(request, result_type=result_type)
 
             if isinstance(response, ProjectSummaryResponse):
-                print(" ------------------ >>>>>>>>>>. CREATED THE PROJECT SUMMARY")
+                logger.info(
+                    f"Created new project summary for project {project.id} ({project.slug})"
+                )
                 ProjectSummary.objects.create(
                     project=project,
                     prompt=request.prompt_text,
@@ -196,11 +197,20 @@ class AIService:
                 )
             return response
         except Exception as e:
-            print(f"****** Error during summary generation: {e} - NOT CACHING ******")
+            logger.error(
+                f"Error during summary generation for project {project.id} ({project.slug}): {str(e)} - NOT CACHING",
+                exc_info=True,
+            )
+            capture_exception(e)
             fallback_response = self._try_fallback_cache(latest_project_summary)
             if fallback_response:
+                logger.info(
+                    f"Using fallback cache for project {project.id} after error"
+                )
                 return fallback_response
-            print("****** Re-raising exception - no valid fallback available ******")
+            logger.warning(
+                f"Re-raising exception - no valid fallback available for project {project.id}"
+            )
             raise
 
     def request_vision(

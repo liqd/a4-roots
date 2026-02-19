@@ -417,8 +417,8 @@ class ProjectGenerateSummaryView(PermissionRequiredMixin, generic.DetailView):
 
     def get(self, request, *args, **kwargs):
         project = self.get_object()
-        print(
-            f"****** ProjectGenerateSummaryView: Starting summary for project {project.id} ({project.slug}) ******"
+        logger.info(
+            f"ProjectGenerateSummaryView: Starting summary for project {project.id} ({project.slug})"
         )
 
         try:
@@ -426,8 +426,8 @@ class ProjectGenerateSummaryView(PermissionRequiredMixin, generic.DetailView):
             self._process_documents(export_data, request, project)
 
             json_text = json.dumps(export_data, indent=2)
-            print(
-                f"****** ProjectGenerateSummaryView: Export data generated ({len(json_text)} chars), calling project_summarize ******"
+            logger.debug(
+                f"ProjectGenerateSummaryView: Export data generated ({len(json_text)} chars), calling project_summarize"
             )
 
             service = AIService()
@@ -443,8 +443,8 @@ class ProjectGenerateSummaryView(PermissionRequiredMixin, generic.DetailView):
                     "created_at"
                 )
             except ProjectSummary.DoesNotExist:
-                print(
-                    "****** No summary found in DB, but response available - using response directly ******"
+                logger.debug(
+                    "No summary found in DB, but response available - using response directly"
                 )
                 summary = None
 
@@ -459,14 +459,18 @@ class ProjectGenerateSummaryView(PermissionRequiredMixin, generic.DetailView):
                     "user_feedback": user_feedback,
                 },
             )
-            print(
-                f"****** ProjectGenerateSummaryView: Summary completed successfully for project {project.id} ******"
+            logger.info(
+                f"ProjectGenerateSummaryView: Summary completed successfully for project {project.id}"
             )
 
             return HttpResponse(html)
 
         except Exception as e:
-            print(e)
+            logger.error(
+                f"Failed to generate summary for project {project.id} ({project.slug}): {str(e)}",
+                exc_info=True,
+            )
+            capture_exception(e)
             html = render_to_string("a4_candy_projects/_summary_error.html")
             return HttpResponse(html)
 
