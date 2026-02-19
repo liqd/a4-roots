@@ -8,12 +8,16 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
+from django.shortcuts import render
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
 from django.utils.translation import ngettext
+from django.views import View
 from django.views import generic
+from django.views.decorators.csrf import csrf_exempt
 from rules.contrib.views import LoginRequiredMixin
 from rules.contrib.views import PermissionRequiredMixin
 from sentry_sdk import capture_exception
@@ -28,6 +32,8 @@ from adhocracy4.projects.mixins import PhaseDispatchMixin
 from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.projects.mixins import ProjectModuleDispatchMixin
 from apps.projects.models import ProjectInsight
+from apps.summarization.models import ProjectSummary
+from apps.summarization.models import SummaryFeedback
 from apps.summarization.pydantic_models import ProjectSummaryResponse
 from apps.summarization.services import AIService
 
@@ -407,12 +413,29 @@ class ProjectGenerateSummaryView(PermissionRequiredMixin, generic.DetailView):
                 is_rate_limit=True,
             )
 
-            # Render HTML fragment
+            summary = ProjectSummary.objects.filter(project=project).latest(
+                "created_at"
+            )
+
+            user_feedback = None
+            if request.user.is_authenticated:
+                fb = SummaryFeedback.objects.filter(
+                    summary=summary, user=request.user
+                ).first()
+                user_feedback = fb.feedback if fb else None
+            elif request.session.session_key:
+                fb = SummaryFeedback.objects.filter(
+                    summary=summary, session_key=request.session.session_key
+                ).first()
+                user_feedback = fb.feedback if fb else None
+
             html = render_to_string(
                 "a4_candy_projects/_summary_fragment.html",
                 {
                     "response": response,
                     "project": project,
+                    "summary_id": summary.id,
+                    "user_feedback": user_feedback,
                 },
             )
 
@@ -422,3 +445,38 @@ class ProjectGenerateSummaryView(PermissionRequiredMixin, generic.DetailView):
             print(e)
             html = render_to_string("a4_candy_projects/_summary_error.html")
             return HttpResponse(html)
+
+
+@method_decorator(csrf_exempt, name="dispatch")
+class SummaryFeedbackView(View):
+    def post(self, request, organisation_slug, slug):
+        project = get_object_or_404(models.Project, slug=slug)
+        summary_id = request.POST.get("summary_id")
+        feedback = request.POST.get("feedback")
+
+        if feedback not in ["positive", "negative"] or not summary_id:
+            return HttpResponse("Invalid request", status=400)
+
+        summary = get_object_or_404(ProjectSummary, id=summary_id, project=project)
+
+        user = request.user if request.user.is_authenticated else None
+        session_key = request.session.session_key
+
+        # Delete previous feedback
+        if user:
+            SummaryFeedback.objects.filter(summary=summary, user=user).delete()
+        elif session_key:
+            SummaryFeedback.objects.filter(
+                summary=summary, session_key=session_key
+            ).delete()
+
+        # Create new feedback
+        SummaryFeedback.objects.create(
+            summary=summary, user=user, feedback=feedback, session_key=session_key
+        )
+
+        return render(
+            request,
+            "a4_candy_projects/_feedback_icons.html",
+            {"user_feedback": feedback, "summary_id": summary_id, "project": project},
+        )

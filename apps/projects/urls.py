@@ -45,6 +45,11 @@ urlpatterns = [
         views.ProjectGenerateSummaryView.as_view(),
         name="project-generate-summary",
     ),
+    re_path(
+        r"^(?P<slug>[-\w_]+)/summary-feedback/$",
+        views.SummaryFeedbackView.as_view(),
+        name="project-summary-feedback",
+    ),
 ]
 
 urlpatterns += a4_projects_urls
