@@ -1,3 +1,6 @@
+import json
+from types import SimpleNamespace
+
 from django.shortcuts import render
 from django.views import View
 
@@ -33,6 +36,51 @@ class SummarizationTestView(View):
         except Exception as e:
             return None, 0, str(e)
 
+    def _extract_project_from_json(self, text: str):
+        """Extract project information from JSON text if available."""
+        try:
+            data = json.loads(text)
+            if isinstance(data, dict) and "project" in data:
+                project_data = data["project"]
+                # Create a simple mock project object with needed attributes
+                project = SimpleNamespace()
+                project.slug = project_data.get("slug", "test-project")
+                project.pk = project_data.get("id", 1)
+                project.result = project_data.get("result", "")
+                project.name = project_data.get("name", "Test Project")
+
+                # Create mock organisation
+                org = SimpleNamespace()
+                org_data = project_data.get("organisation", "test-org")
+                if isinstance(org_data, dict):
+                    org.slug = org_data.get("slug", "test-org")
+                else:
+                    # If organisation is just a string (name), use it as slug
+                    org.slug = str(org_data).lower().replace(" ", "-")
+                project.organisation = org
+
+                # Mock get_absolute_url method
+                def get_absolute_url():
+                    return f"/projects/{project.slug}/"
+
+                project.get_absolute_url = get_absolute_url
+
+                # Mock modules queryset for _summary_section.html
+                # The template uses project.modules|get_module_by_id filter
+                class MockModules:
+                    def filter(self, id=None):
+                        return self
+
+                    def first(self):
+                        return None
+
+                project.modules = MockModules()
+
+                return project
+        except (json.JSONDecodeError, KeyError, AttributeError):
+            pass
+        return None
+
     def post(self, request):
         """Process summarization request."""
         text = request.POST.get("text", "")
@@ -47,9 +95,15 @@ class SummarizationTestView(View):
             "summary_response": None,
             "error": None,
             "original_length": 0,
+            "project": None,
         }
 
         if text:
+            # Try to extract project from JSON
+            project = self._extract_project_from_json(text)
+            if project:
+                context["project"] = project
+
             response, original_length, error = self._handle_text_request(
                 text, prompt, provider_handle
             )
