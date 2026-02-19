@@ -1,6 +1,6 @@
 {% load i18n %}
 <span class="summary-feedback">
-    <span>{% trans 'War diese Zusammenfassung hilfreich?' %}</span>
+    <span>{% trans 'Was this summary helpful?' %}</span>
     <button hx-post="{% url 'project-summary-feedback' organisation_slug=project.organisation.slug slug=project.slug %}" 
             hx-vals='{"feedback": "positive", "summary_id": "{{ summary_id }}", "csrfmiddlewaretoken": "{{ csrf_token }}"}'
             hx-target="closest .summary-feedback"
