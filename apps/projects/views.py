@@ -374,36 +374,61 @@ class ProjectGenerateSummaryView(PermissionRequiredMixin, generic.DetailView):
         export_data = generate_full_export(project)
         return export_data
 
+    def _process_documents(self, export_data, request, project):
+        """Process and summarize document attachments."""
+        documents_dict, handle_to_source = collect_document_attachments(
+            export_data, request
+        )
+
+        if documents_dict:
+            try:
+                service = AIService()
+                document_response = service.request_vision_dict(
+                    documents_dict=documents_dict
+                )
+                integrate_document_summaries(
+                    export_data,
+                    document_response.documents,
+                    handle_to_source,
+                )
+            except Exception as e:
+                logger.error(
+                    f"Failed to summarize documents for project {project.slug}: {str(e)}",
+                    exc_info=True,
+                )
+                capture_exception(e)
+
+    def _get_user_feedback(self, summary, request):
+        """Get user feedback for summary."""
+        if not summary:
+            return None
+
+        if request.user.is_authenticated:
+            fb = SummaryFeedback.objects.filter(
+                summary=summary, user=request.user
+            ).first()
+            return fb.feedback if fb else None
+        elif request.session.session_key:
+            fb = SummaryFeedback.objects.filter(
+                summary=summary, session_key=request.session.session_key
+            ).first()
+            return fb.feedback if fb else None
+        return None
+
     def get(self, request, *args, **kwargs):
         project = self.get_object()
+        print(
+            f"****** ProjectGenerateSummaryView: Starting summary for project {project.id} ({project.slug}) ******"
+        )
 
         try:
             export_data = self._generate_export_data(project)
-
-            # Collect and summarize document attachments
-            documents_dict, handle_to_source = collect_document_attachments(
-                export_data, request
-            )
-
-            if documents_dict:
-                try:
-                    service = AIService()
-                    document_response = service.request_vision_dict(
-                        documents_dict=documents_dict
-                    )
-                    integrate_document_summaries(
-                        export_data,
-                        document_response.documents,
-                        handle_to_source,
-                    )
-                except Exception as e:
-                    logger.error(
-                        f"Failed to summarize documents for project {project.slug}: {str(e)}",
-                        exc_info=True,
-                    )
-                    capture_exception(e)
+            self._process_documents(export_data, request, project)
 
             json_text = json.dumps(export_data, indent=2)
+            print(
+                f"****** ProjectGenerateSummaryView: Export data generated ({len(json_text)} chars), calling project_summarize ******"
+            )
 
             service = AIService()
             response = service.project_summarize(
@@ -413,30 +438,29 @@ class ProjectGenerateSummaryView(PermissionRequiredMixin, generic.DetailView):
                 is_rate_limit=True,
             )
 
-            summary = ProjectSummary.objects.filter(project=project).latest(
-                "created_at"
-            )
+            try:
+                summary = ProjectSummary.objects.filter(project=project).latest(
+                    "created_at"
+                )
+            except ProjectSummary.DoesNotExist:
+                print(
+                    "****** No summary found in DB, but response available - using response directly ******"
+                )
+                summary = None
 
-            user_feedback = None
-            if request.user.is_authenticated:
-                fb = SummaryFeedback.objects.filter(
-                    summary=summary, user=request.user
-                ).first()
-                user_feedback = fb.feedback if fb else None
-            elif request.session.session_key:
-                fb = SummaryFeedback.objects.filter(
-                    summary=summary, session_key=request.session.session_key
-                ).first()
-                user_feedback = fb.feedback if fb else None
+            user_feedback = self._get_user_feedback(summary, request)
 
             html = render_to_string(
                 "a4_candy_projects/_summary_fragment.html",
                 {
                     "response": response,
                     "project": project,
-                    "summary_id": summary.id,
+                    "summary_id": summary.id if summary else None,
                     "user_feedback": user_feedback,
                 },
+            )
+            print(
+                f"****** ProjectGenerateSummaryView: Summary completed successfully for project {project.id} ******"
             )
 
             return HttpResponse(html)
