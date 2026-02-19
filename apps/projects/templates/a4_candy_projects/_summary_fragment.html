@@ -54,23 +54,27 @@
         </div>
         {% endif %}
 
-        {% if response.past_modules %}
-            {% include "a4_candy_projects/_summary_section.html" with project=project modules=response.past_modules id="pastModules" %}
-        {% endif %}
+        {% if project %}
+            {% if response.past_modules %}
+                {% include "a4_candy_projects/_summary_section.html" with project=project modules=response.past_modules id="pastModules" %}
+            {% endif %}
 
-        {% if response.current_modules %}
-            {% include "a4_candy_projects/_summary_section.html" with project=project modules=response.current_modules id="currentModules" %}
-        {% endif %}
+            {% if response.current_modules %}
+                {% include "a4_candy_projects/_summary_section.html" with project=project modules=response.current_modules id="currentModules" %}
+            {% endif %}
 
-        {% if response.upcoming_modules %}
-            {% include "a4_candy_projects/_summary_section.html" with project=project modules=response.upcoming_modules id="upcomingModules" %}
+            {% if response.upcoming_modules %}
+                {% include "a4_candy_projects/_summary_section.html" with project=project modules=response.upcoming_modules id="upcomingModules" %}
+            {% endif %}
         {% endif %}
 
         <!-- Feedback -->
+        {% if project %}
         <hr class="my-4">
         <div class="d-flex justify-content-between align-items-center text-muted small">
             <span><i class="fa fa-arrows-rotate"></i>{% trans 'Refresh' %}</span>
             {% include "a4_candy_projects/_feedback_icons.html" with summary_id=summary_id user_feedback=user_feedback %}
          </div>
+        {% endif %}
     </div>
 </div>
