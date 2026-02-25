@@ -6,11 +6,9 @@ from datetime import timedelta
 from celery import shared_task
 from django.conf import settings
 from django.utils import timezone
-
 from sentry_sdk import capture_exception
 
 from adhocracy4.projects.models import Project
-
 from apps.summarization.models import ProjectSummary
 
 from .utils import generate_project_summary
@@ -27,7 +25,9 @@ def generate_project_summary_task(project_id):
     try:
         project = Project.objects.filter(pk=project_id).first()
         if not project:
-            logger.warning("generate_project_summary_task: project %s not found", project_id)
+            logger.warning(
+                "generate_project_summary_task: project %s not found", project_id
+            )
             return
         base_url = getattr(settings, "WAGTAILADMIN_BASE_URL", None)
         generate_project_summary(project, request=None, base_url=base_url)
@@ -56,17 +56,17 @@ def refresh_project_summaries():
         settings, "PROJECT_SUMMARY_AUTO_REFRESH_MAX_AGE_MINUTES", 12 * 60
     )
     max_per_run = getattr(
-        settings, "PROJECT_SUMMARY_AUTO_REFRESH_MAX_PROJECTS_PER_RUN", 50
+        settings, "PROJECT_SUMMARY_AUTO_REFRESH_MAX_PROJECTS_PER_RUN", 0
     )
     cutoff = timezone.now() - timedelta(minutes=max_age_minutes)
 
-    projects = Project.objects.filter(
-        is_draft=False, is_app_accessible=True
-    ).order_by("pk")
+    projects = Project.objects.filter(is_draft=False, is_app_accessible=True).order_by(
+        "pk"
+    )
 
     enqueued = 0
     for project in projects:
-        if enqueued >= max_per_run:
+        if max_per_run > 0 and enqueued >= max_per_run:
             break
         latest = (
             ProjectSummary.objects.filter(project=project)

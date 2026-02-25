@@ -8,9 +8,10 @@ from django.test import override_settings
 from django.utils import timezone
 
 from adhocracy4.projects.models import Project
-
 from apps.summarization.models import ProjectSummary
-from apps.summarization.pydantic_models import ProjectSummaryResponse, Stats
+from apps.summarization.providers import ProviderConfig
+from apps.summarization.pydantic_models import ProjectSummaryResponse
+from apps.summarization.pydantic_models import Stats
 from apps.summarization.services import AIService
 
 
@@ -46,20 +47,34 @@ def test_project_summarize_uses_fallback_cache_on_error_when_within_max_age(
     )
     assert latest is not None
 
-    service = AIService()
+    # Create AIService instance without relying on AI_PROVIDER / AI_PROVIDERS from settings.
+    dummy_config = ProviderConfig(
+        api_key="dummy",
+        model_name="dummy-model",
+        base_url="https://example.com",
+        handle="dummy",
+        supports_images=True,
+        supports_documents=True,
+    )
+    with patch(
+        "apps.summarization.services.ProviderConfig.from_handle",
+        return_value=dummy_config,
+    ):
+        service = AIService(provider_handle="dummy", document_provider_handle="dummy")
 
     # Force the provider to fail so that project_summarize must use the fallback.
-    with patch.object(service.provider, "request", side_effect=RuntimeError("API down")):
+    with patch.object(
+        service.provider, "request", side_effect=RuntimeError("API down")
+    ):
         response = service.project_summarize(
             project=project,
             text="dummy-input",
             prompt=None,
             result_type=ProjectSummaryResponse,
-            # Rate-limit-Cache explizit überspringen, wir wollen den Error-/Fallback-Pfad testen.
+            # Skip rate-limit cache; we want to hit the error/fallback path.
             is_rate_limit=False,
         )
 
     assert isinstance(response, ProjectSummaryResponse)
     assert response.general_summary == "cached summary"
     assert response.stats == Stats(participants=1, contributions=2, modules=3)
-

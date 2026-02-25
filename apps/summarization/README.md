@@ -69,7 +69,8 @@ venv/bin/python apps/summarization/test_summarization.py --provider openrouter
 - `AI_PROVIDER` / `AI_DOCUMENT_PROVIDER`: Default providers for text and document summarization (see `local.py.template`).
 - `PROJECT_SUMMARY_FALLBACK_MAX_AGE_MINUTES`: Maximum age (in minutes) for using an existing project summary as a fallback when a new generation fails (0 = disabled).
 - `PROJECT_SUMMARY_AUTO_REFRESH_MAX_AGE_MINUTES`: Maximum age (in minutes) before the periodic job (`refresh_project_summaries`) is allowed to generate a new project summary.
-- `PROJECT_SUMMARY_AUTO_REFRESH_MAX_PROJECTS_PER_RUN`: Maximum number of projects processed per 30‑minute run of the periodic job.
+- `PROJECT_SUMMARY_AUTO_REFRESH_MAX_PROJECTS_PER_RUN`: Maximum number of projects processed per 30‑minute run of the periodic job (`0` = no limit).
+- Celery Beat: to enable the periodic refresh, add `refresh_project_summaries` to `CELERY_BEAT_SCHEDULE` in your `local.py` (see commented example in `local.py.template`).
 
 ## Web Interface
 
