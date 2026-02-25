@@ -94,11 +94,12 @@ jobs:
           fi
 
       - name: Coveralls
+        continue-on-error: true
         env:
           COVERALLS_SERVICE_NAME: github-actions
           GITHUB_TOKEN: ${{ secrets.COV }}
         run: |
-          git config --global --add safe.directory /__w/adhocracy-plus/adhocracy-plus
+          git config --global --add safe.directory /__w/a4-roots/a4-roots
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
           coveralls
