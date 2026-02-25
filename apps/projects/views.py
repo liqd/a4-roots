@@ -1,5 +1,4 @@
 import itertools
-import json
 import logging
 
 from django.contrib import messages
@@ -31,19 +30,14 @@ from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from adhocracy4.projects.mixins import PhaseDispatchMixin
 from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.projects.mixins import ProjectModuleDispatchMixin
-from apps.contrib.models import Settings
 from apps.projects.models import ProjectInsight
 from apps.summarization.models import ProjectSummary
 from apps.summarization.models import SummaryFeedback
-from apps.summarization.pydantic_models import ProjectSummaryResponse
-from apps.summarization.services import AIService
 
 from . import dashboard
 from . import forms
 from . import models
-from .export_utils import collect_document_attachments
-from .export_utils import generate_full_export
-from .export_utils import integrate_document_summaries
+from .utils import generate_project_summary
 
 User = get_user_model()
 
@@ -371,34 +365,6 @@ class ProjectGenerateSummaryView(PermissionRequiredMixin, generic.DetailView):
     def get_permission_object(self):
         return self.get_object()
 
-    def _generate_export_data(self, project):
-        export_data = generate_full_export(project)
-        return export_data
-
-    def _process_documents(self, export_data, request, project):
-        """Process and summarize document attachments."""
-        documents_dict, handle_to_source = collect_document_attachments(
-            export_data, request
-        )
-
-        if documents_dict:
-            try:
-                service = AIService()
-                document_response = service.request_vision_dict(
-                    documents_dict=documents_dict
-                )
-                integrate_document_summaries(
-                    export_data,
-                    document_response.documents,
-                    handle_to_source,
-                )
-            except Exception as e:
-                logger.error(
-                    f"Failed to summarize documents for project {project.slug}: {str(e)}",
-                    exc_info=True,
-                )
-                capture_exception(e)
-
     def _get_user_feedback(self, summary, request):
         """Get user feedback for summary."""
         if not summary:
@@ -422,23 +388,7 @@ class ProjectGenerateSummaryView(PermissionRequiredMixin, generic.DetailView):
             f"ProjectGenerateSummaryView: Starting summary for project {project.id} ({project.slug})"
         )
         try:
-            export_data = self._generate_export_data(project)
-            self._process_documents(export_data, request, project)
-
-            json_text = json.dumps(export_data, indent=2)
-            logger.debug(
-                f"ProjectGenerateSummaryView: Export data generated ({len(json_text)} chars), calling project_summarize"
-            )
-
-            prompt = Settings.get_value("project_summary_prompt")
-            service = AIService()
-            response = service.project_summarize(
-                project=project,
-                text=json_text,
-                result_type=ProjectSummaryResponse,
-                skip_cache=False,
-                prompt=prompt,
-            )
+            response = generate_project_summary(project, request=request)
             try:
                 summary = ProjectSummary.objects.filter(project=project).latest(
                     "created_at"
