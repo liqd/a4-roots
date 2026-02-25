@@ -65,3 +65,8 @@ try:
     CKEDITOR_CONFIGS["video-editor"]["embed_provider"] = CKEDITOR_URL
 except NameError:
     pass
+
+try:
+    LOGGING["loggers"][""]["level"] = "INFO"
+except NameError:
+    pass

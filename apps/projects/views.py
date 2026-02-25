@@ -31,6 +31,7 @@ from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from adhocracy4.projects.mixins import PhaseDispatchMixin
 from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.projects.mixins import ProjectModuleDispatchMixin
+from apps.contrib.models import Settings
 from apps.projects.models import ProjectInsight
 from apps.summarization.models import ProjectSummary
 from apps.summarization.models import SummaryFeedback
@@ -430,12 +431,14 @@ class ProjectGenerateSummaryView(PermissionRequiredMixin, generic.DetailView):
                 f"ProjectGenerateSummaryView: Export data generated ({len(json_text)} chars), calling project_summarize"
             )
 
+            prompt = Settings.get_value("project_summary_prompt")
             service = AIService()
             response = service.project_summarize(
                 project=project,
                 text=json_text,
                 result_type=ProjectSummaryResponse,
                 is_rate_limit=True,
+                prompt=prompt,
             )
 
             try:
