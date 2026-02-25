@@ -10,6 +10,11 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ### Added
 
 - Wagtail setting for an AI explanation page 
+- Summerization: Added ability to generate AI summaries of projects
+- Summerization: periodic automatic summaries.
+- Summerization: Configurable Caching with time limits
+- Summerization: Prompt could be edited in the Django Admin
+- Summerization: Configurable Fallback when the summary generation fails
 
 ### Changed
 
