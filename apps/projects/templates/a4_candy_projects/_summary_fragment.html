@@ -1,12 +1,27 @@
-{% load i18n %}
+{% load i18n wagtailsettings_tags %}
+{% get_settings use_default_site=True %}
 
 <div class="accordion summary__accordion">
-    <a id="summary-header" class="accordion__title summary__header" href="#summary" aria-haspopup="true" aria-expanded="true" data-bs-toggle="collapse">
-        <div class="d-flex justify-content-between align-items-center">
-            <span class="mb-0 summary__title">{% trans 'Zusammenfassung der Beteiligung' %}</span>
-            <i class="fas fa-sort-down" aria-hidden="true"></i>
-        </div>
-    </a>
+    <div class="d-flex justify-content-between align-items-center">
+        <a id="summary-header"
+           class="accordion__title summary__header flex-grow-1"
+           href="#summary"
+           aria-haspopup="true"
+           aria-expanded="true"
+           data-bs-toggle="collapse">
+            <div class="d-flex justify-content-between align-items-center">
+                <span class="mb-0 summary__title">{% trans 'Zusammenfassung der Beteiligung' %}</span>
+                <i class="fas fa-sort-down" aria-hidden="true"></i>
+            </div>
+        </a>
+        {% if settings.a4_candy_cms_settings.ImportantPages.ai_explanation %}
+        <a href="{{ settings.a4_candy_cms_settings.ImportantPages.ai_explanation.url }}"
+           class="summary__info-link ms-2"
+           aria-label="{% trans 'Explanation of the AI summary' %}">
+            <i class="fas fa-info-circle" aria-hidden="true"></i>
+        </a>
+        {% endif %}
+    </div>
     <div class="accordion__body collapse show" id="summary" aria-labelledby="summary-header">
         <div>
             <!-- General Info -->

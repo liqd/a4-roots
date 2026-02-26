@@ -68,6 +68,13 @@
                             <a href="{{ pages.manual_link }}" class="navi__link">{% translate 'Help Center' %}</a>
                         </li>
                         {% endif %}
+                        {% if pages.ai_explanation %}
+                        <li class="navi__item footer__link">
+                            <a href="{{ pages.ai_explanation.url }}" class="navi__link">
+                                {% translate 'AI Explanation' %}
+                            </a>
+                        </li>
+                        {% endif %}
                     </ul>
                 </nav>
             </div>

@@ -50,12 +50,12 @@ class ProjectSummarizeMixin:
         )
 
         # Check cache and rate limits
-        # if is_rate_limit:
-        #     cached_response = self._check_cache_and_rate_limits(
-        #         project, text, latest_project_summary
-        #     )
-        #     if cached_response:
-        #         return cached_response
+        if is_rate_limit:
+            cached_response = self._check_cache_and_rate_limits(
+                project, text, latest_project_summary
+            )
+            if cached_response:
+                return cached_response
 
         # Generate new summary
         logger.info(
