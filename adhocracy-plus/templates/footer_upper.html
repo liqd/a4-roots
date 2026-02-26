@@ -30,6 +30,13 @@
                 <a href="{{ organisation_netiquette_url }}" class="navi-link">{% translate 'Netiquette' %}</a>
             </li>
             {% endif %}
+            {% if settings.a4_candy_cms_settings.ImportantPages.ai_explanation %}
+            <li class="nav-item">
+                <a href="{{ settings.a4_candy_cms_settings.ImportantPages.ai_explanation.url }}" class="navi-link">
+                    {% translate 'AI Explanation' %}
+                </a>
+            </li>
+            {% endif %}
         </ul>
     </nav>
 </div>

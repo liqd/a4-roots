@@ -18,6 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: adhocracy-plus/templates/footer_upper.html:15
+#: adhocracy-plus/templates/footer_upper.html:21
+msgid "AI Explanation"
+msgstr "AI explanation"
+
 #: adhocracy4/categories/templates/a4categories/includes/module_categories_form.html:3
 msgid ""
 "In this section, you can create\n"

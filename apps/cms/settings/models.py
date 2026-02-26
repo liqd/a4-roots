@@ -52,6 +52,13 @@ class ImportantPages(BaseSiteSetting):
         blank=True,
         on_delete=models.SET_NULL,
     )
+    ai_explanation = models.ForeignKey(
+        "wagtailcore.Page",
+        related_name="important_page_ai_explanation",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+    )
 
     donate_link = models.URLField(blank=True)
     manual_link = models.URLField(blank=True)
@@ -116,6 +123,17 @@ class ImportantPages(BaseSiteSetting):
         ),
         PageChooserPanel(
             "registration",
+            [
+                "a4_candy_cms_pages.SimplePage",
+                "a4_candy_cms_contacts.FormPage",
+                "a4_candy_cms_news.NewsIndexPage",
+                "a4_candy_cms_news.NewsPage",
+                "a4_candy_cms_use_cases.UseCaseIndexPage",
+                "a4_candy_cms_use_cases.UseCasePage",
+            ],
+        ),
+        PageChooserPanel(
+            "ai_explanation",
             [
                 "a4_candy_cms_pages.SimplePage",
                 "a4_candy_cms_contacts.FormPage",

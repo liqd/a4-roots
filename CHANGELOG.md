@@ -7,6 +7,10 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ## Unreleased Roots
 
+### Added
+
+- Wagtail setting for an AI explanation page (`ImportantPages.ai_explanation`) and links to this page from the footer and AI summary.
+
 ### Changed
 
 - Changed BMBF logo to BMFTR
@@ -19,6 +23,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 - Notification message_templates stored in English, translated at runtime
 - Notification date format always returns DD.MM.YYYY without time
+- Re-enabled project summary caching and rate limiting in the summarization service.
 
 ### Fixed
 
