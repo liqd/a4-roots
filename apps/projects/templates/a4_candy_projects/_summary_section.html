@@ -211,7 +211,7 @@
                                     {% trans 'To see what happened in module' %} {{ module.module_name }}, 
                                     <a href="{{ module_obj.get_absolute_url }}" class="small module-summary__link" target="_blank">{% trans 'click here' %}</a>
                                 </span>
-                                <i class="fa fa-arrow-right"></i>
+                                <a href="{{ module_obj.get_absolute_url }}" class="module-summary__link" target="_blank"><i class="fa fa-arrow-right"></i></a>
                             </p>
                         </div>
                     </div>
