@@ -30,8 +30,6 @@ SUMMARY_GLOBAL_LIMIT_PER_HOUR = 100  # Maximum summaries per hour across all pro
 
 
 class ProjectSummarizeMixin:
-    """Mixin to add show_debug support to project_summarize."""
-
     def project_summarize(
         self,
         project,
@@ -39,10 +37,9 @@ class ProjectSummarizeMixin:
         prompt: str | None = None,
         result_type: type[BaseModel] = ProjectSummaryResponse,
         is_rate_limit: bool = True,
-        show_debug: bool = False,
     ) -> BaseModel:
         """Summarize text for a project with caching and rate limiting support."""
-        request = SummaryRequest(text=text, prompt=prompt, show_debug=show_debug)
+        request = SummaryRequest(text=text, prompt=prompt)
         latest_project_summary = (
             ProjectSummary.objects.filter(project=project)
             .order_by("-created_at")
@@ -58,10 +55,7 @@ class ProjectSummarizeMixin:
                 return cached_response
 
         # Generate new summary
-        logger.info(
-            f"Generating new summary for project {project.id} ({project.slug})"
-            + (" with debug" if show_debug else "")
-        )
+        logger.info(f"Generating new summary for project {project.id} ({project.slug})")
         logger.debug(f"Prompt preview: {request.prompt()[:500]}...")
 
         try:
@@ -134,10 +128,9 @@ class AIService(ProjectSummarizeMixin):
         text: str,
         prompt: str | None = None,
         result_type: type[BaseModel] = SummaryItem,
-        show_debug: bool = False,
     ) -> BaseModel:
         """Summarize text."""
-        request = SummaryRequest(text=text, prompt=prompt, show_debug=show_debug)
+        request = SummaryRequest(text=text, prompt=prompt)
         response = self.provider.request(request, result_type=result_type)
         return response
 
@@ -385,19 +378,8 @@ class SummaryRequest(AIRequest):
         For current modules, focus on ongoing activities and early content.
         For upcoming modules, focus on planned activities and goals.
         Respond with ONLY the JSON object.
-        """
 
-    def __init__(
-        self, text: str, prompt: str | None = None, show_debug: bool = False
-    ) -> None:
-        super().__init__()
-        self.text = text
-        self.show_debug = show_debug
-        self.prompt_text = prompt or self.DEFAULT_PROMPT
-
-        if show_debug:
-            self.prompt_text += """
-        IMPORTANT: Include debug information in the response following the full schema with 'show_debug': true.
+        IMPORTANT: Include debug information in the response
         Each module should include a 'debug' object with:
         - module_type: the type of module
         - signals_snapshot: list of signals present (e.g., ["has_comments", "has_votes"])
@@ -416,6 +398,11 @@ class SummaryRequest(AIRequest):
         - diff_summary: optional summary of changes made
         - qa_status: MUST be either "PASS" or "FAIL" (no other values allowed)
         """
+
+    def __init__(self, text: str, prompt: str | None = None) -> None:
+        super().__init__()
+        self.text = text
+        self.prompt_text = prompt or self.DEFAULT_PROMPT
 
     def prompt(self) -> str:
         return f"{self.prompt_text}\n\n{self.text}"

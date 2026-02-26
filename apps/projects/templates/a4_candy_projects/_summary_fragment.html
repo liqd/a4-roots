@@ -78,15 +78,15 @@
 
         <!-- Phase Sections -->
         {% if response.phases.past.modules %}
-            {% include "a4_candy_projects/_summary_section.html" with project=project modules=response.phases.past.modules id="pastModules" %}
+            {% include "a4_candy_projects/_summary_section.html" with project=project modules=response.phases.past.modules show_debug=show_debug id="pastModules" %}
         {% endif %}
 
         {% if response.phases.current.modules %}
-            {% include "a4_candy_projects/_summary_section.html" with project=project modules=response.phases.current.modules id="currentModules" %}
+            {% include "a4_candy_projects/_summary_section.html" with project=project modules=response.phases.current.modules show_debug=show_debug id="currentModules" %}
         {% endif %}
 
         {% if response.phases.upcoming.modules %}
-            {% include "a4_candy_projects/_summary_section.html" with project=project modules=response.phases.upcoming.modules id="upcomingModules" %}
+            {% include "a4_candy_projects/_summary_section.html" with project=project modules=response.phases.upcoming.modules show_debug=show_debug id="upcomingModules" %}
         {% endif %}
 
         <!-- Feedback -->

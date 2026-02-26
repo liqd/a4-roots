@@ -431,8 +431,6 @@ class ProjectGenerateSummaryView(PermissionRequiredMixin, generic.DetailView):
                 f"ProjectGenerateSummaryView: Export data generated ({len(json_text)} chars), calling project_summarize"
             )
 
-            show_debug = request.GET.get("debug", "false").lower() == "true"
-
             prompt = Settings.get_value("project_summary_prompt")
             service = AIService()
             response = service.project_summarize(
@@ -441,7 +439,6 @@ class ProjectGenerateSummaryView(PermissionRequiredMixin, generic.DetailView):
                 result_type=ProjectSummaryResponse,
                 is_rate_limit=True,
                 prompt=prompt,
-                show_debug=show_debug,
             )
 
             try:
@@ -463,7 +460,7 @@ class ProjectGenerateSummaryView(PermissionRequiredMixin, generic.DetailView):
                     "project": project,
                     "summary_id": summary.id if summary else None,
                     "user_feedback": user_feedback,
-                    "show_debug": show_debug,
+                    "show_debug": False,
                 },
             )
             logger.info(

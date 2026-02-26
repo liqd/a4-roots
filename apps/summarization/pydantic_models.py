@@ -139,9 +139,7 @@ class PhaseModule(BaseModel):
 
     module_name: str = Field(description="Name of the module")
     status: Literal["past", "current", "upcoming"] = Field(description="Module status")
-    debug: Optional[ModuleDebug] = Field(
-        None, description="Debug information (only when show_debug=true)"
-    )
+    debug: Optional[ModuleDebug] = Field(None, description="Debug information")
     final: ModuleFinal = Field(description="Summary and key points for the module")
 
 
@@ -173,9 +171,6 @@ class GeneralInfo(BaseModel):
 class ProjectSummaryResponse(BaseModel):
     """Response model for complete project summarization."""
 
-    show_debug: bool = Field(
-        default=False, description="Whether debug info is included"
-    )
     title: str = Field(default="Summary of participation")
     general_info: GeneralInfo = Field(description="General project information")
     phases: Phases = Field(description="All phase sections with their modules")
