@@ -16,7 +16,6 @@ class RestrictedNewsletterForm(forms.ModelForm):
     class Meta:
         model = models.Newsletter
         fields = [
-            "sender_name",
             "sender",
             "project",
             "receivers",
