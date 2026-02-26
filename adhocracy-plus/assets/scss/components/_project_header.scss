@@ -208,6 +208,21 @@
         text-decoration: none !important;
     }
 
+    &__title-link {
+        padding-right: 0.25rem;
+    }
+
+    &__info-link {
+        margin-left: 0.25rem;
+        flex-shrink: 0;
+    }
+
+    &__arrow-toggle {
+        padding-bottom: 0.15em;
+        display: flex;
+        align-items: center;
+    }
+
     &__container {
         width: 90%;
         margin: auto;
