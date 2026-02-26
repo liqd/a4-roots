@@ -22,19 +22,20 @@
     }
 });
 </script>
+{% load i18n %}
 
 <!-- Summary section -->
 <div id="summary-card" class="summary-prompt-card" hx-indicator="this">
     <div class="hide-when-loading">
         <div class="summary-text">
-            <strong class="summary-title">Need an overview of what's happened so far?</strong>
-            <p class="summary-description">You can use AI to summarise the main inputs and discussions and catch up quickly.</p>
+            <strong class="summary-title">{% trans 'Summary of Participation' %}</strong>
+            <p class="summary-description">{% trans 'Automatically generate overview of the most important themes, voices and insights.' %}</p>
         </div>
         <div class="summary-button">
             <button hx-get="{% url 'project-generate-summary' organisation_slug=project.organisation.slug slug=project.slug %}" 
                     hx-target="#summary-content"
-                    class="btn btn-primary">
-                <i class="fa fa-wand-magic-sparkles mr-2"></i> Summarise with AI
+                    class="btn btn--summary ">
+                <i class="fa fa-wand-magic-sparkles mr-2"></i> {% trans 'Summarise with AI' %}
             </button>
         </div>
     </div>
