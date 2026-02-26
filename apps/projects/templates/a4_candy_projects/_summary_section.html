@@ -49,10 +49,9 @@
                     </div>
                     <div class="module-summary__goals" id="module-{{ module.module_name|slugify }}">
                         <div>
-                            <p>{% trans 'Goals of the module' %}: {{ module.final.summary }}</p>
+                            <p>{{ module.final.summary }}</p>
                             
                             {% if module.final.bullets %}
-                            <p>{% trans 'Key points' %}:</p>
                             <ul class="small">
                                 {% for bullet in module.final.bullets %}
                                 <li>{{ bullet }}</li>
@@ -61,18 +60,146 @@
                             {% endif %}
                             
                             {% if show_debug and module.debug %}
-                            <div class="debug-info small text-muted mt-3 p-2 border rounded">
-                                <details>
-                                    <summary>{% trans 'Debug information' %}</summary>
-                                    <p><strong>{% trans 'Module type' %}:</strong> {{ module.debug.module_type }}</p>
-                                    <p><strong>{% trans 'Signals' %}:</strong> {{ module.debug.signals_snapshot|join:", " }}</p>
-                                    <p><strong>{% trans 'QA Status' %}:</strong> {{ module.debug.qa_status }}</p>
-                                    {% if module.debug.anchors %}
-                                    <p><strong>{% trans 'Anchors' %}:</strong> {{ module.debug.anchors|join:", " }}</p>
-                                    {% endif %}
-                                </details>
-                            </div>
-                            {% endif %}
+            <div class="debug-info small text-muted mt-3 p-3 border rounded">
+                <details>
+                    <summary class="fw-bold">🔍 {% trans 'Debug information' %}</summary>
+                    
+                    <!-- Basic Info -->
+                    <div class="mt-2">
+                        <span class="badge bg-secondary me-2">{{ module.debug.module_type }}</span>
+                        <span class="badge {% if module.debug.qa_status == 'PASS' %}bg-success{% else %}bg-danger{% endif %}">
+                            QA: {{ module.debug.qa_status }}
+                        </span>
+                    </div>
+                    
+                    <!-- Signals -->
+                    {% if module.debug.signals_snapshot %}
+                    <div class="mt-2">
+                        <strong>{% trans 'Signals' %}:</strong>
+                        <div class="d-flex flex-wrap gap-1 mt-1">
+                            {% for signal in module.debug.signals_snapshot %}
+                            <span class="badge bg-light text-dark">{{ signal }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+                    
+                    <!-- Draft vs Final -->
+                    <div class="row mt-2">
+                        <div class="col-md-6">
+                            <strong>{% trans 'Draft before QA' %}:</strong>
+                            <div class="p-2 bg-light rounded mt-1">{{ module.debug.draft_before_qa|linebreaks }}</div>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>{% trans 'After QA' %}:</strong>
+                            <div class="p-2 bg-light rounded mt-1">{{ module.debug.after_qa|linebreaks }}</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Claims -->
+                    {% if module.debug.claims %}
+                    <div class="mt-2">
+                        <strong>{% trans 'Claims' %}:</strong>
+                        <table class="table table-sm table-bordered mt-1">
+                            <thead>
+                                <tr>
+                                    <th>{% trans 'Claim' %}</th>
+                                    <th>{% trans 'Evidence' %}</th>
+                                    <th>{% trans 'Action' %}</th>
+                                    <th>{% trans 'Fix hint' %}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for claim in module.debug.claims %}
+                                <tr>
+                                    <td>{{ claim.claim_text }}</td>
+                                    <td><span class="badge bg-info">{{ claim.evidence_type }}</span></td>
+                                    <td>
+                                        <span class="badge {% if claim.action == 'keep' %}bg-success{% elif claim.action == 'soften' %}bg-warning{% else %}bg-danger{% endif %}">
+                                            {{ claim.action }}
+                                        </span>
+                                    </td>
+                                    <td>{{ claim.fix_hint|default:"—" }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% endif %}
+                    
+                    <!-- Quantifier Fixes -->
+                    {% if module.debug.quantifier_fixes %}
+                    <div class="mt-2">
+                        <strong>{% trans 'Quantifier fixes' %}:</strong>
+                        <ul class="list-group mt-1">
+                            {% for fix in module.debug.quantifier_fixes %}
+                            <li class="list-group-item">
+                                <span class="text-danger">{{ fix.original_phrase }}</span> → 
+                                <span class="text-success">{{ fix.replacement }}</span>
+                                <br><small class="text-muted">{{ fix.reason }}</small>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+                    
+                    <!-- Anchors -->
+                    {% if module.debug.anchors %}
+                    <div class="mt-2">
+                        <strong>{% trans 'Anchors' %}:</strong>
+                        <div class="d-flex flex-wrap gap-1 mt-1">
+                            {% for anchor in module.debug.anchors %}
+                            <span class="badge bg-secondary">{{ anchor }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+                    
+                    <!-- Coverage Gaps -->
+                    {% if module.debug.coverage_gaps %}
+                    <div class="mt-2">
+                        <strong>{% trans 'Coverage gaps' %}:</strong>
+                        <ul class="mt-1">
+                            {% for gap in module.debug.coverage_gaps %}
+                            <li class="text-warning">{{ gap }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% if module.debug.coverage_patch %}
+                        <div class="alert alert-info mt-1 p-2">
+                            <strong>{% trans 'Patch' %}:</strong> {{ module.debug.coverage_patch }}
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                    
+                    <!-- Patches -->
+                    {% if module.debug.patches %}
+                    <div class="mt-2">
+                        <strong>{% trans 'Patches applied' %}:</strong>
+                        <ul class="list-group mt-1">
+                            {% for patch in module.debug.patches %}
+                            <li class="list-group-item">
+                                <span class="badge bg-primary">{{ patch.patch_type }}</span>
+                                <div><small>Target: {{ patch.target }}</small></div>
+                                {% if patch.replacement %}
+                                <div><small>Replacement: {{ patch.replacement }}</small></div>
+                                {% endif %}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+                    
+                    <!-- Diff Summary -->
+                    {% if module.debug.diff_summary %}
+                    <div class="mt-2">
+                        <strong>{% trans 'Changes' %}:</strong>
+                        <div class="p-2 bg-light rounded mt-1">{{ module.debug.diff_summary }}</div>
+                    </div>
+                    {% endif %}
+                </details>
+            </div>
+            {% endif %}
                             
                             <p class="summary__see-more">
                                 <span>
