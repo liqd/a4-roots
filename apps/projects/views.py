@@ -437,7 +437,7 @@ class ProjectGenerateSummaryView(PermissionRequiredMixin, generic.DetailView):
                 project=project,
                 text=json_text,
                 result_type=ProjectSummaryResponse,
-                is_rate_limit=True,
+                skip_cache=True,
                 prompt=prompt,
             )
 
