@@ -39,7 +39,7 @@ class ProjectSummarizeMixin:
         prompt: str | None = None,
         result_type: type[BaseModel] = ProjectSummaryResponse,
         is_rate_limit: bool = True,
-        show_debug: bool = False,  # Add this parameter
+        show_debug: bool = False,
     ) -> BaseModel:
         """Summarize text for a project with caching and rate limiting support."""
         request = SummaryRequest(text=text, prompt=prompt, show_debug=show_debug)
@@ -134,9 +134,10 @@ class AIService(ProjectSummarizeMixin):
         text: str,
         prompt: str | None = None,
         result_type: type[BaseModel] = SummaryItem,
+        show_debug: bool = False,
     ) -> BaseModel:
         """Summarize text."""
-        request = SummaryRequest(text=text, prompt=prompt)
+        request = SummaryRequest(text=text, prompt=prompt, show_debug=show_debug)
         response = self.provider.request(request, result_type=result_type)
         return response
 
