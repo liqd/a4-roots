@@ -10,6 +10,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ### Changed
 
 - Changed BMBF logo to BMFTR
+- Adjusted Newsletter emails.
 
 
 ## Unreleased A+
