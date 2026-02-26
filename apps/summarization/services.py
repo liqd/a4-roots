@@ -396,18 +396,25 @@ class SummaryRequest(AIRequest):
 
         if show_debug:
             self.prompt_text += """
-            IMPORTANT: Include debug information in the response following the full schema with 'show_debug': true.
-            Each module should include a 'debug' object with:
-            - module_type: the type of module
-            - signals_snapshot: list of signals present
-            - draft_before_qa: initial summary draft
-            - claims: list of claims with evidence
-            - quantifier_fixes: any quantifier corrections
-            - anchors: key data points
-            - coverage_gaps: what's missing
-            - after_qa: final summary after QA
-            - qa_status: PASS or FAIL
-            """
+        IMPORTANT: Include debug information in the response following the full schema with 'show_debug': true.
+        Each module should include a 'debug' object with:
+        - module_type: the type of module
+        - signals_snapshot: list of signals present (e.g., ["has_comments", "has_votes"])
+        - draft_before_qa: initial summary draft before QA
+        - claims: list of objects with:
+            * claim_text: string
+            * evidence_type: MUST be one of: "from_votes", "from_ratings", "from_open_answers", "from_comments", "from_base_text", or "uncertain" (no other values allowed)
+            * action: MUST be one of: "keep", "soften", or "remove" (no other values allowed)
+            * fix_hint: optional string
+        - quantifier_fixes: list of objects with original_phrase, replacement, reason
+        - anchors: list of key data points referenced
+        - coverage_gaps: list of topics that should have been covered but weren't
+        - coverage_patch: optional text to fix coverage gaps
+        - patches: list of objects with patch_type (REPLACE|REMOVE|ADD_SENTENCE), target, replacement
+        - after_qa: final summary after QA
+        - diff_summary: optional summary of changes made
+        - qa_status: MUST be either "PASS" or "FAIL" (no other values allowed)
+        """
 
     def prompt(self) -> str:
         return f"{self.prompt_text}\n\n{self.text}"
