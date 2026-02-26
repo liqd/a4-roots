@@ -49,10 +49,9 @@
                     </div>
                     <div class="module-summary__goals" id="module-{{ module.module_name|slugify }}">
                         <div>
-                            <p>{% trans 'Goals of the module' %}: {{ module.final.summary }}</p>
+                            <p>{{ module.final.summary }}</p>
                             
                             {% if module.final.bullets %}
-                            <p>{% trans 'Key points' %}:</p>
                             <ul class="small">
                                 {% for bullet in module.final.bullets %}
                                 <li>{{ bullet }}</li>
