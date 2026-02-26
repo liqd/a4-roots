@@ -22,62 +22,60 @@
     </div>
     <div id="{{ id }}-collapse" class="collapse show" aria-labelledby="{{ id }}-heading">
         <div>
-                {% if id == "pastModules" %}
-                    <p>{% trans 'The participation phases of the modules in this section are finished. You can no longer contribute. In this section you can find summaries of the modules and the main topics that were discussed.' %}</p>
-                {% elif id == "currentModules" %}
-                    <p>{% trans 'The participation phases of the modules in this section are currently ongoing. You can contribute to the modules at this stage. In this section you can find summaries of the modules and the topics that are being discussed.' %}</p>
-                {% elif id == "upcomingModules" %}
-                    <p>{% trans 'The participation phases of the modules in this section have not started yet. You cannot contribute to the modules at this stage. In this section you can find summaries of the planned modules and their objectives.' %}
-                    </p>
-                {% endif %}
+            {% if id == "pastModules" %}
+                <p>{% trans 'The participation phases of the modules in this section are finished. You can no longer contribute. In this section you can find summaries of the modules and the main topics that were discussed.' %}</p>
+            {% elif id == "currentModules" %}
+                <p>{% trans 'The participation phases of the modules in this section are currently ongoing. You can contribute to the modules at this stage. In this section you can find summaries of the modules and the topics that are being discussed.' %}</p>
+            {% elif id == "upcomingModules" %}
+                <p>{% trans 'The participation phases of the modules in this section have not started yet. You cannot contribute to the modules at this stage. In this section you can find summaries of the planned modules and their objectives.' %}</p>
+            {% endif %}
+            
             <div class="mb-4" id="{{ id }}">
                 {% for module in modules %}
-                {% with module_obj=project.modules|get_module_by_id:module.module_id %}
-
                 <div class="module-summary__container">
                     <div id="heading-{{ forloop.counter }}">
                         <div class="module-summary__header">
-                            <span class="module-summary__header-text">Module: {{ module.module_name }}
-                            {% if id == "pastModules" %}
-                                <span class="badge badge--module__completed ml-2">abgeschlossen</span>
-                            {% elif id == "currentModules" %}
-                                <span class="badge badge--module__ongoing ml-2">aktiv</span>
-                            {% elif id == "upcomingModules" %}
-                                <span class="badge badge--module__future ml-2">geplant</span>
-                            {% endif %}
+                            <span class="module-summary__header-text">
+                                {% trans 'Module' %}: {{ module.module_name }}
+                                {% if id == "pastModules" %}
+                                    <span class="badge badge--module__completed ml-2">{% trans 'completed' %}</span>
+                                {% elif id == "currentModules" %}
+                                    <span class="badge badge--module__ongoing ml-2">{% trans 'active' %}</span>
+                                {% elif id == "upcomingModules" %}
+                                    <span class="badge badge--module__future ml-2">{% trans 'planned' %}</span>
+                                {% endif %}
                             </span>
-                        </div>
-                        <div>
-                            <small>
-                              {% trans 'Active participation' %}: {{ module_obj.module_start|date:"j. M H:i"  }} - {{ module_obj.module_end|date:"j. M H:i"  }}
-                            </small>
                         </div>
                     </div>
                     <div class="module-summary__goals" id="module-{{ module.module_name|slugify }}">
                         <div>
-                            <p>Goals of the module: {{ module.purpose }}</p>
+                            <p>{% trans 'Goals of the module' %}: {{ module.final.summary }}</p>
                             
-                            {% if module.main_sentiments %}
-                            <p>{% trans 'Main sentiments from user contributions' %}:</p>
+                            {% if module.final.bullets %}
+                            <p>{% trans 'Key points' %}:</p>
                             <ul class="small">
-                                {% for sentiment in module.main_sentiments %}
-                                <li>{{ sentiment }}</li>
+                                {% for bullet in module.final.bullets %}
+                                <li>{{ bullet }}</li>
                                 {% endfor %}
                             </ul>
                             {% endif %}
-                            {% if module.first_content %}
-                                <p>{% trans 'First content in this module' %}</p>
-                                <ul class="small">
-                                    {% for content in module.first_content %}
-                                    <li>{{ content }}</li>
-                                    {% endfor %}
-                                </ul>
+                            
+                            {% if show_debug and module.debug %}
+                            <div class="debug-info small text-muted mt-3 p-2 border rounded">
+                                <details>
+                                    <summary>{% trans 'Debug information' %}</summary>
+                                    <p><strong>{% trans 'Module type' %}:</strong> {{ module.debug.module_type }}</p>
+                                    <p><strong>{% trans 'Signals' %}:</strong> {{ module.debug.signals_snapshot|join:", " }}</p>
+                                    <p><strong>{% trans 'QA Status' %}:</strong> {{ module.debug.qa_status }}</p>
+                                    {% if module.debug.anchors %}
+                                    <p><strong>{% trans 'Anchors' %}:</strong> {{ module.debug.anchors|join:", " }}</p>
+                                    {% endif %}
+                                </details>
+                            </div>
                             {% endif %}
+                            
                             <p class="summary__see-more">
                                 <span>
-                                    {% if module_obj %}
-                                    <img class="tile__module-icon module-summary__icon" alt="{{ module.module_name }} icon" aria-hidden="true" src="{% static 'images/icon-'|add:module_obj.blueprint_type|lower|add:'.svg' %}" />
-                                    {% endif %}
                                     {% trans 'To see what happened in module' %} {{ module.module_name }}, 
                                     <a href="{{ module.link }}" class="small module-summary__link" target="_blank">{% trans 'click here' %}</a>
                                 </span>
@@ -86,7 +84,6 @@
                         </div>
                     </div>
                 </div>
-                {% endwith %}
                 {% endfor %}
             </div>
         </div>

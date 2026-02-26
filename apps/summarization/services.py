@@ -29,7 +29,75 @@ PROJECT_SUMMARY_RATE_LIMIT_MINUTES = (
 SUMMARY_GLOBAL_LIMIT_PER_HOUR = 100  # Maximum summaries per hour across all projects
 
 
-class AIService:
+class ProjectSummarizeMixin:
+    """Mixin to add show_debug support to project_summarize."""
+
+    def project_summarize(
+        self,
+        project,
+        text: str,
+        prompt: str | None = None,
+        result_type: type[BaseModel] = ProjectSummaryResponse,
+        is_rate_limit: bool = True,
+        show_debug: bool = False,  # Add this parameter
+    ) -> BaseModel:
+        """Summarize text for a project with caching and rate limiting support."""
+        request = SummaryRequest(text=text, prompt=prompt, show_debug=show_debug)
+        latest_project_summary = (
+            ProjectSummary.objects.filter(project=project)
+            .order_by("-created_at")
+            .first()
+        )
+
+        # Check cache and rate limits
+        # if is_rate_limit:
+        #     cached_response = self._check_cache_and_rate_limits(
+        #         project, text, latest_project_summary
+        #     )
+        #     if cached_response:
+        #         return cached_response
+
+        # Generate new summary
+        logger.info(
+            f"Generating new summary for project {project.id} ({project.slug})"
+            + (" with debug" if show_debug else "")
+        )
+        logger.debug(f"Prompt preview: {request.prompt()[:500]}...")
+
+        try:
+            response = self.provider.request(request, result_type=result_type)
+
+            if isinstance(response, ProjectSummaryResponse):
+                logger.info(
+                    f"Created new project summary for project {project.id} ({project.slug})"
+                )
+                ProjectSummary.objects.create(
+                    project=project,
+                    prompt=request.prompt_text,
+                    input_text_hash=ProjectSummary.compute_hash(text),
+                    response_data=json.loads(response.model_dump_json()),
+                )
+            return response
+
+        except Exception as e:
+            logger.error(
+                f"Error during summary generation for project {project.id} ({project.slug}): {str(e)} - NOT CACHING",
+                exc_info=True,
+            )
+            capture_exception(e)
+            fallback_response = self._try_fallback_cache(latest_project_summary)
+            if fallback_response:
+                logger.info(
+                    f"Using fallback cache for project {project.id} after error"
+                )
+                return fallback_response
+            logger.warning(
+                f"Re-raising exception - no valid fallback available for project {project.id}"
+            )
+            raise
+
+
+class AIService(ProjectSummarizeMixin):
     """Service for summarizing text using configured AI provider."""
 
     def __init__(
@@ -153,66 +221,6 @@ class AIService:
             )
         return None
 
-    def project_summarize(
-        self,
-        project,
-        text: str,
-        prompt: str | None = None,
-        result_type: type[
-            BaseModel
-        ] = ProjectSummaryResponse,  # Changed from SummaryResponse
-        is_rate_limit: bool = True,
-    ) -> BaseModel:
-        """Summarize text for a project with caching and rate limiting support."""
-        request = SummaryRequest(text=text, prompt=prompt)
-        latest_project_summary = (
-            ProjectSummary.objects.filter(project=project)
-            .order_by("-created_at")
-            .first()
-        )
-
-        # Check cache and rate limits
-        if is_rate_limit:
-            cached_response = self._check_cache_and_rate_limits(
-                project, text, latest_project_summary
-            )
-            if cached_response:
-                return cached_response
-
-        # Generate new summary
-        logger.info(f"Generating new summary for project {project.id} ({project.slug})")
-        logger.debug(f"Prompt preview: {request.prompt()[:500]}...")
-        try:
-            response = self.provider.request(request, result_type=result_type)
-
-            if isinstance(response, ProjectSummaryResponse):
-                logger.info(
-                    f"Created new project summary for project {project.id} ({project.slug})"
-                )
-                ProjectSummary.objects.create(
-                    project=project,
-                    prompt=request.prompt_text,
-                    input_text_hash=ProjectSummary.compute_hash(text),
-                    response_data=json.loads(response.model_dump_json()),
-                )
-            return response
-        except Exception as e:
-            logger.error(
-                f"Error during summary generation for project {project.id} ({project.slug}): {str(e)} - NOT CACHING",
-                exc_info=True,
-            )
-            capture_exception(e)
-            fallback_response = self._try_fallback_cache(latest_project_summary)
-            if fallback_response:
-                logger.info(
-                    f"Using fallback cache for project {project.id} after error"
-                )
-                return fallback_response
-            logger.warning(
-                f"Re-raising exception - no valid fallback available for project {project.id}"
-            )
-            raise
-
     def request_vision(
         self,
         documents: list[DocumentInputItem],
@@ -327,52 +335,79 @@ class SummaryRequest(AIRequest):
 
         Schema:
         {
-        "title": "Summary of participation",
-        "stats": {"participants": 0, "contributions": 0, "modules": 0},
-        "general_summary": "string",
-        "general_goals": ["string"],
-        "past_modules": [
-            {
-            "id": "int",
-            "module_id": "int",
-            "module_name": "string",
-            "purpose": "string",
-            "main_sentiments": ["string"],
-            "phase_status": "past",
-            "link": "string"
+          "title": "Summary of participation",
+          "general_info": {
+            "summary": "A concise overview of the entire project and its participation process",
+            "goals": ["Goal 1", "Goal 2", "Goal 3"]
+          },
+          "phases": {
+            "past": {
+              "modules": [
+                {
+                  "module_name": "Name of the completed module",
+                  "status": "past",
+                  "final": {
+                    "summary": "Summary of what happened in this module, including key outcomes",
+                    "bullets": ["Key point 1", "Key point 2", "Key point 3"]
+                  }
+                }
+              ]
+            },
+            "current": {
+              "modules": [
+                {
+                  "module_name": "Name of the active module",
+                  "status": "current",
+                  "final": {
+                    "summary": "Summary of what's happening in this module now",
+                    "bullets": ["Current key point 1", "Current key point 2"]
+                  }
+                }
+              ]
+            },
+            "upcoming": {
+              "modules": [
+                {
+                  "module_name": "Name of the upcoming module",
+                  "status": "upcoming",
+                  "final": {
+                    "summary": "What will happen in this module",
+                    "bullets": ["Planned activity 1", "Planned activity 2"]
+                  }
+                }
+              ]
             }
-        ],
-        "current_modules": [
-            {
-            "id": "int",
-            "module_id": "int",
-            "module_name": "string",
-            "purpose": "string",
-            "first_content": ["string"],
-            "phase_status": "active",
-            "link": "string"
-            }
-        ],
-        "upcoming_modules": [
-            {
-            "id": "int",
-            "module_id": "int",
-            "module_name": "string",
-            "purpose": "string",
-            "phase_status": "upcoming",
-            "link": "string"
-            }
-        ]
+          }
         }
 
-        Extract real data from the project export. Use actual numbers and content.
+        Extract real data from the project export. For past modules, focus on outcomes and main sentiments.
+        For current modules, focus on ongoing activities and early content.
+        For upcoming modules, focus on planned activities and goals.
         Respond with ONLY the JSON object.
         """
 
-    def __init__(self, text: str, prompt: str | None = None) -> None:
+    def __init__(
+        self, text: str, prompt: str | None = None, show_debug: bool = False
+    ) -> None:
         super().__init__()
         self.text = text
+        self.show_debug = show_debug
         self.prompt_text = prompt or self.DEFAULT_PROMPT
+
+        if show_debug:
+            self.prompt_text += """
+            IMPORTANT: Include debug information in the response following the full schema with 'show_debug': true.
+            Each module should include a 'debug' object with:
+            - module_type: the type of module
+            - signals_snapshot: list of signals present
+            - draft_before_qa: initial summary draft
+            - claims: list of claims with evidence
+            - quantifier_fixes: any quantifier corrections
+            - anchors: key data points
+            - coverage_gaps: what's missing
+            - after_qa: final summary after QA
+            - qa_status: PASS or FAIL
+            """
 
     def prompt(self) -> str:
         return f"{self.prompt_text}\n\n{self.text}"

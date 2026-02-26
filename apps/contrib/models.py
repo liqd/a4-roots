@@ -67,45 +67,55 @@ You are a JSON generator. Return ONLY valid JSON. No explanations, no markdown, 
 
 Schema:
 {
-"title": "Summary of participation",
-"stats": {"participants": 0, "contributions": 0, "modules": 0},
-"general_summary": "string",
-"general_goals": ["string"],
-"past_modules": [
-    {
-    "id": "int",
-    "module_id": "int",
-    "module_name": "string",
-    "purpose": "string",
-    "main_sentiments": ["string"],
-    "phase_status": "past",
-    "link": "string"
+  "title": "Summary of participation",
+  "general_info": {
+    "summary": "A concise overview of the entire project and its participation process",
+    "goals": ["Goal 1", "Goal 2", "Goal 3"]
+  },
+  "phases": {
+    "past": {
+      "modules": [
+        {
+          "module_name": "Name of the completed module",
+          "status": "past",
+          "final": {
+            "summary": "Summary of what happened in this module, including key outcomes",
+            "bullets": ["Key point 1", "Key point 2", "Key point 3"]
+          }
+        }
+      ]
+    },
+    "current": {
+      "modules": [
+        {
+          "module_name": "Name of the active module",
+          "status": "current",
+          "final": {
+            "summary": "Summary of what's happening in this module now",
+            "bullets": ["Current key point 1", "Current key point 2"]
+          }
+        }
+      ]
+    },
+    "upcoming": {
+      "modules": [
+        {
+          "module_name": "Name of the upcoming module",
+          "status": "upcoming",
+          "final": {
+            "summary": "What will happen in this module",
+            "bullets": ["Planned activity 1", "Planned activity 2"]
+          }
+        }
+      ]
     }
-],
-"current_modules": [
-    {
-    "id": "int",
-    "module_id": "int",
-    "module_name": "string",
-    "purpose": "string",
-    "first_content": ["string"],
-    "phase_status": "active",
-    "link": "string"
-    }
-],
-"upcoming_modules": [
-    {
-    "id": "int",
-    "module_id": "int",
-    "module_name": "string",
-    "purpose": "string",
-    "phase_status": "upcoming",
-    "link": "string"
-    }
-]
+  }
 }
 
 Extract real data from the project export. Use actual numbers and content.
+For past modules, focus on outcomes and main sentiments.
+For current modules, focus on ongoing activities and early content.
+For upcoming modules, focus on planned activities and goals.
 Respond with ONLY the JSON object.
 """.strip()
     },
