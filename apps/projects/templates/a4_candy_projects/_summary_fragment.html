@@ -9,37 +9,38 @@
     </a>
     <div class="accordion__body collapse show" id="summary" aria-labelledby="summary-header">
         <div>
-            <div class="summary__header-text">General info</div>
-            <p>{{ response.general_summary }}</p>
-            {% if response.general_goals %}
-                <p>Goals of the project: </p>
+            <!-- General Info -->
+            <div class="summary__header-text">{% trans 'General info' %}</div>
+            <p>{{ response.general_info.summary }}</p>
+            {% if response.general_info.goals %}
+                <p>{% trans 'Goals of the project' %}:</p>
                 <ul>
-                    {% for goal in response.general_goals %}
+                    {% for goal in response.general_info.goals %}
                     <li>{{ goal }}</li>
                     {% endfor %}
                 </ul>
             {% endif %}
         </div>
+        
         <!-- Stats Card -->
         <div class="summary__stats rounded">
             <div class="row text-center">
                 <div class="col-4">
                     <span class="d-block mb-0 summary__stats-number">{{ response.stats.participants|default:"0" }}</span>
                     <span class="text-muted summary__stats-text">{% trans 'Participants' %}</span>
-                    <!-- <small class="text-muted">Teilnehmende</small> -->
                 </div>
                 <div class="col-4">
                     <span class="d-block mb-0 summary__stats-number">{{ response.stats.contributions|default:"0" }}</span>
                     <small class="text-muted summary__stats-text">{% trans 'Contributions' %}</small>
-                    <!-- <small class="text-muted">Beiträge</small> -->
                 </div>
                 <div class="col-4">
                     <span class="d-block mb-0 summary__stats-number">{{ response.stats.modules|default:"0" }}</span>
                     <small class="text-muted summary__stats-text">{% trans 'Modules' %}</small>
-                    <!-- <small class="text-muted">Modulen</small> -->
                 </div>
             </div>
         </div>
+        
+        <!-- Results Link -->
         {% if project.result %}
         <div class="summary__results-link">
             <span>
@@ -48,33 +49,32 @@
                     class="small module-summary__link" 
                     target="_blank">
                         {% trans 'click here' %}
-                    </a>    
+                </a>    
             </span>
             <i class="fa fa-arrow-right"></i>
         </div>
         {% endif %}
 
-        {% if project %}
-            {% if response.past_modules %}
-                {% include "a4_candy_projects/_summary_section.html" with project=project modules=response.past_modules id="pastModules" %}
-            {% endif %}
+        <!-- Phase Sections -->
+        {% if response.phases.past.modules %}
+            {% include "a4_candy_projects/_summary_section.html" with project=project modules=response.phases.past.modules id="pastModules" %}
+        {% endif %}
 
-            {% if response.current_modules %}
-                {% include "a4_candy_projects/_summary_section.html" with project=project modules=response.current_modules id="currentModules" %}
-            {% endif %}
+        {% if response.phases.current.modules %}
+            {% include "a4_candy_projects/_summary_section.html" with project=project modules=response.phases.current.modules id="currentModules" %}
+        {% endif %}
 
-            {% if response.upcoming_modules %}
-                {% include "a4_candy_projects/_summary_section.html" with project=project modules=response.upcoming_modules id="upcomingModules" %}
-            {% endif %}
+        {% if response.phases.upcoming.modules %}
+            {% include "a4_candy_projects/_summary_section.html" with project=project modules=response.phases.upcoming.modules id="upcomingModules" %}
         {% endif %}
 
         <!-- Feedback -->
         {% if project %}
         <hr class="my-4">
         <div class="d-flex justify-content-between align-items-center text-muted small">
-            <span><i class="fa fa-arrows-rotate"></i>{% trans 'Refresh' %}</span>
+            <span><i class="fa fa-arrows-rotate"></i> {% trans 'Refresh' %}</span>
             {% include "a4_candy_projects/_feedback_icons.html" with summary_id=summary_id user_feedback=user_feedback %}
-         </div>
+        </div>
         {% endif %}
     </div>
 </div>

@@ -130,53 +130,156 @@ def extract_ratings(queryset):
     return ratings_list
 
 
-def restructure_by_module_status(export):
-    """
-    Restructure export data by module status (past/active/future).
-    """
-    grouped = {
-        "project": export["project"],
-        "stats": export["stats"],
-        "past": [],
-        "active": [],
-        "future": [],
+def create_module_base(item):
+    """Create base module structure"""
+    return {
+        "module_id": item["module_id"],
+        "module_name": item["module_name"],
+        "module_type": get_module_type_from_name(item["module_name"]),
+        "phase_status": item["active_status"],
+        "module_order": 0,
+        "link": None,
+        "signals": {
+            "has_comments": False,
+            "has_votes": False,
+            "has_ratings": False,
+            "has_open_answers": False,
+            "has_base_text": False,
+        },
+        "counts": {
+            "ideas": 0,
+            "comments": 0,
+            "votes": 0,
+            "ratings": 0,
+            "open_answers": 0,
+        },
+        "content": {},
+        "meta": {
+            "module_start": item["module_start"],
+            "module_end": item["module_end"],
+        },
     }
 
-    # Filter each item type by its active_status
-    for item in export.get("ideas", []):
-        grouped[item["active_status"]].append(item)
 
-    for item in export.get("polls", []):
-        grouped[item["active_status"]].append(item)
+def process_ideas(module, item):
+    """Process an idea item"""
+    module["counts"]["ideas"] += 1
+    module["counts"]["comments"] += item["comment_count"]
+    module["counts"]["ratings"] += item["rating_count"]
+    if item["comment_count"]:
+        module["signals"]["has_comments"] = True
+    if item["rating_count"]:
+        module["signals"]["has_ratings"] = True
+    module["content"].setdefault("ideas", []).append(item)
 
-    for item in export.get("topics", []):
-        grouped[item["active_status"]].append(item)
 
-    for item in export.get("debates", []):
-        grouped[item["active_status"]].append(item)
+def process_polls(module, item):
+    """Process a poll item"""
+    module["counts"]["votes"] += item["total_votes"]
+    module["counts"]["comments"] += item["comment_count"]
+    if item["comment_count"]:
+        module["signals"]["has_comments"] = True
+    if item["total_votes"]:
+        module["signals"]["has_votes"] = True
+    module["content"].setdefault("questions", []).extend(item["questions"])
+    module["content"]["description"] = item.get("description", "")
+    module["content"]["comments"] = item.get("comments", [])
 
-    for chapter in export.get("documents", []):
-        grouped[chapter["active_status"]].append(chapter)
-        for paragraph in chapter.get("paragraphs", []):
-            paragraph["module_start"] = chapter.get("module_start")
-            paragraph["module_end"] = chapter.get("module_end")
-            paragraph["active_status"] = chapter.get("active_status")
-            grouped[paragraph["active_status"]].append(paragraph)
 
-    for item in export.get("offline_events", []):
-        from dateutil.parser import parse
-        from django.utils import timezone
+def process_topics(module, item):
+    """Process a topic item"""
+    module["counts"]["comments"] += item["comment_count"]
+    module["counts"]["ratings"] += item["rating_count"]
+    if item["comment_count"]:
+        module["signals"]["has_comments"] = True
+    if item["rating_count"]:
+        module["signals"]["has_ratings"] = True
+    module["content"].setdefault("topics", []).append(item)
 
-        now = timezone.now()
-        event_date = parse(item["date"])
-        if event_date < now:
-            grouped["past"].append(item)
-        elif event_date > now:
-            grouped["future"].append(item)
-        else:
-            grouped["active"].append(item)
 
-    return grouped
+def process_debates(module, item):
+    """Process a debate item"""
+    module["counts"]["comments"] += item["comment_count"]
+    if item["comment_count"]:
+        module["signals"]["has_comments"] = True
+    module["content"].setdefault("debates", []).append(item)
+
+
+def process_documents(module, item):
+    """Process a document chapter"""
+    if item not in module["content"].get("chapters", []):
+        module["content"].setdefault("chapters", []).append(item)
+
+
+def group_by_module(export_data):
+    """Group all items by module and organize them into past/current/upcoming sections."""
+    modules_by_id = {}
+
+    # Define item type handlers
+    handlers = {
+        "ideas": process_ideas,
+        "polls": process_polls,
+        "topics": process_topics,
+        "debates": process_debates,
+        "documents": process_documents,
+    }
+
+    # Collect all items by module
+    for item_type, items in [
+        ("ideas", export_data.get("ideas", [])),
+        ("polls", export_data.get("polls", [])),
+        ("topics", export_data.get("topics", [])),
+        ("debates", export_data.get("debates", [])),
+        ("documents", export_data.get("documents", [])),
+    ]:
+        handler = handlers.get(item_type)
+        if not handler:
+            continue
+
+        for item in items:
+            module_id = item["module_id"]
+            if module_id not in modules_by_id:
+                modules_by_id[module_id] = create_module_base(item)
+
+            handler(modules_by_id[module_id], item)
+
+    # Organize by status
+    result = {
+        "project": export_data["project"],
+        "stats": export_data["stats"],
+        "phases": {
+            "past": {"phase_status": "past", "modules": []},
+            "current": {"phase_status": "current", "modules": []},
+            "upcoming": {"phase_status": "upcoming", "modules": []},
+        },
+    }
+
+    # Group modules by status
+    status_map = {"past": "past", "active": "current", "future": "upcoming"}
+    for module in modules_by_id.values():
+        phase = status_map.get(module["phase_status"])
+        if phase:
+            result["phases"][phase]["modules"].append(module)
+
+    return result
+
+
+def get_module_type_from_name(module_name):
+    """Map module name to blueprint type"""
+    module_type_map = {
+        "brainstorming": "brainstorming",
+        "map-brainstorming": "map-brainstorming",
+        "idea-challenge": "idea-collection",
+        "spatial-idea-challenge": "map-idea-collection",
+        "text-review": "text-review",
+        "poll": "poll",
+        "participatory-budgeting": "participatory-budgeting",
+        "interactive-event": "interactive-event",
+        "topic-prioritization": "topic-prioritization",
+        "debate": "debate",
+    }
+    name_lower = module_name.lower().replace(" ", "-")
+    return module_type_map.get(name_lower, "unknown")
 
 
 def generate_full_export(project):
@@ -212,7 +315,7 @@ def generate_full_export(project):
         "offline_events": export_offline_events_full(project),
         "stats": calculate_stats(project),
     }
-    structured = restructure_by_module_status(export)
+    structured = group_by_module(export)
     # print(json.dumps(structured))
     return structured
 

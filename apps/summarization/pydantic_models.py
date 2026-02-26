@@ -1,5 +1,7 @@
 """Pydantic models for summarization responses."""
 
+from typing import List
+from typing import Literal
 from typing import Optional
 
 from pydantic import BaseModel
@@ -54,60 +56,129 @@ class SummaryResponse(BaseModel):
 """Pydantic models for summarization responses."""
 
 
-class Stats(BaseModel):
-    """Statistics for the project summary header."""
+# Debug sub-models
+class Claim(BaseModel):
+    """A claim extracted from the summary with evidence."""
 
-    participants: int = Field(description="Number of participants")
-    contributions: int = Field(description="Total number of contributions")
-    modules: int = Field(description="Number of modules in the project")
+    claim_text: str = Field(description="The claim text")
+    evidence_type: Literal[
+        "from_votes",
+        "from_ratings",
+        "from_open_answers",
+        "from_comments",
+        "from_base_text",
+        "uncertain",
+    ] = Field(description="Type of evidence supporting this claim")
+    action: Literal["keep", "soften", "remove"] = Field(
+        description="Action taken on this claim"
+    )
+    fix_hint: Optional[str] = Field(None, description="Hint for fixing the claim")
 
 
-class ModuleSummary(BaseModel):
-    """Response model for module summarization."""
+class QuantifierFix(BaseModel):
+    """A fix for an uncertain quantifier."""
 
-    id: int = Field(description="ID")
-    module_id: int = Field(description="ID of the module")
-    module_name: str = Field(description="Name of the module")
-    purpose: str = Field(description="Goal/purpose of the module")
-    main_sentiments: Optional[list[str]] = Field(
+    original_phrase: str = Field(description="Original uncertain phrase")
+    replacement: str = Field(description="Replacement phrase")
+    reason: str = Field(description="Reason for the fix")
+
+
+class Patch(BaseModel):
+    """A patch applied to the summary."""
+
+    patch_type: Literal["REPLACE", "REMOVE", "ADD_SENTENCE"] = Field(
+        description="Type of patch applied"
+    )
+    target: str = Field(description="Target text to patch")
+    replacement: Optional[str] = Field(
+        None, description="Replacement text (for REPLACE/ADD)"
+    )
+
+
+class ModuleDebug(BaseModel):
+    """Debug information for a module summary."""
+
+    module_type: str = Field(description="Type of module")
+    signals_snapshot: List[str] = Field(
+        default_factory=list, description="Snapshot of signals at generation time"
+    )
+    draft_before_qa: str = Field(description="Draft summary before QA")
+    claims: List[Claim] = Field(
+        default_factory=list, description="Claims extracted from summary"
+    )
+    quantifier_fixes: List[QuantifierFix] = Field(
+        default_factory=list, description="Fixes for uncertain quantifiers"
+    )
+    anchors: List[str] = Field(
+        default_factory=list, description="Anchor points in the data"
+    )
+    coverage_gaps: List[str] = Field(
+        default_factory=list, description="Identified gaps in coverage"
+    )
+    coverage_patch: Optional[str] = Field(
+        None, description="Patch to fix coverage gaps"
+    )
+    patches: List[Patch] = Field(default_factory=list, description="Patches applied")
+    after_qa: str = Field(description="Summary after QA process")
+    diff_summary: Optional[str] = Field(None, description="Summary of changes made")
+    qa_status: Literal["PASS", "FAIL"] = Field(description="QA status")
+
+
+class ModuleFinal(BaseModel):
+    """Final summary and bullets for a module."""
+
+    summary: str = Field(description="Summary of the module's outcomes/activities")
+    bullets: List[str] = Field(
         default_factory=list,
-        description="Main sentiments or key points from user contributions (for past modules)",
+        description="Key points or main sentiments from the module",
     )
-    phase_status: str = Field(
-        description="Phase status: 'past', 'active', or 'upcoming'"
+
+
+class PhaseModule(BaseModel):
+    """Module within a phase section."""
+
+    module_name: str = Field(description="Name of the module")
+    status: Literal["past", "current", "upcoming"] = Field(description="Module status")
+    debug: Optional[ModuleDebug] = Field(
+        None, description="Debug information (only when show_debug=true)"
     )
-    link: str = Field(description="Link to the module")
-    first_content: Optional[list[str]] = Field(
-        None, description="First content/early signs (for active modules)"
+    final: ModuleFinal = Field(description="Summary and key points for the module")
+
+
+class PhaseSection(BaseModel):
+    """A phase section containing modules."""
+
+    modules: List[PhaseModule] = Field(
+        default_factory=list, description="Modules in this phase"
+    )
+
+
+class Phases(BaseModel):
+    """All phase sections."""
+
+    past: PhaseSection = Field(default_factory=PhaseSection)
+    current: PhaseSection = Field(default_factory=PhaseSection)
+    upcoming: PhaseSection = Field(default_factory=PhaseSection)
+
+
+class GeneralInfo(BaseModel):
+    """General information about the project."""
+
+    summary: str = Field(description="General summary of the entire project")
+    goals: List[str] = Field(
+        default_factory=list, description="Overall goals of the project"
     )
 
 
 class ProjectSummaryResponse(BaseModel):
     """Response model for complete project summarization."""
 
-    # Header
+    show_debug: bool = Field(
+        default=False, description="Whether debug info is included"
+    )
     title: str = Field(default="Summary of participation")
-
-    # Stats box
-    stats: Stats = Field(description="Participation statistics")
-
-    general_summary: str = Field(description="General summary of the entire project")
-    general_goals: list[str] = Field(description="Overall goals of the project")
-    # Timeline sections
-    past_modules: list[ModuleSummary] = Field(
-        default_factory=list,
-        description="Modules that are completed (phase_status='past')",
-    )
-
-    current_modules: list[ModuleSummary] = Field(
-        default_factory=list,
-        description="Modules that are active (phase_status='active')",
-    )
-
-    upcoming_modules: list[ModuleSummary] = Field(
-        default_factory=list,
-        description="Modules that are upcoming (phase_status='upcoming')",
-    )
+    general_info: GeneralInfo = Field(description="General project information")
+    phases: Phases = Field(description="All phase sections with their modules")
 
 
 class DocumentInputItem(BaseModel):

@@ -45,6 +45,16 @@
             border-radius: 4px;
             font-size: 14px;
         }
+        .checkbox-group {
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .checkbox-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+        }
         button {
             background-color: #007bff;
             color: white;
@@ -139,6 +149,11 @@
                 <option value="mistral" {% if provider == "mistral" %}selected{% endif %}>Mistral</option>
             </select>
             
+            <div class="checkbox-group">
+                <input type="checkbox" name="show_debug" id="show_debug" {% if show_debug %}checked{% endif %}>
+                <label for="show_debug">Show debug information</label>
+            </div>
+            
             <button type="submit">Summarize</button>
         </form>
         
@@ -149,9 +164,8 @@
         {% endif %}
         
         {% if summary_response %}
-            {% include "a4_candy_projects/_summary_fragment.html" with response=summary_response project=project summary_id=None user_feedback=None %}
+            {% include "a4_candy_projects/_summary_fragment.html" with response=summary_response project=project summary_id=None user_feedback=None show_debug=show_debug %}
         {% endif %}
     </div>
 </body>
 </html>
-
