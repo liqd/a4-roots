@@ -138,6 +138,7 @@ class PhaseModule(BaseModel):
     """Module within a phase section."""
 
     module_name: str = Field(description="Name of the module")
+    module_id: int = Field(description="ID of the module")
     status: Literal["past", "current", "upcoming"] = Field(description="Module status")
     debug: Optional[ModuleDebug] = Field(None, description="Debug information")
     final: ModuleFinal = Field(description="Summary and key points for the module")

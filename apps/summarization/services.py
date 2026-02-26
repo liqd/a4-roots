@@ -243,11 +243,13 @@ Schema:
   "title": "Summary of participation",
   "general_info": {"summary": "string", "goals": ["string"]},
   "phases": {
-    "past": {"modules": [{"module_name": "string", "status": "past", "final": {"summary": "string", "bullets": ["string"]}, "debug": {...}}]},
-    "current": {"modules": [{"module_name": "string", "status": "current", "final": {"summary": "string", "bullets": ["string"]}, "debug": {...}}]},
-    "upcoming": {"modules": [{"module_name": "string", "status": "upcoming", "final": {"summary": "string", "bullets": ["string"]}, "debug": {...}}]}
+    "past": {"modules": [{"module_id": "number", "module_name": "string", "status": "past", "final": {"summary": "string", "bullets": ["string"]}, "debug": {...}}]},
+    "current": {"modules": [{"module_id": "number", "module_name": "string", "status": "current", "final": {"summary": "string", "bullets": ["string"]}, "debug": {...}}]},
+    "upcoming": {"modules": [{"module_id": "number", "module_name": "string", "status": "upcoming", "final": {"summary": "string", "bullets": ["string"]}, "debug": {...}}]}
   }
 }
+
+NOTE: module_id in the output should match the given module_id of the input for each module
 
 Each module MUST include a 'debug' object with:
 - module_type: string
