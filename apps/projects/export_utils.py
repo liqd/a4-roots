@@ -124,7 +124,6 @@ def extract_ratings(queryset):
             {
                 "id": rating.id,
                 "value": rating.value,
-                "created": rating.created.isoformat(),
             }
         )
     return ratings_list
