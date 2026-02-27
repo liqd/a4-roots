@@ -459,7 +459,7 @@ class ProjectGenerateSummaryView(PermissionRequiredMixin, generic.DetailView):
                     "summary_id": summary.id if summary else None,
                     "user_feedback": user_feedback,
                     "show_debug": False,
-                    # "raw": response.model_dump_json()
+                    "raw": response.model_dump_json(),
                 },
             )
             logger.info(

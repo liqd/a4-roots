@@ -1,6 +1,12 @@
 {% load i18n wagtailsettings_tags a4_candy_project_tags %}
 {% get_settings use_default_site=True %}
 
+{% if show_debug %}
+<div>
+    { raw }
+</div>
+{% endif %}
+
 <div class="accordion summary__accordion">
     <div class="d-flex justify-content-between align-items-start">
         <div class="d-flex align-items-center">
