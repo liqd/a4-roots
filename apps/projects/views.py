@@ -436,7 +436,7 @@ class ProjectGenerateSummaryView(PermissionRequiredMixin, generic.DetailView):
                 project=project,
                 text=json_text,
                 result_type=ProjectSummaryResponse,
-                skip_cache=True,
+                skip_cache=False,
                 prompt=prompt,
             )
             try:
