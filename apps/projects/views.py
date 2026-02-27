@@ -421,7 +421,6 @@ class ProjectGenerateSummaryView(PermissionRequiredMixin, generic.DetailView):
         logger.info(
             f"ProjectGenerateSummaryView: Starting summary for project {project.id} ({project.slug})"
         )
-
         try:
             export_data = self._generate_export_data(project)
             self._process_documents(export_data, request, project)
@@ -440,7 +439,6 @@ class ProjectGenerateSummaryView(PermissionRequiredMixin, generic.DetailView):
                 skip_cache=True,
                 prompt=prompt,
             )
-
             try:
                 summary = ProjectSummary.objects.filter(project=project).latest(
                     "created_at"
@@ -461,6 +459,7 @@ class ProjectGenerateSummaryView(PermissionRequiredMixin, generic.DetailView):
                     "summary_id": summary.id if summary else None,
                     "user_feedback": user_feedback,
                     "show_debug": False,
+                    # "raw": response.model_dump_json()
                 },
             )
             logger.info(
@@ -475,7 +474,9 @@ class ProjectGenerateSummaryView(PermissionRequiredMixin, generic.DetailView):
                 exc_info=True,
             )
             capture_exception(e)
-            html = render_to_string("a4_candy_projects/_summary_error.html")
+            html = render_to_string(
+                "a4_candy_projects/_summary_error.html", {"project": project}
+            )
             return HttpResponse(html)
 
 
