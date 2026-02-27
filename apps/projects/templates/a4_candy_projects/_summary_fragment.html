@@ -1,4 +1,4 @@
-{% load i18n wagtailsettings_tags %}
+{% load i18n wagtailsettings_tags a4_candy_project_tags %}
 {% get_settings use_default_site=True %}
 
 <div class="accordion summary__accordion">
@@ -44,18 +44,19 @@
         </div>
         
         <!-- Stats Card -->
+        {% get_project_stats project as stats %}
         <div class="summary__stats rounded">
             <div class="row text-center">
                 <div class="col-4">
-                    <span class="d-block mb-0 summary__stats-number">{{ response.stats.participants|default:"0" }}</span>
+                    <span class="d-block mb-0 summary__stats-number">{{ stats.participants|default:"0" }}</span>
                     <span class="text-muted summary__stats-text">{% trans 'Participants' %}</span>
                 </div>
                 <div class="col-4">
-                    <span class="d-block mb-0 summary__stats-number">{{ response.stats.contributions|default:"0" }}</span>
+                    <span class="d-block mb-0 summary__stats-number">{{ stats.contributions|default:"0" }}</span>
                     <small class="text-muted summary__stats-text">{% trans 'Contributions' %}</small>
                 </div>
                 <div class="col-4">
-                    <span class="d-block mb-0 summary__stats-number">{{ response.stats.modules|default:"0" }}</span>
+                    <span class="d-block mb-0 summary__stats-number">{{ stats.modules|default:"0" }}</span>
                     <small class="text-muted summary__stats-text">{% trans 'Modules' %}</small>
                 </div>
             </div>
