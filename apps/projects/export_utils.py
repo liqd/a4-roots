@@ -207,6 +207,18 @@ def process_topics(module, item):
     module["content"].setdefault("topics", []).append(item)
 
 
+def process_proposals(module, item):
+    """Process a proposal item (similar to ideas but with budget)."""
+    module["counts"]["ideas"] += 1
+    module["counts"]["comments"] += item["comment_count"]
+    module["counts"]["ratings"] += item["rating_count"]
+    if item["comment_count"]:
+        module["signals"]["has_comments"] = True
+    if item["rating_count"]:
+        module["signals"]["has_ratings"] = True
+    module["content"].setdefault("proposals", []).append(item)
+
+
 def process_debates(module, item):
     """Process a debate item"""
     module["counts"]["comments"] += item["comment_count"]
@@ -230,6 +242,7 @@ def group_by_module(export_data):
         "ideas": process_ideas,
         "mapideas": process_mapideas,
         "polls": process_polls,
+        "proposals": process_proposals,
         "topics": process_topics,
         "debates": process_debates,
         "documents": process_documents,
@@ -241,6 +254,7 @@ def group_by_module(export_data):
         ("mapideas", export_data.get("mapideas", [])),
         ("polls", export_data.get("polls", [])),
         ("topics", export_data.get("topics", [])),
+        ("proposals", export_data.get("proposals", [])),
         ("debates", export_data.get("debates", [])),
         ("documents", export_data.get("documents", [])),
     ]:
@@ -321,6 +335,7 @@ def generate_full_export(project):
         "ideas": export_ideas_full(project),
         "polls": export_polls_full(project),
         "mapideas": export_mapideas_full(project),
+        "proposals": export_proposals_full(project),
         "topics": export_topics_full(project),
         "debates": export_debates_full(project),
         "documents": export_documents_full(project),
@@ -751,3 +766,64 @@ def export_mapideas_full(project):
         )
 
     return mapideas_data
+
+
+def export_proposals_full(project):
+    """Export all participatory budgeting proposals with full data including budget."""
+    from apps.budgeting.models import Proposal
+
+    proposals_data = []
+    proposals = (
+        Proposal.objects.filter(module__project=project)
+        .select_related("category")
+        .prefetch_related("labels")
+    )
+
+    for proposal in proposals:
+        # Get comments for this proposal
+        comments_list = extract_comments(proposal.comments.all())
+
+        # Get ratings for this proposal
+        ratings_list = extract_ratings(proposal.ratings.all())
+
+        # Extract point coordinates if they exist
+        point_data = None
+        if proposal.point:
+            if hasattr(proposal.point, "y"):
+                point_data = {
+                    "latitude": proposal.point.y,
+                    "longitude": proposal.point.x,
+                    "srid": proposal.point.srid,
+                }
+            elif isinstance(proposal.point, dict):
+                point_data = proposal.point
+
+        proposals_data.append(
+            {
+                "id": proposal.id,
+                "active_status": get_module_status(proposal.module),
+                "module_start": str(proposal.module.module_start),
+                "module_end": str(proposal.module.module_end),
+                "url": proposal.get_absolute_url(),
+                "name": proposal.name,
+                "description": str(proposal.description),
+                "attachments": extract_attachments(str(proposal.description)),
+                "budget": proposal.budget,
+                "point": point_data,
+                "point_label": proposal.point_label,
+                "created": proposal.created.isoformat(),
+                "reference_number": proposal.reference_number,
+                "category": proposal.category.name if proposal.category else None,
+                "labels": [label.name for label in proposal.labels.all()],
+                "comment_count": proposal.comments.count(),
+                "comments": comments_list,
+                "rating_count": proposal.ratings.count(),
+                "ratings": ratings_list,
+                "module_id": proposal.module.id,
+                "module_name": proposal.module.name,
+                "images": [i.name for i in proposal._a4images_current_images],
+                "is_archived": proposal.is_archived,
+            }
+        )
+
+    return proposals_data
