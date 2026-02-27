@@ -8,10 +8,19 @@ from pydantic import BaseModel
 from pydantic import Field
 
 
+class Stats(BaseModel):
+    """Statistics for the project summary header."""
+
+    participants: int = Field(description="Number of participants")
+    contributions: int = Field(description="Total number of contributions")
+    modules: int = Field(description="Number of modules in the project")
+
+
 class SummaryItem(BaseModel):
     """Response model for summarization."""
 
     title: str = Field(description="Title of the summary")
+    stats: Stats = Field(description="Participation statistics")
     summary: str = Field(description="The summary of the text or document")
     key_points: list[str] = Field(
         default_factory=list,
@@ -173,6 +182,7 @@ class ProjectSummaryResponse(BaseModel):
     """Response model for complete project summarization."""
 
     title: str = Field(default="Summary of participation")
+    stats: Stats = Field(description="Participation statistics")
     general_info: GeneralInfo = Field(description="General project information")
     phases: Phases = Field(description="All phase sections with their modules")
 

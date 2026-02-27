@@ -241,6 +241,7 @@ You are a JSON generator. Return ONLY valid JSON.
 Schema:
 {
   "title": "Summary of participation",
+  "stats": {"participants": "number", "contributions": "number", "modules": "number"},
   "general_info": {"summary": "string", "goals": ["string"]},
   "phases": {
     "past": {"modules": [{"module_id": "number", "module_name": "string", "status": "past", "final": {"summary": "string", "bullets": ["string"]}, "debug": {...}}]},
