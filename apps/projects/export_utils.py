@@ -1,12 +1,11 @@
 import re
 
 # import json
-from adhocracy4.comments.models import Comment
 from adhocracy4.polls.models import Poll
 from apps.debate.models import Subject
 from apps.documents.models import Chapter
-from apps.documents.models import Paragraph
 from apps.ideas.models import Idea
+from apps.mapideas.models import MapIdea
 from apps.offlineevents.models import OfflineEvent
 from apps.topicprio.models import Topic
 
@@ -172,6 +171,18 @@ def process_ideas(module, item):
     module["content"].setdefault("ideas", []).append(item)
 
 
+def process_mapideas(module, item):
+    """Process a map idea item (same as regular ideas)"""
+    module["counts"]["ideas"] += 1
+    module["counts"]["comments"] += item["comment_count"]
+    module["counts"]["ratings"] += item["rating_count"]
+    if item["comment_count"]:
+        module["signals"]["has_comments"] = True
+    if item["rating_count"]:
+        module["signals"]["has_ratings"] = True
+    module["content"].setdefault("mapideas", []).append(item)
+
+
 def process_polls(module, item):
     """Process a poll item"""
     module["counts"]["votes"] += item["total_votes"]
@@ -217,6 +228,7 @@ def group_by_module(export_data):
     # Define item type handlers
     handlers = {
         "ideas": process_ideas,
+        "mapideas": process_mapideas,
         "polls": process_polls,
         "topics": process_topics,
         "debates": process_debates,
@@ -226,6 +238,7 @@ def group_by_module(export_data):
     # Collect all items by module
     for item_type, items in [
         ("ideas", export_data.get("ideas", [])),
+        ("mapideas", export_data.get("mapideas", [])),
         ("polls", export_data.get("polls", [])),
         ("topics", export_data.get("topics", [])),
         ("debates", export_data.get("debates", [])),
@@ -245,7 +258,6 @@ def group_by_module(export_data):
     # Organize by status
     result = {
         "project": export_data["project"],
-        "stats": export_data["stats"],
         "phases": {
             "past": {"phase_status": "past", "modules": []},
             "current": {"phase_status": "current", "modules": []},
@@ -308,11 +320,11 @@ def generate_full_export(project):
         },
         "ideas": export_ideas_full(project),
         "polls": export_polls_full(project),
+        "mapideas": export_mapideas_full(project),
         "topics": export_topics_full(project),
         "debates": export_debates_full(project),
         "documents": export_documents_full(project),
         "offline_events": export_offline_events_full(project),
-        "stats": calculate_stats(project),
     }
     structured = group_by_module(export)
     # print(json.dumps(structured))
@@ -674,82 +686,68 @@ def export_offline_events_full(project):
     return events_data
 
 
-def calculate_stats(project):
-    """Calculate statistics for the export"""
-    # Get counts
-    ideas_count = Idea.objects.filter(module__project=project).count()
-    polls_count = Poll.objects.filter(module__project=project).count()
-    topics_count = Topic.objects.filter(module__project=project).count()
-    debates = Subject.objects.filter(module__project=project)
-    chapters_count = Chapter.objects.filter(module__project=project).count()
+def export_mapideas_full(project):
+    """Export all map ideas with full data including point coordinates."""
 
-    # Get paragraph count
-    paragraphs_count = sum(
-        chapter.paragraphs.count()
-        for chapter in Chapter.objects.filter(module__project=project)
+    mapideas_data = []
+    mapideas = (
+        MapIdea.objects.filter(module__project=project)
+        .select_related("category")
+        .prefetch_related("labels")
     )
 
-    # Count comments on chapters
-    chapter_comments_count = Comment.objects.filter(
-        content_type__model="chapter",
-        object_pk__in=Chapter.objects.filter(module__project=project).values_list(
-            "id", flat=True
-        ),
-    ).count()
+    for mapidea in mapideas:
+        # Get comments for this map idea
+        comments_list = extract_comments(mapidea.comments.all())
 
-    # Count comments on paragraphs
-    paragraph_comments_count = Comment.objects.filter(
-        content_type__model="paragraph",
-        object_pk__in=Paragraph.objects.filter(
-            chapter__module__project=project
-        ).values_list("id", flat=True),
-    ).count()
+        # Get ratings for this map idea
+        ratings_list = extract_ratings(mapidea.ratings.all())
 
-    # Get comment counts
-    ideas_comments = (
-        sum(
-            Idea.objects.get(pk=idea.id).comments.count()
-            for idea in Idea.objects.filter(module__project=project)
+        # Extract point coordinates if they exist
+        point_data = None
+        if mapidea.point:
+            # Check if it's a dict or geometry object
+            if hasattr(mapidea.point, "y"):
+                # It's a geometry object
+                point_data = {
+                    "latitude": mapidea.point.y,
+                    "longitude": mapidea.point.x,
+                    "srid": mapidea.point.srid,
+                }
+            elif isinstance(mapidea.point, dict):
+                # It's already a dict
+                point_data = mapidea.point
+            else:
+                # Try to convert to dict
+                point_data = {
+                    "latitude": getattr(mapidea.point, "y", None),
+                    "longitude": getattr(mapidea.point, "x", None),
+                }
+
+        mapideas_data.append(
+            {
+                "id": mapidea.id,
+                "active_status": get_module_status(mapidea.module),
+                "module_start": str(mapidea.module.module_start),
+                "module_end": str(mapidea.module.module_end),
+                "url": mapidea.get_absolute_url(),
+                "name": mapidea.name,
+                "description": str(mapidea.description),
+                "attachments": extract_attachments(str(mapidea.description)),
+                "point": point_data,
+                "point_label": mapidea.point_label,
+                "created": mapidea.created.isoformat(),
+                "reference_number": mapidea.reference_number,
+                "category": mapidea.category.name if mapidea.category else None,
+                "labels": [label.name for label in mapidea.labels.all()],
+                "comment_count": mapidea.comments.count(),
+                "comments": comments_list,
+                "rating_count": mapidea.ratings.count(),
+                "ratings": ratings_list,
+                "module_id": mapidea.module.id,
+                "module_name": mapidea.module.name,
+                "images": [i.name for i in mapidea._a4images_current_images],
+            }
         )
-        if ideas_count > 0
-        else 0
-    )
 
-    polls_comments = (
-        sum(
-            Poll.objects.get(pk=poll.id).comments.count()
-            for poll in Poll.objects.filter(module__project=project)
-        )
-        if polls_count > 0
-        else 0
-    )
-
-    topics_comments = (
-        sum(
-            Topic.objects.get(pk=topic.id).comments.count()
-            for topic in Topic.objects.filter(module__project=project)
-        )
-        if topics_count > 0
-        else 0
-    )
-
-    total_debate_comments = sum(debate.comments.count() for debate in debates)
-    total_document_comments = chapter_comments_count + paragraph_comments_count
-    total_comments = (
-        ideas_comments
-        + polls_comments
-        + topics_comments
-        + total_document_comments
-        + total_debate_comments
-    )
-
-    return {
-        "total_ideas": ideas_count,
-        "total_polls": polls_count,
-        "total_topics": topics_count,
-        "total_debates": debates.count(),
-        "total_comments": total_comments,
-        "total_chapters": chapters_count,
-        "total_paragraphs": paragraphs_count,
-        "total_participants": project.participants.count(),
-    }
+    return mapideas_data
