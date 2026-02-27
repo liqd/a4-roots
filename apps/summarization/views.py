@@ -86,14 +86,12 @@ class SummarizationTestView(View):
         text = request.POST.get("text", "")
         prompt = request.POST.get("prompt", "")
         provider_handle = request.POST.get("provider", None)
-        show_debug = request.POST.get("show_debug") == "on"
 
         context = {
             "text": text,
             "prompt": prompt,
             "default_prompt": SummaryRequest.DEFAULT_PROMPT,
             "provider": provider_handle or "ovhcloud",
-            "show_debug": show_debug,
             "summary_response": None,
             "error": None,
             "original_length": 0,
@@ -106,13 +104,11 @@ class SummarizationTestView(View):
             if project:
                 context["project"] = project
 
-            # Pass show_debug to service
             service = AIService(provider_handle=provider_handle)
             response = service.summarize(
                 text=text,
                 prompt=prompt if prompt else None,
                 result_type=ProjectSummaryResponse,
-                show_debug=show_debug,
             )
             context["summary_response"] = response
             context["original_length"] = len(text)

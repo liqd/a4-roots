@@ -32,6 +32,7 @@
             
             <div class="mb-4" id="{{ id }}">
                 {% for module in modules %}
+                {% with module_obj=project.modules|get_module_by_id:module.module_id %}
                 <div class="module-summary__container">
                     <div id="heading-{{ forloop.counter }}">
                         <div class="module-summary__header">
@@ -45,6 +46,11 @@
                                     <span class="badge badge--module__future ml-2">{% trans 'planned' %}</span>
                                 {% endif %}
                             </span>
+                        </div>
+                        <div>
+                            <small>
+                              {% trans 'Active participation' %}: {{ module_obj.module_start|date:"j. M H:i"  }} - {{ module_obj.module_end|date:"j. M H:i"  }}
+                            </small>
                         </div>
                     </div>
                     <div class="module-summary__goals" id="module-{{ module.module_name|slugify }}">
@@ -200,17 +206,17 @@
                 </details>
             </div>
             {% endif %}
-                            
                             <p class="summary__see-more">
                                 <span>
                                     {% trans 'To see what happened in module' %} {{ module.module_name }}, 
-                                    <a href="{{ module.link }}" class="small module-summary__link" target="_blank">{% trans 'click here' %}</a>
+                                    <a href="{{ module_obj.get_absolute_url }}" class="small module-summary__link" target="_blank">{% trans 'click here' %}</a>
                                 </span>
-                                <i class="fa fa-arrow-right"></i>
+                                <a href="{{ module_obj.get_absolute_url }}" class="module-summary__link" target="_blank"><i class="fa fa-arrow-right"></i></a>
                             </p>
                         </div>
                     </div>
                 </div>
+                {% endwith %}
                 {% endfor %}
             </div>
         </div>

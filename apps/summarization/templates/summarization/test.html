@@ -149,11 +149,6 @@
                 <option value="mistral" {% if provider == "mistral" %}selected{% endif %}>Mistral</option>
             </select>
             
-            <div class="checkbox-group">
-                <input type="checkbox" name="show_debug" id="show_debug" {% if show_debug %}checked{% endif %}>
-                <label for="show_debug">Show debug information</label>
-            </div>
-            
             <button type="submit">Summarize</button>
         </form>
         
@@ -164,7 +159,7 @@
         {% endif %}
         
         {% if summary_response %}
-            {% include "a4_candy_projects/_summary_fragment.html" with response=summary_response project=project summary_id=None user_feedback=None show_debug=show_debug %}
+            {% include "a4_candy_projects/_summary_fragment.html" with response=summary_response project=project summary_id=None user_feedback=None show_debug=True raw=raw %}
         {% endif %}
     </div>
 </body>
