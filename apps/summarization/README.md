@@ -57,17 +57,15 @@ venv/bin/python apps/summarization/test_summarization.py --provider openrouter
 ```
 
 
-## Caching / Fallback / Celery Beat
+## Caching / Celery Beat
 
-- **Caching (exact match & rate limiting)**: `AIService.project_summarize` stores each successful project summary as a `ProjectSummary` with an `input_text_hash`. On later calls, it first checks for an exact hash match and project/global rate limits; if a cached summary is valid, it is returned and **no new provider request** is made.
-- **Fallback on error (`PROJECT_SUMMARY_FALLBACK_MAX_AGE_MINUTES`)**: If the provider call raises an exception, `project_summarize` tries to use the most recent `ProjectSummary` as a fallback, as long as it is not older than the configured max age. This avoids hard failures when the AI provider is temporarily unavailable.
-- **Periodic refresh via Celery Beat (`refresh_project_summaries`)**: An optional periodic Celery task can enqueue `generate_project_summary_task` for projects that have no summary younger than `PROJECT_SUMMARY_AUTO_REFRESH_MAX_AGE_MINUTES`. Thanks to the caching logic above, only projects whose export content actually changed (or whose summary is allowed to be refreshed) will trigger new AI requests.
+- **Caching (exact match & rate limiting)**: `AIService.project_summarize` stores each successful project summary as a `ProjectSummary` with an `input_text_hash`. Auf späteren Aufrufen wird zuerst auf einen exakten Hash-Treffer geprüft; bei Übereinstimmung wird die gespeicherte Zusammenfassung verwendet und das Feld `last_checked_at` aktualisiert. Zusätzlich können projektbezogene und globale Rate-Limits aktiv sein, bei denen innerhalb kurzer Intervalle ebenfalls die letzte Summary wiederverwendet wird (ohne `last_checked_at` zu ändern).
+- **Periodic refresh via Celery Beat (`refresh_project_summaries`)**: Ein optionaler periodischer Celery-Task kann `generate_project_summary_task` für Projekte einreihen, die keine Summary jünger als `PROJECT_SUMMARY_AUTO_REFRESH_MAX_AGE_MINUTES` haben. Dank der Hash‑basierten Caching-Logik werden nur Projekte, deren Exportinhalt sich tatsächlich geändert hat (oder deren Summary explizit erneuert werden darf), eine neue AI-Anfrage auslösen.
 
 
 ## Configuration options (settings)
 
 - `AI_PROVIDER` / `AI_DOCUMENT_PROVIDER`: Default providers for text and document summarization (see `local.py.template`).
-- `PROJECT_SUMMARY_FALLBACK_MAX_AGE_MINUTES`: Maximum age (in minutes) for using an existing project summary as a fallback when a new generation fails (0 = disabled).
 - `PROJECT_SUMMARY_AUTO_REFRESH_MAX_AGE_MINUTES`: Maximum age (in minutes) before the periodic job (`refresh_project_summaries`) is allowed to generate a new project summary.
 - `PROJECT_SUMMARY_AUTO_REFRESH_MAX_PROJECTS_PER_RUN`: Maximum number of projects processed per 30‑minute run of the periodic job (`0` = no limit).
 - Celery Beat: to enable the periodic refresh, add `refresh_project_summaries` to `CELERY_BEAT_SCHEDULE` in your `local.py` (see commented example in `local.py.template`).

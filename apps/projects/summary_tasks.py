@@ -30,7 +30,12 @@ def generate_project_summary_task(project_id):
             )
             return
         base_url = getattr(settings, "WAGTAILADMIN_BASE_URL", None)
-        generate_project_summary(project, request=None, base_url=base_url)
+        generate_project_summary(
+            project,
+            request=None,
+            base_url=base_url,
+            allow_regeneration=True,
+        )
         logger.info(
             "generate_project_summary_task: summary generated for project %s (%s)",
             project_id,

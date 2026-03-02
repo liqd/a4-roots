@@ -28,9 +28,6 @@ PROJECT_SUMMARY_RATE_LIMIT_MINUTES = getattr(
     settings, "PROJECT_SUMMARY_RATE_LIMIT_MINUTES", 5
 )
 SUMMARY_GLOBAL_LIMIT_PER_HOUR = getattr(settings, "SUMMARY_GLOBAL_LIMIT_PER_HOUR", 100)
-FALLBACK_MAX_AGE_MINUTES = getattr(
-    settings, "PROJECT_SUMMARY_FALLBACK_MAX_AGE_MINUTES", 0
-)
 
 
 class AIService:
@@ -71,32 +68,50 @@ class AIService:
         text: str,
         prompt: str | None = None,
         result_type: type[BaseModel] = ProjectSummaryResponse,
-        skip_cache: bool = False,
+        is_rate_limit: bool = True,
+        allow_regeneration: bool = True,
     ) -> BaseModel:
-        """Summarize project data with caching."""
+        """Summarize project data with caching.
+
+        - Exact hash match: reuse cached summary and update last_checked_at.
+        - Rate limits (if enabled): optionally reuse latest summary without touching last_checked_at.
+        - If allow_regeneration is False and a summary exists, always return the latest summary
+          without generating a new one, even when the hash changed.
+        """
         request = SummaryRequest(text=text, prompt=prompt)
         latest = self._get_latest_summary(project)
+        text_hash = ProjectSummary.compute_hash(text)
 
-        # Try cache if not skipped
-        if not skip_cache:
-            cached = self._get_cached_response(project, text, latest)
-            if cached:
-                return cached
+        cached = self._get_cached_response(
+            project=project,
+            text_hash=text_hash,
+            latest=latest,
+            is_rate_limit=is_rate_limit,
+        )
+        if cached:
+            return cached
 
-        # Generate new summary
+        # No cache hit:
+        # - If regeneration is not allowed and we already have a summary,
+        #   return the latest one unchanged (used by the button endpoint).
+        if not allow_regeneration and latest:
+            logger.debug(
+                "Regeneration disabled and no cache hit; returning latest summary "
+                f"for project {project.id}"
+            )
+            return ProjectSummaryResponse(**latest.response_data)
+
+        # If there is no existing summary, we must generate one at least once.
         logger.info(f"Generating summary for project {project.id} ({project.slug})")
 
         try:
             response = self.provider.request(request, result_type=result_type)
-            self._save_to_cache(project, request.prompt_text, text, response)
+            self._save_to_cache(project, request.prompt_text, text_hash, response)
             return response
         except Exception as e:
             logger.error(f"Summary generation failed: {e}", exc_info=True)
             capture_exception(e)
 
-            fallback = self._get_fallback_response(latest)
-            if fallback:
-                return fallback
             raise
 
     def _get_latest_summary(self, project):
@@ -108,18 +123,31 @@ class AIService:
         )
 
     def _get_cached_response(
-        self, project, text: str, latest
+        self,
+        project,
+        text_hash: str,
+        latest,
+        is_rate_limit: bool,
     ) -> ProjectSummaryResponse | None:
-        """Return cached response if valid."""
+        """Return cached response if valid.
+
+        - Exact hash match: always used, updates last_checked_at.
+        - Rate limits: optionally reuse latest summary without touching last_checked_at.
+        """
         if not latest:
             return None
 
-        # Exact match
-        if latest.input_text_hash == ProjectSummary.compute_hash(text):
+        # Exact match of input hash: content is up to date.
+        if latest.input_text_hash == text_hash:
             logger.debug(f"Cache hit (exact match) for project {project.id}")
+            latest.last_checked_at = timezone.now()
+            latest.save(update_fields=["last_checked_at"])
             return ProjectSummaryResponse(**latest.response_data)
 
-        # Rate limit checks
+        if not is_rate_limit:
+            return None
+
+        # Rate limit checks (reuse latest summary without updating last_checked_at)
         age = timezone.now() - latest.created_at
 
         if age < timedelta(minutes=PROJECT_SUMMARY_RATE_LIMIT_MINUTES):
@@ -138,26 +166,21 @@ class AIService:
 
         return None
 
-    def _get_fallback_response(self, latest) -> ProjectSummaryResponse | None:
-        """Return cached response as fallback if within age limit."""
-        if FALLBACK_MAX_AGE_MINUTES == 0 or not latest:
-            return None
-
-        age = (timezone.now() - latest.created_at).total_seconds() / 60
-        if age <= FALLBACK_MAX_AGE_MINUTES:
-            logger.debug(f"Using fallback cache (age: {age:.1f} min)")
-            return ProjectSummaryResponse(**latest.response_data)
-
-        return None
-
-    def _save_to_cache(self, project, prompt: str, text: str, response: BaseModel):
+    def _save_to_cache(
+        self,
+        project,
+        prompt: str,
+        text_hash: str,
+        response: BaseModel,
+    ):
         """Save successful response to cache."""
         if isinstance(response, ProjectSummaryResponse):
             ProjectSummary.objects.create(
                 project=project,
                 prompt=prompt,
-                input_text_hash=ProjectSummary.compute_hash(text),
+                input_text_hash=text_hash,
                 response_data=json.loads(response.model_dump_json()),
+                last_checked_at=timezone.now(),
             )
             logger.info(f"Cached summary for project {project.id}")
 

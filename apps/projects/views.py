@@ -388,7 +388,11 @@ class ProjectGenerateSummaryView(PermissionRequiredMixin, generic.DetailView):
             f"ProjectGenerateSummaryView: Starting summary for project {project.id} ({project.slug})"
         )
         try:
-            response = generate_project_summary(project, request=request)
+            # For the button endpoint we never force regeneration; we always show
+            # the latest stored summary and let Celery handle periodic updates.
+            response = generate_project_summary(
+                project, request=request, allow_regeneration=False
+            )
             try:
                 summary = ProjectSummary.objects.filter(project=project).latest(
                     "created_at"
@@ -407,6 +411,10 @@ class ProjectGenerateSummaryView(PermissionRequiredMixin, generic.DetailView):
                     "response": response,
                     "project": project,
                     "summary_id": summary.id if summary else None,
+                    "summary_created_at": summary.created_at if summary else None,
+                    "summary_last_checked_at": (
+                        summary.last_checked_at if summary else None
+                    ),
                     "user_feedback": user_feedback,
                     "show_debug": False,
                     "raw": response.model_dump_json(),

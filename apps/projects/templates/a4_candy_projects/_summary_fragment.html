@@ -20,7 +20,7 @@
             </a>
             {% if settings.a4_candy_cms_settings.ImportantPages.ai_explanation %}
             <a href="{{ settings.a4_candy_cms_settings.ImportantPages.ai_explanation.url }}"
-               class="summary__info-link"
+               class="summary__info-link mt-1" target="_blank"
                aria-label="{% trans 'Explanation of the AI summary' %}">
                 <i class="fas fa-info-circle" aria-hidden="true"></i>
             </a>
@@ -79,7 +79,11 @@
                         {% trans 'click here' %}
                 </a>    
             </span>
-            <i class="fa fa-arrow-right"></i>
+            <a href="{{ project.get_absolute_url }}#tabpanel-project-{{ project.pk }}-result"
+               class="module-summary__link"
+               target="_blank">
+                <i class="fa fa-arrow-right"></i>
+            </a>
         </div>
         {% endif %}
 
@@ -97,10 +101,27 @@
         {% endif %}
 
         <!-- Feedback -->
+        {% if summary_created_at or summary_last_checked_at %}
+        <div class="mt-4 summary__meta text-muted small">
+            {% if summary_created_at %}
+            <div>
+                {% trans 'Erstellt am' %}: {{ summary_created_at|date:"d.m.Y H:i" }}
+            </div>
+            {% endif %}
+            {% if summary_last_checked_at %}
+            <div>
+                {% trans 'Stand' %}: {{ summary_last_checked_at|date:"d.m.Y H:i" }}
+            </div>
+            {% endif %}
+            <div class="mt-1">
+                {% trans 'Diese Zusammenfassung wurde automatisch von einer KI erstellt und kann Fehler enthalten.' %}
+            </div>
+        </div>
+        {% endif %}
+
         {% if project %}
         <hr class="my-4">
-        <div class="d-flex justify-content-between align-items-center text-muted small">
-            <span></span>
+        <div class="d-flex justify-content-end align-items-center text-muted small">
             {% include "a4_candy_projects/_feedback_icons.html" with summary_id=summary_id user_feedback=user_feedback %}
         </div>
         {% endif %}

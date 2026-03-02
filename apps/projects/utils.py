@@ -16,7 +16,9 @@ from .export_utils import integrate_document_summaries
 logger = logging.getLogger(__name__)
 
 
-def generate_project_summary(project, request=None, base_url=None):
+def generate_project_summary(
+    project, request=None, base_url=None, *, allow_regeneration=True
+):
     """
     Generate AI summary for a project. Used by the view and by the periodic Celery task.
 
@@ -64,7 +66,7 @@ def generate_project_summary(project, request=None, base_url=None):
         project=project,
         text=json_text,
         result_type=ProjectSummaryResponse,
-        is_rate_limit=True,
         prompt=prompt,
+        allow_regeneration=allow_regeneration,
     )
     return response
