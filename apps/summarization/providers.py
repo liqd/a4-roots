@@ -9,11 +9,27 @@ from pydantic_ai import Agent
 from pydantic_ai import ImageUrl
 from pydantic_ai.models.mistral import MistralModel
 from pydantic_ai.models.openai import OpenAIChatModel
+from pydantic_ai.profiles.openai import OpenAIModelProfile
 from pydantic_ai.providers.mistral import MistralProvider
 from pydantic_ai.providers.openai import OpenAIProvider
 from sentry_sdk import capture_exception
 
 logger = logging.getLogger(__name__)
+
+
+def _openai_profile_for_ovh() -> OpenAIModelProfile:
+    """Profile for OVHcloud gpt-oss-120b to avoid 'constrain/commentary' message header errors.
+
+    OVH's backend can reject requests with 'unexpected tokens remaining in message header:
+    Some("<|constrain|>commentary")' when reasoning/thinking fields or native json_schema
+    output are used. This profile disables sending thinking parts and uses json_object
+    instead of json_schema for structured output.
+    """
+    return OpenAIModelProfile(
+        openai_chat_send_back_thinking_parts=False,
+        supports_json_schema_output=False,
+        supports_json_object_output=True,
+    )
 
 
 class ProviderConfig:
@@ -168,10 +184,13 @@ class AIProvider:
                 provider=self.provider,
             )
         else:
-            model = OpenAIChatModel(
-                model_name=self.config.model_name,
-                provider=self.provider,
-            )
+            model_kw: dict = {
+                "model_name": self.config.model_name,
+                "provider": self.provider,
+            }
+            if self.config.handle == "ovhcloud":
+                model_kw["profile"] = _openai_profile_for_ovh()
+            model = OpenAIChatModel(**model_kw)
 
         agent = Agent(
             model=model,
@@ -232,11 +251,13 @@ class AIProvider:
                 provider=self.provider,
             )
         else:
-            # Use OpenAIChatModel for image requests (better compatibility with OpenAI-compatible APIs)
-            model = OpenAIChatModel(
-                model_name=self.config.model_name,
-                provider=self.provider,
-            )
+            model_kw = {
+                "model_name": self.config.model_name,
+                "provider": self.provider,
+            }
+            if self.config.handle == "ovhcloud":
+                model_kw["profile"] = _openai_profile_for_ovh()
+            model = OpenAIChatModel(**model_kw)
 
         agent = Agent(
             model=model,

@@ -398,6 +398,9 @@ class ProjectGenerateSummaryView(PermissionRequiredMixin, generic.DetailView):
                     exc_info=True,
                 )
                 capture_exception(e)
+        else:
+            # No attachments: still set content fields and drop URL-only keys
+            integrate_document_summaries(export_data, [], {})
 
     def _get_user_feedback(self, summary, request):
         """Get user feedback for summary."""
@@ -430,6 +433,7 @@ class ProjectGenerateSummaryView(PermissionRequiredMixin, generic.DetailView):
             logger.debug(
                 f"ProjectGenerateSummaryView: Export data generated ({len(json_text)} chars), calling project_summarize"
             )
+            logger.info("ProjectGenerateSummaryView: Export JSON:\n%s", json_text)
 
             show_debug = request.GET.get("debug", "false").lower() == "true"
 

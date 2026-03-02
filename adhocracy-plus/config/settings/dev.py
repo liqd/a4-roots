@@ -67,6 +67,6 @@ except NameError:
     pass
 
 try:
-    LOGGING["loggers"][""]["level"] = "INFO"
-except NameError:
+    LOGGING["loggers"][""]["level"] = "DEBUG"
+except (NameError, KeyError):
     pass

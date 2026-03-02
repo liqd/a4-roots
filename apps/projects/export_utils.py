@@ -284,7 +284,6 @@ def get_module_type_from_name(module_name):
 
 def generate_full_export(project):
     """Generate complete project export data"""
-    description_attachments = extract_attachments(project.description)
     information_attachments = (
         extract_attachments(project.information)
         if hasattr(project, "information")
@@ -296,7 +295,6 @@ def generate_full_export(project):
         "project": {
             "name": project.name,
             "description": project.description,
-            "description_attachments": description_attachments,
             "information": (
                 project.information if hasattr(project, "information") else None
             ),
@@ -578,43 +576,38 @@ def integrate_document_summaries(
     handle_to_source: dict[str, str],
 ):
     """
-    Integrate document summaries into export_data by project field source.
+    Integrate document summaries into export_data as concatenated text per source.
+
+    Writes project.information_attachment_content and project.result_attachment_content
+    (all attachment summaries joined) and removes the URL-only attachment fields
+    so the AI receives content next to information/result, not raw URLs.
 
     Args:
         export_data: Export dictionary (modified in-place)
         document_summaries: List of DocumentSummaryItem objects
         handle_to_source: Mapping from handle to source field ("project_information", "project_result")
     """
-    # Initialize document_summaries structure
-    project_summaries = {
-        "information": [],
-        "result": [],
-    }
+    information_parts = []
+    result_parts = []
 
-    # Group summaries by source field
     for summary_item in document_summaries:
-        handle = summary_item.handle
-        source = handle_to_source.get(handle)
-
+        source = handle_to_source.get(summary_item.handle)
         if source == "project_information":
-            project_summaries["information"].append(
-                {
-                    "handle": summary_item.handle,
-                    "summary": summary_item.summary,
-                }
-            )
+            information_parts.append(summary_item.summary)
         elif source == "project_result":
-            project_summaries["result"].append(
-                {
-                    "handle": summary_item.handle,
-                    "summary": summary_item.summary,
-                }
-            )
+            result_parts.append(summary_item.summary)
 
-    # Integrate summaries into export_data
     if "project" not in export_data:
         export_data["project"] = {}
-    export_data["project"]["document_summaries"] = project_summaries
+
+    export_data["project"]["information_attachment_content"] = "\n\n".join(
+        information_parts
+    )
+    export_data["project"]["result_attachment_content"] = "\n\n".join(result_parts)
+
+    # Remove URL-only fields so AI input uses only the summarized content
+    export_data["project"].pop("information_attachments", None)
+    export_data["project"].pop("result_attachments", None)
 
 
 def export_debates_full(project):
