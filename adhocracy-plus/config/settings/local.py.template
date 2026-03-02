@@ -39,9 +39,6 @@ AI_PROVIDERS = {
     }
 }
 
-# Summarization service configuration
-# Maximum file size for image uploads (in bytes, default: 10MB)
-SUMMARIZATION_MAX_FILE_SIZE = 10 * 1024 * 1024
 # Allowed image file extensions for uploads
 SUMMARIZATION_ALLOWED_IMAGE_TYPES = [".png", ".jpg", ".jpeg", ".pdf"]
 # Maximum age in minutes for using cached summary as fallback on error (0 = disabled)

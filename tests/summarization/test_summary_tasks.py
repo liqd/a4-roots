@@ -137,18 +137,6 @@ def test_generate_project_summary_task_creates_summary(project_factory):
     assert ProjectSummary.objects.filter(project=project).count() == 0
 
     with patch("apps.projects.summary_tasks.generate_project_summary") as mock_gen:
-        from apps.summarization.pydantic_models import ProjectSummaryResponse
-        from apps.summarization.pydantic_models import Stats
-
-        mock_gen.return_value = ProjectSummaryResponse(
-            title="Test",
-            stats=Stats(participants=0, contributions=0, modules=0),
-            general_summary="x",
-            general_goals=[],
-            past_modules=[],
-            current_modules=[],
-            upcoming_modules=[],
-        )
         generate_project_summary_task(project.id)
 
     mock_gen.assert_called_once()
