@@ -1,13 +1,40 @@
 import json
 from types import SimpleNamespace
 
+from django.http import HttpResponse
+from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 from django.views import View
+from rules.contrib.views import LoginRequiredMixin
+
+from adhocracy4.projects.models import Project
+from apps.projects.export_utils import generate_full_export
 
 from .pydantic_models import DocumentInputItem
 from .pydantic_models import ProjectSummaryResponse
 from .services import AIService
 from .services import SummaryRequest
+
+
+def _get_projects_queryset():
+    """Projects for the test page dropdown (non-draft, ordered)."""
+    return (
+        Project.objects.filter(is_draft=False)
+        .select_related("organisation")
+        .order_by("organisation__name", "name")
+    )
+
+
+class SummarizationTestExportView(LoginRequiredMixin, View):
+    """Return project export JSON for the summarization test page."""
+
+    def get(self, request, project_id):
+        project = get_object_or_404(Project, id=project_id)
+        export_data = generate_full_export(project)
+        return HttpResponse(
+            json.dumps(export_data, indent=2),
+            content_type="application/json",
+        )
 
 
 class SummarizationTestView(View):
@@ -18,6 +45,7 @@ class SummarizationTestView(View):
         default_prompt = SummaryRequest.DEFAULT_PROMPT
         context = {
             "default_prompt": default_prompt,
+            "projects": _get_projects_queryset(),
         }
         return render(request, "summarization/test.html", context)
 
@@ -86,6 +114,7 @@ class SummarizationTestView(View):
         text = request.POST.get("text", "")
         prompt = request.POST.get("prompt", "")
         provider_handle = request.POST.get("provider", None)
+        project_id = request.POST.get("project_id", "").strip()
 
         context = {
             "text": text,
@@ -96,14 +125,23 @@ class SummarizationTestView(View):
             "error": None,
             "original_length": 0,
             "project": None,
+            "projects": _get_projects_queryset(),
         }
 
-        if text:
-            # Try to extract project from JSON
+        # Use real project from dropdown if project_id was submitted
+        if project_id:
+            try:
+                context["project"] = get_object_or_404(Project, id=int(project_id))
+                context["selected_project_id"] = int(project_id)
+            except (ValueError, TypeError):
+                pass
+        elif text:
+            # Fallback: extract mock project from JSON text
             project = self._extract_project_from_json(text)
             if project:
                 context["project"] = project
 
+        if text:
             service = AIService(provider_handle=provider_handle)
             response = service.summarize(
                 text=text,
