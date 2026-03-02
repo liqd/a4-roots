@@ -140,6 +140,18 @@
                 Default prompt is pre-filled. You can modify it as needed.
             </small>
             
+            <label for="project_id">Projekt (optional):</label>
+            <select name="project_id" id="project_id">
+                <option value="">— Manuell eingeben —</option>
+                {% for p in projects %}
+                <option value="{{ p.id }}" {% if selected_project_id == p.id %}selected{% endif %}>{{ p.organisation.name }}: {{ p.name }}</option>
+                {% endfor %}
+            </select>
+            <button type="button" id="load-export" disabled title="Projekt auswählen, dann klicken">Export laden</button>
+            <small class="file-hint">
+                Projekt wählen und „Export laden“ klicken – oder Textfeld manuell befüllen.
+            </small>
+
             <label for="text">Text to summarize:</label>
             <textarea name="text" id="text">{{ text }}</textarea>
             
@@ -162,5 +174,50 @@
             {% include "a4_candy_projects/_summary_fragment.html" with response=summary_response project=project summary_id=None user_feedback=None show_debug=True raw=raw %}
         {% endif %}
     </div>
+    <script>
+    (function() {
+        var projectSelect = document.getElementById('project_id');
+        var loadExportBtn = document.getElementById('load-export');
+        var textArea = document.getElementById('text');
+
+        function getCsrfToken() {
+            var name = 'csrftoken';
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var c = cookies[i].trim();
+                if (c.indexOf(name + '=') === 0) return c.substring(name.length + 1);
+            }
+            return '';
+        }
+
+        function updateLoadExportState() {
+            loadExportBtn.disabled = !projectSelect.value;
+        }
+
+        projectSelect.addEventListener('change', updateLoadExportState);
+        updateLoadExportState();
+
+        loadExportBtn.addEventListener('click', function() {
+            var projectId = projectSelect.value;
+            if (!projectId) return;
+            var base = window.location.pathname.replace(/\/$/, '') + '/';
+            var url = base + 'export/' + projectId + '/';
+            loadExportBtn.disabled = true;
+            fetch(url, {
+                method: 'GET',
+                headers: { 'X-CSRFToken': getCsrfToken() },
+                credentials: 'same-origin'
+            }).then(function(resp) {
+                return resp.text();
+            }).then(function(text) {
+                textArea.value = text;
+            }).catch(function() {
+                textArea.value = '/* Fehler beim Laden des Exports */';
+            }).finally(function() {
+                loadExportBtn.disabled = !projectSelect.value;
+            });
+        });
+    })();
+    </script>
 </body>
 </html>

@@ -81,13 +81,28 @@ def module_image(module_name):
     return MODULE_IMAGES.get(module_name.lower(), "images/default.svg")
 
 
+def _is_django_model_instance(obj):
+    """Return True if obj is a Django model instance (has _meta)."""
+    return obj is not None and hasattr(obj, "_meta")
+
+
 @register.simple_tag
 def get_project_stats(project):
     """
     Return statistics for a project.
 
     Usage: {% get_project_stats project as stats %}
+
+    If project is not a Django model instance (e.g. a mock from summarization test),
+    returns empty stats to avoid ORM errors.
     """
+    if not _is_django_model_instance(project):
+        return {
+            "participants": 0,
+            "contributions": 0,
+            "modules": 0,
+        }
+
     contributors = _get_project_contributors(project)
 
     return {
