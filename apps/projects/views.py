@@ -10,6 +10,7 @@ from django.shortcuts import redirect
 from django.shortcuts import render
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy
+from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
@@ -405,6 +406,20 @@ class ProjectGenerateSummaryView(PermissionRequiredMixin, generic.DetailView):
 
             user_feedback = self._get_user_feedback(summary, request)
 
+            summary_timestamp = None
+            summary_date_str = None
+            if summary:
+                ts = summary.last_checked_at or summary.created_at
+                local_ts = timezone.localtime(ts)
+                today = timezone.localdate()
+                is_today = local_ts.date() == today
+                if is_today:
+                    summary_date_str = _("today")
+                else:
+                    summary_date_str = "{} {}".format(
+                        _("on"), local_ts.strftime("%d.%m.")
+                    )
+                summary_timestamp = local_ts
             html = render_to_string(
                 "a4_candy_projects/_summary_fragment.html",
                 {
@@ -412,9 +427,8 @@ class ProjectGenerateSummaryView(PermissionRequiredMixin, generic.DetailView):
                     "project": project,
                     "summary_id": summary.id if summary else None,
                     "summary_created_at": summary.created_at if summary else None,
-                    "summary_last_checked_at": (
-                        summary.last_checked_at if summary else None
-                    ),
+                    "summary_timestamp": summary_timestamp,
+                    "summary_date_str": summary_date_str,
                     "user_feedback": user_feedback,
                     "show_debug": False,
                     "raw": response.model_dump_json(),
@@ -436,6 +450,37 @@ class ProjectGenerateSummaryView(PermissionRequiredMixin, generic.DetailView):
                 "a4_candy_projects/_summary_error.html", {"project": project}
             )
             return HttpResponse(html)
+
+
+class ProjectGenerateSummaryTestView(
+    LoginRequiredMixin, PermissionRequiredMixin, generic.DetailView
+):
+    """
+    Test-View, um die Projektsummary manuell anzustoßen.
+    Bei jedem Aufruf wird – falls kein gültiger Cache vorliegt – eine neue
+    Zusammenfassung per AI erzeugt (allow_regeneration=True).
+    Nur für eingeloggte Nutzer:innen mit view_project-Recht.
+    """
+
+    model = models.Project
+    slug_url_kwarg = "slug"
+    permission_required = "a4projects.view_project"
+
+    def get_permission_object(self):
+        return self.get_object()
+
+    def get(self, request, *args, **kwargs):
+        project = self.get_object()
+        logger.info(
+            "ProjectGenerateSummaryTestView: Forcing summary generation for project %s (%s)",
+            project.id,
+            project.slug,
+        )
+        # Nur anstoßen, keine HTML-Ausgabe oder explizite Fehlerbehandlung.
+        generate_project_summary(project, request=request, allow_regeneration=True)
+        return HttpResponse(
+            f"AI summary generation triggered for project {project.id} ({project.slug})."
+        )
 
 
 @method_decorator(csrf_exempt, name="dispatch")

@@ -212,6 +212,12 @@
         padding-right: 0.25rem;
     }
 
+        &__meta-text {
+            font-size: 14px;
+            margin-left: 1rem;
+            margin-top: -0.5rem;
+        }
+
     &__info-link {
         margin-left: 0.25rem;
         flex-shrink: 0;

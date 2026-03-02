@@ -34,8 +34,22 @@
             <i class="fas fa-sort-down" aria-hidden="true"></i>
         </a>
     </div>
+    {% if summary_timestamp %}
+    <p class="text-muted mb-3 summary__meta-text">
+        {% trans "This summary was created" %}
+        {% if summary_is_today %}
+            {% trans "today" %}
+        {% else %}
+            {% trans "on" %} {{ summary_date_str }}
+        {% endif %}
+        {% trans "at" %} {{ summary_timestamp|date:"H:i" }}
+        {% trans "using AI and may contain errors or be incomplete." %}
+    </p>
+    {% endif %}
+
     <div class="accordion__body collapse show" id="summary" aria-labelledby="summary-header">
         <div>
+
             <!-- General Info -->
             <div class="summary__header-text">{% trans 'General info' %}</div>
             <p>{{ response.general_info.summary }}</p>
@@ -101,29 +115,17 @@
         {% endif %}
 
         <!-- Feedback -->
-        {% if summary_created_at or summary_last_checked_at %}
-        <div class="mt-4 summary__meta text-muted small">
-            {% if summary_created_at %}
-            <div>
-                {% trans 'Erstellt am' %}: {{ summary_created_at|date:"d.m.Y H:i" }}
-            </div>
-            {% endif %}
-            {% if summary_last_checked_at %}
-            <div>
-                {% trans 'Stand' %}: {{ summary_last_checked_at|date:"d.m.Y H:i" }}
-            </div>
-            {% endif %}
-            <div class="mt-1">
-                {% trans 'Diese Zusammenfassung wurde automatisch von einer KI erstellt und kann Fehler enthalten.' %}
-            </div>
-        </div>
-        {% endif %}
-
         {% if project %}
         <hr class="my-4">
         <div class="d-flex justify-content-end align-items-center text-muted small">
             {% include "a4_candy_projects/_feedback_icons.html" with summary_id=summary_id user_feedback=user_feedback %}
         </div>
+        {% endif %}
+
+        {% if summary_created_at %}
+        <script>
+            console.log("Ai Summery created at {{ summary_created_at|date:'c' }}");
+        </script>
         {% endif %}
     </div>
 </div>
