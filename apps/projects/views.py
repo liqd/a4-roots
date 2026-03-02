@@ -1,5 +1,4 @@
 import itertools
-import json
 import logging
 
 from django.contrib import messages
@@ -11,6 +10,7 @@ from django.shortcuts import redirect
 from django.shortcuts import render
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy
+from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
@@ -31,19 +31,14 @@ from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from adhocracy4.projects.mixins import PhaseDispatchMixin
 from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.projects.mixins import ProjectModuleDispatchMixin
-from apps.contrib.models import Settings
 from apps.projects.models import ProjectInsight
 from apps.summarization.models import ProjectSummary
 from apps.summarization.models import SummaryFeedback
-from apps.summarization.pydantic_models import ProjectSummaryResponse
-from apps.summarization.services import AIService
 
 from . import dashboard
 from . import forms
 from . import models
-from .export_utils import collect_document_attachments
-from .export_utils import generate_full_export
-from .export_utils import integrate_document_summaries
+from .utils import generate_project_summary
 
 User = get_user_model()
 
@@ -371,34 +366,6 @@ class ProjectGenerateSummaryView(PermissionRequiredMixin, generic.DetailView):
     def get_permission_object(self):
         return self.get_object()
 
-    def _generate_export_data(self, project):
-        export_data = generate_full_export(project)
-        return export_data
-
-    def _process_documents(self, export_data, request, project):
-        """Process and summarize document attachments."""
-        documents_dict, handle_to_source = collect_document_attachments(
-            export_data, request
-        )
-
-        if documents_dict:
-            try:
-                service = AIService()
-                document_response = service.request_vision_dict(
-                    documents_dict=documents_dict
-                )
-                integrate_document_summaries(
-                    export_data,
-                    document_response.documents,
-                    handle_to_source,
-                )
-            except Exception as e:
-                logger.error(
-                    f"Failed to summarize documents for project {project.slug}: {str(e)}",
-                    exc_info=True,
-                )
-                capture_exception(e)
-
     def _get_user_feedback(self, summary, request):
         """Get user feedback for summary."""
         if not summary:
@@ -422,22 +389,10 @@ class ProjectGenerateSummaryView(PermissionRequiredMixin, generic.DetailView):
             f"ProjectGenerateSummaryView: Starting summary for project {project.id} ({project.slug})"
         )
         try:
-            export_data = self._generate_export_data(project)
-            self._process_documents(export_data, request, project)
-
-            json_text = json.dumps(export_data, indent=2)
-            logger.debug(
-                f"ProjectGenerateSummaryView: Export data generated ({len(json_text)} chars), calling project_summarize"
-            )
-
-            prompt = Settings.get_value("project_summary_prompt")
-            service = AIService()
-            response = service.project_summarize(
-                project=project,
-                text=json_text,
-                result_type=ProjectSummaryResponse,
-                skip_cache=False,
-                prompt=prompt,
+            # For the button endpoint we never force regeneration; we always show
+            # the latest stored summary and let Celery handle periodic updates.
+            response = generate_project_summary(
+                project, request=request, allow_regeneration=False
             )
             try:
                 summary = ProjectSummary.objects.filter(project=project).latest(
@@ -451,12 +406,29 @@ class ProjectGenerateSummaryView(PermissionRequiredMixin, generic.DetailView):
 
             user_feedback = self._get_user_feedback(summary, request)
 
+            summary_timestamp = None
+            summary_date_str = None
+            if summary:
+                ts = summary.last_checked_at or summary.created_at
+                local_ts = timezone.localtime(ts)
+                today = timezone.localdate()
+                is_today = local_ts.date() == today
+                if is_today:
+                    summary_date_str = _("today")
+                else:
+                    summary_date_str = "{} {}".format(
+                        _("on"), local_ts.strftime("%d.%m.")
+                    )
+                summary_timestamp = local_ts
             html = render_to_string(
                 "a4_candy_projects/_summary_fragment.html",
                 {
                     "response": response,
                     "project": project,
                     "summary_id": summary.id if summary else None,
+                    "summary_created_at": summary.created_at if summary else None,
+                    "summary_timestamp": summary_timestamp,
+                    "summary_date_str": summary_date_str,
                     "user_feedback": user_feedback,
                     "show_debug": False,
                     "raw": response.model_dump_json(),
@@ -478,6 +450,37 @@ class ProjectGenerateSummaryView(PermissionRequiredMixin, generic.DetailView):
                 "a4_candy_projects/_summary_error.html", {"project": project}
             )
             return HttpResponse(html)
+
+
+class ProjectGenerateSummaryTestView(
+    LoginRequiredMixin, PermissionRequiredMixin, generic.DetailView
+):
+    """
+    Test-View, um die Projektsummary manuell anzustoßen.
+    Bei jedem Aufruf wird – falls kein gültiger Cache vorliegt – eine neue
+    Zusammenfassung per AI erzeugt (allow_regeneration=True).
+    Nur für eingeloggte Nutzer:innen mit view_project-Recht.
+    """
+
+    model = models.Project
+    slug_url_kwarg = "slug"
+    permission_required = "a4projects.view_project"
+
+    def get_permission_object(self):
+        return self.get_object()
+
+    def get(self, request, *args, **kwargs):
+        project = self.get_object()
+        logger.info(
+            "ProjectGenerateSummaryTestView: Forcing summary generation for project %s (%s)",
+            project.id,
+            project.slug,
+        )
+        # Nur anstoßen, keine HTML-Ausgabe oder explizite Fehlerbehandlung.
+        generate_project_summary(project, request=request, allow_regeneration=True)
+        return HttpResponse(
+            f"AI summary generation triggered for project {project.id} ({project.slug})."
+        )
 
 
 @method_decorator(csrf_exempt, name="dispatch")

@@ -39,11 +39,21 @@ AI_PROVIDERS = {
     }
 }
 
-# Summarization service configuration
-# Maximum file size for image uploads (in bytes, default: 10MB)
-SUMMARIZATION_MAX_FILE_SIZE = 10 * 1024 * 1024
 # Allowed image file extensions for uploads
 SUMMARIZATION_ALLOWED_IMAGE_TYPES = [".png", ".jpg", ".jpeg", ".pdf"]
 # Maximum age in minutes for using cached summary as fallback on error (0 = disabled)
 # If a summary generation fails, a cached version will be used if it's not older than this value
 PROJECT_SUMMARY_FALLBACK_MAX_AGE_MINUTES = 60  # Use cached summary up to 60 minutes old on error
+
+# Periodic auto-refresh: create summary when no summary younger than this exists
+PROJECT_SUMMARY_AUTO_REFRESH_MAX_AGE_MINUTES = 12 * 60  # 12 hours
+# Max number of projects to enqueue per 30-min run (0 = no limit)
+PROJECT_SUMMARY_AUTO_REFRESH_MAX_PROJECTS_PER_RUN = 0
+
+# Celery Beat: periodic project summary refresh (only if you run Celery Beat and want auto-summaries)
+# Uncomment to run refresh_project_summaries every 30 minutes (requires Celery Beat).
+# from datetime import timedelta
+# CELERY_BEAT_SCHEDULE["refresh_project_summaries"] = {
+#     "task": "refresh_project_summaries",
+#     "schedule": timedelta(minutes=30),
+# }

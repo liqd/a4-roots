@@ -20,7 +20,7 @@
             </a>
             {% if settings.a4_candy_cms_settings.ImportantPages.ai_explanation %}
             <a href="{{ settings.a4_candy_cms_settings.ImportantPages.ai_explanation.url }}"
-               class="summary__info-link"
+               class="summary__info-link mt-1" target="_blank"
                aria-label="{% trans 'Explanation of the AI summary' %}">
                 <i class="fas fa-info-circle" aria-hidden="true"></i>
             </a>
@@ -34,8 +34,22 @@
             <i class="fas fa-sort-down" aria-hidden="true"></i>
         </a>
     </div>
+    {% if summary_timestamp %}
+    <p class="text-muted mb-3 summary__meta-text">
+        {% trans "This summary was created" %}
+        {% if summary_is_today %}
+            {% trans "today" %}
+        {% else %}
+            {% trans "on" %} {{ summary_date_str }}
+        {% endif %}
+        {% trans "at" %} {{ summary_timestamp|date:"H:i" }}
+        {% trans "using AI and may contain errors or be incomplete." %}
+    </p>
+    {% endif %}
+
     <div class="accordion__body collapse show" id="summary" aria-labelledby="summary-header">
         <div>
+
             <!-- General Info -->
             <div class="summary__header-text">{% trans 'General info' %}</div>
             <p>{{ response.general_info.summary }}</p>
@@ -79,7 +93,11 @@
                         {% trans 'click here' %}
                 </a>    
             </span>
-            <i class="fa fa-arrow-right"></i>
+            <a href="{{ project.get_absolute_url }}#tabpanel-project-{{ project.pk }}-result"
+               class="module-summary__link"
+               target="_blank">
+                <i class="fa fa-arrow-right"></i>
+            </a>
         </div>
         {% endif %}
 
@@ -99,10 +117,15 @@
         <!-- Feedback -->
         {% if project %}
         <hr class="my-4">
-        <div class="d-flex justify-content-between align-items-center text-muted small">
-            <span></span>
+        <div class="d-flex justify-content-end align-items-center text-muted small">
             {% include "a4_candy_projects/_feedback_icons.html" with summary_id=summary_id user_feedback=user_feedback %}
         </div>
+        {% endif %}
+
+        {% if summary_created_at %}
+        <script>
+            console.log("Ai Summery created at {{ summary_created_at|date:'c' }}");
+        </script>
         {% endif %}
     </div>
 </div>

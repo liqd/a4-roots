@@ -35,6 +35,7 @@ except NameError:
     pass
 
 CELERY_BEAT_SCHEDULE = {
+    **globals().get("CELERY_BEAT_SCHEDULE", {}),
     "send-recently-started-project-notifications": {
         "task": "send_recently_started_project_notifications",
         "schedule": timedelta(days=3),

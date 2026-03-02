@@ -46,6 +46,11 @@ urlpatterns = [
         name="project-generate-summary",
     ),
     re_path(
+        r"^(?P<slug>[-\w_]+)/generate-summary-test/$",
+        views.ProjectGenerateSummaryTestView.as_view(),
+        name="project-generate-summary-test",
+    ),
+    re_path(
         r"^(?P<slug>[-\w_]+)/summary-feedback/$",
         views.SummaryFeedbackView.as_view(),
         name="project-summary-feedback",

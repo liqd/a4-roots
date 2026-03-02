@@ -32,6 +32,12 @@ class ProjectSummary(models.Model):
         verbose_name="Response Data",
         help_text="The complete SummaryResponse data structure",
     )
+    last_checked_at = models.DateTimeField(
+        null=True,
+        blank=True,
+        verbose_name="Last Checked At",
+        help_text="Last time this summary was confirmed to match the project export.",
+    )
     created_at = models.DateTimeField(
         default=timezone.now,
         verbose_name="Created At",
