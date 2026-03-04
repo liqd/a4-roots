@@ -143,13 +143,16 @@ class SummarizationTestView(View):
 
         if text:
             service = AIService(provider_handle=provider_handle)
-            response = service.summarize(
-                text=text,
-                prompt=prompt if prompt else None,
-                result_type=ProjectSummaryResponse,
-            )
-            context["summary_response"] = response
-            context["original_length"] = len(text)
+            try:
+                response = service.summarize(
+                    text=text,
+                    prompt=prompt if prompt else None,
+                    result_type=ProjectSummaryResponse,
+                )
+                context["summary_response"] = response
+                context["original_length"] = len(text)
+            except Exception as e:
+                context["error"] = str(e)
 
         return render(request, "summarization/test.html", context)
 
