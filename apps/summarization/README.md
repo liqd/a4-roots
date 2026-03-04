@@ -59,8 +59,15 @@ venv/bin/python apps/summarization/test_summarization.py --provider openrouter
 
 ## Caching / Celery Beat
 
-- **Caching (exact match & rate limiting)**: `AIService.project_summarize` stores each successful project summary as a `ProjectSummary` with an `input_text_hash`. Auf späteren Aufrufen wird zuerst auf einen exakten Hash-Treffer geprüft; bei Übereinstimmung wird die gespeicherte Zusammenfassung verwendet und das Feld `last_checked_at` aktualisiert. Zusätzlich können projektbezogene und globale Rate-Limits aktiv sein, bei denen innerhalb kurzer Intervalle ebenfalls die letzte Summary wiederverwendet wird (ohne `last_checked_at` zu ändern).
-- **Periodic refresh via Celery Beat (`refresh_project_summaries`)**: Ein optionaler periodischer Celery-Task kann `generate_project_summary_task` für Projekte einreihen, die keine Summary jünger als `PROJECT_SUMMARY_AUTO_REFRESH_MAX_AGE_MINUTES` haben. Dank der Hash‑basierten Caching-Logik werden nur Projekte, deren Exportinhalt sich tatsächlich geändert hat (oder deren Summary explizit erneuert werden darf), eine neue AI-Anfrage auslösen.
+- **Caching (exact match & rate limiting)**: `AIService.project_summarize` stores each successful project summary as a `ProjectSummary` with an `input_text_hash`. On later calls (from Celery Beat or the web UI) the service first checks for an exact hash match; if it finds one, the stored summary is reused.
+- **Celery Beat as the only AI entry point**: Actual AI calls for project summaries are triggered exclusively by the periodic Celery Beat task, not by the "Generate AI summary" button in the UI. The Beat job runs every 30 minutes (when configured via `CELERY_BEAT_SCHEDULE`) and enqueues `generate_project_summary_task` for eligible projects.
+- **Change detection vs. staleness**: When the Celery job runs for a project, the current export content is hashed and compared with the last stored `input_text_hash`:
+  - If the content has changed, a **new AI summary** is generated and a new `ProjectSummary` row with a fresh `created_at` timestamp is stored.
+  - If the content has **not** changed, no new AI request is sent; instead, only the existing summary's `last_checked_at` field is updated to the current time to confirm that the summary is still up to date.
+- **Button behaviour in the UI**: Clicking the "Generate AI summary" button no longer triggers a direct AI request. It refreshes the project export, performs the same hash-based check as above and, when the existing summary is still valid (no content changes), updates `last_checked_at` to the current time.
+- **Where timestamps are shown**:
+  - `last_checked_at` is displayed directly on the project page.
+  - `created_at` is currently only visible in the browser’s JavaScript console (F12) in the summary debug output.
 
 
 ## Configuration options (settings)
@@ -68,7 +75,7 @@ venv/bin/python apps/summarization/test_summarization.py --provider openrouter
 - `AI_PROVIDER` / `AI_DOCUMENT_PROVIDER`: Default providers for text and document summarization (see `local.py.template`).
 - `PROJECT_SUMMARY_AUTO_REFRESH_MAX_AGE_MINUTES`: Maximum age (in minutes) before the periodic job (`refresh_project_summaries`) is allowed to generate a new project summary.
 - `PROJECT_SUMMARY_AUTO_REFRESH_MAX_PROJECTS_PER_RUN`: Maximum number of projects processed per 30‑minute run of the periodic job (`0` = no limit).
-- Celery Beat: to enable the periodic refresh, add `refresh_project_summaries` to `CELERY_BEAT_SCHEDULE` in your `local.py` (see commented example in `local.py.template`).
+- Celery Beat: to enable the periodic refresh (and thus all real AI summarization for project summaries), add `refresh_project_summaries` to `CELERY_BEAT_SCHEDULE` in your `local.py` (see commented example in `local.py.template`).
 
 ## Web Interface
 
@@ -76,5 +83,6 @@ Two web-based test interfaces are available for interactive testing:
 
 - `/summarization/test/` - Test interface for text and image summarization
 - `/summarization/test-documents/` - Test interface for document summarization with handles (supports PDF, DOCX, and images) 
+- `/ORGA_SLUG/projects/PROJECT_SLUG/generate-summary-test/` - internal test URL that triggers summary generation for a single project in the same way as the Celery Beat task (replace slugs and domain as appropriate).
 
 
