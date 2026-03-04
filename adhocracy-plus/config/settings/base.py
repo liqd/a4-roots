@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     # JWT authentication
     "rest_framework_simplejwt.token_blacklist",
     "django_filters",
+    "django_celery_beat",
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
