@@ -9,7 +9,7 @@
 
 <div class="accordion summary__accordion">
     <div class="d-flex justify-content-between align-items-start">
-        <div class="d-flex align-items-center">
+        <div class="d-flex align-items-baseline">
             <a id="summary-header"
                class="accordion__title summary__header summary__title-link"
                href="#summary"
@@ -20,9 +20,9 @@
             </a>
             {% if settings.a4_candy_cms_settings.ImportantPages.ai_explanation %}
             <a href="{{ settings.a4_candy_cms_settings.ImportantPages.ai_explanation.url }}"
-               class="summary__info-link mt-1" target="_blank"
+               class="summary__info-link" target="_blank"
                aria-label="{% trans 'Explanation of the AI summary' %}">
-                <i class="fas fa-info-circle" aria-hidden="true"></i>
+                <i class="fas fa-info-circle" aria-hidden="true" style="font-size: 20px;"></i>
             </a>
             {% endif %}
         </div>
@@ -54,7 +54,6 @@
             <div class="summary__header-text">{% trans 'General info' %}</div>
             <p>{{ response.general_info.summary }}</p>
             {% if response.general_info.goals %}
-                <p>{% trans 'Goals of the project' %}:</p>
                 <ul>
                     {% for goal in response.general_info.goals %}
                     <li>{{ goal }}</li>

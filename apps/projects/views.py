@@ -496,23 +496,42 @@ class SummaryFeedbackView(View):
         summary = get_object_or_404(ProjectSummary, id=summary_id, project=project)
 
         user = request.user if request.user.is_authenticated else None
+
+        # Stelle sicher, dass eine Session existiert, damit wir
+        # für anonyme Nutzer:innen einen stabilen session_key haben.
+        if not request.session.session_key:
+            request.session.save()
         session_key = request.session.session_key
 
-        # Delete previous feedback
+        # Ermittele ggf. vorhandenes Feedback für diese Summary und diesen Nutzer/diese Session
         if user:
-            SummaryFeedback.objects.filter(summary=summary, user=user).delete()
+            existing_qs = SummaryFeedback.objects.filter(summary=summary, user=user)
         elif session_key:
-            SummaryFeedback.objects.filter(
+            existing_qs = SummaryFeedback.objects.filter(
                 summary=summary, session_key=session_key
-            ).delete()
+            )
+        else:
+            existing_qs = SummaryFeedback.objects.none()
 
-        # Create new feedback
-        SummaryFeedback.objects.create(
-            summary=summary, user=user, feedback=feedback, session_key=session_key
-        )
+        existing_fb = existing_qs.first()
+
+        if existing_fb and existing_fb.feedback == feedback:
+            # Gleicher Button erneut geklickt -> Feedback zurückziehen
+            existing_qs.delete()
+            user_feedback = None
+        else:
+            # Vorheriges Feedback (falls vorhanden) durch neues ersetzen
+            existing_qs.delete()
+            SummaryFeedback.objects.create(
+                summary=summary,
+                user=user,
+                feedback=feedback,
+                session_key=session_key,
+            )
+            user_feedback = feedback
 
         return render(
             request,
             "a4_candy_projects/_feedback_icons.html",
-            {"user_feedback": feedback, "summary_id": summary_id, "project": project},
+            {"user_feedback": user_feedback, "summary_id": summary_id, "project": project},
         )
