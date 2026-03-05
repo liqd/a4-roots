@@ -316,6 +316,13 @@
     &__header-text {
         font-weight: bold;
         font-size: 1.5rem;
+        display: inline-flex;
+        align-items: center; // Text und Badge vertikal zentriert ausrichten
+        flex-wrap: wrap;     // lange Modulnamen dürfen umbrechen
+
+        .badge {
+            margin-left: 0.5rem; // 8px Abstand zwischen Text und Label
+        }
     }
 
     &__icon {

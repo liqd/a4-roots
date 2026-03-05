@@ -83,7 +83,9 @@
     color: $print-black;
 }
 
-.badge.badge--module__upcoming{
-    background-color: $silver-fog;
+.badge.badge--module__upcoming,
+.badge.badge--module__future {
+    background-color: $misty-lavender; // light blue for future modules
     color: $print-black;
+    text-align: center; // center text inside pill
 }
