@@ -299,6 +299,16 @@
         text-decoration: none;
         padding: 0;
         padding-bottom: 1rem;
+
+        // Override default accordion icon positioning so the arrow
+        // sits inline on the right and does nicht overlap wrapped titles
+        i {
+            position: static;
+            top: auto;
+            right: auto;
+            font-size: 1.25rem;
+            margin-left: 0.5rem;
+        }
     }
 }
 
@@ -306,6 +316,13 @@
     &__header-text {
         font-weight: bold;
         font-size: 1.5rem;
+        display: inline-flex;
+        align-items: center; // Text und Badge vertikal zentriert ausrichten
+        flex-wrap: wrap;     // lange Modulnamen dürfen umbrechen
+
+        .badge {
+            margin-left: 0.5rem; // 8px Abstand zwischen Text und Label
+        }
     }
 
     &__icon {
@@ -336,7 +353,7 @@
         font-size: 1.5em;
         font-weight: bold;
     }
-
+   
     &__text {
         font-size: 1em;
     }
@@ -344,9 +361,66 @@
     &__report {
         font-size: 1em;
     } 
-
 }
 
+// Feedback-Leiste unter der Summary
+.summary-feedback {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap; // erlaubt, dass Label und Button-Gruppe getrennt umbrechen
+}
+
+.summary-feedback__buttons {
+    display: inline-flex;
+    gap: 0.25rem;
+    white-space: nowrap; // beide Buttons bleiben in einer Zeile
+}
+
+// Mobile / Tablet behaviour for AI summary elements
+@media (max-width: $breakpoint-md) {
+    // Summary-Block auf mobilen Geräten: volle Breite wie Module darunter
+    .summary__container {
+        width: 100%;
+        margin-bottom: 2.375rem; // ~38px
+    }
+
+    // Stats card: keep number font same as desktop and add side padding
+    .summary__stats {
+        padding: 1rem 1.5rem;
+    }
+
+    .summary__stats-number {
+        font-size: 24px; // match desktop size regardless of root font-size
+        font-weight: bold;
+    }
+
+    // CTA "To see what happened..." – keep "click here" directly after text
+    .summary__see-more > span {
+        // Let the sentence wrap naturally and keep "click here"
+        // directly after the preceding text
+        display: inline;
+    }
+
+    .summary__see-more > span .module-summary__link {
+        // Small spacing and keep the phrase together
+        margin-left: 0.1rem;
+        white-space: nowrap;
+    }
+}
+
+// Small screens: stack stats columns so text doesn't overlap
+@media (max-width: $breakpoint) {
+    .summary__stats .row {
+        flex-wrap: wrap;
+    }
+
+    .summary__stats .col-4 {
+        flex: 0 0 100%;
+        max-width: 100%;
+        margin-bottom: 0.75rem;
+    }
+}
 
 .fa-sort-down {
     transition: transform 0.3s ease;

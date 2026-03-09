@@ -456,10 +456,10 @@ class ProjectGenerateSummaryTestView(
     LoginRequiredMixin, PermissionRequiredMixin, generic.DetailView
 ):
     """
-    Test-View, um die Projektsummary manuell anzustoßen.
-    Bei jedem Aufruf wird – falls kein gültiger Cache vorliegt – eine neue
-    Zusammenfassung per AI erzeugt (allow_regeneration=True).
-    Nur für eingeloggte Nutzer:innen mit view_project-Recht.
+    Test view to manually trigger project summary generation.
+    On each request, a new AI summary is generated when no valid cache exists
+    (allow_regeneration=True).
+    Only available to logged-in users with the view_project permission.
     """
 
     model = models.Project
@@ -476,7 +476,7 @@ class ProjectGenerateSummaryTestView(
             project.id,
             project.slug,
         )
-        # Nur anstoßen, keine HTML-Ausgabe oder explizite Fehlerbehandlung.
+        # Trigger only; no HTML rendering or explicit error handling.
         generate_project_summary(project, request=request, allow_regeneration=True)
         return HttpResponse(
             f"AI summary generation triggered for project {project.id} ({project.slug})."
@@ -496,23 +496,45 @@ class SummaryFeedbackView(View):
         summary = get_object_or_404(ProjectSummary, id=summary_id, project=project)
 
         user = request.user if request.user.is_authenticated else None
+
+        # Ensure a session exists so anonymous users get a stable session_key.
+        if not request.session.session_key:
+            request.session.save()
         session_key = request.session.session_key
 
-        # Delete previous feedback
+        # Look up existing feedback for this summary and user/session.
         if user:
-            SummaryFeedback.objects.filter(summary=summary, user=user).delete()
+            existing_qs = SummaryFeedback.objects.filter(summary=summary, user=user)
         elif session_key:
-            SummaryFeedback.objects.filter(
+            existing_qs = SummaryFeedback.objects.filter(
                 summary=summary, session_key=session_key
-            ).delete()
+            )
+        else:
+            existing_qs = SummaryFeedback.objects.none()
 
-        # Create new feedback
-        SummaryFeedback.objects.create(
-            summary=summary, user=user, feedback=feedback, session_key=session_key
-        )
+        existing_fb = existing_qs.first()
+
+        if existing_fb and existing_fb.feedback == feedback:
+            # Same button clicked again -> retract feedback.
+            existing_qs.delete()
+            user_feedback = None
+        else:
+            # Replace previous feedback (if any) with the new value.
+            existing_qs.delete()
+            SummaryFeedback.objects.create(
+                summary=summary,
+                user=user,
+                feedback=feedback,
+                session_key=session_key,
+            )
+            user_feedback = feedback
 
         return render(
             request,
             "a4_candy_projects/_feedback_icons.html",
-            {"user_feedback": feedback, "summary_id": summary_id, "project": project},
+            {
+                "user_feedback": user_feedback,
+                "summary_id": summary_id,
+                "project": project,
+            },
         )
