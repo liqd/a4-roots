@@ -1,12 +1,16 @@
 <style>
 .loading-spinner {
     display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
 }
 .htmx-request .hide-when-loading {
     display: none;
 }
 .htmx-request .loading-spinner {
-    display: block !important;
+    display: flex !important;
 }
 </style>
 
@@ -40,10 +44,10 @@
         </div>
     </div>
     <div class="htmx-indicator loading-spinner">
-        <div class="spinner-border spinner-border-sm" role="status">
+        <div class="spinner-border text-primary" role="status">
             <span class="a4-sr-only">Loading...</span>
         </div>
-        <span class="ml-2">Generating AI summary...</span>
+        <span>{% trans 'Generating AI summary...' %}</span>
     </div>
 </div>
 <div id="summary-content" class="summary__container"></div>

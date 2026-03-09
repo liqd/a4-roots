@@ -22,7 +22,7 @@
             <a href="{{ settings.a4_candy_cms_settings.ImportantPages.ai_explanation.url }}"
                class="summary__info-link" target="_blank"
                aria-label="{% trans 'Explanation of the AI summary' %}">
-                <i class="fas fa-info-circle" aria-hidden="true" style="font-size: 20px;"></i>
+                <i class="fas fa-info-circle summary__info-icon" aria-hidden="true"></i>
             </a>
             {% endif %}
         </div>
@@ -116,7 +116,7 @@
         <!-- Feedback -->
         {% if project %}
         <hr class="my-4">
-        <div class="d-flex justify-content-end align-items-center text-muted small">
+        <div class="d-flex justify-content-end align-items-center small">
             {% include "a4_candy_projects/_feedback_icons.html" with summary_id=summary_id user_feedback=user_feedback %}
         </div>
         {% endif %}

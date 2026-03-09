@@ -223,6 +223,10 @@
         flex-shrink: 0;
     }
 
+    &__info-icon {
+        font-size: 20px;
+    }
+
     &__arrow-toggle {
         padding-bottom: 0.15em;
         display: flex;
@@ -368,6 +372,7 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
+    color: $print-black;
     flex-wrap: wrap; // erlaubt, dass Label und Button-Gruppe getrennt umbrechen
 }
 
@@ -375,6 +380,10 @@
     display: inline-flex;
     gap: 0.25rem;
     white-space: nowrap; // beide Buttons bleiben in einer Zeile
+}
+
+.feedback-btn {
+    color: $print-black;
 }
 
 // Mobile / Tablet behaviour for AI summary elements
