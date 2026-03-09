@@ -177,8 +177,8 @@
     }
 
     &__header-text {
-        font-size: 1.5rem;
-        font-weight: bold;
+        font-size: $font-size-lg;
+        font-weight: $headings-font-weight;
     }
 
     &__accordion {
@@ -204,8 +204,8 @@
     }
 
     &__title {
-        font-size: 1.75rem;
-        font-weight: bold;
+        font-size: $font-size-lg;
+        font-weight: $headings-font-weight;
         text-decoration: none !important;
     }
 
