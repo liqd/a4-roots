@@ -61,7 +61,9 @@ class SummarizationTestView(View):
                 result_type=ProjectSummaryResponse,
             )
             return response, len(text), None
-        except Exception as e:
+        except BaseException as e:
+            if isinstance(e, (KeyboardInterrupt, SystemExit, GeneratorExit)):
+                raise
             return None, 0, str(e)
 
     def _extract_project_from_json(self, text: str):
@@ -142,17 +144,14 @@ class SummarizationTestView(View):
                 context["project"] = project
 
         if text:
-            service = AIService(provider_handle=provider_handle)
-            try:
-                response = service.summarize(
-                    text=text,
-                    prompt=prompt if prompt else None,
-                    result_type=ProjectSummaryResponse,
-                )
-                context["summary_response"] = response
-                context["original_length"] = len(text)
-            except Exception as e:
-                context["error"] = str(e)
+            response, original_length, error = self._handle_text_request(
+                text=text,
+                prompt=prompt,
+                provider_handle=provider_handle,
+            )
+            context["summary_response"] = response
+            context["original_length"] = original_length
+            context["error"] = error
 
         return render(request, "summarization/test.html", context)
 
