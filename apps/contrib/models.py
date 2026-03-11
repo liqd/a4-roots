@@ -42,14 +42,38 @@ class Settings(models.Model):
         """
         if key not in REGISTRY:
             return None
-        default = REGISTRY[key].get("default") or ""
+        registry_default = REGISTRY[key].get("default") or ""
         try:
             obj = cls.objects.get(key=key)
         except cls.DoesNotExist:
-            cls.objects.create(key=key, value=default)
-            return default
+            cls.objects.create(key=key, value=registry_default)
+            return registry_default
         raw = (obj.value or "").strip()
-        return raw if raw else default
+        return raw if raw else registry_default
+
+    @classmethod
+    def get_int(cls, key: str) -> int:
+        """
+        Return the value for key as int.
+
+        - Key must exist in REGISTRY and be declared with type "int".
+        - If DB row is missing, the registry default is used and persisted.
+        - If the stored value cannot be converted to int, propagate ValueError.
+        """
+        meta = REGISTRY.get(key)
+        if not meta:
+            raise KeyError(f"Unknown settings key: {key}")
+
+        expected_type = meta.get("type")
+        if expected_type and expected_type != "int":
+            raise TypeError(
+                f"Settings key '{key}' is not declared as int (type={expected_type!r})"
+            )
+
+        raw = cls.get_value(key)
+        if raw is None or raw == "":
+            raise ValueError(f"No value configured for int setting '{key}'")
+        return int(raw)
 
     @classmethod
     def get_registry_default(cls, key: str) -> str | None:
@@ -59,7 +83,7 @@ class Settings(models.Model):
         return REGISTRY[key].get("default")
 
 
-# Registry: key -> {"default": str}. Default is required. Add new settings here.
+# Registry: key -> {"default": str, "type": str}. Default is required. Add new settings here.
 REGISTRY = {
     "project_summary_prompt": {
         "default": """
@@ -118,5 +142,10 @@ For current modules, focus on ongoing activities and early content.
 For upcoming modules, focus on planned activities and goals.
 Respond with ONLY the JSON object.
 """.strip()
+    },
+    "project_summary_auto_refresh_max_age_minutes": {
+        # Maximum age in minutes before the periodic Celery job (`refresh_project_summaries`) generates a new summary.
+        "default": "720",
+        "type": "int",
     },
 }
