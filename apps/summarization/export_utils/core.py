@@ -15,6 +15,7 @@ from .models.offline_events import export_offline_event
 from .models.polls import export_poll
 from .models.proposals import export_proposal
 from .models.topics import export_topic
+from .processing.cleaning import clean_export
 from .processing.extractors import extract_attachments
 from .processing.grouping import restructure_by_phase
 from .processing.module_utils import get_module_status
@@ -118,5 +119,6 @@ def generate_full_export(project):
         "offline_events": offline_events,
     }
 
-    result = restructure_by_phase(export_data)
-    return result
+    structured_result = restructure_by_phase(export_data)
+    cleaned_result = clean_export(structured_result)
+    return cleaned_result
