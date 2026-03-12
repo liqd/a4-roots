@@ -92,6 +92,31 @@ def group_by_module(export_data):
     return result
 
 
+def restructure_by_phase(export_data):
+    """Restructure modules array into phases object with past/current/upcoming."""
+    phases = {
+        "past": {"phase_status": "past", "modules": []},
+        "current": {"phase_status": "current", "modules": []},
+        "upcoming": {"phase_status": "upcoming", "modules": []},
+    }
+
+    status_map = {"past": "past", "active": "current", "future": "upcoming"}
+
+    for module in export_data.get("modules", []):
+        phase = status_map.get(module["active_status"])
+        if phase:
+            # Remove active_status from module since it's now at phase level
+            module_copy = module.copy()
+            module_copy.pop("active_status", None)
+            phases[phase]["modules"].append(module_copy)
+
+    return {
+        "project": export_data["project"],
+        "phases": phases,
+        "offline_events": export_data.get("offline_events", []),
+    }
+
+
 def process_ideas(module, item):
     """Process an idea item"""
     module["counts"]["ideas"] += 1
