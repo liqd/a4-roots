@@ -70,7 +70,7 @@ def generate_full_export(project):
             module_data["content"]["mapideas"] = [export_mapidea(m) for m in mapideas]
 
         # Polls
-        polls = Poll.objects.filter(module__project=project).prefetch_related(
+        polls = Poll.objects.filter(module=module).prefetch_related(
             "questions__choices__votes__other_vote",
         )
         if polls.exists():
@@ -78,7 +78,7 @@ def generate_full_export(project):
 
         # Topics
         topics = (
-            Topic.objects.filter(module__project=project)
+            Topic.objects.filter(module=module)
             .select_related("category")
             .prefetch_related("labels")
         )
@@ -119,5 +119,4 @@ def generate_full_export(project):
     }
 
     result = restructure_by_phase(export_data)
-
     return result
