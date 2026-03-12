@@ -10,7 +10,7 @@ def export_idea(idea):
         "name": idea.name,
         "description": str(idea.description),
         "attachments": extract_attachments(str(idea.description)),
-        "created": idea.created.isoformat(),
+        # "created": idea.created.isoformat(),
         "reference_number": idea.reference_number,
         "category": idea.category.name if idea.category else None,
         "labels": [label.name for label in idea.labels.all()],

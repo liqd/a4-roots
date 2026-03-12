@@ -24,7 +24,7 @@ def export_proposal(proposal):
         "name": proposal.name,
         "description": str(proposal.description),
         "attachments": extract_attachments(str(proposal.description)),
-        "created": proposal.created.isoformat(),
+        # "created": proposal.created.isoformat(),
         "reference_number": proposal.reference_number,
         "category": proposal.category.name if proposal.category else None,
         "labels": [label.name for label in proposal.labels.all()],

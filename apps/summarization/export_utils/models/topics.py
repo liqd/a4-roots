@@ -8,7 +8,7 @@ def export_topic(topic):
         "id": topic.id,
         "name": topic.name,
         "description": str(topic.description),
-        "created": topic.created.isoformat(),
+        # "created": topic.created.isoformat(),
         "reference_number": topic.reference_number,
         "category": topic.category.name if topic.category else None,
         "labels": [label.name for label in topic.labels.all()],

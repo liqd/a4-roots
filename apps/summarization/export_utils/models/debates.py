@@ -7,7 +7,7 @@ def export_debate(debate):
         "id": debate.id,
         "name": debate.name,
         "description": debate.description,
-        "created": debate.created.isoformat(),
+        # "created": debate.created.isoformat(),
         "reference_number": debate.reference_number,
         "slug": debate.slug,
         "comment_count": debate.comments.count(),

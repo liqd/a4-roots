@@ -12,7 +12,7 @@ def export_paragraph(paragraph):
         "text": str(paragraph.text),
         "attachments": extract_attachments(str(paragraph.text)),
         "weight": paragraph.weight,
-        "created": paragraph.created.isoformat(),
+        # "created": paragraph.created.isoformat(),
         "comment_count": paragraph.comments.count(),
         "comments": extract_comments(paragraph.comments.all()),
     }
@@ -30,7 +30,7 @@ def export_document_chapters(module):
                 "name": chapter.name,
                 "url": chapter.get_absolute_url(),
                 "weight": chapter.weight,
-                "created": chapter.created.isoformat(),
+                # "created": chapter.created.isoformat(),
                 "prev_chapter_id": chapter.prev.id if chapter.prev else None,
                 "next_chapter_id": chapter.next.id if chapter.next else None,
                 "paragraph_count": chapter.paragraphs.count(),
