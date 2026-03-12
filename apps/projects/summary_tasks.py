@@ -9,6 +9,7 @@ from django.utils import timezone
 from sentry_sdk import capture_exception
 
 from adhocracy4.projects.models import Project
+from apps.contrib.models import Settings
 from apps.summarization.models import ProjectSummary
 
 from .utils import generate_project_summary
@@ -57,9 +58,7 @@ def refresh_project_summaries():
     Find projects with no summary younger than max_age and enqueue one task per project.
     Only public/active projects; limited by max_projects_per_run.
     """
-    max_age_minutes = getattr(
-        settings, "PROJECT_SUMMARY_AUTO_REFRESH_MAX_AGE_MINUTES", 12 * 60
-    )
+    max_age_minutes = Settings.get_int("project_summary_auto_refresh_max_age_minutes")
     max_per_run = getattr(
         settings, "PROJECT_SUMMARY_AUTO_REFRESH_MAX_PROJECTS_PER_RUN", 0
     )
