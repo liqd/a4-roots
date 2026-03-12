@@ -208,6 +208,31 @@ class DocumentInputItem(BaseModel):
         return any(url_lower.endswith(ext) for ext in document_extensions)
 
 
+# Add these new models for module-by-module summarization
+class ModuleSummaryResponse(BaseModel):
+    """Response model for a single module summary."""
+
+    summary: str = Field(
+        description="A 2-3 sentence overview of what happened in this module"
+    )
+    bullets: List[str] = Field(
+        default_factory=list,
+        description="Key points about contributions, ideas, or outcomes",
+    )
+
+
+class GeneralInfoResponse(BaseModel):
+    """Response model for project general information."""
+
+    summary: str = Field(
+        description="A 3-4 sentence overview of the entire project's participation journey"
+    )
+    goals: List[str] = Field(
+        default_factory=list,
+        description="Main goals or themes that emerged from the participation",
+    )
+
+
 class DocumentSummaryItem(BaseModel):
     """Response model for a single document summary with handle."""
 

@@ -14,7 +14,8 @@ from apps.summarization.export_utils.attachments.handlers import (
 )
 from apps.summarization.export_utils.core import generate_full_export
 from apps.summarization.pydantic_models import ProjectSummaryResponse
-from apps.summarization.services import AIService
+from apps.summarization.services import DocumentProcessor
+from apps.summarization.services import ProjectSummarizer
 
 logger = logging.getLogger(__name__)
 
@@ -44,7 +45,7 @@ def generate_project_summary(
         )
         if documents_dict:
             try:
-                service = AIService()
+                service = DocumentProcessor()
                 document_response = service.request_vision_dict(
                     documents_dict=documents_dict
                 )
@@ -64,7 +65,7 @@ def generate_project_summary(
 
     json_text = json.dumps(export_data, indent=2)
     prompt = Settings.get_value("project_summary_prompt")
-    service = AIService()
+    service = ProjectSummarizer()
     response = service.project_summarize(
         project=project,
         text=json_text,
