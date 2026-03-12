@@ -33,7 +33,6 @@ def clean_comment(comment):
     cleaned = {
         "id": comment["id"],
         "text": comment["text"],
-        "created": comment["created"],
     }
 
     # Only include replies if they exist
