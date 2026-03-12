@@ -28,7 +28,7 @@ if __name__ == "__main__" and not os.environ.get("DJANGO_SETTINGS_MODULE"):
 
 from adhocracy4.projects.models import Project
 from apps.summarization.pydantic_models import SummaryResponse
-from apps.summarization.services import AIService
+from apps.summarization.services import ProjectSummarizer
 
 # Long example text for testing
 LONG_TEXT = (
@@ -255,7 +255,7 @@ def test_summarization(provider_handle: str = None):
     print_separator()
 
     try:
-        service = AIService(provider_handle=provider_handle)
+        service = ProjectSummarizer(provider_handle=provider_handle)
         _print_service_info(service)
 
         print("ORIGINAL TEXT:")
