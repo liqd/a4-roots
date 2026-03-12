@@ -21,7 +21,7 @@ def test_refresh_project_summaries_enqueues_projects_without_recent_summary(
     project_factory,
 ):
     """Projects with no summary or summary older than max_age get enqueued."""
-    project = project_factory(is_draft=False, is_app_accessible=True)
+    project = project_factory(is_draft=False, is_app_accessible=False)
 
     with patch(
         "apps.projects.summary_tasks.generate_project_summary_task"
@@ -39,7 +39,7 @@ def test_refresh_project_summaries_skips_projects_with_recent_summary(
     project_factory,
 ):
     """Projects with a summary younger than max_age are not enqueued."""
-    project = project_factory(is_draft=False, is_app_accessible=True)
+    project = project_factory(is_draft=False, is_app_accessible=False)
     ProjectSummary.objects.create(
         project=project,
         prompt="test",
@@ -71,7 +71,7 @@ def test_refresh_project_summaries_enqueues_when_summary_older_than_max_age(
     project_factory,
 ):
     """Projects with latest summary older than max_age get enqueued."""
-    project = project_factory(is_draft=False, is_app_accessible=True)
+    project = project_factory(is_draft=False, is_app_accessible=False)
     old_time = timezone.now() - timedelta(hours=13)
     ProjectSummary.objects.create(
         project=project,
@@ -104,7 +104,7 @@ def test_refresh_project_summaries_enqueues_when_summary_older_than_max_age(
 def test_refresh_project_summaries_respects_max_per_run(project_factory):
     """At most max_projects_per_run tasks are enqueued."""
     for _ in range(3):
-        project_factory(is_draft=False, is_app_accessible=True)
+        project_factory(is_draft=False, is_app_accessible=False)
 
     with patch(
         "apps.projects.summary_tasks.generate_project_summary_task"
@@ -118,10 +118,10 @@ def test_refresh_project_summaries_respects_max_per_run(project_factory):
     PROJECT_SUMMARY_AUTO_REFRESH_MAX_AGE_MINUTES=12 * 60,
     PROJECT_SUMMARY_AUTO_REFRESH_MAX_PROJECTS_PER_RUN=50,
 )
-def test_refresh_project_summaries_skips_draft_and_not_app_accessible(project_factory):
-    """Only is_draft=False and is_app_accessible=True projects are considered."""
+def test_refresh_project_summaries_skips_draft_projects(project_factory):
+    """Draft projects are not considered."""
     project_factory(is_draft=True, is_app_accessible=True)
-    project_factory(is_draft=False, is_app_accessible=False)
+    project_factory(is_draft=True, is_app_accessible=False)
 
     with patch(
         "apps.projects.summary_tasks.generate_project_summary_task"

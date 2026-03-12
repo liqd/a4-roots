@@ -64,9 +64,7 @@ def refresh_project_summaries():
     )
     cutoff = timezone.now() - timedelta(minutes=max_age_minutes)
 
-    projects = Project.objects.filter(is_draft=False, is_app_accessible=True).order_by(
-        "pk"
-    )
+    projects = Project.objects.filter(is_draft=False).order_by("pk")
 
     enqueued = 0
     for project in projects:
