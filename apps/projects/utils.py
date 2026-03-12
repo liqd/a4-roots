@@ -6,12 +6,15 @@ import logging
 from sentry_sdk import capture_exception
 
 from apps.contrib.models import Settings
+from apps.summarization.export_utils.attachments.handlers import (
+    collect_document_attachments,
+)
+from apps.summarization.export_utils.attachments.handlers import (
+    integrate_document_summaries,
+)
+from apps.summarization.export_utils.core import generate_full_export
 from apps.summarization.pydantic_models import ProjectSummaryResponse
 from apps.summarization.services import AIService
-
-from .export_utils import collect_document_attachments
-from .export_utils import generate_full_export
-from .export_utils import integrate_document_summaries
 
 logger = logging.getLogger(__name__)
 

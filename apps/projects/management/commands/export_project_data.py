@@ -3,8 +3,8 @@ import json
 from django.core.management.base import BaseCommand
 from django.db.models import Q
 
-from apps.projects.export_utils import generate_full_export
 from apps.projects.models import Project
+from apps.summarization.export_utils.core import generate_full_export
 
 
 class Command(BaseCommand):
