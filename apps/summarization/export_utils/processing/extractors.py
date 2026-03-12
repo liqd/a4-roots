@@ -22,6 +22,7 @@ def extract_attachments(text):
 def extract_comments(queryset, include_ratings=True, include_children=True):
     """
     Extract comments from any model with a 'comments' GenericRelation.
+    Filters out removed, censored, or blocked comments.
     Recursively includes child comments.
 
     Args:
@@ -34,23 +35,21 @@ def extract_comments(queryset, include_ratings=True, include_children=True):
     """
     comments_list = []
 
-    for comment in queryset:
+    # Filter out unwanted comments at the queryset level
+    filtered_queryset = queryset.filter(
+        is_removed=False, is_censored=False, is_blocked=False
+    )
+
+    for comment in filtered_queryset:
         comment_data = {
             "id": comment.id,
             "text": comment.comment,
-            "created": comment.created.isoformat(),
-            "is_removed": comment.is_removed,
-            "is_censored": comment.is_censored,
-            "is_blocked": comment.is_blocked,
+            # "created": comment.created.isoformat(),
         }
 
         # Optional fields
         if hasattr(comment, "comment_categories") and comment.comment_categories:
             comment_data["comment_categories"] = comment.comment_categories
-        if hasattr(comment, "is_moderator_marked"):
-            comment_data["is_moderator_marked"] = comment.is_moderator_marked
-        if hasattr(comment, "is_reviewed"):
-            comment_data["is_reviewed"] = comment.is_reviewed
 
         if include_ratings and hasattr(comment, "ratings"):
             comment_data["ratings"] = [
@@ -61,7 +60,7 @@ def extract_comments(queryset, include_ratings=True, include_children=True):
                 for rating in comment.ratings.all()
             ]
 
-        # Recursively include child comments
+        # Recursively include child comments (they will also be filtered)
         if include_children and hasattr(comment, "child_comments"):
             child_comments = comment.child_comments.all()
             if child_comments.exists():
@@ -70,7 +69,7 @@ def extract_comments(queryset, include_ratings=True, include_children=True):
                     include_ratings=include_ratings,
                     include_children=True,
                 )
-                comment_data["reply_count"] = child_comments.count()
+                comment_data["reply_count"] = len(comment_data["replies"])
 
         comments_list.append(comment_data)
 
