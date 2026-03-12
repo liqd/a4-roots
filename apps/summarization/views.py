@@ -8,8 +8,8 @@ from django.views import View
 from rules.contrib.views import LoginRequiredMixin
 
 from adhocracy4.projects.models import Project
-from apps.projects.export_utils import generate_full_export
 
+from .export_utils.core import generate_full_export
 from .pydantic_models import DocumentInputItem
 from .pydantic_models import ProjectSummaryResponse
 from .services import AIService
