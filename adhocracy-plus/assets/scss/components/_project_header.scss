@@ -377,7 +377,15 @@
    
     &__report {
         font-size: 1em;
-    } 
+    }
+
+    &__warning-logo {
+        display: inline;
+        font-size: 1em;
+        height: 20px;
+        width: 20px;
+        line-height: 1em;
+    }
 }
 
 // Feedback-Leiste unter der Summary
