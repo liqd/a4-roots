@@ -102,7 +102,7 @@ def test_signup_user_when_not_captcha(client):
     assert user.get_newsletters
 
 
-@override_settings()
+@override_settings(CAPTCHA=False, PROSOPO_SITE_KEY="", PROSOPO_SECRET_KEY="")
 @pytest.mark.django_db
 def test_convert_guest_user(client):
     guest_user_creator = GuestUserCreator()
@@ -125,4 +125,8 @@ def test_convert_guest_user(client):
 
     user_emails = get_emails_for_address(guest_email)
     assert len(user_emails) == 1
-    assert user_emails[0].subject.startswith("Please confirm your registration on")
+    subject = user_emails[0].subject
+    # Akzeptiere sowohl englische als auch deutsche Übersetzung.
+    assert subject.startswith(
+        "Please confirm your registration on"
+    ) or subject.startswith("Bitte bestätigen Sie Ihre Registrierung auf")
