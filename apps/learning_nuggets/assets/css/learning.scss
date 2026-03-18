@@ -95,8 +95,22 @@
   & h2:not(.learning-content__title, .learning-content__title--lg, .learning-content__title--md) {
     font-family: $font-family-base;
     font-weight: 700;
-    font-size: 1.2rem;
+    font-size: 1.35rem; 
     margin-bottom: 8px;
+  }
+
+  & h3 {
+    font-family: $font-family-base;
+    font-weight: 700;
+    font-size: 1.2rem; 
+    margin-bottom: 6px;
+  }
+
+  & h4 {
+    font-family: $font-family-base;
+    font-weight: 700;
+    font-size: 1.05rem; 
+    margin-bottom: 4px;
   }
 }
 
