@@ -32,6 +32,7 @@ INSTALLED_APPS = (
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.humanize",
+    "django_htmx",
     "csp",
     "django_ckeditor_5",
     "widget_tweaks",
@@ -142,6 +143,7 @@ MIDDLEWARE = (
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
     "allauth.account.middleware.AccountMiddleware",
     "apps.learning_nuggets.middleware.AjaxRequestMiddleware",
+    "django_htmx.middleware.HtmxMiddleware",
 )
 
 ROOT_URLCONF = "adhocracy-plus.config.urls"

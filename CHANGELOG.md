@@ -20,6 +20,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 - Changed BMBF logo to BMFTR
 - Adjusted Newsletter emails.
+- Installed HTMX rather than using script tag
 
 
 ## Unreleased A+
