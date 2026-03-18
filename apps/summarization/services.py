@@ -79,27 +79,27 @@ class AIService:
           without generating a new one, even when the hash changed.
         """
         request = SummaryRequest(text=text, prompt=prompt)
-        # latest = self._get_latest_summary(project)
+        latest = self._get_latest_summary(project)
         text_hash = ProjectSummary.compute_hash(text)
 
-        # cached = self._get_cached_response(
-        #     project=project,
-        #     text_hash=text_hash,
-        #     latest=latest,
-        #     is_rate_limit=is_rate_limit,
-        # )
-        # if cached:
-        #     return cached
+        cached = self._get_cached_response(
+            project=project,
+            text_hash=text_hash,
+            latest=latest,
+            is_rate_limit=is_rate_limit,
+        )
+        if cached:
+            return cached
 
-        # # No cache hit:
-        # # - If regeneration is not allowed and we already have a summary,
-        # #   return the latest one unchanged (used by the button endpoint).
-        # if not allow_regeneration and latest:
-        #     logger.debug(
-        #         "Regeneration disabled and no cache hit; returning latest summary "
-        #         f"for project {project.id}"
-        #     )
-        #     return ProjectSummaryResponse(**latest.response_data)
+        # No cache hit:
+        # - If regeneration is not allowed and we already have a summary,
+        #   return the latest one unchanged (used by the button endpoint).
+        if not allow_regeneration and latest:
+            logger.debug(
+                "Regeneration disabled and no cache hit; returning latest summary "
+                f"for project {project.id}"
+            )
+            return ProjectSummaryResponse(**latest.response_data)
 
         # If there is no existing summary, we must generate one at least once.
         logger.info(f"Generating summary for project {project.id} ({project.slug})")
