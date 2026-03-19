@@ -1,6 +1,7 @@
 import json
 from types import SimpleNamespace
 
+from django.conf import settings
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
@@ -25,6 +26,18 @@ def _get_projects_queryset():
     )
 
 
+def _get_provider_choices():
+    """Provider choices for summarization test dropdowns from AI_PROVIDERS."""
+    providers = getattr(settings, "AI_PROVIDERS", {})
+    return [
+        {
+            "handle": handle,
+            "label": cfg.get("display_name") or handle.replace("_", " ").title(),
+        }
+        for handle, cfg in providers.items()
+    ]
+
+
 class SummarizationTestExportView(LoginRequiredMixin, View):
     """Return project export JSON for the summarization test page."""
 
@@ -43,9 +56,12 @@ class SummarizationTestView(View):
     def get(self, request):
         """Display test form."""
         default_prompt = SummaryRequest.DEFAULT_PROMPT
+        default_provider = getattr(settings, "AI_PROVIDER", "ovhcloud")
         context = {
             "default_prompt": default_prompt,
             "projects": _get_projects_queryset(),
+            "providers": _get_provider_choices(),
+            "provider": default_provider,
         }
         return render(request, "summarization/test.html", context)
 
@@ -118,11 +134,13 @@ class SummarizationTestView(View):
         provider_handle = request.POST.get("provider", None)
         project_id = request.POST.get("project_id", "").strip()
 
+        default_provider = getattr(settings, "AI_PROVIDER", "ovhcloud")
         context = {
             "text": text,
             "prompt": prompt,
             "default_prompt": SummaryRequest.DEFAULT_PROMPT,
-            "provider": provider_handle or "ovhcloud",
+            "provider": provider_handle or default_provider,
+            "providers": _get_provider_choices(),
             "summary_response": None,
             "error": None,
             "original_length": 0,
@@ -161,7 +179,11 @@ class DocumentSummarizationTestView(View):
 
     def get(self, request):
         """Display test form."""
-        context = {}
+        default_provider = getattr(settings, "AI_DOCUMENT_PROVIDER", "ovhcloud")
+        context = {
+            "providers": _get_provider_choices(),
+            "provider": default_provider,
+        }
         return render(request, "summarization/test_documents.html", context)
 
     def post(self, request):
@@ -172,9 +194,11 @@ class DocumentSummarizationTestView(View):
             provider_handle = None
         documents_json = request.POST.get("documents", "")
 
+        default_provider = getattr(settings, "AI_DOCUMENT_PROVIDER", "ovhcloud")
         context = {
             "prompt": prompt,
-            "provider": provider_handle or "ovhcloud",
+            "provider": provider_handle or default_provider,
+            "providers": _get_provider_choices(),
             "documents_json": documents_json,
             "summary_response": None,
             "error": None,

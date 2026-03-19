@@ -157,8 +157,11 @@
             
             <label for="provider">Provider:</label>
             <select name="provider" id="provider">
-                <option value="ovhcloud" {% if not provider or provider == "ovhcloud" %}selected{% endif %}>OVHcloud</option>
-                <option value="mistral" {% if provider == "mistral" %}selected{% endif %}>Mistral</option>
+                {% for p in providers %}
+                <option value="{{ p.handle }}" {% if provider == p.handle %}selected{% endif %}>{{ p.label }}</option>
+                {% empty %}
+                <option value="">Keine Provider konfiguriert</option>
+                {% endfor %}
             </select>
             
             <button type="submit">Summarize</button>
