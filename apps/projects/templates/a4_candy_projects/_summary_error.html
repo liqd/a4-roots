@@ -1,6 +1,7 @@
-{% load i18n %}
+{% load i18n static %}
 <div id="summary-error" class="summary-error__container">
     <div class="summary-error__header">
+        <img class="summary-error__warning-logo" src="{% static 'images/warning.svg' %}" alt="warning">
         {% trans 'Could not generate the summary' %}
     </div>
     <div class="summary-error__text">
