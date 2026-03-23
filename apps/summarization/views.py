@@ -11,6 +11,7 @@ from rules.contrib.views import LoginRequiredMixin
 from adhocracy4.projects.models import Project
 
 from .export_utils.core import generate_full_export
+from .playground_errors import format_playground_exception
 from .pydantic_models import DocumentInputItem
 from .pydantic_models import ProjectSummaryResponse
 from .services import AIService
@@ -80,7 +81,7 @@ class SummarizationTestView(View):
         except BaseException as e:
             if isinstance(e, (KeyboardInterrupt, SystemExit, GeneratorExit)):
                 raise
-            return None, 0, str(e)
+            return None, 0, format_playground_exception(e)
 
     def _extract_project_from_json(self, text: str):
         """Extract project information from JSON text if available."""
@@ -236,9 +237,9 @@ class DocumentSummarizationTestView(View):
                 context["summary_response"] = response
 
             except json.JSONDecodeError as e:
-                context["error"] = f"Invalid JSON: {str(e)}"
+                context["error"] = format_playground_exception(e)
             except Exception as e:
-                context["error"] = str(e)
+                context["error"] = format_playground_exception(e)
         else:
             context["error"] = "Please provide documents in JSON format"
 
