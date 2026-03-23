@@ -2,6 +2,8 @@
 
 import logging
 from abc import ABC
+from typing import TypeVar
+from typing import cast
 
 from django.conf import settings
 from pydantic import BaseModel
@@ -15,12 +17,15 @@ from pydantic_ai.providers.openai import OpenAIProvider
 from sentry_sdk import capture_exception
 
 from .llm_json import parse_structured_llm_json
+from .pydantic_models import DocumentSummaryResponse
 
 logger = logging.getLogger(__name__)
 
+TModel = TypeVar("TModel", bound=BaseModel)
 
-def _make_json_parse_fn(result_type: type[BaseModel]):
-    def parse(text: str) -> BaseModel:
+
+def _make_json_parse_fn(result_type: type[TModel]):
+    def parse(text: str) -> TModel:
         return parse_structured_llm_json(text, result_type)
 
     return parse
@@ -205,6 +210,7 @@ class AIProvider:
             capture_exception(e)
             raise
 
+    # Deprecate ? And Use text_request or vision_request instead ?
     def request(self, request: AIRequest, result_type: type[BaseModel]) -> BaseModel:
         """
         Automatically determines if it's a text or multimodal request.
@@ -213,24 +219,33 @@ class AIProvider:
         # Check if request supports vision (multimodal request)
         if getattr(request, "vision_support", False):
             image_urls = getattr(request, "image_urls", None) or []
-            return self.multimodal_request(request, result_type, image_urls)
+            if not issubclass(result_type, DocumentSummaryResponse):
+                raise TypeError(
+                    "Vision requests require result_type to be DocumentSummaryResponse or a subclass."
+                )
+            return self.multimodal_request(
+                request, cast(type[DocumentSummaryResponse], result_type), image_urls
+            )
         else:
             return self.text_request(request, result_type)
 
-    # TODO: Deprectaed ? Use separate Vison Requests instead ?
+    # Rename to vision_request instead and use only DocumentSummaryResponse for the result type?
     def multimodal_request(
-        self, request: AIRequest, result_type: type[BaseModel], image_urls: list[str]
-    ) -> BaseModel:
+        self,
+        request: AIRequest,
+        result_type: type[DocumentSummaryResponse],
+        image_urls: list[str],
+    ) -> DocumentSummaryResponse:
         """
         Execute a multimodal request with images using vision API.
 
         Args:
             request: Pydantic BaseModel with request data
-            result_type: Pydantic BaseModel class for structured output
+            result_type: DocumentSummaryResponse (or a subclass at runtime)
             image_urls: List of image URLs to include in the request
 
         Returns:
-            Structured response as BaseModel instance
+            Structured response instance
         """
         # Use MistralModel for Mistral, OpenAIChatModel for others
         # Note: Mistral may not support vision/multimodal requests
