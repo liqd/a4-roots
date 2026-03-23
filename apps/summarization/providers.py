@@ -7,13 +7,23 @@ from django.conf import settings
 from pydantic import BaseModel
 from pydantic_ai import Agent
 from pydantic_ai import ImageUrl
+from pydantic_ai import TextOutput
 from pydantic_ai.models.mistral import MistralModel
 from pydantic_ai.models.openai import OpenAIChatModel
 from pydantic_ai.providers.mistral import MistralProvider
 from pydantic_ai.providers.openai import OpenAIProvider
 from sentry_sdk import capture_exception
 
+from .llm_json import parse_structured_llm_json
+
 logger = logging.getLogger(__name__)
+
+
+def _make_json_parse_fn(result_type: type[BaseModel]):
+    def parse(text: str) -> BaseModel:
+        return parse_structured_llm_json(text, result_type)
+
+    return parse
 
 
 class ProviderConfig:
@@ -176,8 +186,8 @@ class AIProvider:
         agent = Agent(
             model=model,
             system_prompt=self.system_prompt,
-            output_type=result_type,
-            tools=[],  # Disable tool_calls to avoid validation errors with non-standard providers
+            output_type=TextOutput(_make_json_parse_fn(result_type)),
+            tools=[],
         )
 
         try:
@@ -241,9 +251,9 @@ class AIProvider:
         agent = Agent(
             model=model,
             system_prompt=self.system_prompt,
-            output_type=result_type,
-            output_retries=3,  # Allow more retries for vision output validation
-            tools=[],  # Disable tool_calls to avoid validation errors with non-standard providers
+            output_type=TextOutput(_make_json_parse_fn(result_type)),
+            output_retries=3,
+            tools=[],
         )
 
         # Build user content with prompt and image URLs

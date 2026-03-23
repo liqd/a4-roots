@@ -18,8 +18,9 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Changed
 
+- Summarization: resilient LLM JSON parsing with json-repair and Text trimming
 - Changed BMBF logo to BMFTR
-- Adjusted Newsletter emails.
+- Adjusted Newsletter emails
 - Installed HTMX rather than using script tag
 
 
