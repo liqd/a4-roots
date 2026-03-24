@@ -81,7 +81,7 @@ class AIService:
         request = SummaryRequest(text=text, prompt=prompt)
         latest = self._get_latest_summary(project)
         text_hash = ProjectSummary.compute_hash(text)
-
+        raise Exception
         cached = self._get_cached_response(
             project=project,
             text_hash=text_hash,
