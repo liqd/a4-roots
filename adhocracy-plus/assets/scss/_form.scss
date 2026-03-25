@@ -163,6 +163,16 @@ div.cke_focus {
     margin-left: -2px !important;
 }
 
+@media (max-width: $breakpoint-md) {
+    .input-group {
+        button[type="submit"] {
+            max-width: 40px;
+            flex: 0 0 auto;
+            padding: 0;
+        }
+    }
+}
+
 .filter-bar__spaced {
     margin-bottom: 0.5 * $spacer;
     display: flex;
