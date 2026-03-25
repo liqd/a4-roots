@@ -134,7 +134,7 @@
     text-align: center;
     padding: 2rem;
     border: 2px dashed $gray-lightest;
-    width: 80%;
+    width: 100%;
     margin: auto;
 }
 
@@ -235,7 +235,6 @@
     }
 
     &__container {
-        width: 90%;
         margin: auto;
         padding: 1rem;
         border: 1px solid $gray-lightest;
