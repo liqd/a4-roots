@@ -193,7 +193,7 @@ $checkbox-size: 20px;
     .slick-prev,
     .slick-next {
         @extend .btn--none;
-        background-color: $brand-tertiary;
+        background-color: $brand-primary;
 
         position: absolute;
         top: revert;
@@ -203,9 +203,8 @@ $checkbox-size: 20px;
         height: 25px;
         border-radius: 100%;
         z-index: 1; // when tile links overlap
-
         &:hover {
-            background-color: $brand-tertiary;
+            background-color: $brand-primary;
         }
 
         &:before {

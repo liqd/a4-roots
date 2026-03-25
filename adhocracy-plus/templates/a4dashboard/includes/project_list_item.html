@@ -3,7 +3,6 @@
 {% project_tile_image_copyright project as project_image_copyright %}
 {% project_tile_image_alt_text project as project_image_alt_text %}
 
-
 <li class="list-item list-item--has-image">
     <div class="list-item--has-image__wrapper">
         <div class="list-item--has-image__image"
@@ -18,7 +17,7 @@
             {% endif %}
         </div>
         <div class="lr-bar list-item--has-image__body">
-            <div class="lr-bar__left">
+            <div class="list-item--has-image__title">
                 <h3 class="u-first-heading">
                     {{ project.name }}
                     {% if project.has_finished %}
@@ -32,54 +31,53 @@
                     {% endif %}
                 </h3>
             </div>
-            <div class="lr-bar__right">
+            <div class="list-item--has-image__actions">
                 <div class="btn--group">
-                {% spaceless %}
-                    <a href="{{ project|project_url }}"
-                       class="btn btn--light btn--small">
-                        <i class="fa fa-eye" aria-hidden="true"></i>
-                        {% if project.is_draft %}
-                        {% translate 'Preview' %}
-                        {% else %}
-                        {% translate 'View' %}
-                        {% endif %}
-                    </a>
-                    <a href="{% url 'a4dashboard:project-edit' organisation_slug=project.organisation.slug project_slug=project.slug %}"
-                       class="btn btn--light btn--small">
-                        <i class="fa fa-pencil" aria-hidden="true"></i>
-                        {% translate 'Edit'%}
-                    </a>
-                    <div class="dropdown">
-                        <button
-                                type="button"
-                                class="dropdown-toggle btn btn--light btn--small"
-                                data-bs-toggle="dropdown"
-                                data-flip="false"
-                                aria-haspopup="true"
-                                aria-expanded="false"
-                                id="project-actions"
-                                title="{% translate 'more' %}"
-                        >
-                            <i class="fa fa-caret-down" aria-label="{% translate 'more' %}"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-end
-                        " aria-labelledby="project-actions">
-                            <form method="post" class="list-item__action">
-                                {% csrf_token %}
-                                <input type="hidden" name="project_pk" value="{{ project.pk }}">
-                                <button type="submit" name="duplicate" value="{{ project }}"
-                                        class="dropdown-item">
-                                    <i class="far fa-copy" aria-hidden="true"></i>
-                                    {% translate 'Duplicate' %}
-                                </button>
-                            </form>
-                            <a href="#" class="dropdown-item font-weight-normal" data-bs-toggle="modal" data-bs-target="#project{{ project.pk }}DeleteModal">
-                                <i class="far fa-trash-alt" aria-hidden="true"></i>
-                                {% translate 'delete' %}
-                            </a>
+                    {% spaceless %}
+                        <a href="{{ project|project_url }}"
+                        class="btn btn--light btn--small">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                            {% if project.is_draft %}
+                            {% translate 'Preview' %}
+                            {% else %}
+                            {% translate 'View' %}
+                            {% endif %}
+                        </a>
+                        <a href="{% url 'a4dashboard:project-edit' organisation_slug=project.organisation.slug project_slug=project.slug %}"
+                        class="btn btn--light btn--small">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                            {% translate 'Edit' %}
+                        </a>
+                        <div class="dropdown">
+                            <button
+                                    type="button"
+                                    class="dropdown-toggle btn btn--light btn--small"
+                                    data-bs-toggle="dropdown"
+                                    data-flip="false"
+                                    aria-haspopup="true"
+                                    aria-expanded="false"
+                                    id="project-actions"
+                                    title="{% translate 'more' %}"
+                            >
+                                <i class="fa fa-caret-down" aria-label="{% translate 'more' %}"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="project-actions">
+                                <form method="post" class="list-item__action">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="project_pk" value="{{ project.pk }}">
+                                    <button type="submit" name="duplicate" value="{{ project }}"
+                                            class="dropdown-item">
+                                        <i class="far fa-copy" aria-hidden="true"></i>
+                                        {% translate 'Duplicate' %}
+                                    </button>
+                                </form>
+                                <a href="#" class="dropdown-item font-weight-normal" data-bs-toggle="modal" data-bs-target="#project{{ project.pk }}DeleteModal">
+                                    <i class="far fa-trash-alt" aria-hidden="true"></i>
+                                    {% translate 'delete' %}
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                {% endspaceless %}
+                    {% endspaceless %}
                 </div>
             </div>
         </div>

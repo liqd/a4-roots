@@ -163,6 +163,16 @@ div.cke_focus {
     margin-left: -2px !important;
 }
 
+@media (max-width: $breakpoint-md) {
+    .input-group {
+        button[type="submit"] {
+            max-width: 40px;
+            flex: 0 0 auto;
+            padding: 0;
+        }
+    }
+}
+
 .filter-bar__spaced {
     margin-bottom: 0.5 * $spacer;
     display: flex;
@@ -210,17 +220,22 @@ div.cke_focus {
 
 .password-field-wrapper {
     position: relative;
+
+    > input {
+        padding-left: 40px;
+    }
 }
 
 .password-toggle-btn {
     position: absolute;
-    right: 10px;
+    left: 10px;
     top: 50%;
     transform: translateY(-50%);
     background: none;
     border: none;
     cursor: pointer;
     color: $text-color-gray;
+    width: 25px;
 }
 
 .password-toggle-btn:hover {
