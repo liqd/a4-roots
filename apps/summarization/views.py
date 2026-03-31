@@ -14,8 +14,9 @@ from .export_utils.core import generate_full_export
 from .playground_errors import format_playground_exception
 from .pydantic_models import DocumentInputItem
 from .pydantic_models import ProjectSummaryResponse
-from .services import AIService
-from .services import SummaryRequest
+from .requests import SummaryRequest
+from .services import DocumentProcessor
+from .services import ProjectSummarizer
 
 
 def _get_projects_queryset():
@@ -71,7 +72,7 @@ class SummarizationTestView(View):
     ) -> tuple[ProjectSummaryResponse | None, int, str | None]:
         """Handle text-only summarization."""
         try:
-            service = AIService(provider_handle=provider_handle)
+            service = ProjectSummarizer(provider_handle=provider_handle)
             response = service.summarize(
                 text=text,
                 prompt=prompt if prompt else None,
@@ -229,7 +230,7 @@ class DocumentSummarizationTestView(View):
                     raise ValueError("Documents must be a dict or list")
 
                 # Process documents
-                service = AIService(document_provider_handle=provider_handle)
+                service = DocumentProcessor(document_provider_handle=provider_handle)
                 response = service.request_vision(
                     documents=documents,
                     prompt=prompt if prompt else None,
