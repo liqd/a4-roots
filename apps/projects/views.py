@@ -13,6 +13,7 @@ from django.urls import reverse_lazy
 from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.utils.functional import cached_property
+from django.utils.translation import get_language
 from django.utils.translation import gettext_lazy as _
 from django.utils.translation import ngettext
 from django.views import View
@@ -406,20 +407,18 @@ class ProjectGenerateSummaryView(PermissionRequiredMixin, generic.DetailView):
 
             user_feedback = self._get_user_feedback(summary, request)
 
+            # Get current language code from the request
+            language_code = get_language()
+
             summary_timestamp = None
             summary_date_str = None
             if summary:
                 ts = summary.last_checked_at or summary.created_at
-                local_ts = timezone.localtime(ts)
-                today = timezone.localdate()
-                is_today = local_ts.date() == today
-                if is_today:
-                    summary_date_str = _("today")
-                else:
-                    summary_date_str = "{} {}".format(
-                        _("on"), local_ts.strftime("%d.%m.")
-                    )
-                summary_timestamp = local_ts
+                summary_timestamp = timezone.localtime(ts)
+                summary_date_str = self._format_summary_date(
+                    summary_timestamp, language_code
+                )
+
             html = render_to_string(
                 "a4_candy_projects/_summary_fragment.html",
                 {

@@ -1,4 +1,5 @@
 {% load static i18n a4_candy_project_tags %}
+{% get_current_language as LANGUAGE_CODE %}
 
 <div class="mb-4 summary__section-container">
     <div class="p-0" id="{{ id }}-heading">
@@ -49,7 +50,11 @@
                         </div>
                         <div>
                             <small>
-                              {% trans 'Active participation' %}: {{ module_obj.module_start|date:"j. M y H:i"  }} - {{ module_obj.module_end|date:"j. M y H:i"  }}
+                                {% if LANGUAGE_CODE == 'de' %}
+                                    {% trans 'Ative Beteiligung' %}: {{ module_obj.module_start|date:"d.m.Y, H:i" }} – {{ module_obj.module_end|date:"d.m.Y, H:i" }} Uhr
+                                {% else %}
+                                    {% trans 'Active participation' %}: {{ module_obj.module_start|date:"j M Y, H:i" }} – {{ module_obj.module_end|date:"j M Y, H:i" }}
+                                {% endif %}
                             </small>
                         </div>
                     </div>
