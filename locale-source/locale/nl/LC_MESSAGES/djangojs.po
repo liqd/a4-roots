@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-01 17:41+0200\n"
+"POT-Creation-Date: 2026-04-02 17:37+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Luca Thüer, 2023\n"
 "Language-Team: Dutch (https://app.transifex.com/liqd/teams/109316/nl/)\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:22
+#: adhocracy4/comments/static/comments/Comment.jsx:23
 #: adhocracy4/comments/static/comments/Comment.jsx:23
 #, javascript-format
 msgid "hide one reply"
@@ -30,7 +30,7 @@ msgid_plural "hide %s replies"
 msgstr[0] "één reactie verbergen"
 msgstr[1] "%s reacties verbergen"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:24
+#: adhocracy4/comments/static/comments/Comment.jsx:25
 #: adhocracy4/comments/static/comments/Comment.jsx:25
 #, javascript-format
 msgid "view one reply"
@@ -38,19 +38,18 @@ msgid_plural "view %s replies"
 msgstr[0] "één reactie bekijken"
 msgstr[1] "%s reacties bekijken"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:29
+#: adhocracy4/comments/static/comments/Comment.jsx:30
 #: adhocracy4/comments/static/comments/Comment.jsx:30
 msgid "Answer"
 msgstr "Antwoorden"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:30
+#: adhocracy4/comments/static/comments/Comment.jsx:31
 #: adhocracy4/comments/static/comments/Comment.jsx:31
 msgid "Your reply here"
 msgstr "Uw reactie hier"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:31
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:17
-#: adhocracy4/reports/static/reports/react_reports.jsx:22
+#: adhocracy4/comments/static/comments/Comment.jsx:32
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:18
 #: adhocracy4/comments/static/comments/Comment.jsx:32
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:18
 msgid ""
@@ -62,55 +61,51 @@ msgstr ""
 "De moderator zal kijken naar de gerapporteerde inhoud. De inhoud zal worden "
 "verwijderd als deze niet voldoet aan onze discussieregels (netiquette)."
 
-#: adhocracy4/comments/static/comments/Comment.jsx:96
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:35
+#: adhocracy4/comments/static/comments/Comment.jsx:97
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:33
 #: adhocracy4/comments/static/comments/Comment.jsx:97
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:33
 msgid "Moderator"
 msgstr "Moderator"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:105
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:34
+#: adhocracy4/comments/static/comments/Comment.jsx:106
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:32
 #: adhocracy4/comments/static/comments/Comment.jsx:106
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:32
 msgid "Latest edit on"
 msgstr "Laatste bewerking op"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:110
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:31
+#: adhocracy4/comments/static/comments/Comment.jsx:111
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:29
 #: adhocracy4/comments/static/comments/Comment.jsx:111
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:29
 msgid "Deleted by creator on"
 msgstr "Verwijderd door de auteur op"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:112
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:32
+#: adhocracy4/comments/static/comments/Comment.jsx:113
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:30
 #: adhocracy4/comments/static/comments/Comment.jsx:113
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:30
 msgid "Deleted by moderator on"
 msgstr "Verwijderd door moderator op"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:153
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:27
+#: adhocracy4/comments/static/comments/Comment.jsx:154
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:26
 #: adhocracy4/comments/static/comments/Comment.jsx:154
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:26
 msgid "Do you really want to delete this comment?"
 msgstr "Wilt u deze opmerking echt verwijderen?"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:154
+#: adhocracy4/comments/static/comments/Comment.jsx:155
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:6
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:29
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:28
 #: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:6
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:72
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:77
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:154
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:159
 #: adhocracy4/comments/static/comments/Comment.jsx:155
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:6
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:28
 #: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:6
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:72
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:77
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:154
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:159
 #: apps/documents/assets/ChapterNavItem.jsx:57
@@ -119,9 +114,7 @@ msgstr "Wilt u deze opmerking echt verwijderen?"
 msgid "Delete"
 msgstr "Verwijderen"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:155
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:30
-#: adhocracy4/static/Modal.jsx:6
+#: adhocracy4/comments/static/comments/Comment.jsx:156
 #: adhocracy4/comments/static/comments/Comment.jsx:156
 msgid "Abort"
 msgstr "Afbreken"
@@ -184,10 +177,18 @@ msgid "Edit"
 msgstr "Bewerken"
 
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:7
+#: adhocracy4/reports/static/reports/ReportModal.jsx:12
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:7
 #: adhocracy4/reports/static/reports/ReportModal.jsx:12
 msgid "Report"
 msgstr "Rapporteer"
+
+#: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:8
+#: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:7
+#: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:8
+#: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:7
+msgid "Comment Actions"
+msgstr ""
 
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:6
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:6
@@ -263,82 +264,73 @@ msgstr ""
 msgid "Choose categories for your comment"
 msgstr "Kies categorieën voor uw reactie"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:18
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:19
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:19
 msgid "Share link"
 msgstr "Link delen"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:19
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:20
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:20
 msgid "Categories: "
 msgstr "Categorieën: "
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:20
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:21
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:21
 msgid "Entry successfully created"
 msgstr "Bijdrage succesvol gemaakt"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:21
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:22
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:22
 msgid "Read more..."
 msgstr "Lees meer…"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:22
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:23
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:23
 msgid "Read less"
 msgstr "Lees minder"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:23
-#: adhocracy4/comments_async/static/modals/UrlModal.jsx:7
-msgid "Share"
-msgstr "Delen"
-
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:24
-msgid " Report"
-msgstr ""
-
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:25
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:24
 msgid "Show moderator's feedback"
 msgstr "Toon feedback van moderator"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:26
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:25
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:25
 msgid "Hide moderator's feedback"
 msgstr "Verberg moderator's feedback"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:28
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:27
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:27
 msgid "Delete comment"
 msgstr "Reactie verwijderen"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:33
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:31
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:31
 msgid "Blocked by moderator"
 msgstr "Geblokkeerd door moderator"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:36
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:34
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:34
 msgid "hide replies"
 msgstr "reacties verbergen"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:37
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:35
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:35
 msgctxt "verb"
 msgid "Reply"
 msgstr "Reageer"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:38
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:36
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:36
 msgid "Click to view rest of comment text."
 msgstr ""
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:39
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:37
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:37
 msgid "Click to hide expanded text."
 msgstr ""
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:48
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:46
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:46
 #, javascript-format
 msgid "1 reply"
@@ -472,6 +464,7 @@ msgstr ""
 
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:21
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:110
+#: adhocracy4/static/Modal.jsx:8
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:21
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:110
 #: adhocracy4/static/Modal.jsx:8
@@ -494,6 +487,11 @@ msgstr "Bijdragen zoeken"
 msgid "Clear search"
 msgstr "Zoek wissen"
 
+#: adhocracy4/comments_async/static/modals/UrlModal.jsx:7
+#: adhocracy4/comments_async/static/modals/UrlModal.jsx:7
+msgid "Share"
+msgstr "Delen"
+
 #: adhocracy4/comments_async/static/modals/UrlModal.jsx:8
 #: adhocracy4/comments_async/static/modals/UrlModal.jsx:8
 msgid "Copy"
@@ -503,6 +501,11 @@ msgstr "Kopieëren"
 #: adhocracy4/comments_async/static/modals/UrlModal.jsx:9
 msgid "Copied"
 msgstr "Gekopiëerd"
+
+#: adhocracy4/comments_async/static/modals/UrlModal.jsx:47
+#: adhocracy4/comments_async/static/modals/UrlModal.jsx:47
+msgid "Share URL"
+msgstr ""
 
 #: adhocracy4/follows/static/follows/FollowButton.jsx:10
 #: adhocracy4/follows/static/follows/FollowButton.jsx:10
@@ -515,7 +518,11 @@ msgid "Click to no longer be updated about this project via email."
 msgstr ""
 
 #: adhocracy4/follows/static/follows/FollowButton.jsx:15
-msgid "You will be updated via email."
+#: adhocracy4/follows/static/follows/FollowButton.jsx:15
+msgid ""
+"From now on, we'll keep you updated on all changes.<br/>Make sure email "
+"notifications are enabled in your %(linkStart)s notification settings%"
+"(linkEnd)s"
 msgstr ""
 
 #: adhocracy4/follows/static/follows/FollowButton.jsx:16
@@ -533,13 +540,13 @@ msgstr "Volgen"
 msgid "Following"
 msgstr "Volgend"
 
-#: adhocracy4/maps/static/a4maps/a4maps_address.js:87
+#: adhocracy4/maps/static/a4maps/a4maps_address.js:104
 #: adhocracy4/maps/static/a4maps/a4maps_address.js:104
 #: apps/maps/assets/map-address.js:87
 msgid "No matches found within the project area"
 msgstr "Geen overeenkomsten gevonden binnen het projectgebied"
 
-#: adhocracy4/maps/static/a4maps/a4maps_address.js:90
+#: adhocracy4/maps/static/a4maps/a4maps_address.js:107
 #: adhocracy4/maps/static/a4maps/a4maps_address.js:107
 #: apps/maps/assets/map-address.js:90
 msgid "Did you mean:"
@@ -565,6 +572,7 @@ msgstr "Importeer veelhoek via bestandsupload"
 
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:88
 #: adhocracy4/static/Alert.jsx:6
+#: adhocracy4/static/Modal.jsx:7
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:88
 #: adhocracy4/static/Alert.jsx:6
 #: adhocracy4/static/Modal.jsx:7
@@ -658,6 +666,22 @@ msgid_plural "persons commented on this proposal."
 msgstr[0] "persoon reageerde op dit voorstel."
 msgstr[1] "personen reageerden op dit voorstel."
 
+#: adhocracy4/maps_react/static/a4maps_react/AddressSearch.jsx:7
+#: adhocracy4/maps_react/static/a4maps_react/AddressSearch.jsx:7
+msgid "Address Search"
+msgstr ""
+
+#: adhocracy4/maps_react/static/a4maps_react/ChoosePointMap.jsx:8
+#: adhocracy4/maps_react/static/a4maps_react/ChoosePointMap.jsx:8
+msgid ""
+"The chosen address is outside this map's bounds. Please choose another one."
+msgstr ""
+
+#: adhocracy4/maps_react/static/a4maps_react/GeoJsonMarker.js:29
+#: adhocracy4/maps_react/static/a4maps_react/GeoJsonMarker.js:29
+msgid "Project pin"
+msgstr ""
+
 #: adhocracy4/polls/static/PollDashboard/EditPollChoice.jsx:9
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:70
 #: adhocracy4/polls/static/PollDashboard/EditPollChoice.jsx:9
@@ -722,7 +746,7 @@ msgstr ""
 "De poll kon niet worden bijgewerkt. Controleer de ingevoerde gegevens "
 "opnieuw."
 
-#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:287
+#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:289
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:289
 #: apps/documents/assets/DocumentManagement.jsx:327
 msgid "Save"
@@ -744,34 +768,6 @@ msgstr "Vraag"
 #: adhocracy4/polls/static/PollDashboard/HelptextForm.jsx:11
 msgid "Explanation"
 msgstr "Uitleg"
-
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:49
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:54
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:131
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:136
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:49
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:54
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:131
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:136
-#: apps/documents/assets/ChapterNavItem.jsx:33
-#: apps/documents/assets/ChapterNavItem.jsx:38
-#: apps/documents/assets/ParagraphForm.jsx:9
-msgid "Move up"
-msgstr "Omhoog plaatsten"
-
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:61
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:66
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:143
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:148
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:61
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:66
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:143
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:148
-#: apps/documents/assets/ChapterNavItem.jsx:45
-#: apps/documents/assets/ChapterNavItem.jsx:50
-#: apps/documents/assets/ParagraphForm.jsx:10
-msgid "Move down"
-msgstr "Omlaag plaatsen"
 
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:47
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:47
@@ -795,13 +791,33 @@ msgstr "Andere"
 msgid "New answer"
 msgstr "Nieuw antwoord"
 
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:131
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:136
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:131
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:136
+#: apps/documents/assets/ChapterNavItem.jsx:33
+#: apps/documents/assets/ChapterNavItem.jsx:38
+#: apps/documents/assets/ParagraphForm.jsx:9
+msgid "Move up"
+msgstr "Omhoog plaatsten"
+
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:143
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:148
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:143
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:148
+#: apps/documents/assets/ChapterNavItem.jsx:45
+#: apps/documents/assets/ChapterNavItem.jsx:50
+#: apps/documents/assets/ParagraphForm.jsx:10
+msgid "Move down"
+msgstr "Omlaag plaatsen"
+
 #: adhocracy4/polls/static/PollDetail/CharCounter.jsx:5
 #: adhocracy4/polls/static/PollDetail/CharCounter.jsx:5
 msgid "characters"
 msgstr ""
 
 #: adhocracy4/polls/static/PollDetail/ChoiceRow.jsx:6
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:110
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:136
 #: adhocracy4/polls/static/PollDetail/ChoiceRow.jsx:6
 #: adhocracy4/polls/static/PollDetail/PollResults.jsx:136
 msgid "other"
@@ -818,7 +834,13 @@ msgstr "Meerdere antwoorden zijn mogelijk."
 msgid "Your answer has been saved."
 msgstr "Uw antwoord is bewaard."
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:24
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:21
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:21
+#: apps/polls/assets/react_polls/PollQuestions.jsx:22
+msgid "In order to participate please <a href=\"%(url)s\">log in</a>."
+msgstr ""
+
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:42
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:42
 #: apps/polls/assets/react_polls/PollQuestions.jsx:43
 msgid ""
@@ -826,20 +848,20 @@ msgid ""
 msgstr ""
 "Uw antwoord kon niet worden opgeslagen. Controleer de ingevoerde gegevens."
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:31
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:49
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:49
 #: apps/polls/assets/react_polls/PollQuestions.jsx:50
 msgid "Your answer is invalid or empty. Please try again."
 msgstr "Het antwoord is ongeldig of leeg. Probeer het opnieuw."
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:62
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:80
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:80
 #: apps/polls/assets/react_polls/PollQuestions.jsx:81
 msgid "To poll"
 msgstr "Stemmen"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:75
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:175
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:93
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:193
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:93
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:193
 #: apps/polls/assets/react_polls/PollQuestions.jsx:94
@@ -847,53 +869,63 @@ msgstr "Stemmen"
 msgid "Change answer"
 msgstr "Wijzig antwoord"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:176
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:194
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:194
 #: apps/polls/assets/react_polls/PollQuestions.jsx:195
 msgid "Submit answer"
 msgstr "Antwoord indienen"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:185
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:203
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:203
 #: apps/polls/assets/react_polls/PollQuestions.jsx:204
 msgid "Please login to answer"
 msgstr "Log in om te antwoorden"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:193
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:211
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:211
 #: apps/polls/assets/react_polls/PollQuestions.jsx:212
 msgid "Show results"
 msgstr "Toon resultaten"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:195
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:213
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:213
 #: apps/polls/assets/react_polls/PollQuestions.jsx:214
 msgid "Show preliminary results"
 msgstr "Toon voorlopige resultaten"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:218
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:236
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:236
 #: apps/polls/assets/react_polls/PollQuestions.jsx:237
 msgid "Please enter your answer in this field."
 msgstr "Vul uw antwoord in dit veld in."
 
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:44
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:13
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:13
+msgid "Previous answer"
+msgstr ""
+
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:14
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:14
+msgid "Next answer"
+msgstr ""
+
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:68
 #: adhocracy4/polls/static/PollDetail/PollResults.jsx:68
 msgid "Hide other answers"
 msgstr "Andere antwoorden verbergen"
 
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:46
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:70
 #: adhocracy4/polls/static/PollDetail/PollResults.jsx:70
 msgid "Show other answers"
 msgstr "Andere antwoorden weergeven"
 
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:60
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:84
 #: adhocracy4/polls/static/PollDetail/PollResults.jsx:84
 #, javascript-format
 msgid "%s participant gave 1 answer."
 msgstr "%s deelnemer gaf 1 antwoord."
 
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:62
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:86
 #: adhocracy4/polls/static/PollDetail/PollResults.jsx:86
 #, javascript-format
 msgid "%s participant gave %s answers."
@@ -901,14 +933,14 @@ msgid_plural "%s participants gave %s answers."
 msgstr[0] "%s deelnemer gaf %s antwoorden."
 msgstr[1] "%s deelnemers gaven %s antwoorden."
 
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:64
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:88
 #: adhocracy4/polls/static/PollDetail/PollResults.jsx:88
 msgid ""
 " For multiple choice questions the percentages may add up to more than 100%."
 msgstr "Bij meerkeuzevragen kunnen de percentages oplopen tot meer dan 100%."
 
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:66
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:75
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:90
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:99
 #: adhocracy4/polls/static/PollDetail/PollResults.jsx:90
 #: adhocracy4/polls/static/PollDetail/PollResults.jsx:99
 #, javascript-format
@@ -917,15 +949,39 @@ msgid_plural "%s people have answered."
 msgstr[0] "1 persoon heeft geantwoord."
 msgstr[1] "%s mensen hebben geantwoord."
 
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:77
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:101
 #: adhocracy4/polls/static/PollDetail/PollResults.jsx:101
 msgid "no one has answered this question"
 msgstr "niemand heeft deze vraag beantwoord"
 
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:107
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:133
 #: adhocracy4/polls/static/PollDetail/PollResults.jsx:133
 msgid "Your choice"
 msgstr "Uw keuze"
+
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:154
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:154
+msgid "Other answers carousel"
+msgstr ""
+
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:164
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:200
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:164
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:200
+msgid "Answer %(current)s of %(total)s"
+msgstr ""
+
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:170
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:206
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:170
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:206
+msgid "Your answer"
+msgstr ""
+
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:190
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:190
+msgid "Open answers carousel"
+msgstr ""
 
 #: adhocracy4/polls/static/PollDetail/TextareaWithCounter.jsx:7
 #: adhocracy4/polls/static/PollDetail/TextareaWithCounter.jsx:7
@@ -953,24 +1009,42 @@ msgid "Click to dislike"
 msgstr ""
 
 #: adhocracy4/reports/static/reports/ReportModal.jsx:7
+#: adhocracy4/reports/static/reports/ReportModal.jsx:7
+msgid "Report Content"
+msgstr ""
+
+#: adhocracy4/reports/static/reports/ReportModal.jsx:8
 #: adhocracy4/reports/static/reports/ReportModal.jsx:8
 msgid "Report sent"
 msgstr "Rapport verzonden"
 
-#: adhocracy4/reports/static/reports/ReportModal.jsx:8
+#: adhocracy4/reports/static/reports/ReportModal.jsx:9
 #: adhocracy4/reports/static/reports/ReportModal.jsx:9
 msgid "Thank you! We are taking care of it."
 msgstr "Dank u wel! We zorgen ervoor."
 
-#: adhocracy4/reports/static/reports/ReportModal.jsx:9
+#: adhocracy4/reports/static/reports/ReportModal.jsx:10
 #: adhocracy4/reports/static/reports/ReportModal.jsx:10
 msgid "Your message"
 msgstr "Uw bericht"
 
-#: adhocracy4/reports/static/reports/ReportModal.jsx:10
+#: adhocracy4/reports/static/reports/ReportModal.jsx:11
 #: adhocracy4/reports/static/reports/ReportModal.jsx:11
 msgid "Send Report"
 msgstr "Raport versturen"
+
+#: adhocracy4/reports/static/reports/ReportModal.jsx:13
+#: adhocracy4/reports/static/reports/ReportModal.jsx:13
+msgid "Please enter a message before submitting."
+msgstr ""
+
+#: adhocracy4/reports/static/reports/react_reports.jsx:16
+#: adhocracy4/reports/static/reports/react_reports.jsx:16
+msgid ""
+"Do you want to report this content? Your message will be sent to our "
+"moderation team. They will review the reported content, and if it violates "
+"our discussion rules (netiquette), it will be removed."
+msgstr ""
 
 #: adhocracy4/static/Captcha.jsx:5
 #: adhocracy4/static/Captcha.jsx:5
@@ -1033,81 +1107,6 @@ msgstr ""
 #: adhocracy4/static/control_bar/ControlBarSearch.jsx:6
 #: adhocracy4/static/control_bar/ControlBarSearch.jsx:6
 msgid "Start search"
-msgstr ""
-
-#: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:8
-#: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:7
-msgid "Comment Actions"
-msgstr ""
-
-#: adhocracy4/comments_async/static/modals/UrlModal.jsx:47
-msgid "Share URL"
-msgstr ""
-
-#: adhocracy4/follows/static/follows/FollowButton.jsx:15
-msgid ""
-"From now on, we'll keep you updated on all changes.<br/>Make sure email "
-"notifications are enabled in your %(linkStart)s notification settings%"
-"(linkEnd)s"
-msgstr ""
-
-#: adhocracy4/maps_react/static/a4maps_react/AddressSearch.jsx:7
-msgid "Address Search"
-msgstr ""
-
-#: adhocracy4/maps_react/static/a4maps_react/ChoosePointMap.jsx:8
-msgid ""
-"The chosen address is outside this map's bounds. Please choose another one."
-msgstr ""
-
-#: adhocracy4/maps_react/static/a4maps_react/GeoJsonMarker.js:29
-msgid "Project pin"
-msgstr ""
-
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:21
-#: apps/polls/assets/react_polls/PollQuestions.jsx:22
-msgid "In order to participate please <a href=\"%(url)s\">log in</a>."
-msgstr ""
-
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:13
-msgid "Previous answer"
-msgstr ""
-
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:14
-msgid "Next answer"
-msgstr ""
-
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:154
-msgid "Other answers carousel"
-msgstr ""
-
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:164
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:200
-msgid "Answer %(current)s of %(total)s"
-msgstr ""
-
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:170
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:206
-msgid "Your answer"
-msgstr ""
-
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:190
-msgid "Open answers carousel"
-msgstr ""
-
-#: adhocracy4/reports/static/reports/ReportModal.jsx:7
-msgid "Report Content"
-msgstr ""
-
-#: adhocracy4/reports/static/reports/ReportModal.jsx:13
-msgid "Please enter a message before submitting."
-msgstr ""
-
-#: adhocracy4/reports/static/reports/react_reports.jsx:16
-msgid ""
-"Do you want to report this content? Your message will be sent to our "
-"moderation team. They will review the reported content, and if it violates "
-"our discussion rules (netiquette), it will be removed."
 msgstr ""
 
 #: apps/documents/assets/ChapterForm.jsx:13
