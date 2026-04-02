@@ -69,7 +69,7 @@ class Claim(BaseModel):
         "from_base_text",
         "uncertain",
     ] = Field(description="Type of evidence supporting this claim")
-    action: Literal["keep", "soften", "remove"] = Field(
+    action: Literal["keep", "soften", "replace", "remove"] = Field(
         description="Action taken on this claim"
     )
     fix_hint: Optional[str] = Field(None, description="Hint for fixing the claim")

@@ -128,7 +128,7 @@
                                     <td>{{ claim.claim_text }}</td>
                                     <td><span class="badge bg-info">{{ claim.evidence_type }}</span></td>
                                     <td>
-                                        <span class="badge {% if claim.action == 'keep' %}bg-success{% elif claim.action == 'soften' %}bg-warning{% else %}bg-danger{% endif %}">
+                                        <span class="badge {% if claim.action == 'keep' %}bg-success{% elif claim.action == 'soften' %}bg-warning{% elif claim.action == 'replace' %}bg-primary{% elif claim.action == 'remove' %}bg-danger{% else %}bg-secondary{% endif %}">
                                             {{ claim.action }}
                                         </span>
                                     </td>
