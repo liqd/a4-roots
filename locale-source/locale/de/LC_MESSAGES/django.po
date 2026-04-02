@@ -10,6 +10,7 @@
 # JOster, 2023
 # Luca Thüer, 2023
 # shane obrien, 2026
+# Janek Gulbis, 2026
 # Tietje, 2026
 #
 #, fuzzy
@@ -17,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-19 12:14+0100\n"
+"POT-Creation-Date: 2026-04-01 17:41+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Tietje, 2026\n"
 "Language-Team: German (https://app.transifex.com/liqd/teams/109316/de/)\n"
@@ -26,11 +27,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: adhocracy-plus/templates/footer_upper.html:15
-#: adhocracy-plus/templates/footer_upper.html:21
-msgid "AI Explanation"
-msgstr "Ki-Erklärung"
 
 #: adhocracy4/categories/templates/a4categories/includes/module_categories_form.html:3
 #: adhocracy4/categories/templates/a4categories/includes/module_categories_form.html:3
@@ -125,7 +121,7 @@ msgstr "Benötigtes Feld zur Veröffentlichung"
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:39
 #: apps/organisations/templates/a4_candy_organisations/communication_form_social_media.html:59
 #: adhocracy-plus/templates/a4dashboard/includes/preview.html:7
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:42
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:41
 msgid "Preview"
 msgstr "Vorschau"
 
@@ -137,7 +133,7 @@ msgstr "Vorschau"
 #: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_list_item.html:15
 #: apps/topicprio/templates/a4_candy_topicprio/includes/topic_dashboard_list_item.html:14
 #: adhocracy-plus/templates/a4dashboard/includes/preview.html:9
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:44
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:43
 msgid "View"
 msgstr "Ansicht"
 
@@ -207,7 +203,7 @@ msgstr "Projektentwurf anlegen"
 #: apps/mapideas/templates/a4_candy_mapideas/includes/mapidea_form.html:29
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_confirm_delete.html:14
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_moderate_form.html:42
-#: apps/newsletters/templates/a4_candy_newsletters/restricted_newsletter_dashboard_form.html:29
+#: apps/newsletters/templates/a4_candy_newsletters/restricted_newsletter_dashboard_form.html:21
 #: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_form.html:14
 #: apps/offlineevents/templates/a4_candy_offlineevents/offlineevent_confirm_delete.html:13
 #: apps/topicprio/templates/a4_candy_topicprio/includes/topic_form.html:21
@@ -231,21 +227,21 @@ msgstr "Projekte"
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:24
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:24
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:25
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:24
 msgid "Finished"
 msgstr "Abgeschlossen"
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:27
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:27
 #: adhocracy4/projects/enums.py:14
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:28
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:27
 msgid "semipublic"
 msgstr "halb-öffentlich"
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:30
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:30
 #: adhocracy4/projects/enums.py:15
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:31
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:30
 msgid "private"
 msgstr "privat"
 
@@ -256,13 +252,13 @@ msgstr "privat"
 #: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_list_item.html:20
 #: apps/projects/templates/a4_candy_projects/project_detail.html:137
 #: apps/topicprio/templates/a4_candy_topicprio/includes/topic_dashboard_list_item.html:19
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:50
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:49
 msgid "Edit"
 msgstr "Bearbeiten"
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:57
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:57
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:73
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:71
 msgid "Duplicate"
 msgstr "Duplizieren"
 
@@ -875,7 +871,6 @@ msgid "Please add an alternative text for this image"
 msgstr "Bitte fügen Sie einen Alternativtext zu diesem Bild hinzu."
 
 #: adhocracy4/images/validators.py:28
-#, python-brace-format
 msgid "Unsupported file format. Supported formats are {}."
 msgstr "Dieses Dateiformat ist nicht unterstützt. Unterstützt werden: {}."
 
@@ -1085,7 +1080,7 @@ msgstr ""
 "sein."
 
 #: adhocracy4/phases/models.py:59
-#: apps/newsletters/models.py:28
+#: apps/newsletters/models.py:30
 #: apps/projects/templates/a4_candy_projects/includes/removeable_user_list.html:7
 msgid "Name"
 msgstr "Name"
@@ -1123,7 +1118,6 @@ msgid "Please specify your answer."
 msgstr "Bitte geben Sie Ihre Antwort an."
 
 #: adhocracy4/polls/api.py:237
-#, python-brace-format
 msgid "Key error for {}"
 msgstr "Tastenfehler für {}"
 
@@ -1244,7 +1238,7 @@ msgid "Only one vote per choice is allowed per user."
 msgstr "Pro Nutzer ist nur eine Stimme pro Auswahl zulässig."
 
 #: adhocracy4/projects/admin.py:11
-#: apps/newsletters/forms.py:48
+#: apps/newsletters/forms.py:47
 #: adhocracy-plus/templates/includes/project_header_mobile_toggle.html:12
 msgid "Project"
 msgstr "Projekt"
@@ -1402,7 +1396,6 @@ msgstr ""
 "Projektinitiator*innen sind sie weiterhin im Dashboard einsehbar."
 
 #: adhocracy4/projects/utils.py:46
-#, python-brace-format
 msgid "{}. Online Participation"
 msgstr "{}. Online-Beteiligung"
 
@@ -1423,7 +1416,6 @@ msgid "Password"
 msgstr "Passwort"
 
 #: apps/account/forms.py:75 apps/organisations/mixins.py:58
-#, python-brace-format
 msgid "Yes, I have read and agree to this organisation's {}terms of use{}."
 msgstr ""
 "Ja, ich habe die {}Nutzungsbedingungen{} dieser Organisation gelesen und "
@@ -1437,7 +1429,7 @@ msgstr "Nutzereinstellungen"
 #: apps/account/templates/a4_candy_account/account_dashboard.html:10
 #: apps/users/templates/a4_candy_users/indicator.html:58
 msgid "Guest Account Settings"
-msgstr ""
+msgstr "Gastkontoeinstellungen"
 
 #: apps/account/templates/a4_candy_account/account_dashboard.html:20
 #: apps/account/templates/a4_candy_account/guest_dashboard.html:13
@@ -1485,19 +1477,19 @@ msgstr "Account löschen"
 
 #: apps/account/templates/a4_candy_account/account_dashboard.html:86
 msgid "Guest user settings navigation"
-msgstr ""
+msgstr "Gastkontoeinstellungen Navigation"
 
 #: apps/account/templates/a4_candy_account/account_dashboard.html:89
 #: apps/account/templates/a4_candy_account/guest_dashboard.html:16
 #: apps/users/templates/a4_candy_users/indicator.html:31
 msgid "Guest"
-msgstr ""
+msgstr "Gast"
 
 #: apps/account/templates/a4_candy_account/account_dashboard.html:97
 #: apps/account/templates/a4_candy_account/guest_convert.html:9
 #: apps/account/templates/a4_candy_account/guest_dashboard.html:24
 msgid "Convert Account"
-msgstr ""
+msgstr "Konto Umwandeln"
 
 #: apps/account/templates/a4_candy_account/account_deletion.html:6
 #: apps/account/templates/a4_candy_account/account_deletion.html:51
@@ -1519,6 +1511,8 @@ msgid ""
 "                To confirm your identity, please enter your password to "
 "proceed:"
 msgstr ""
+"\n"
+"Geben Sie bitte Ihr Passwort ein, um Ihre Identität zu bestätigen:"
 
 #: apps/account/templates/a4_candy_account/account_deletion.html:46
 msgid "Are you sure you want to delete your account?"
@@ -1595,7 +1589,7 @@ msgstr "Ihr Nutzerprofil"
 
 #: apps/account/templates/a4_candy_account/guest_convert.html:14
 msgid "Convert to regular account"
-msgstr ""
+msgstr "Umwandlung in ein reguläres Konto"
 
 #: apps/account/templates/a4_candy_account/guest_convert.html:15
 msgid ""
@@ -1603,6 +1597,9 @@ msgid ""
 "means that all your previous posts, comments and ratings will be kept and "
 "assigned to your new user account."
 msgstr ""
+"Ihr Gastkonto können Sie jetzt in ein reguläres Benutzerkonto umwandeln. "
+"Damit bleiben all Ihre bisher erstellten Beiträge, Kommentare und "
+"Bewertungen erhalten und werden Ihrem neuen Benutzerkonto zugeordnet."
 
 #: apps/account/templates/a4_candy_account/guest_convert.html:28
 #, python-format
@@ -1614,6 +1611,11 @@ msgid ""
 "policy</a>.\n"
 "              "
 msgstr ""
+"\n"
+" Hiermit bestätige ich, dass ich die <a href=\"%(terms_of_use_url)s\" "
+"target=\"_blank\">Nutzungsbedingungen</a> und die <a "
+"href=\"%(data_protection_policy)s\" target=\"_blank\">Datenschutzerklärung</"
+"a> gelesen habe und akzeptiere."
 
 #: apps/account/templates/a4_candy_account/guest_convert.html:41
 #: apps/projects/templates/a4_candy_projects/moderatorinvite_detail.html:15
@@ -1821,7 +1823,7 @@ msgstr "Vorschlagsphase"
 msgid "Post ideas with budget proposals, comment on them and rate them."
 msgstr "Ideen mit Budgetangabe einreichen, kommentieren und bewerten."
 
-#: apps/budgeting/phases.py:19 adhocracy-plus/config/settings/base.py:546
+#: apps/budgeting/phases.py:19 adhocracy-plus/config/settings/base.py:549
 msgid "participatory budgeting"
 msgstr "Bürgerhaushalt"
 
@@ -1981,27 +1983,32 @@ msgstr "meist kommentiert"
 msgid "Your budget request has been deleted"
 msgstr "Ihr Vorschlag wurde gelöscht"
 
-#: apps/captcha/fields.py:15
+#: apps/captcha/fields.py:15 apps/polls/api.py:17
 msgid "Please complete the captcha."
 msgstr "Bitte lösen Sie das Captcha. "
 
-#: apps/captcha/fields.py:20
+#: apps/captcha/fields.py:20 apps/polls/api.py:21
 msgid "Captcha verification failed. Please try again."
 msgstr "Captcha-Prüfung fehlgeschlagen. Bitte erneut versuchen."
 
 #: apps/cms/blocks.py:132
 msgid "Please insert a short description of the video (character limit 500)."
 msgstr ""
+"Fügen Sie eine kurze Beschreibung des Videos ein (maximal 500 Zeichen)."
 
 #: apps/cms/blocks.py:137
 msgid ""
 "Please upload or choose a media file with any of the following extensions: "
 "MP4, WebM, MP3, WAV"
 msgstr ""
+"Laden Sie eine Mediendatei mit einer der folgenden Dateiendungen hoch: MP4, "
+"WebM, MP3, WAV."
 
 #: apps/cms/blocks.py:146
 msgid "You can add the video's transcript here (unlimited characters)."
 msgstr ""
+"Sie können hier die Transkription des Videos einfügen (Zeichenanzahl "
+"unbegrenzt)."
 
 #: apps/cms/contacts/models.py:42 apps/users/forms.py:39
 msgid "I am not a robot"
@@ -2071,7 +2078,7 @@ msgstr ""
 "Ihnen eine Kopie der Nachricht zu senden."
 
 #: apps/cms/contacts/templates/a4_candy_cms_contacts/includes/form.html:16
-#: apps/newsletters/templates/a4_candy_newsletters/restricted_newsletter_dashboard_form.html:30
+#: apps/newsletters/templates/a4_candy_newsletters/restricted_newsletter_dashboard_form.html:22
 msgid "Send"
 msgstr "Senden"
 
@@ -2105,27 +2112,28 @@ msgstr "Herunterladen"
 
 #: apps/cms/pages/templates/a4_candy_cms_pages/blocks/video_block.html:9
 msgid "Download audio file"
-msgstr ""
+msgstr "Audiodatei herunterladen"
 
 #: apps/cms/pages/templates/a4_candy_cms_pages/blocks/video_block.html:16
 msgid ""
 "To view this video please enable JavaScript, or upgrade to a web browser that"
 msgstr ""
+"Um dieses Video anzusehen, aktivieren Sie bitte JavaScript oder wechseln Sie "
+"zu einem Webbrowser, der JavaScript unterstützt."
 
 #: apps/cms/pages/templates/a4_candy_cms_pages/blocks/video_block.html:18
 msgid "supports HTML5 video"
-msgstr ""
+msgstr "Unterstützt HTML5-Video"
 
 #: apps/cms/pages/templates/a4_candy_cms_pages/blocks/video_block.html:39
 msgid "Media transcript"
-msgstr ""
+msgstr "Medientranskript"
 
 #: apps/cms/pages/templates/a4_candy_cms_pages/includes/homepage_hero.html:16
 msgid "Header image: "
 msgstr "Kopfzeilenbild: "
 
 #: apps/cms/settings/helpers.py:8
-#, python-brace-format
 msgid "Please look {}here{} for more information."
 msgstr "Bitte schauen Sie {}hier{} nach für mehr Informationen."
 
@@ -2656,7 +2664,7 @@ msgstr "Ein neues Thema hinzufügen"
 
 #: apps/debate/templates/a4_candy_debate/subject_dashboard_list.html:4
 #: apps/debate/templates/a4_candy_debate/subject_dashboard_list.html:9
-#: apps/newsletters/models.py:30
+#: apps/newsletters/models.py:34
 msgid "Subject"
 msgstr "Betreff"
 
@@ -2938,7 +2946,6 @@ msgid "Ask a question yourself!"
 msgstr "Selber fragen!"
 
 #: apps/interactiveevents/templatetags/react_interactiveevents.py:28
-#, python-brace-format
 msgid ""
 "I confirm that I have read and accepted the {}terms of use{} and the {}data "
 "protection policy{}."
@@ -2951,72 +2958,84 @@ msgid ""
 "Upload an image that visually captures the content (recommended size: "
 "600x400px, 3:2 ratio)"
 msgstr ""
+"Fügen Sie ein Bild ein, das den Inhalt widerspiegelt (empfohlene Größe: "
+"600×400 px, Seitenverhältnis 3:2)."
 
 #: apps/learning_nuggets/blocks.py:20
 msgid ""
 "Upload or select an instructional video to complement the written content "
 "(MP4 format recommended - 20mb)"
 msgstr ""
+"Laden Sie ein erklärendes Video hoch oder wählen Sie ein Video aus, das den "
+"Text ergänzt (empfohlenes Format: MP4, max. 20 MB)."
 
 #: apps/learning_nuggets/blocks.py:27
 msgid ""
 "Upload related documents such as worksheets, guides, or additional resources "
 "(PDF format recommended)"
 msgstr ""
+"Laden Sie ergänzende Dokumente hoch, z. B. Arbeitsblätter, Anleitungen oder "
+"weiterführende Materialien (empfohlenes Format: PDF)."
 
 #: apps/learning_nuggets/blocks.py:43
 msgid ""
 "Enter a clear, concise title for this learning nugget (max 100 characters "
 "recommended)"
 msgstr ""
+"Geben Sie einen klaren Titel für dieses Learning Nugget ein (empfohlen: max. "
+"100 Zeichen)."
 
 #: apps/learning_nuggets/blocks.py:50
 msgid ""
 "Provide a comprehensive description of the learning nugget, including key "
 "takeaways and learning objectives"
 msgstr ""
+"Geben Sie eine umfassende Beschreibung dieses Learning Nuggets an – "
+"inklusive zentraler Erkenntnisse und Lernziele."
 
 #: apps/learning_nuggets/blocks.py:57
 msgid ""
 "Upload a representative image that visually captures the content "
 "(recommended size: 600x400px, 3:2 ratio)"
 msgstr ""
+"Fügen Sie ein aussagekräftiges Bild ein, das den Inhalt widerspiegelt "
+"(empfohlene Größe: 600×400 px, Seitenverhältnis 3:2)."
 
 #: apps/learning_nuggets/blocks.py:64
 msgid "Choose optional content: videos, images, or documents."
-msgstr ""
+msgstr "Wählen Sie optionale Inhalte aus: Videos, Bilder oder Dokumente. "
 
 #: apps/learning_nuggets/templates/a4_candy_learning_nuggets/blocks/learning_content_block.html:27
 msgid "Related Resources"
-msgstr ""
+msgstr "Weiterführende Materialien"
 
 #: apps/learning_nuggets/templates/a4_candy_learning_nuggets/includes/learning_header.html:5
 msgid "Learning Center"
-msgstr ""
+msgstr "Lerncenter"
 
 #: apps/learning_nuggets/templates/a4_candy_learning_nuggets/includes/learning_sidebar.html:9
 msgid "Go to Learning Center"
-msgstr ""
+msgstr "Zum Lerncenter"
 
 #: apps/learning_nuggets/templates/a4_candy_learning_nuggets/includes/learning_sidebar.html:13
 msgid "Open Learning Center"
-msgstr ""
+msgstr "Lerncenter öffnen"
 
 #: apps/learning_nuggets/templates/a4_candy_learning_nuggets/includes/nugget_detail.html:13
 msgid "No content available."
-msgstr ""
+msgstr "Kein Inhalt verfügbar."
 
 #: apps/learning_nuggets/templates/a4_candy_learning_nuggets/includes/nuggets_index.html:25
 msgid "No categories available."
-msgstr ""
+msgstr "Keine Kategorien verfügbar."
 
 #: apps/learning_nuggets/templates/a4_candy_learning_nuggets/includes/nuggets_list.html:12
 msgid "Learning Center Home"
-msgstr ""
+msgstr "Startseite des Lerncenters"
 
 #: apps/learning_nuggets/templates/a4_candy_learning_nuggets/includes/nuggets_list.html:44
 msgid "No learning nuggets available in this category."
-msgstr ""
+msgstr "Keine Learning Nuggets in dieser Kategorie verfügbar."
 
 #: apps/mapideas/forms.py:26
 msgid "Please locate your proposal on the map."
@@ -3137,7 +3156,7 @@ msgstr "Schreiben Sie Ihre Notiz!"
 msgid "Note only visible internally within project."
 msgstr "Notiz nur innerhalb des Projektes sichtbar."
 
-#: apps/newsletters/forms.py:29
+#: apps/newsletters/forms.py:28
 msgid ""
 "If you add an image, please ensure to set the width no larger than 650px and "
 "to provide an alternate text of the image. An alternate text serves as a "
@@ -3151,15 +3170,15 @@ msgstr ""
 "Bildinhalts und wird von Screenreadern vorgelesen. Beschreiben Sie das Bild "
 "in ca. 80 Zeichen. Beispiel: Ein belebter Platz mit Menschen im Sommer."
 
-#: apps/newsletters/forms.py:51
+#: apps/newsletters/forms.py:50
 msgid "Receivers are all users which follow the following project:"
 msgstr "Empfänger*innen sind alle, die diesem Projekt folgen:"
 
-#: apps/newsletters/forms.py:55
+#: apps/newsletters/forms.py:54
 msgid "Organisation"
 msgstr "Organisation"
 
-#: apps/newsletters/forms.py:66
+#: apps/newsletters/forms.py:65
 msgid "Select a Project"
 msgstr "Wählen Sie ein Projekt"
 
@@ -3179,23 +3198,23 @@ msgstr "Initiator*innen Ihrer Organisation"
 msgid "Every user of the platform"
 msgstr "Alle Nutzer*innen der Plattform"
 
-#: apps/newsletters/models.py:29
+#: apps/newsletters/models.py:33
 msgid "Sender"
 msgstr "Absender"
 
-#: apps/newsletters/models.py:34
+#: apps/newsletters/models.py:38
 msgid "Email body"
 msgstr "Inhalt der E-Mail"
 
-#: apps/newsletters/models.py:37
+#: apps/newsletters/models.py:41
 msgid "Sent"
 msgstr "Senden"
 
-#: apps/newsletters/models.py:40
+#: apps/newsletters/models.py:44
 msgid "Receivers"
 msgstr "Empfänger*innen"
 
-#: apps/newsletters/templates/a4_candy_newsletters/emails/newsletter_email.en.email:10
+#: apps/newsletters/templates/a4_candy_newsletters/emails/newsletter_email.en.email:13
 #, python-format
 msgid ""
 "This email was sent to %(receiver_mail)s. This email was sent to you because "
@@ -3387,7 +3406,7 @@ msgstr "Benachrichtigungen"
 
 #: apps/notifications/strategies/base.py:36
 msgid "Your submission was accepted"
-msgstr "Ihr Beitrag wurde angenommen."
+msgstr "Ihr Beitrag wurde angenommen"
 
 #: apps/notifications/strategies/base.py:37
 msgid "Your submission was approved"
@@ -3395,7 +3414,7 @@ msgstr "Ihr Beitrag wird umgesetzt. "
 
 #: apps/notifications/strategies/base.py:38
 msgid "Your submission was rejected"
-msgstr "Ihr Beitrag wird nicht umgesetzt."
+msgstr "Ihr Beitrag wird nicht umgesetzt"
 
 #: apps/notifications/strategies/base.py:39
 msgid "Your submission was reviewed"
@@ -3403,7 +3422,7 @@ msgstr "Ihr Beitrag wurde überprüft. "
 
 #: apps/notifications/strategies/base.py:40
 msgid "Your submission is under consideration"
-msgstr "Ihr Beitrag wird überprüft."
+msgstr "Ihr Beitrag wird überprüft"
 
 #: apps/notifications/strategies/comment_strategies.py:29
 #: apps/notifications/strategies/comment_strategies.py:90
@@ -3758,7 +3777,7 @@ msgstr ""
 
 #: apps/notifications/strategies/project_strategies.py:205
 msgid "invitation"
-msgstr ""
+msgstr "Einladung"
 
 #: apps/notifications/strategies/project_strategies.py:219
 #, python-brace-format
@@ -3817,46 +3836,48 @@ msgstr "Das Projekt {project} wurde gelöscht"
 
 #: apps/notifications/strategies/project_strategies.py:300
 msgid "An"
-msgstr ""
+msgstr "Ein/e"
 
 #: apps/notifications/strategies/project_strategies.py:300
 msgid "A"
-msgstr ""
+msgstr "Ein/e"
 
 #: apps/notifications/strategies/project_strategies.py:302
 #, python-brace-format
 msgid "An idea was added to the project {project_name}"
-msgstr ""
+msgstr "Neue Idee im Projekt {project_name}"
 
 #: apps/notifications/strategies/project_strategies.py:303
 #, python-brace-format
 msgid "A proposal was added to the project {project_name}"
-msgstr ""
+msgstr "Neuer Vorschlag im Projekt {project_name}"
 
 #: apps/notifications/strategies/project_strategies.py:304
 #, python-brace-format
 msgid "A map idea was added to the project {project_name}"
-msgstr ""
+msgstr "Neue Idee im Projekt {project_name}"
 
 #: apps/notifications/strategies/project_strategies.py:308
 #, python-brace-format
 msgid "{creator_name} created an idea on the project {project_name}"
-msgstr ""
+msgstr "{creator_name} hat im Projekt {project_name} eine neue Idee angelegt"
 
 #: apps/notifications/strategies/project_strategies.py:310
 #, python-brace-format
 msgid "{creator_name} created a proposal on the project {project_name}"
 msgstr ""
+"{creator_name} hat im Projekt {project_name} einen neuen Vorschlag angelegt"
 
 #: apps/notifications/strategies/project_strategies.py:313
 #, python-brace-format
 msgid "{creator_name} created a map idea on the project {project_name}"
-msgstr ""
+msgstr "{creator_name} hat im Projekt {project_name} eine neue Idee angelegt"
 
 #: apps/notifications/strategies/project_strategies.py:320
 #, python-brace-format
 msgid "{article} {content_type} was added to the project {project_name}"
 msgstr ""
+"{article} {content_type} wurde zum Projekt {project_name} hinzugefügt. "
 
 #: apps/notifications/strategies/project_strategies.py:325
 #, python-brace-format
@@ -3864,6 +3885,8 @@ msgid ""
 "{creator_name} created {article_lower} {content_type} on the project "
 "{project_name}"
 msgstr ""
+"{creator_name} hat {article_lower} {content_type} im Projekt {project_name} "
+"erstellt"
 
 #: apps/notifications/strategies/project_strategies.py:333
 #, python-brace-format
@@ -4563,22 +4586,18 @@ msgid "The offline event has been deleted"
 msgstr "Die Veranstaltung wurde gelöscht."
 
 #: apps/organisations/forms.py:16
-#, python-brace-format
 msgid "Here you can find an example of an {}imprint{}."
 msgstr "Hier finden Sie ein Beispiel für ein {}Impressum{}."
 
 #: apps/organisations/forms.py:17
-#, python-brace-format
 msgid "Here you can find an example of {}terms of use{}."
 msgstr "Hier finden Sie ein Beispiel für {}Nutzungsbedingungen{}."
 
 #: apps/organisations/forms.py:19
-#, python-brace-format
 msgid "Here you can find an example of a {}data protection policy{}."
 msgstr "Hier finden Sie ein Beispiel für eine {}Datenschutzerklärung{}."
 
 #: apps/organisations/forms.py:21
-#, python-brace-format
 msgid "Here you can find an example of a {}netiquette{}."
 msgstr "Hier finden Sie ein Beispiel für eine {}Netiquette{}."
 
@@ -4623,7 +4642,6 @@ msgstr ""
 "Auswählen."
 
 #: apps/organisations/forms.py:311
-#, python-brace-format
 msgid ""
 "This title will be displayed as a header. It should be max. {} characters "
 "long."
@@ -4632,7 +4650,6 @@ msgstr ""
 "sein."
 
 #: apps/organisations/forms.py:320
-#, python-brace-format
 msgid ""
 "This description will be displayed below the title. It should briefly state "
 "the goal of the project in max. {} chars."
@@ -4645,7 +4662,6 @@ msgid "Picture Upload"
 msgstr "Bild-Upload"
 
 #: apps/organisations/forms.py:331
-#, python-brace-format
 msgid ""
 "The picture will be displayed in the sharepic. It must be min. {} pixel wide "
 "and {} pixel tall. Allowed file formats are png, jpeg, gif. The file size "
@@ -4868,7 +4884,6 @@ msgid "To view the sharepic, click generate"
 msgstr "Um das Bild zu sehen, klicken Sie auf \"Generieren\""
 
 #: apps/organisations/templates/a4_candy_organisations/communication_form_social_media.html:81
-#: apps/projects/templates/a4_candy_projects/_summary_fragment.html:72
 msgid "Refresh"
 msgstr "Neu laden"
 
@@ -4879,29 +4894,34 @@ msgstr "Generieren"
 #: apps/organisations/templates/a4_candy_organisations/communication_qr_create.html:8
 #: adhocracy-plus/templates/a4dashboard/communication_form_base.html:29
 msgid "QR Codes erstellen"
-msgstr ""
+msgstr "QR Codes"
 
 #: apps/organisations/templates/a4_candy_organisations/communication_qr_create.html:12
 msgid ""
 "Mit QR-Codes könnt ihr einfach und direkt auf eure Beteiligungsprojekte "
 "verlinken – z. B. auf Plakaten oder Flyern."
 msgstr ""
+"QR codes can be used to directly link to participation projects - for "
+"instance in newsletters, on flyers, or on posters. "
 
 #: apps/organisations/templates/a4_candy_organisations/communication_qr_create.html:15
 msgid ""
 "Über dieses externe Tool der TU Chemnitz könnt ihr QR-Codes kostenlos "
 "erstellen:"
 msgstr ""
+"This third party tool by the TU Chemnitz creates QR codes free of charge:"
 
 #: apps/organisations/templates/a4_candy_organisations/communication_qr_create.html:18
 msgid "QR-Code-Generator öffnen"
-msgstr ""
+msgstr "Open QR code generator"
 
 #: apps/organisations/templates/a4_candy_organisations/communication_qr_create.html:22
 msgid ""
 "Einfach Projekt-Link einfügen, Code erzeugen und für eure "
 "Öffentlichkeitsarbeit nutzen!"
 msgstr ""
+"Simply add the URL of your project, create the QR code, and use it to "
+"promote your project!"
 
 #: apps/organisations/templates/a4_candy_organisations/includes/form_field.html:6
 msgid "Missing important field"
@@ -5004,7 +5024,7 @@ msgid "dearchive"
 msgstr "unarchivieren"
 
 #: apps/projects/dashboard.py:19
-#: apps/projects/templates/a4_candy_projects/_summary_fragment.html:28
+#: apps/projects/templates/a4_candy_projects/_summary_fragment.html:73
 #: apps/projects/templates/a4_candy_projects/project_participants.html:4
 #: apps/projects/templates/a4_candy_projects/project_participants.html:12
 msgid "Participants"
@@ -5031,11 +5051,11 @@ msgstr "Ort"
 msgid "Edit location"
 msgstr "Ort bearbeiten"
 
-#: apps/projects/forms.py:48 apps/projects/views.py:264
+#: apps/projects/forms.py:48 apps/projects/views.py:261
 msgid "Invite users via email"
 msgstr "Nutzer*innen via E-Mail einladen"
 
-#: apps/projects/forms.py:53 apps/projects/views.py:265
+#: apps/projects/forms.py:53 apps/projects/views.py:262
 msgid "Invite users via file upload"
 msgstr "Nutzer*innen aus Datei einladen"
 
@@ -5104,7 +5124,6 @@ msgid "running"
 msgstr "laufend"
 
 #: apps/projects/serializers.py:255
-#, python-brace-format
 msgid "starts on {}"
 msgstr "startet am {}"
 
@@ -5113,97 +5132,242 @@ msgid "starts in the future"
 msgstr "beginnt in der Zukunft"
 
 #: apps/projects/serializers.py:265
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:43
 msgid "completed"
 msgstr "abgeschlossen"
 
-#: apps/projects/templates/a4_candy_projects/_feedback_icons.html:3
+#: apps/projects/templates/a4_candy_projects/_feedback_icons.html:4
 msgid "Was this summary helpful?"
-msgstr ""
+msgstr "War diese Zusammenfassung hilfreich?"
 
-#: apps/projects/templates/a4_candy_projects/_summary_error.html:4
+#: apps/projects/templates/a4_candy_projects/_generate_summary_button.html:35
+msgid "Summary of Participation"
+msgstr "Zusammenfassung der Beteiligung"
+
+#: apps/projects/templates/a4_candy_projects/_generate_summary_button.html:36
+msgid ""
+"Automatically generate overview of the most important themes, voices and "
+"insights."
+msgstr ""
+"Eine Übersicht der wichtigsten Themen, Beiträge und Ergebnisse automatisch "
+"erstellen."
+
+#: apps/projects/templates/a4_candy_projects/_generate_summary_button.html:42
+msgid "Summarise with AI"
+msgstr "Mit KI zusammenfassen"
+
+#: apps/projects/templates/a4_candy_projects/_generate_summary_button.html:50
+msgid "Generating AI summary..."
+msgstr "KI-Zusammenfassung wird erstellt…"
+
+#: apps/projects/templates/a4_candy_projects/_summary_error.html:5
 msgid "Could not generate the summary"
-msgstr ""
+msgstr "Die Zusammenfassung konnte nicht erstellt werden"
 
-#: apps/projects/templates/a4_candy_projects/_summary_error.html:7
+#: apps/projects/templates/a4_candy_projects/_summary_error.html:8
 msgid ""
 " The AI ran into an issue processing this content. The original discussion "
 "is still available."
 msgstr ""
+"Die KI hatte ein Problem bei der Verarbeitung dieses Inhalts. Die "
+"ursprüngliche Diskussion ist weiterhin verfügbar."
 
-#: apps/projects/templates/a4_candy_projects/_summary_error.html:10
-msgid "Having problems with AI? Join the club"
+#: apps/projects/templates/a4_candy_projects/_summary_error.html:11
+msgid "Having problems with AI?"
+msgstr "Probleme mit der KI?"
+
+#: apps/projects/templates/a4_candy_projects/_summary_error.html:20
+msgid "Try again"
+msgstr "Erneut versuchen"
+
+#: apps/projects/templates/a4_candy_projects/_summary_error.html:23
+msgid "Generating..."
+msgstr "Wird generiert…"
+
+#: apps/projects/templates/a4_candy_projects/_summary_fragment.html:20
+msgid "Summary of the Participation"
+msgstr "Zusammenfassung der Beteiligung"
+
+#: apps/projects/templates/a4_candy_projects/_summary_fragment.html:25
+msgid "Explanation of the AI summary"
+msgstr "Erklärung der KI-Zusammenfassung"
+
+#: apps/projects/templates/a4_candy_projects/_summary_fragment.html:41
+#, python-format
+msgid ""
+"\n"
+"                    Diese Zusammenfassung wurde am %(date)s um %(time)s Uhr "
+"mithilfe von KI erstellt und kann Fehler enthalten oder unvollständig sein.\n"
+"                "
 msgstr ""
+"\n"
+"Diese Zusammenfassung wurde am %(date)s um %(time)s Uhr mithilfe von KI "
+"erstellt und kann Fehler enthalten oder unvollständig sein."
 
-#: apps/projects/templates/a4_candy_projects/_summary_fragment.html:6
-msgid "Zusammenfassung der Beteiligung"
+#: apps/projects/templates/a4_candy_projects/_summary_fragment.html:45
+#, python-format
+msgid ""
+"\n"
+"                    This summary was created by AI on %(date)s at %(time)s "
+"and may contain errors or be incomplete.\n"
+"                "
 msgstr ""
+"\n"
+"Diese Zusammenfassung wurde am %(date)s um %(time)s Uhr mithilfe von KI "
+"erstellt und kann Fehler enthalten oder unvollständig sein."
 
-#: apps/projects/templates/a4_candy_projects/_summary_fragment.html:33
+#: apps/projects/templates/a4_candy_projects/_summary_fragment.html:56
+msgid "General info"
+msgstr "Allgemeine Informationen"
+
+#: apps/projects/templates/a4_candy_projects/_summary_fragment.html:77
 msgid "Contributions"
-msgstr ""
+msgstr "Beiträge"
 
-#: apps/projects/templates/a4_candy_projects/_summary_fragment.html:38
+#: apps/projects/templates/a4_candy_projects/_summary_fragment.html:81
 msgid "Modules"
-msgstr ""
+msgstr "Module"
 
-#: apps/projects/templates/a4_candy_projects/_summary_fragment.html:46
+#: apps/projects/templates/a4_candy_projects/_summary_fragment.html:90
 msgid "To read all the results of this participation"
-msgstr ""
+msgstr "Um alle Ergebnisse dieser Beteiligung zu lesen"
 
-#: apps/projects/templates/a4_candy_projects/_summary_fragment.html:50
-#: apps/projects/templates/a4_candy_projects/_summary_section.html:80
+#: apps/projects/templates/a4_candy_projects/_summary_fragment.html:94
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:217
 msgid "click here"
-msgstr ""
+msgstr "Hier klicken"
 
-#: apps/projects/templates/a4_candy_projects/_summary_section.html:12
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:13
 msgid "Summary of what has happened so far"
-msgstr ""
+msgstr "Zusammenfassung von dem was bisher passiert ist"
 
-#: apps/projects/templates/a4_candy_projects/_summary_section.html:14
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:15
 msgid "Summary of what is currently happening"
-msgstr ""
+msgstr "Zusammenfassung von dem was zurzeit passiert"
 
-#: apps/projects/templates/a4_candy_projects/_summary_section.html:16
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:17
 msgid "Summary of what will happen"
-msgstr ""
+msgstr "Zusammenfassung von dem was passieren wird"
 
-#: apps/projects/templates/a4_candy_projects/_summary_section.html:26
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:27
 msgid ""
 "The participation phases of the modules in this section are finished. You "
 "can no longer contribute. In this section you can find summaries of the "
 "modules and the main topics that were discussed."
 msgstr ""
+"Die Beteiligungsphasen der Module in diesem Bereich sind abgeschlossen. Du "
+"kannst nicht mehr beitragen. In diesem Bereich findest du Zusammenfassungen "
+"der Module und der wichtigsten Themen die diskutiert wurden."
 
-#: apps/projects/templates/a4_candy_projects/_summary_section.html:28
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:29
 msgid ""
 "The participation phases of the modules in this section are currently "
 "ongoing. You can contribute to the modules at this stage. In this section "
 "you can find summaries of the modules and the topics that are being "
 "discussed."
 msgstr ""
+"Die Beteiligungsphasen der Module in diesem Bereich laufen zurzeit. Du "
+"kannst dich in dieser Phase an den Modulen beteiligen. In diesem Bereich "
+"findest du Zusammenfassungen der Module und der Themen die zurzeit "
+"diskutiert werden."
 
-#: apps/projects/templates/a4_candy_projects/_summary_section.html:30
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:31
 msgid ""
 "The participation phases of the modules in this section have not started "
 "yet. You cannot contribute to the modules at this stage. In this section you "
 "can find summaries of the planned modules and their objectives."
 msgstr ""
+"Die Beteiligungsphasen der Module in diesem Bereich haben noch nicht "
+"begonnen. Du kannst dich in dieser Phase nicht an den Modulen beteiligen. In "
+"diesem Bereich findest du Zusammenfassungen der geplanten Module und ihrer "
+"Ziele."
 
-#: apps/projects/templates/a4_candy_projects/_summary_section.html:52
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:41
+msgid "Module"
+msgstr "Module"
+
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:45
+#: apps/projects/templates/a4_candy_projects/project_detail.html:250
+#: apps/users/models.py:51
+#: adhocracy-plus/templates/a4modules/module_detail.html:135
+msgid "active"
+msgstr "aktiv"
+
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:47
+msgid "planned"
+msgstr "Geplant"
+
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:54
+msgid "Ative Beteiligung"
+msgstr "Aktive Beteiligung"
+
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:56
 msgid "Active participation"
+msgstr "Aktive Beteiligung"
+
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:76
+msgid "Debug information"
 msgstr ""
 
-#: apps/projects/templates/a4_candy_projects/_summary_section.html:61
-msgid "Main sentiments from user contributions"
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:89
+msgid "Signals"
 msgstr ""
 
-#: apps/projects/templates/a4_candy_projects/_summary_section.html:69
-msgid "First content in this module"
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:101
+msgid "Draft before QA"
 msgstr ""
 
-#: apps/projects/templates/a4_candy_projects/_summary_section.html:79
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:105
+msgid "After QA"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:113
+msgid "Claims"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:117
+msgid "Claim"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:118
+msgid "Evidence"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:119
+msgid "Action"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:120
+msgid "Fix hint"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:144
+msgid "Quantifier fixes"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:160
+msgid "Anchors"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:172
+msgid "Coverage gaps"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:180
+msgid "Patch"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:189
+msgid "Patches applied"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:207
+msgid "Changes"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:216
 msgid "To see what happened in module"
-msgstr ""
+msgstr "Um zu sehen was im Modul passiert ist"
 
 #: apps/projects/templates/a4_candy_projects/emails/invite_moderator.en.email:4
 #, python-format
@@ -5290,7 +5454,7 @@ msgstr ""
 
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:18
 #: apps/projects/templates/a4_candy_projects/project_detail.html:81
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:13
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:12
 msgid "Here you can find a decorative picture."
 msgstr "Hier befindet sich ein dekoratives Bild."
 
@@ -5507,12 +5671,6 @@ msgstr "Es geht weiter am %(date)s."
 msgid "It ended on %(date)s."
 msgstr "Sie hat am %(date)s geendet."
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:250
-#: apps/users/models.py:51
-#: adhocracy-plus/templates/a4modules/module_detail.html:135
-msgid "active"
-msgstr "aktiv"
-
 #: apps/projects/templates/a4_candy_projects/project_detail.html:276
 #: adhocracy-plus/templates/a4modules/module_detail.html:159
 msgid ""
@@ -5552,60 +5710,56 @@ msgstr "Ausstehende Einladungen"
 msgid "Edit Participants"
 msgstr "Teilnehmer*innen bearbeiten"
 
-#: apps/projects/views.py:144
+#: apps/projects/views.py:141
 msgid "Invitation succesfully removed."
 msgstr "Einladung erfolgreich entfernt."
 
-#: apps/projects/views.py:147
+#: apps/projects/views.py:144
 msgid "Invitation was already accepted or removed."
 msgstr "Einladung wurde schon akzeptiert oder entfernt."
 
-#: apps/projects/views.py:195
+#: apps/projects/views.py:192
 msgid "Following users already accepted an invitation: "
 msgstr ""
 "Die folgenden Nutzerinnen und Nutzer haben bereits eine Einladung angenommen:"
 
-#: apps/projects/views.py:203
+#: apps/projects/views.py:200
 msgid "Following users are already invited: "
 msgstr "Die folgenden Nutzerinnen und Nutzer wurden bereits eingeladen:"
 
-#: apps/projects/views.py:245
+#: apps/projects/views.py:242
 msgid "Invite moderators via email"
 msgstr "Moderator*innen via E-Mail einladen"
 
-#: apps/projects/views.py:246
+#: apps/projects/views.py:243
 msgid "Invite moderators via file upload"
 msgstr "Moderator*innen aus Datei einladen"
 
-#: apps/projects/views.py:247
-#, python-brace-format
+#: apps/projects/views.py:244
 msgid "{} moderator invited."
 msgstr "{} Moderator*in eingeladen."
 
-#: apps/projects/views.py:247
-#, python-brace-format
+#: apps/projects/views.py:244
 msgid "{} moderators invited."
 msgstr "{} Moderator*innen eingeladen."
 
-#: apps/projects/views.py:248
+#: apps/projects/views.py:245
 msgid "Moderator successfully removed."
 msgstr "Moderator*in erfolgreich entfernt."
 
-#: apps/projects/views.py:266
-#, python-brace-format
+#: apps/projects/views.py:263
 msgid "{} participant invited."
 msgstr "{} Teilnehmer*in eingeladen"
 
-#: apps/projects/views.py:266
-#, python-brace-format
+#: apps/projects/views.py:263
 msgid "{} participants invited."
 msgstr "{} Teilnehmer*innen eingeladen"
 
-#: apps/projects/views.py:267
+#: apps/projects/views.py:264
 msgid "Participant successfully removed."
 msgstr "Teilnehmer*in erfolgreich entfernt."
 
-#: apps/projects/views.py:279
+#: apps/projects/views.py:276
 #, python-format
 msgid "Project '%(name)s' was deleted successfully."
 msgstr "Das Projekt '%(name)s' wurde erfolgreich gelöscht."
@@ -5855,7 +6009,6 @@ msgid "Important dates"
 msgstr "Wichtige Daten"
 
 #: apps/users/emails.py:17
-#, python-brace-format
 msgid ""
 "If you no longer want to receive any notifications, change the settings for "
 "your {}account{}."
@@ -5864,7 +6017,6 @@ msgstr ""
 "Sie die Einstellungen zu Ihrem {}Account{}."
 
 #: apps/users/emails.py:21
-#, python-brace-format
 msgid ""
 "If you no longer want to receive notifications about this project, "
 "unsubscribe from the {}project{}."
@@ -5877,7 +6029,6 @@ msgid "Please enter correct email addresses, separated by commas."
 msgstr "Bitte korrigieren Sie Ihre E-Mail Adresse, getrennt durch Kommata."
 
 #: apps/users/forms.py:23
-#, python-brace-format
 msgid ""
 "Please complete the captcha verification.<strong>If you are having "
 "difficulty please contact us by {}email{}.</strong>"
@@ -6053,7 +6204,7 @@ msgstr ""
 
 #: apps/users/templates/a4_candy_users/guest_create.html:4
 msgid "Continue as Guest"
-msgstr ""
+msgstr "Als Gast fortfahren"
 
 #: apps/users/templates/a4_candy_users/guest_create.html:14
 #, python-format
@@ -6061,6 +6212,8 @@ msgid ""
 "Already have an account? Then please \n"
 "                        <a href=\"%(login_url)s\">log in</a>."
 msgstr ""
+"Sie haben schon einen Nutzerkonto? Dann \n"
+"<a href=\"%(login_url)s\">melden Sie sich an</a>."
 
 #: apps/users/templates/a4_candy_users/guest_create.html:17
 #, python-format
@@ -6068,6 +6221,8 @@ msgid ""
 "Would you like to create an account? Then \n"
 "                        <a href=\"%(signup_url)s\">click here</a>."
 msgstr ""
+"Sie wollen einen Nutzerkonto erstellen? Dann \n"
+"<a href=\"%(signup_url)s\">klicken Sie hier</a>."
 
 #: apps/users/templates/a4_candy_users/guest_create.html:37
 #: adhocracy-plus/templates/account/signup.html:33
@@ -6090,7 +6245,7 @@ msgstr ""
 
 #: apps/users/templates/a4_candy_users/guest_create.html:71
 msgid "Proceed as Guest"
-msgstr ""
+msgstr "Als Gast fortfahren"
 
 #: apps/users/templates/a4_candy_users/indicator.html:4
 #: apps/users/templates/a4_candy_users/indicator.html:11
@@ -6119,7 +6274,7 @@ msgstr "Hilfebereich "
 
 #: apps/users/templates/a4_candy_users/indicator.html:59
 msgid "Help"
-msgstr ""
+msgstr "Hilfe"
 
 #: apps/users/templates/a4_candy_users/indicator.html:64
 #: apps/users/templates/a4_candy_users/indicator.html:67
@@ -6176,119 +6331,119 @@ msgstr "Noch keine Aktivitäten."
 msgid "Account Inactive"
 msgstr "Konto inaktiv"
 
-#: adhocracy-plus/config/settings/base.py:204
+#: adhocracy-plus/config/settings/base.py:207
 msgid "English"
 msgstr "Englisch"
 
-#: adhocracy-plus/config/settings/base.py:205
+#: adhocracy-plus/config/settings/base.py:208
 msgid "German"
 msgstr "Deutsch"
 
-#: adhocracy-plus/config/settings/base.py:479
+#: adhocracy-plus/config/settings/base.py:482
 msgid "suggestion"
 msgstr "Vorschlag"
 
-#: adhocracy-plus/config/settings/base.py:480
+#: adhocracy-plus/config/settings/base.py:483
 msgid "note"
 msgstr "Anmerkung"
 
-#: adhocracy-plus/config/settings/base.py:481
+#: adhocracy-plus/config/settings/base.py:484
 msgid "question"
 msgstr "Frage"
 
-#: adhocracy-plus/config/settings/base.py:522
+#: adhocracy-plus/config/settings/base.py:525
 msgid "Pin without icon"
 msgstr "Pin ohne Icon"
 
-#: adhocracy-plus/config/settings/base.py:523
+#: adhocracy-plus/config/settings/base.py:526
 msgid "Diamond"
 msgstr "Diamant"
 
-#: adhocracy-plus/config/settings/base.py:524
+#: adhocracy-plus/config/settings/base.py:527
 msgid "Triangle up"
 msgstr "Dreieck Spitze oben"
 
-#: adhocracy-plus/config/settings/base.py:525
+#: adhocracy-plus/config/settings/base.py:528
 msgid "Triangle down"
 msgstr "Dreieck Spitze unten"
 
-#: adhocracy-plus/config/settings/base.py:526
+#: adhocracy-plus/config/settings/base.py:529
 msgid "Ellipse"
 msgstr "Ellipse"
 
-#: adhocracy-plus/config/settings/base.py:527
+#: adhocracy-plus/config/settings/base.py:530
 msgid "Semi circle"
 msgstr "Halbkreis"
 
-#: adhocracy-plus/config/settings/base.py:528
+#: adhocracy-plus/config/settings/base.py:531
 msgid "Hexagon"
 msgstr "Sechseck"
 
-#: adhocracy-plus/config/settings/base.py:529
+#: adhocracy-plus/config/settings/base.py:532
 msgid "Rhomboid"
 msgstr "Parallelogramm"
 
-#: adhocracy-plus/config/settings/base.py:530
+#: adhocracy-plus/config/settings/base.py:533
 msgid "Star"
 msgstr "Stern"
 
-#: adhocracy-plus/config/settings/base.py:531
+#: adhocracy-plus/config/settings/base.py:534
 msgid "Square"
 msgstr "Quadrat"
 
-#: adhocracy-plus/config/settings/base.py:532
+#: adhocracy-plus/config/settings/base.py:535
 msgid "Octothorpe"
 msgstr "Raute"
 
-#: adhocracy-plus/config/settings/base.py:533
+#: adhocracy-plus/config/settings/base.py:536
 msgid "Rectangle"
 msgstr "Viereck"
 
-#: adhocracy-plus/config/settings/base.py:534
+#: adhocracy-plus/config/settings/base.py:537
 msgid "Circle"
 msgstr "Kreis"
 
-#: adhocracy-plus/config/settings/base.py:535
+#: adhocracy-plus/config/settings/base.py:538
 msgid "Right triangle"
 msgstr "Dreieck Spitze rechts"
 
-#: adhocracy-plus/config/settings/base.py:536
+#: adhocracy-plus/config/settings/base.py:539
 msgid "Zigzag"
 msgstr "ZickZack"
 
-#: adhocracy-plus/config/settings/base.py:540
+#: adhocracy-plus/config/settings/base.py:543
 msgid "brainstorming"
 msgstr "Brainstorming"
 
-#: adhocracy-plus/config/settings/base.py:541
+#: adhocracy-plus/config/settings/base.py:544
 msgid "spatial brainstorming"
 msgstr "Brainstorming mit Karte"
 
-#: adhocracy-plus/config/settings/base.py:542
+#: adhocracy-plus/config/settings/base.py:545
 msgid "idea challenge"
 msgstr "Ideenwettbewerb"
 
-#: adhocracy-plus/config/settings/base.py:543
+#: adhocracy-plus/config/settings/base.py:546
 msgid "spatial idea challenge"
 msgstr "Ideenwettbewerb mit Karte"
 
-#: adhocracy-plus/config/settings/base.py:544
+#: adhocracy-plus/config/settings/base.py:547
 msgid "text review"
 msgstr "Text diskutieren"
 
-#: adhocracy-plus/config/settings/base.py:545
+#: adhocracy-plus/config/settings/base.py:548
 msgid "poll"
 msgstr "Umfrage"
 
-#: adhocracy-plus/config/settings/base.py:547
+#: adhocracy-plus/config/settings/base.py:550
 msgid "interactive event"
 msgstr "Interaktive Veranstaltung"
 
-#: adhocracy-plus/config/settings/base.py:548
+#: adhocracy-plus/config/settings/base.py:551
 msgid "prioritization"
 msgstr "Priorisierung"
 
-#: adhocracy-plus/config/settings/base.py:549
+#: adhocracy-plus/config/settings/base.py:552
 msgid "debate"
 msgstr "Debatte"
 
@@ -6447,24 +6602,24 @@ msgid "The project has been published. You can add further modules."
 msgstr ""
 "Das Projekt wurde veröffentlicht. Sie können weitere Module hinzufügen."
 
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:61
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:63
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:60
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:62
 msgid "more"
 msgstr "mehr"
 
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:78
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:98
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:113
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:76
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:96
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:111
 msgid "delete"
 msgstr "Löschen"
 
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:106
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:104
 #, python-format
 msgid " Are you sure you want to delete the project '%(project_name)s'? "
 msgstr ""
 " Sind Sie sicher dass Sie das Projekt '%(project_name)s' löschen wollen?"
 
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:112
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:110
 msgid "cancel"
 msgstr "Abbrechen"
 
@@ -6834,6 +6989,8 @@ msgid ""
 "Would you like to create an account? Then <a href=\"%(signup_url)s\">click "
 "here</a>."
 msgstr ""
+"Sie wollen einen Nutzerkonto erstellen? Dann <a "
+"href=\"%(signup_url)s\">klicken Sie hier</a>."
 
 #: adhocracy-plus/templates/account/login.html:13
 #, python-format
@@ -6841,11 +6998,13 @@ msgid ""
 "Would you like to proceed as a guest? Then <a "
 "href=\"%(guest_url_value)s\">click here</a>."
 msgstr ""
+"Sie wollen als Gast fortfahren? Dann \n"
+"<a href=\"%(guest_url_value)s\">klicken Sie hier</a>."
 
 #: adhocracy-plus/templates/account/login.html:33
 #: adhocracy-plus/templates/account/signup.html:75
 msgid "Or proceed as guest"
-msgstr ""
+msgstr "Oder als Gast fortfahren"
 
 #: adhocracy-plus/templates/account/login.html:36
 msgid "Forgot Password?"
@@ -6960,6 +7119,8 @@ msgid ""
 "Would you like to proceed as a guest? Then \n"
 "        <a href=\"%(guest_url_value)s\">click here</a>."
 msgstr ""
+"Sie wollen als Gast fortfahren? Dann \n"
+"<a href=\"%(guest_url_value)s\">klicken Sie hier</a>."
 
 #: adhocracy-plus/templates/account/verification_sent.html:10
 msgid ""
@@ -6974,20 +7135,20 @@ msgstr ""
 "Ihren Spam-Ordner. Bitte kontaktieren Sie uns, falls Sie die Verifizierungs-"
 "E-Mail nicht innerhalb weniger Minuten erhalten."
 
-#: adhocracy-plus/templates/base.html:68
+#: adhocracy-plus/templates/base.html:67
 msgid "Skip to content"
 msgstr "Weiter zum Inhalt"
 
-#: adhocracy-plus/templates/base.html:111
+#: adhocracy-plus/templates/base.html:110
 #, python-format
 msgid "%(platformname)s is funded by donations."
 msgstr "%(platformname)s finanziert sich durch Spenden."
 
-#: adhocracy-plus/templates/base.html:113
+#: adhocracy-plus/templates/base.html:112
 msgid "Donate now"
 msgstr "Jetzt unterstützen"
 
-#: adhocracy-plus/templates/base.html:116
+#: adhocracy-plus/templates/base.html:115
 #, python-format
 msgid "Donate now to %(platformname)s"
 msgstr "Spende jetzt für %(platformname)s "
@@ -7012,6 +7173,10 @@ msgstr "Verantwortlich für das Beteiligungsprojekt:"
 #: adhocracy-plus/templates/footer_upper.html:6
 msgid "Responsible for the content of this page:"
 msgstr "Verantwortlich für den Inhalt dieser Seite:"
+
+#: adhocracy-plus/templates/footer_upper.html:36
+msgid "AI Explanation"
+msgstr ""
 
 #: adhocracy-plus/templates/header.html:4
 msgid "Header"
