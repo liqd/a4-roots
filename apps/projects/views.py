@@ -384,6 +384,20 @@ class ProjectGenerateSummaryView(PermissionRequiredMixin, generic.DetailView):
             return fb.feedback if fb else None
         return None
 
+    def _format_summary_date(self, timestamp, language_code):
+        """Format the summary date based on the current language."""
+        if not timestamp:
+            return None
+
+        local_ts = timezone.localtime(timestamp)
+
+        if language_code == "de":
+            # German format: "1. April 2026"
+            return local_ts.strftime("%-d. %B %Y")
+        else:
+            # English format: "April 1, 2026"
+            return local_ts.strftime("%B %-d, %Y")
+
     def get(self, request, *args, **kwargs):
         project = self.get_object()
         logger.info(
