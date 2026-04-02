@@ -278,7 +278,7 @@ Each module MUST include a 'debug' object with:
 - module_type: string
 - signals_snapshot: list of strings
 - draft_before_qa: string
-- claims: list of {claim_text, evidence_type(from_votes|from_ratings|from_open_answers|from_comments|from_base_text|uncertain), action(keep|soften|remove), fix_hint}
+- claims: list of {claim_text, evidence_type(from_votes|from_ratings|from_open_answers|from_comments|from_base_text|uncertain), action(keep|soften|replace|remove), fix_hint}
 - quantifier_fixes: list of {original_phrase, replacement, reason}
 - anchors: list of strings
 - coverage_gaps: list of strings
