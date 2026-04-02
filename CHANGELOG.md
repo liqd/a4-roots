@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 Since version v2306 the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased Roots
+## roots-v2604.01
 
 ### Added
 
@@ -15,6 +15,10 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Summerization: Configurable Caching with time limits
 - Summerization: Prompt could be edited in the Django Admin
 - Summerization: Configurable Fallback when the summary generation fails
+- Summarization: Document attachments integrated into the summary generation pipeline
+- Summarization: SummaryFeedback for end-user feedback on summaries
+- Summarization: Project- and global-level rate limiting for summary generation
+- Polls: Captcha verification for anonymous votes
 
 ### Changed
 
@@ -24,7 +28,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Installed HTMX rather than using script tag
 
 
-## Unreleased A+
+## v2602.01-partial
 
 ### Changed
 
