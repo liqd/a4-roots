@@ -14,6 +14,7 @@ from apps.summarization.export_utils.attachments.handlers import (
 )
 from apps.summarization.export_utils.core import generate_full_export
 from apps.summarization.pydantic_models import ProjectSummaryResponse
+from apps.summarization.sentry_tags import set_sentry_project_tags
 from apps.summarization.services import AIService
 
 logger = logging.getLogger(__name__)
@@ -36,6 +37,8 @@ def generate_project_summary(
     Raises:
         Exception: Re-raises any exception from the AI service (caller handles display/retry).
     """
+    set_sentry_project_tags(project)
+
     export_data = generate_full_export(project)
 
     if request is not None or base_url:
@@ -46,7 +49,8 @@ def generate_project_summary(
             try:
                 service = AIService()
                 document_response = service.request_vision_dict(
-                    documents_dict=documents_dict
+                    documents_dict=documents_dict,
+                    project=project,
                 )
                 integrate_document_summaries(
                     export_data,

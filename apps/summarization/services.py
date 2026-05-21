@@ -18,6 +18,7 @@ from .pydantic_models import DocumentSummaryItem
 from .pydantic_models import DocumentSummaryResponse
 from .pydantic_models import ProjectSummaryResponse
 from .pydantic_models import SummaryItem
+from .sentry_tags import set_sentry_project_tags
 from .utils import extract_text_from_document
 
 logger = logging.getLogger(__name__)
@@ -78,6 +79,7 @@ class AIService:
         - If allow_regeneration is False and a summary exists, always return the latest summary
           without generating a new one, even when the hash changed.
         """
+        set_sentry_project_tags(project)
         request = SummaryRequest(text=text, prompt=prompt)
         latest = self._get_latest_summary(project)
         text_hash = ProjectSummary.compute_hash(text)
@@ -185,16 +187,24 @@ class AIService:
             logger.info(f"Cached summary for project {project.id}")
 
     def request_vision_dict(
-        self, documents_dict: dict[str, str], prompt: str | None = None
+        self,
+        documents_dict: dict[str, str],
+        prompt: str | None = None,
+        project=None,
     ) -> DocumentSummaryResponse:
         """Process documents from dictionary format."""
         items = [DocumentInputItem(handle=h, url=u) for h, u in documents_dict.items()]
-        return self.request_vision(items, prompt)
+        return self.request_vision(items, prompt, project=project)
 
     def request_vision(
-        self, documents: list[DocumentInputItem], prompt: str | None = None
+        self,
+        documents: list[DocumentInputItem],
+        prompt: str | None = None,
+        project=None,
     ) -> DocumentSummaryResponse:
         """Process documents and images, return combined summaries."""
+        if project is not None:
+            set_sentry_project_tags(project)
         docs, images = self._split_documents(documents)
 
         results = []
