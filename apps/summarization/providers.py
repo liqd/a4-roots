@@ -18,6 +18,7 @@ from sentry_sdk import capture_exception
 
 from .llm_json import parse_structured_llm_json
 from .pydantic_models import DocumentSummaryResponse
+from .sentry_tags import ensure_sentry_project_tags
 
 logger = logging.getLogger(__name__)
 
@@ -196,6 +197,7 @@ class AIProvider:
         )
 
         try:
+            ensure_sentry_project_tags()
             result = agent.run_sync(request.prompt())
             response = result.output
 
@@ -301,6 +303,7 @@ class AIProvider:
             user_content.append(ImageUrl(url=url))
 
         try:
+            ensure_sentry_project_tags()
             result = agent.run_sync(user_content)
             response = result.output
 
