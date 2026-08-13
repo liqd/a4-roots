@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-13 12:07+0200\n"
+"POT-Creation-Date: 2026-08-13 15:31+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Luca Thüer, 2023\n"
 "Language-Team: Dutch (https://app.transifex.com/liqd/teams/109316/nl/)\n"
@@ -5970,6 +5970,13 @@ msgstr ""
 msgid ""
 "Would you like to create an account? Then \n"
 "                        <a href=\"%(signup_url)s\">click here</a>."
+msgstr ""
+
+#: apps/users/templates/a4_candy_users/guest_create.html:24
+msgid ""
+"Please log out after participating or close your browser. This ensures that "
+"neither you nor anyone else has access to your guest account. You can "
+"convert your guest account into a permanent account in the user settings."
 msgstr ""
 
 #: apps/users/templates/a4_candy_users/guest_create.html:37

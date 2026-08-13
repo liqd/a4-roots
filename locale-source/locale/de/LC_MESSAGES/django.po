@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-13 12:07+0200\n"
+"POT-Creation-Date: 2026-08-13 15:31+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Tietje, 2026\n"
 "Language-Team: German (https://app.transifex.com/liqd/teams/109316/de/)\n"
@@ -438,7 +438,7 @@ msgid ""
 "ideas. The character limit is max. 300 characters (with spaces)."
 msgstr ""
 "Sie können den Beschreibungstext individuell gestalten. Der "
-"Beschreibungstext wird den Teilnehmern als Hilfetext angezeigt, wenn sie "
+"Beschreibungstext wird den Teilnehmenden als Hilfetext angezeigt, wenn sie "
 "ihre Ideen zuordnen müssen. Die Zeichenbegrenzung beträgt max. 300 Zeichen "
 "(mit Leerzeichen)."
 
@@ -1399,7 +1399,7 @@ msgstr "Nutzereinstellungen"
 #: apps/account/templates/a4_candy_account/account_dashboard.html:10
 #: apps/users/templates/a4_candy_users/indicator.html:58
 msgid "Guest Account Settings"
-msgstr "Gastkontoeinstellungen"
+msgstr "Einstellungen Gastkonto "
 
 #: apps/account/templates/a4_candy_account/account_dashboard.html:20
 #: apps/account/templates/a4_candy_account/guest_dashboard.html:13
@@ -1447,7 +1447,7 @@ msgstr "Account löschen"
 
 #: apps/account/templates/a4_candy_account/account_dashboard.html:86
 msgid "Guest user settings navigation"
-msgstr "Gastkontoeinstellungen Navigation"
+msgstr "Navigation für Gastkonto-Einstellungen"
 
 #: apps/account/templates/a4_candy_account/account_dashboard.html:89
 #: apps/account/templates/a4_candy_account/guest_dashboard.html:16
@@ -1459,7 +1459,7 @@ msgstr "Gast"
 #: apps/account/templates/a4_candy_account/guest_convert.html:9
 #: apps/account/templates/a4_candy_account/guest_dashboard.html:24
 msgid "Convert Account"
-msgstr "Konto Umwandeln"
+msgstr "Konto umwandeln"
 
 #: apps/account/templates/a4_candy_account/account_deletion.html:6
 #: apps/account/templates/a4_candy_account/account_deletion.html:51
@@ -1482,7 +1482,8 @@ msgid ""
 "proceed:"
 msgstr ""
 "\n"
-"Geben Sie bitte Ihr Passwort ein, um Ihre Identität zu bestätigen:"
+"Bitte geben Sie zur Bestätigung Ihrer Identität Ihr Passwort ein, um "
+"fortzufahren:"
 
 #: apps/account/templates/a4_candy_account/account_deletion.html:46
 msgid "Are you sure you want to delete your account?"
@@ -1559,7 +1560,7 @@ msgstr "Ihr Nutzerprofil"
 
 #: apps/account/templates/a4_candy_account/guest_convert.html:14
 msgid "Convert to regular account"
-msgstr "Umwandlung in ein reguläres Konto"
+msgstr "In ein reguläres Konto umwandeln"
 
 #: apps/account/templates/a4_candy_account/guest_convert.html:15
 msgid ""
@@ -1567,9 +1568,9 @@ msgid ""
 "means that all your previous posts, comments and ratings will be kept and "
 "assigned to your new user account."
 msgstr ""
-"Ihr Gastkonto können Sie jetzt in ein reguläres Benutzerkonto umwandeln. "
-"Damit bleiben all Ihre bisher erstellten Beiträge, Kommentare und "
-"Bewertungen erhalten und werden Ihrem neuen Benutzerkonto zugeordnet."
+"Sie können Ihr Gastkonto jetzt in ein reguläres Konto umwandeln. Alle Ihre "
+"bisherigen Beiträge, Kommentare und Bewertungen bleiben erhalten und werden "
+"Ihrem neuen Benutzerkonto zugeordnet."
 
 #: apps/account/templates/a4_candy_account/guest_convert.html:28
 #, python-format
@@ -1582,10 +1583,10 @@ msgid ""
 "              "
 msgstr ""
 "\n"
-" Hiermit bestätige ich, dass ich die <a href=\"%(terms_of_use_url)s\" "
+"Ich bestätige, dass ich die <a href=\"%(terms_of_use_url)s\" "
 "target=\"_blank\">Nutzungsbedingungen</a> und die <a "
 "href=\"%(data_protection_policy)s\" target=\"_blank\">Datenschutzerklärung</"
-"a> gelesen habe und akzeptiere."
+"a> gelesen habe und ihnen zustimme."
 
 #: apps/account/templates/a4_candy_account/guest_convert.html:41
 #: apps/projects/templates/a4_candy_projects/moderatorinvite_detail.html:15
@@ -2349,7 +2350,7 @@ msgstr "Brainstorming"
 msgid ""
 "Participants can submit their own ideas and discuss the ideas of others."
 msgstr ""
-"Die Teilnehmer*innen können eigene Ideen einreichen und die Ideen Anderer "
+"Die Teilnehmenden können eigene Ideen einreichen und die Ideen Anderer "
 "diskutieren."
 
 #: apps/dashboard/blueprints.py:33
@@ -2361,7 +2362,7 @@ msgid ""
 "Participants can submit their own ideas and locate them on a map. They can "
 "also discuss the ideas of others."
 msgstr ""
-"Die Teilnehmer*innen können eigene Ideen auf einer Karte eintragen und die "
+"Die Teilnehmenden können eigene Ideen auf einer Karte eintragen und die "
 "Ideen Anderer diskutieren."
 
 #: apps/dashboard/blueprints.py:49
@@ -2373,8 +2374,8 @@ msgid ""
 "In a first phase, participants can submit their own ideas and discuss the "
 "ideas of others. In a second phase, the ideas can be rated (pro/contra)."
 msgstr ""
-"In einer ersten Phase können die Teilnehmer*innen eigene Ideen einreichen "
-"und die Ideen Anderer diskutieren. In einer zweiten Phase werden die Ideen "
+"In einer ersten Phase können die Teilnehmenden eigene Ideen einreichen und "
+"die Ideen Anderer diskutieren. In einer zweiten Phase werden die Ideen "
 "bewertet (dafür/dagegen)."
 
 #: apps/dashboard/blueprints.py:67
@@ -2387,9 +2388,9 @@ msgid ""
 "map, and discuss the ideas of others. In a second phase, the ideas can be "
 "rated (pro/contra)."
 msgstr ""
-"In einer ersten Phase können die Teilnehmer*innen eigene Ideen auf einer "
-"Karte eintragen und die Ideen Anderer diskutieren. In einer zweiten Phase "
-"werden die Ideen bewertet (dafür/dagegen)."
+"In einer ersten Phase können die Teilnehmenden eigene Ideen auf einer Karte "
+"eintragen und die Ideen Anderer diskutieren. In einer zweiten Phase werden "
+"die Ideen bewertet (dafür/dagegen)."
 
 #: apps/dashboard/blueprints.py:82
 msgid "Text Review"
@@ -2399,16 +2400,16 @@ msgstr "Text diskutieren"
 msgid ""
 "Participants can discuss the paragraphs of a text that you added beforehand."
 msgstr ""
-"Die Teilnehmer*innen können einen eingestellten Text absatzweise "
-"diskutieren, den Sie zuvor hinzugefügt haben."
+"Die Teilnehmenden können einen eingestellten Text absatzweise diskutieren, "
+"den Sie zuvor hinzugefügt haben."
 
 #: apps/dashboard/blueprints.py:100
 msgid ""
 "Participants can answer open and multiple choice questions and comment on "
 "the poll."
 msgstr ""
-"Die Teilnehmer*innen können auf offene und Multiple-Choice-Fragen antworten "
-"und die Umfrage kommentieren."
+"Die Teilnehmenden können auf offene und Multiple-Choice-Fragen antworten und "
+"die Umfrage kommentieren."
 
 #: apps/dashboard/blueprints.py:114
 msgid "Participatory budgeting"
@@ -2419,8 +2420,8 @@ msgid ""
 "Participants can submit their own suggestions, mark them on a map, and add a "
 "budget. The ideas of others can be discussed and rated (pro/contra)."
 msgstr ""
-"Die Teilnehmer*innen können eigene Vorschläge auf einer Karte eintragen und "
-"mit einem Budget versehen. Die Ideen Anderer können diskutiert und bewertet "
+"Die Teilnehmenden können eigene Vorschläge auf einer Karte eintragen und mit "
+"einem Budget versehen. Die Ideen Anderer können diskutiert und bewertet "
 "(dafür/dagegen) werden."
 
 #: apps/dashboard/blueprints.py:129
@@ -2433,7 +2434,7 @@ msgid ""
 "participants can support the question. You as the moderator can sort the "
 "questions by support or affiliation."
 msgstr ""
-"Die Teilnehmer*innen einer Veranstaltung können ihre Fragen live online "
+"Die Teilnehmenden einer Veranstaltung können ihre Fragen live online "
 "stellen. Andere Teilnehmer*innen können die Frage unterstützen. Sie als "
 "Moderation können die Fragen anhand von Unterstützung und Zugehörigkeiten "
 "sortieren."
@@ -2447,9 +2448,9 @@ msgid ""
 "Participants can discuss and rate (pro/contra) previously added ideas and "
 "topics. Participants cannot add ideas or topics."
 msgstr ""
-"Die Teilnehmer*innen können von Ihnen eingestellte Ideen und Themen "
-"diskutieren und bewerten (dafür/dagegen). Teilnehmer*innen können keine "
-"Ideen und Themen hinzufügen."
+"Die Teilnehmenden können von Ihnen eingestellte Ideen und Themen diskutieren "
+"und bewerten (dafür/dagegen). Teilnehmer*innen können keine Ideen und Themen "
+"hinzufügen."
 
 #: apps/dashboard/blueprints.py:164
 msgid "Debate"
@@ -2461,7 +2462,7 @@ msgid ""
 "participants comment on posted topics / questions as well as on "
 "contributions from other users."
 msgstr ""
-"Die Teilnehmer*innen können eine oder mehrere eingestellte Themen oder "
+"Die Teilnehmenden können eine oder mehrere eingestellte Themen oder "
 "Fragestellungen diskutieren. Zur Strukturierung der Debatte werden die "
 "Antworten in Kategorien eingeordnet und können durchsucht, sortiert und "
 "gefiltert werden."
@@ -4811,9 +4812,9 @@ msgid ""
 "Please provide a netiquette for the participants. The netiquette helps "
 "improving the climate of online discussions and supports the moderation."
 msgstr ""
-"Bitte stellen Sie eine Netiquette für die Nutzer*innen ein. Diese hilft, die "
-"Atmosphäre bei den Diskussionen zu verbessern und ist eine gute Grundlage "
-"für die Moderation auf der Plattform."
+"Bitte stellen Sie eine Netiquette für die Teilnehmenden ein. Diese hilft, "
+"die Atmosphäre bei den Diskussionen zu verbessern und ist eine gute "
+"Grundlage für die Moderation auf der Plattform."
 
 #: apps/organisations/models.py:161
 msgid "is a supporting organisation"
@@ -5007,7 +5008,7 @@ msgstr "unarchivieren"
 #: apps/projects/templates/a4_candy_projects/project_participants.html:4
 #: apps/projects/templates/a4_candy_projects/project_participants.html:12
 msgid "Participants"
-msgstr "Teilnehmer*innen"
+msgstr "Teilnehmende"
 
 #: apps/projects/dashboard.py:46
 #: apps/projects/templates/a4_candy_projects/project_moderators.html:4
@@ -5020,7 +5021,7 @@ msgid ""
 "Show insights with numbers of contributions and participants during the "
 "participation process"
 msgstr ""
-"Insights im Reiter \"Ergebnis\" während des Beteiligungsprozesses anzeigen"
+"Insights auf der Projektseite während des Beteiligungsprozesses anzeigen"
 
 #: apps/projects/dashboard.py:114
 msgid "Location"
@@ -5048,7 +5049,7 @@ msgstr "Bitte E-Mail Adressen eingeben oder Datei hochladen"
 
 #: apps/projects/models.py:139
 msgid "active participants"
-msgstr "Aktive Teilnehmer*innen"
+msgstr "Aktive Teilnehmende"
 
 #: apps/projects/models.py:142
 msgid "comments"
@@ -5068,7 +5069,7 @@ msgstr "Umfrageantworten"
 
 #: apps/projects/models.py:153
 msgid "interactive event questions"
-msgstr "Interaktive Veranstaltung Fragen"
+msgstr "Fragen (Interaktive Veranstaltung)"
 
 #: apps/projects/models.py:157
 msgid ""
@@ -5210,7 +5211,7 @@ msgstr "Module"
 
 #: apps/projects/templates/a4_candy_projects/_summary_fragment.html:90
 msgid "To read all the results of this participation"
-msgstr "Um alle Ergebnisse dieser Beteiligung zu lesen"
+msgstr "um alle Ergebnisse dieser Beteiligung zu lesen"
 
 #: apps/projects/templates/a4_candy_projects/_summary_fragment.html:94
 #: apps/projects/templates/a4_candy_projects/_summary_section.html:221
@@ -5219,7 +5220,7 @@ msgstr "Hier klicken"
 
 #: apps/projects/templates/a4_candy_projects/_summary_section.html:15
 msgid "Summary of what has happened so far"
-msgstr "Zusammenfassung von dem was bisher passiert ist"
+msgstr "Zusammenfassung des bisherigen Verlaufs"
 
 #: apps/projects/templates/a4_candy_projects/_summary_section.html:17
 msgid "Summary of what is currently happening"
@@ -5227,7 +5228,7 @@ msgstr "Zusammenfassung von dem was zurzeit passiert"
 
 #: apps/projects/templates/a4_candy_projects/_summary_section.html:19
 msgid "Summary of what will happen"
-msgstr "Zusammenfassung von dem was passieren wird"
+msgstr "Zusammenfassung der nächsten Schritte"
 
 #: apps/projects/templates/a4_candy_projects/_summary_section.html:29
 msgid ""
@@ -5235,9 +5236,10 @@ msgid ""
 "can no longer contribute. In this section you can find summaries of the "
 "modules and the main topics that were discussed."
 msgstr ""
-"Die Beteiligungsphasen der Module in diesem Bereich sind abgeschlossen. Du "
-"kannst nicht mehr beitragen. In diesem Bereich findest du Zusammenfassungen "
-"der Module und der wichtigsten Themen die diskutiert wurden."
+"Die Beteiligungsphasen der Module in diesem Bereich sind abgeschlossen. Sie "
+"können sich nicht mehr einbringen. In diesem Bereich finden sie die "
+"Zusammenfassungen der Module und der wichtigsten Themen die diskutiert "
+"wurden."
 
 #: apps/projects/templates/a4_candy_projects/_summary_section.html:31
 msgid ""
@@ -5246,9 +5248,9 @@ msgid ""
 "you can find summaries of the modules and the topics that are being "
 "discussed."
 msgstr ""
-"Die Beteiligungsphasen der Module in diesem Bereich laufen zurzeit. Du "
-"kannst dich in dieser Phase an den Modulen beteiligen. In diesem Bereich "
-"findest du Zusammenfassungen der Module und der Themen die zurzeit "
+"Die Beteiligungsphasen der Module in diesem Bereich laufen zurzeit. Sie "
+"können sich in dieser Phase an den Modulen aktiv beteiligen. In diesem "
+"Bereich finden sie Zusammenfassungen der Module und der Themen die zurzeit "
 "diskutiert werden."
 
 #: apps/projects/templates/a4_candy_projects/_summary_section.html:33
@@ -5257,14 +5259,13 @@ msgid ""
 "yet. You cannot contribute to the modules at this stage. In this section you "
 "can find summaries of the planned modules and their objectives."
 msgstr ""
-"Die Beteiligungsphasen der Module in diesem Bereich haben noch nicht "
-"begonnen. Du kannst dich in dieser Phase nicht an den Modulen beteiligen. In "
-"diesem Bereich findest du Zusammenfassungen der geplanten Module und ihrer "
-"Ziele."
+"Die Beteiligungsphasen der Module in diesem Abschnitt haben noch nicht "
+"begonnen. Eine Beteiligung ist derzeit noch nicht möglich. Hier finden Sie "
+"Zusammenfassungen der geplanten Module und ihrer Ziele."
 
 #: apps/projects/templates/a4_candy_projects/_summary_section.html:43
 msgid "Module"
-msgstr "Module"
+msgstr "Modul"
 
 #: apps/projects/templates/a4_candy_projects/_summary_section.html:47
 #: apps/projects/templates/a4_candy_projects/project_detail.html:250
@@ -5287,68 +5288,68 @@ msgstr "Aktive Beteiligung"
 
 #: apps/projects/templates/a4_candy_projects/_summary_section.html:78
 msgid "Debug information"
-msgstr ""
+msgstr "Debug-Info"
 
 #: apps/projects/templates/a4_candy_projects/_summary_section.html:91
 msgid "Signals"
-msgstr ""
+msgstr "Signale"
 
 #: apps/projects/templates/a4_candy_projects/_summary_section.html:103
 msgid "Draft before QA"
-msgstr ""
+msgstr "Draft before QA"
 
 #: apps/projects/templates/a4_candy_projects/_summary_section.html:107
 msgid "After QA"
-msgstr ""
+msgstr "After QA"
 
 #: apps/projects/templates/a4_candy_projects/_summary_section.html:115
 msgid "Claims"
-msgstr ""
+msgstr "Claims"
 
 #: apps/projects/templates/a4_candy_projects/_summary_section.html:119
 msgid "Claim"
-msgstr ""
+msgstr "Claim"
 
 #: apps/projects/templates/a4_candy_projects/_summary_section.html:120
 msgid "Evidence"
-msgstr ""
+msgstr "Evidence"
 
 #: apps/projects/templates/a4_candy_projects/_summary_section.html:121
 msgid "Action"
-msgstr ""
+msgstr "Action"
 
 #: apps/projects/templates/a4_candy_projects/_summary_section.html:122
 msgid "Fix hint"
-msgstr ""
+msgstr "Fix hint"
 
 #: apps/projects/templates/a4_candy_projects/_summary_section.html:146
 msgid "Quantifier fixes"
-msgstr ""
+msgstr "Quantifier fixes"
 
 #: apps/projects/templates/a4_candy_projects/_summary_section.html:162
 msgid "Anchors"
-msgstr ""
+msgstr "Anchors"
 
 #: apps/projects/templates/a4_candy_projects/_summary_section.html:174
 msgid "Coverage gaps"
-msgstr ""
+msgstr "Coverage gaps"
 
 #: apps/projects/templates/a4_candy_projects/_summary_section.html:182
 msgid "Patch"
-msgstr ""
+msgstr "Patch"
 
 #: apps/projects/templates/a4_candy_projects/_summary_section.html:191
 msgid "Patches applied"
-msgstr ""
+msgstr "Patches applied"
 
 #: apps/projects/templates/a4_candy_projects/_summary_section.html:209
 msgid "Changes"
-msgstr ""
+msgstr "Changes"
 
 #: apps/projects/templates/a4_candy_projects/_summary_section.html:218
 #, python-format
 msgid "To see what happened in module %(module_name)s,"
-msgstr "Um zu sehen, was im Modul %(module_name)s passiert ist,"
+msgstr "Um zu sehen was im Modul %(module_name)s passiert ist,"
 
 #: apps/projects/templates/a4_candy_projects/emails/invite_moderator.en.email:4
 #, python-format
@@ -5689,7 +5690,7 @@ msgstr "Ausstehende Einladungen"
 
 #: apps/projects/templates/a4_candy_projects/project_participants.html:7
 msgid "Edit Participants"
-msgstr "Teilnehmer*innen bearbeiten"
+msgstr "Teilnehmende bearbeiten"
 
 #: apps/projects/views.py:141
 msgid "Invitation succesfully removed."
@@ -5738,7 +5739,7 @@ msgstr "{} Teilnehmer*in eingeladen"
 #: apps/projects/views.py:263
 #, python-brace-format
 msgid "{} participants invited."
-msgstr "{} Teilnehmer*innen eingeladen"
+msgstr "{} Teilnehmende eingeladen"
 
 #: apps/projects/views.py:264
 msgid "Participant successfully removed."
@@ -6022,7 +6023,7 @@ msgid ""
 "difficulty please contact us by {}email{}.</strong>"
 msgstr ""
 "Bitte führen Sie die Captcha-Überprüfung durch. <strong>Bei Schwierigkeiten "
-"wenden Sie sich bitte per {}email{} an uns.</strong>"
+"wenden Sie sich bitte per {}E-Mail{} an uns.</strong>"
 
 #: apps/users/forms.py:52
 msgid "Username/e-mail"
@@ -6192,7 +6193,7 @@ msgstr ""
 
 #: apps/users/templates/a4_candy_users/guest_create.html:4
 msgid "Continue as Guest"
-msgstr "Als Gast fortfahren"
+msgstr "Als Gast fortfahren "
 
 #: apps/users/templates/a4_candy_users/guest_create.html:14
 #, python-format
@@ -6209,8 +6210,19 @@ msgid ""
 "Would you like to create an account? Then \n"
 "                        <a href=\"%(signup_url)s\">click here</a>."
 msgstr ""
-"Sie wollen einen Nutzerkonto erstellen? Dann \n"
+"Sie möchten ein Konto erstellen? Dann \n"
 "<a href=\"%(signup_url)s\">klicken Sie hier</a>."
+
+#: apps/users/templates/a4_candy_users/guest_create.html:24
+msgid ""
+"Please log out after participating or close your browser. This ensures that "
+"neither you nor anyone else has access to your guest account. You can "
+"convert your guest account into a permanent account in the user settings."
+msgstr ""
+"Bitte melden Sie sich nach der Teilnahme ab oder schließen Sie Ihren "
+"Browser. So stellen Sie sicher, dass Dritte Zugriff keinen auf Ihr Gastkonto "
+"haben. Sie können Ihr Gastkonto jederzeit in den Nutzerkontoeinstellungen in "
+"ein dauerhaftes Konto umwandeln."
 
 #: apps/users/templates/a4_candy_users/guest_create.html:37
 #: adhocracy-plus/templates/account/signup.html:33
