@@ -2,26 +2,26 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 # Translators:
 # Katharina Schmid, 2021
 # Katharina Lindenlaub, 2023
 # Joop Laan <joop@interconnecting.systems>, 2023
 # Luca Thüer, 2023
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-13 12:07+0200\n"
+"POT-Creation-Date: 2026-08-13 15:08+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Luca Thüer, 2023\n"
 "Language-Team: Dutch (https://app.transifex.com/liqd/teams/109316/nl/)\n"
-"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: adhocracy4/categories/templates/a4categories/includes/module_categories_form.html:3
@@ -51,15 +51,11 @@ msgstr "Projectinstellingen"
 
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:15
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:33
-#: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:15
-#: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:33
 #: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:50
 #: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:105
 msgid "Missing fields for publication"
 msgstr "Ontbrekende velden voor publicatie"
 
-#: adhocracy4/dashboard/templates/a4dashboard/base_form_module.html:18
-#: adhocracy4/dashboard/templates/a4dashboard/base_form_project.html:18
 #: adhocracy4/dashboard/templates/a4dashboard/base_form_module.html:18
 #: adhocracy4/dashboard/templates/a4dashboard/base_form_project.html:18
 #: apps/activities/templates/a4_candy_activities/activities_dashboard.html:19
@@ -80,9 +76,6 @@ msgstr "Ontbrekende velden voor publicatie"
 msgid "Save"
 msgstr "Bewaren"
 
-#: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:4
-#: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:7
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:9
 #: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:4
 #: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:7
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:9
@@ -107,16 +100,12 @@ msgstr "Ontbrekend veld voor publicatie"
 
 #: adhocracy4/dashboard/templates/a4dashboard/includes/preview.html:7
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:39
-#: adhocracy4/dashboard/templates/a4dashboard/includes/preview.html:7
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:39
 #: apps/organisations/templates/a4_candy_organisations/communication_form_social_media.html:59
 #: adhocracy-plus/templates/a4dashboard/includes/preview.html:7
 #: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:41
 msgid "Preview"
 msgstr "Voorbeeld"
 
-#: adhocracy4/dashboard/templates/a4dashboard/includes/preview.html:9
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:41
 #: adhocracy4/dashboard/templates/a4dashboard/includes/preview.html:9
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:41
 #: apps/debate/templates/a4_candy_debate/includes/subject_dashboard_list_item.html:14
@@ -151,8 +140,6 @@ msgstr "Publicatie ongedaan maken"
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:4
 #: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:7
-#: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:4
-#: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:7
 msgid "Create project based on"
 msgstr "Creëer project op basis van"
 
@@ -162,8 +149,8 @@ msgid ""
 "After saving the draft project you can further customize and edit your "
 "project and eventually publish it."
 msgstr ""
-"Na het opslaan van het concept project kunt u uw project verder aanpassen en "
-"bewerken en uiteindelijk publiceren."
+"Na het opslaan van het concept project kunt u uw project verder aanpassen en"
+" bewerken en uiteindelijk publiceren."
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:25
 #: adhocracy-plus/templates/a4dashboard/project_create_form.html:46
@@ -194,8 +181,6 @@ msgstr "Aanmaken"
 msgid "Cancel"
 msgstr "Annuleren"
 
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:4
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:7
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:4
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:7
 #: apps/projects/templates/a4_candy_projects/project_list.html:4
@@ -249,11 +234,6 @@ msgstr "We konden geen projecten vinden."
 #: adhocracy4/exports/templates/a4exports/export_dashboard.html:35
 #: adhocracy4/exports/templates/a4exports/export_dashboard.html:47
 #: adhocracy4/exports/templates/a4exports/export_dashboard.html:59
-#: adhocracy4/exports/templates/a4exports/export_dashboard.html:5
-#: adhocracy4/exports/templates/a4exports/export_dashboard.html:23
-#: adhocracy4/exports/templates/a4exports/export_dashboard.html:35
-#: adhocracy4/exports/templates/a4exports/export_dashboard.html:47
-#: adhocracy4/exports/templates/a4exports/export_dashboard.html:59
 msgid "Export"
 msgstr "Exporteren"
 
@@ -281,10 +261,8 @@ msgid "here you can export all comments"
 msgstr "hier kunt u alle opmerkingen exporteren"
 
 #: adhocracy4/filters/templates/a4filters/widgets/free_text_filter.html:15
-#: adhocracy4/dashboard/filter.py:11
-#: adhocracy4/filters/templates/a4filters/widgets/free_text_filter.html:15
-#: apps/contrib/widgets.py:65 apps/debate/filters.py:12
-#: apps/topicprio/views.py:21
+#: adhocracy4/dashboard/filter.py:11 apps/contrib/widgets.py:65
+#: apps/debate/filters.py:12 apps/topicprio/views.py:21
 #: adhocracy-plus/templates/a4filters/widgets/free_text_filter.html:4
 #: adhocracy-plus/templates/a4filters/widgets/free_text_filter.html:10
 #: adhocracy-plus/templates/a4filters/widgets/free_text_filter.html:11
@@ -303,10 +281,6 @@ msgstr "Zoeken"
 msgid "This field is required"
 msgstr "Dit veld is verplicht"
 
-#: adhocracy4/forms/templates/a4forms/includes/inline_form.html:14
-#: adhocracy4/forms/templates/a4forms/includes/inline_form.html:15
-#: adhocracy4/forms/templates/a4forms/includes/inline_form.html:18
-#: adhocracy4/forms/templates/a4forms/includes/inline_form.html:19
 #: adhocracy4/forms/templates/a4forms/includes/inline_form.html:14
 #: adhocracy4/forms/templates/a4forms/includes/inline_form.html:15
 #: adhocracy4/forms/templates/a4forms/includes/inline_form.html:18
@@ -338,8 +312,7 @@ msgid ""
 "            "
 msgstr ""
 "\n"
-"            Uw afbeelding wordt geüpload/verwijderd zodra u uw wijzigingen "
-"opslaat\n"
+"            Uw afbeelding wordt geüpload/verwijderd zodra u uw wijzigingen opslaat\n"
 "            aan het einde van deze pagina.\n"
 "            "
 
@@ -372,8 +345,7 @@ msgstr ""
 msgid "Edit poll"
 msgstr "Poll aanpassen"
 
-#: adhocracy4/categories/dashboard.py:13
-#: apps/exports/mixins.py:19
+#: adhocracy4/categories/dashboard.py:13 apps/exports/mixins.py:19
 msgid "Categories"
 msgstr "Categorieën"
 
@@ -381,16 +353,13 @@ msgstr "Categorieën"
 msgid "Edit categories"
 msgstr "Categorieën bewerken"
 
-#: adhocracy4/categories/fields.py:10
-#: adhocracy4/categories/filters.py:16
-#: adhocracy4/categories/forms.py:53
-#: adhocracy4/categories/models.py:24
+#: adhocracy4/categories/fields.py:10 adhocracy4/categories/filters.py:16
+#: adhocracy4/categories/forms.py:53 adhocracy4/categories/models.py:24
 #: adhocracy4/exports/mixins/items.py:24
 msgid "Category"
 msgstr "Categorie"
 
-#: adhocracy4/categories/forms.py:47
-#: adhocracy4/labels/forms.py:23
+#: adhocracy4/categories/forms.py:47 adhocracy4/labels/forms.py:23
 msgid "Category name"
 msgstr "Categorienaam"
 
@@ -415,21 +384,18 @@ msgid ""
 "category."
 msgstr ""
 
-#: adhocracy4/categories/models.py:42
-#: adhocracy4/labels/models.py:29
+#: adhocracy4/categories/models.py:42 adhocracy4/labels/models.py:29
 msgid "Description/Helptext"
 msgstr ""
 
-#: adhocracy4/categories/models.py:44
-#: adhocracy4/labels/models.py:31
+#: adhocracy4/categories/models.py:44 adhocracy4/labels/models.py:31
 msgid ""
 "You can individualise the description text. The description text is "
 "displayed to the participants as help text when they have to assign their "
 "ideas. The character limit is max. 300 characters (with spaces)."
 msgstr ""
 
-#: adhocracy4/comments/models.py:54
-#: adhocracy4/polls/exports.py:42
+#: adhocracy4/comments/models.py:54 adhocracy4/polls/exports.py:42
 #: apps/budgeting/exports.py:78 apps/debate/exports.py:68
 #: apps/documents/exports.py:41 apps/ideas/exports.py:77
 #: apps/mapideas/exports.py:78 apps/topicprio/exports.py:75
@@ -437,8 +403,7 @@ msgctxt "noun"
 msgid "Comment"
 msgstr "Reactie"
 
-#: adhocracy4/comments/models.py:55
-#: adhocracy4/exports/mixins/comments.py:48
+#: adhocracy4/comments/models.py:55 adhocracy4/exports/mixins/comments.py:48
 #: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_list_item.html:16
 #: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_list_item.html:17
 #: apps/ideas/templates/a4_candy_ideas/includes/idea_list_item.html:18
@@ -461,10 +426,10 @@ msgstr "Kies een categorie"
 msgid "unknown user"
 msgstr "onbekende gebruiker"
 
-#: adhocracy4/comments_async/api.py:150
-#: adhocracy4/polls/api.py:160
+#: adhocracy4/comments_async/api.py:150 adhocracy4/polls/api.py:160
 msgid "Please agree to the organisation's terms of use."
-msgstr "U dient akkoord te gaan met de gebruiksvoorwaarden van de organisatie."
+msgstr ""
+"U dient akkoord te gaan met de gebruiksvoorwaarden van de organisatie."
 
 #: adhocracy4/comments_async/serializers.py:15
 msgid "Please choose one or more categories."
@@ -502,15 +467,13 @@ msgstr "Informatie"
 msgid "Edit project information"
 msgstr "Bewerk projectinformatie"
 
-#: adhocracy4/dashboard/dashboard.py:34
-#: apps/projects/dashboard.py:87
+#: adhocracy4/dashboard/dashboard.py:34 apps/projects/dashboard.py:87
 #: apps/projects/templates/a4_candy_projects/project_detail.html:127
 #: adhocracy-plus/templates/includes/project_header_mobile_toggle.html:44
 msgid "Result"
 msgstr "Resultaat"
 
-#: adhocracy4/dashboard/dashboard.py:36
-#: apps/projects/dashboard.py:89
+#: adhocracy4/dashboard/dashboard.py:36 apps/projects/dashboard.py:89
 msgid "Edit project result"
 msgstr "Projectresultaat bewerken"
 
@@ -538,19 +501,16 @@ msgstr "Gebiedsinstellingen"
 msgid "Edit area settings"
 msgstr "Gebiedsinstellingen bewerken"
 
-#: adhocracy4/dashboard/filter.py:15
-#: apps/budgeting/views.py:31
+#: adhocracy4/dashboard/filter.py:15 apps/budgeting/views.py:31
 msgid "Archived"
 msgstr "Gearchiveerd"
 
-#: adhocracy4/dashboard/filter.py:19
-#: adhocracy4/filters/widgets.py:33
+#: adhocracy4/dashboard/filter.py:19 adhocracy4/filters/widgets.py:33
 #: apps/budgeting/views.py:35
 msgid "All"
 msgstr "Allen"
 
-#: adhocracy4/dashboard/filter.py:20
-#: apps/budgeting/views.py:36
+#: adhocracy4/dashboard/filter.py:20 apps/budgeting/views.py:36
 msgid "No"
 msgstr "Nee"
 
@@ -610,8 +570,7 @@ msgid ""
 "Example: A busy square with people in summer."
 msgstr ""
 
-#: adhocracy4/dashboard/forms.py:165
-#: adhocracy4/phases/models.py:66
+#: adhocracy4/dashboard/forms.py:165 adhocracy4/phases/models.py:66
 msgid "End date"
 msgstr "Einddatum"
 
@@ -619,8 +578,7 @@ msgstr "Einddatum"
 msgid "End time"
 msgstr "Eindtijd"
 
-#: adhocracy4/dashboard/forms.py:171
-#: adhocracy4/phases/models.py:64
+#: adhocracy4/dashboard/forms.py:171 adhocracy4/phases/models.py:64
 msgid "Start date"
 msgstr "Startdatum"
 
@@ -636,8 +594,7 @@ msgstr "Project succesvol gedupliceerd."
 msgid "Project successfully created."
 msgstr "Project met succes gecreëerd."
 
-#: adhocracy4/dashboard/views.py:164
-#: apps/dashboard/views.py:133
+#: adhocracy4/dashboard/views.py:164 apps/dashboard/views.py:133
 msgid "Invalid action"
 msgstr "Ongeldige actie"
 
@@ -652,7 +609,8 @@ msgstr ""
 
 #: adhocracy4/dashboard/views.py:202
 msgid "Project cannot be published. Required fields are missing."
-msgstr "Het project kan niet worden gepubliceerd. Verplichte velden ontbreken."
+msgstr ""
+"Het project kan niet worden gepubliceerd. Verplichte velden ontbreken."
 
 #: adhocracy4/dashboard/views.py:211
 msgid "Project cannot be published."
@@ -686,12 +644,11 @@ msgstr "Reageer op verwijzing"
 msgid "Creator"
 msgstr "Creator"
 
-#: adhocracy4/exports/mixins/general.py:17
-#: adhocracy4/models/base.py:12
-#: adhocracy4/polls/exports.py:43
-#: apps/budgeting/exports.py:79 apps/debate/exports.py:69
-#: apps/documents/exports.py:42 apps/ideas/exports.py:78
-#: apps/mapideas/exports.py:79 apps/topicprio/exports.py:76
+#: adhocracy4/exports/mixins/general.py:17 adhocracy4/models/base.py:12
+#: adhocracy4/polls/exports.py:43 apps/budgeting/exports.py:79
+#: apps/debate/exports.py:69 apps/documents/exports.py:42
+#: apps/ideas/exports.py:78 apps/mapideas/exports.py:79
+#: apps/topicprio/exports.py:76
 msgid "Created"
 msgstr "Aangemaakt"
 
@@ -711,8 +668,7 @@ msgstr "Locatie (Breedtegraad)"
 msgid "Location label"
 msgstr "Locatielabel"
 
-#: adhocracy4/exports/mixins/items.py:43
-#: adhocracy4/labels/dashboard.py:13
+#: adhocracy4/exports/mixins/items.py:43 adhocracy4/labels/dashboard.py:13
 #: apps/ideas/models.py:50 apps/topicprio/models.py:57
 msgid "Labels"
 msgstr "Labels"
@@ -730,8 +686,7 @@ msgstr "Status"
 msgid "Feedback"
 msgstr "Feedback"
 
-#: adhocracy4/exports/mixins/items.py:107
-#: apps/moderatorremark/models.py:14
+#: adhocracy4/exports/mixins/items.py:107 apps/moderatorremark/models.py:14
 #: apps/moderatorremark/templates/a4_candy_moderatorremark/includes/popover_remark.html:5
 #: apps/moderatorremark/templates/a4_candy_moderatorremark/includes/popover_remark.html:21
 msgid "Remark"
@@ -753,8 +708,7 @@ msgstr "ja"
 msgid "no"
 msgstr "nee"
 
-#: adhocracy4/filters/widgets.py:76
-#: apps/contrib/widgets.py:58
+#: adhocracy4/filters/widgets.py:76 apps/contrib/widgets.py:58
 msgid "Ordering"
 msgstr "Volgorde"
 
@@ -796,13 +750,11 @@ msgid ""
 "Example: A busy square with people in summer."
 msgstr ""
 
-#: adhocracy4/images/mixins.py:30
-#: adhocracy4/images/mixins.py:35
+#: adhocracy4/images/mixins.py:30 adhocracy4/images/mixins.py:35
 msgid "Please add copyright information."
 msgstr ""
 
-#: adhocracy4/images/mixins.py:40
-#: adhocracy4/images/mixins.py:45
+#: adhocracy4/images/mixins.py:40 adhocracy4/images/mixins.py:45
 msgid "Please add an alternative text for this image"
 msgstr ""
 
@@ -811,20 +763,17 @@ msgstr ""
 msgid "Unsupported file format. Supported formats are {}."
 msgstr "Niet-ondersteunde bestandsformaat. Ondersteunde formaten zijn {}."
 
-#: adhocracy4/images/validators.py:35
-#: apps/organisations/forms.py:357
+#: adhocracy4/images/validators.py:35 apps/organisations/forms.py:357
 #, python-brace-format
 msgid "Image should be at most {max_size} MB"
 msgstr "Het beeld kan maximaal {max_size} MB zijn"
 
-#: adhocracy4/images/validators.py:43
-#: apps/organisations/forms.py:365
+#: adhocracy4/images/validators.py:43 apps/organisations/forms.py:365
 #, python-brace-format
 msgid "Image must be at least {min_width} pixels wide"
 msgstr "Beeld moet minstens {min_width} pixels breed zijn"
 
-#: adhocracy4/images/validators.py:51
-#: apps/organisations/forms.py:375
+#: adhocracy4/images/validators.py:51 apps/organisations/forms.py:375
 #, python-brace-format
 msgid "Image must be at least {min_height} pixels high"
 msgstr "Beeld moet minstens {min_height} pixels hoog zijn"
@@ -850,14 +799,13 @@ msgstr ""
 
 #: adhocracy4/images/widgets.py:28
 msgid "Select a picture from your local folder."
-msgstr "Selecteer een foto uit uw computer."
+msgstr ""
 
 #: adhocracy4/labels/dashboard.py:15
 msgid "Edit labels"
 msgstr "Labels bewerken"
 
-#: adhocracy4/labels/filters.py:10
-#: adhocracy4/labels/forms.py:25
+#: adhocracy4/labels/filters.py:10 adhocracy4/labels/forms.py:25
 #: adhocracy4/labels/models.py:10
 msgid "Label"
 msgstr "Label"
@@ -879,8 +827,7 @@ msgid ""
 "proposals can be filtered by labels."
 msgstr ""
 
-#: adhocracy4/maps/admin.py:15
-#: adhocracy4/maps/models.py:11
+#: adhocracy4/maps/admin.py:15 adhocracy4/maps/models.py:11
 msgid "Polygon"
 msgstr "Veelhoek"
 
@@ -946,8 +893,7 @@ msgstr ""
 msgid "day"
 msgstr "dag"
 
-#: adhocracy4/modules/models.py:225
-#: adhocracy4/modules/models.py:232
+#: adhocracy4/modules/models.py:225 adhocracy4/modules/models.py:232
 msgid "days"
 msgstr "dagen"
 
@@ -955,8 +901,7 @@ msgstr "dagen"
 msgid "hour"
 msgstr "uur"
 
-#: adhocracy4/modules/models.py:226
-#: adhocracy4/modules/models.py:233
+#: adhocracy4/modules/models.py:226 adhocracy4/modules/models.py:233
 msgid "hours"
 msgstr "uren"
 
@@ -964,8 +909,7 @@ msgstr "uren"
 msgid "minute"
 msgstr "minuut"
 
-#: adhocracy4/modules/models.py:227
-#: adhocracy4/modules/models.py:234
+#: adhocracy4/modules/models.py:227 adhocracy4/modules/models.py:234
 msgid "minutes"
 msgstr "minuten"
 
@@ -973,8 +917,7 @@ msgstr "minuten"
 msgid "second"
 msgstr "seconde"
 
-#: adhocracy4/modules/models.py:228
-#: adhocracy4/modules/models.py:235
+#: adhocracy4/modules/models.py:228 adhocracy4/modules/models.py:235
 msgid "seconds"
 msgstr "seconden"
 
@@ -1007,17 +950,15 @@ msgstr ""
 msgid "Phases need to be in same order as in form."
 msgstr "De stappen moeten in dezelfde volgorde staan als op het formulier."
 
-#: adhocracy4/phases/models.py:59
-#: apps/newsletters/models.py:30
+#: adhocracy4/phases/models.py:59 apps/newsletters/models.py:30
 #: apps/projects/templates/a4_candy_projects/includes/removeable_user_list.html:7
 msgid "Name"
 msgstr "Naam"
 
-#: adhocracy4/phases/models.py:60
-#: apps/activities/models.py:22 apps/debate/models.py:27
-#: apps/ideas/models.py:38 apps/offlineevents/models.py:33
-#: apps/organisations/forms.py:317 apps/topicprio/forms.py:23
-#: apps/topicprio/models.py:38
+#: adhocracy4/phases/models.py:60 apps/activities/models.py:22
+#: apps/debate/models.py:27 apps/ideas/models.py:38
+#: apps/offlineevents/models.py:33 apps/organisations/forms.py:317
+#: apps/topicprio/forms.py:23 apps/topicprio/models.py:38
 msgid "Description"
 msgstr "Beschrijving"
 
@@ -1025,18 +966,15 @@ msgstr "Beschrijving"
 msgid "End date can not be before start date."
 msgstr "De einddatum kan niet eerder zijn dan de startdatum."
 
-#: adhocracy4/phases/models.py:88
-#: adhocracy4/phases/models.py:92
+#: adhocracy4/phases/models.py:88 adhocracy4/phases/models.py:92
 msgid "Either both or no date has to be set."
 msgstr "Of beide of geen datum moet worden ingesteld."
 
-#: adhocracy4/polls/api.py:124
-#: adhocracy4/polls/api.py:142
+#: adhocracy4/polls/api.py:124 adhocracy4/polls/api.py:142
 msgid "Your answer to the captcha was wrong."
 msgstr "Je antwoord op de captcha was verkeerd."
 
-#: adhocracy4/polls/api.py:129
-#: adhocracy4/polls/api.py:138
+#: adhocracy4/polls/api.py:129 adhocracy4/polls/api.py:138
 msgid "Something about the answer to the captcha was wrong."
 msgstr "Iets aan het antwoord op de captcha was onjuist."
 
@@ -1061,22 +999,21 @@ msgstr "Dubbele keuzes gevonden."
 msgid "Multiple choice disabled for question."
 msgstr "Meerkeuze uitgeschakeld voor vraag."
 
-#: adhocracy4/polls/dashboard.py:15
-#: apps/dashboard/blueprints.py:98
+#: adhocracy4/polls/dashboard.py:15 apps/dashboard/blueprints.py:98
 msgid "Poll"
 msgstr "Poll"
 
-#: adhocracy4/polls/dashboard.py:44
-#: apps/budgeting/dashboard.py:14 apps/debate/dashboard.py:65
-#: apps/documents/dashboard.py:50 apps/ideas/dashboard.py:14
-#: apps/mapideas/dashboard.py:14 apps/topicprio/dashboard.py:65
+#: adhocracy4/polls/dashboard.py:44 apps/budgeting/dashboard.py:14
+#: apps/debate/dashboard.py:65 apps/documents/dashboard.py:50
+#: apps/ideas/dashboard.py:14 apps/mapideas/dashboard.py:14
+#: apps/topicprio/dashboard.py:65
 msgid "Export Excel"
 msgstr "Excel exporteren"
 
-#: adhocracy4/polls/exports.py:41
-#: apps/budgeting/exports.py:77 apps/debate/exports.py:67
-#: apps/documents/exports.py:40 apps/ideas/exports.py:76
-#: apps/mapideas/exports.py:77 apps/topicprio/exports.py:74
+#: adhocracy4/polls/exports.py:41 apps/budgeting/exports.py:77
+#: apps/debate/exports.py:67 apps/documents/exports.py:40
+#: apps/ideas/exports.py:76 apps/mapideas/exports.py:77
+#: apps/topicprio/exports.py:74
 msgid "ID"
 msgstr "ID"
 
@@ -1094,14 +1031,13 @@ msgstr "Vragen met open antwoorden kunnen geen meerkeuzevragen bevatten."
 
 #: adhocracy4/polls/models.py:86
 msgid ""
-"Question with choices cannot become open question. Delete choices or add new "
-"open question."
+"Question with choices cannot become open question. Delete choices or add new"
+" open question."
 msgstr ""
-"Vraag met keuzemogelijkheden kan geen open vraag worden. Verwijder keuzes of "
-"voeg nieuwe open vraag toe."
+"Vraag met keuzemogelijkheden kan geen open vraag worden. Verwijder keuzes of"
+" voeg nieuwe open vraag toe."
 
-#: adhocracy4/polls/models.py:147
-#: adhocracy4/polls/models.py:267
+#: adhocracy4/polls/models.py:147 adhocracy4/polls/models.py:267
 msgid "Answer"
 msgstr "Antwoord"
 
@@ -1117,8 +1053,8 @@ msgstr "Open vragen kunnen geen keuzes hebben."
 msgid ""
 "\"Other\" cannot be the only choice. Use open question or add more choices."
 msgstr ""
-"\"Andere\" kan niet de enige keuze zijn. Gebruik een open vraag of voeg meer "
-"keuzes toe."
+"\"Andere\" kan niet de enige keuze zijn. Gebruik een open vraag of voeg meer"
+" keuzes toe."
 
 #: adhocracy4/polls/models.py:211
 msgid "Question already has \"other\" choice."
@@ -1165,14 +1101,12 @@ msgstr "Keuze moet bij de vraagstelling in de url horen."
 msgid "Only one vote per choice is allowed per user."
 msgstr "Per gebruiker is slechts één stem per keuze toegestaan."
 
-#: adhocracy4/projects/admin.py:11
-#: apps/newsletters/forms.py:47
+#: adhocracy4/projects/admin.py:11 apps/newsletters/forms.py:47
 #: adhocracy-plus/templates/includes/project_header_mobile_toggle.html:12
 msgid "Project"
 msgstr "Project"
 
-#: adhocracy4/projects/admin.py:69
-#: apps/projects/admin.py:41
+#: adhocracy4/projects/admin.py:69 apps/projects/admin.py:41
 msgid "Information and result"
 msgstr "Informatie en resultaat"
 
@@ -1185,13 +1119,12 @@ msgstr "Informatie en resultaat"
 msgid "Settings"
 msgstr "Instellingen"
 
-#: adhocracy4/projects/admin.py:87
-#: apps/projects/admin.py:61
+#: adhocracy4/projects/admin.py:87 apps/projects/admin.py:61
 msgid "Images"
 msgstr "Afbeeldingen"
 
-#: adhocracy4/projects/admin.py:99
-#: apps/projects/admin.py:73 adhocracy-plus/templates/email_base.html:105
+#: adhocracy4/projects/admin.py:99 apps/projects/admin.py:73
+#: adhocracy-plus/templates/email_base.html:105
 #: adhocracy-plus/templates/footer.html:63
 msgid "Contact"
 msgstr "Contact"
@@ -1287,20 +1220,17 @@ msgstr "Resultaten van uw project"
 msgid "Access to the project"
 msgstr "Toegang tot het project"
 
-#: adhocracy4/projects/models.py:251
-#: adhocracy4/projects/models.py:257
-#: adhocracy4/projects/models.py:258
-#: apps/organisations/models.py:96
+#: adhocracy4/projects/models.py:251 adhocracy4/projects/models.py:257
+#: adhocracy4/projects/models.py:258 apps/organisations/models.py:96
 msgid "Header image"
 msgstr "Kop afbeelding"
 
-#: adhocracy4/projects/models.py:252
-#: apps/organisations/models.py:97
+#: adhocracy4/projects/models.py:252 apps/organisations/models.py:97
 msgid "The image will be shown as a decorative background image."
-msgstr "De afbeelding wordt getoond als een decoratieve achtergrondafbeelding."
+msgstr ""
+"De afbeelding wordt getoond als een decoratieve achtergrondafbeelding."
 
-#: adhocracy4/projects/models.py:261
-#: adhocracy4/projects/models.py:267
+#: adhocracy4/projects/models.py:261 adhocracy4/projects/models.py:267
 #: adhocracy4/projects/models.py:268
 msgid "Tile image"
 msgstr "Beeld voor overzicht"
@@ -1324,11 +1254,11 @@ msgstr ""
 #: adhocracy4/projects/utils.py:46
 #, python-brace-format
 msgid "{}. Online Participation"
-msgstr "{}. Online deelname"
+msgstr ""
 
 #: adhocracy4/projects/utils.py:55
 msgid "Online Participation"
-msgstr "Online deelname"
+msgstr ""
 
 #: adhocracy4/reports/templatetags/react_reports.py:28
 #: apps/contrib/templates/a4_candy_contrib/item_detail.html:125
@@ -1433,8 +1363,7 @@ msgstr ""
 #: apps/account/templates/a4_candy_account/account_deletion.html:15
 msgid ""
 "\n"
-"                To confirm your identity, please enter your password to "
-"proceed:"
+"                To confirm your identity, please enter your password to proceed:"
 msgstr ""
 
 #: apps/account/templates/a4_candy_account/account_deletion.html:46
@@ -1455,16 +1384,16 @@ msgstr ""
 #: apps/account/templates/a4_candy_account/emails/account_deleted.en.email:21
 msgid ""
 "We would like to confirm that your account has been successfully deleted "
-"from our platform. We regret that you have chosen to leave us but we respect "
-"your decision."
+"from our platform. We regret that you have chosen to leave us but we respect"
+" your decision."
 msgstr ""
 
 #: apps/account/templates/a4_candy_account/emails/account_deleted.en.email:12
 #: apps/account/templates/a4_candy_account/emails/account_deleted.en.email:24
 msgid ""
 "Please note that all data associated with your account, including your "
-"personal information and activities, have been permanently deleted. You will "
-"not receive any further communications from us unless you decide to re-"
+"personal information and activities, have been permanently deleted. You will"
+" not receive any further communications from us unless you decide to re-"
 "register at a later date."
 msgstr ""
 
@@ -1515,10 +1444,7 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"              I confirm that I have read and accepted the <a "
-"href=\"%(terms_of_use_url)s\" target=\"_blank\">terms of use</a> and the <a "
-"href=\"%(data_protection_policy)s\" target=\"_blank\">data protection "
-"policy</a>.\n"
+"              I confirm that I have read and accepted the <a href=\"%(terms_of_use_url)s\" target=\"_blank\">terms of use</a> and the <a href=\"%(data_protection_policy)s\" target=\"_blank\">data protection policy</a>.\n"
 "              "
 msgstr ""
 
@@ -1607,56 +1533,44 @@ msgstr "op <a href=\"%(url)s\">%(name)s</a>"
 #, python-format
 msgid ""
 "\n"
-"                <a href=\"%(actor_profile)s\">%(name)s</a> left a <a "
-"href=\"%(comment_url)s\">comment</a> on your <a "
-"href=\"%(item_url)s\">contribution</a>\n"
+"                <a href=\"%(actor_profile)s\">%(name)s</a> left a <a href=\"%(comment_url)s\">comment</a> on your <a href=\"%(item_url)s\">contribution</a>\n"
 "                "
 msgstr ""
 "\n"
-"                <a href=\"%(actor_profile)s\">%(name)s</a> gaf een <a "
-"href=\"%(comment_url)s\">reactie</a> op jouw   <a "
-"href=\"%(item_url)s\">bijdrage</a>\n"
+"                <a href=\"%(actor_profile)s\">%(name)s</a> gaf een <a href=\"%(comment_url)s\">reactie</a> op jouw   <a href=\"%(item_url)s\">bijdrage</a>\n"
 "                "
 
 #: apps/actions/templates/a4_candy_actions/includes/reaction.html:23
 #, python-format
 msgid ""
 "\n"
-"              <a href=\"%(actor_profile)s\">%(name)s</a> left a <a "
-"href=\"%(comment_url)s\">reply</a> to your <a "
-"href=\"%(parent_comment_url)s\">comment</a>\n"
+"              <a href=\"%(actor_profile)s\">%(name)s</a> left a <a href=\"%(comment_url)s\">reply</a> to your <a href=\"%(parent_comment_url)s\">comment</a>\n"
 "              "
 msgstr ""
 "\n"
-"              <a href=\"%(actor_profile)s\">%(name)s</a> gaf een <a "
-"href=\"%(comment_url)s\">antwoord</a> op jouw <a "
-"href=\"%(parent_comment_url)s\">reactie</a>\n"
+"              <a href=\"%(actor_profile)s\">%(name)s</a> gaf een <a href=\"%(comment_url)s\">antwoord</a> op jouw <a href=\"%(parent_comment_url)s\">reactie</a>\n"
 "              "
 
 #: apps/actions/templates/a4_candy_actions/includes/reaction.html:30
 #, python-format
 msgid ""
 "\n"
-"                Your <a href=\"%(comment_url)s\">comment</a> received <a "
-"href=\"%(feedback_url)s\">feedback</a> from moderation\n"
+"                Your <a href=\"%(comment_url)s\">comment</a> received <a href=\"%(feedback_url)s\">feedback</a> from moderation\n"
 "                "
 msgstr ""
 "\n"
-"                Jouw <a href=\"%(comment_url)s\">reactie</a> heeft <a "
-"href=\"%(feedback_url)s\">feedback</a> van de moderator\n"
+"                Jouw <a href=\"%(comment_url)s\">reactie</a> heeft <a href=\"%(feedback_url)s\">feedback</a> van de moderator\n"
 "                "
 
 #: apps/actions/templates/a4_candy_actions/includes/reaction.html:35
 #, python-format
 msgid ""
 "\n"
-"                Moderation updated <a href=\"%(feedback_url)s\">feedback</a> "
-"on your <a href=\"%(comment_url)s\">comment</a>\n"
+"                Moderation updated <a href=\"%(feedback_url)s\">feedback</a> on your <a href=\"%(comment_url)s\">comment</a>\n"
 "                "
 msgstr ""
 "\n"
-"                Moderatie heeft <a href=\"%(feedback_url)s\">feedback</a> op "
-"jouw <a href=\"%(comment_url)s\">reactie</a>bijgewerkt\n"
+"                Moderatie heeft <a href=\"%(feedback_url)s\">feedback</a> op jouw <a href=\"%(comment_url)s\">reactie</a>bijgewerkt\n"
 "                "
 
 #: apps/actions/templates/a4_candy_actions/includes/reaction.html:41
@@ -1721,8 +1635,8 @@ msgid ""
 "Exclude this proposal from all listings by default. You can still access "
 "this proposal by using filters."
 msgstr ""
-"Sluit dit voorstel standaard uit van alle lijsten. U kunt nog steeds toegang "
-"krijgen tot dit voorstel door gebruik te maken van filters."
+"Sluit dit voorstel standaard uit van alle lijsten. U kunt nog steeds toegang"
+" krijgen tot dit voorstel door gebruik te maken van filters."
 
 #: apps/budgeting/phases.py:15
 msgid "Request phase"
@@ -1979,8 +1893,8 @@ msgid ""
 "message via our contact form and asked us to send you a copy."
 msgstr ""
 "Dit bericht werd verstuurd naar %(receiver)s. Het werd verstuurd, omdat u "
-"ons een bericht schreef via ons contactformulier en ons vroeg om u een kopie "
-"te sturen."
+"ons een bericht schreef via ons contactformulier en ons vroeg om u een kopie"
+" te sturen."
 
 #: apps/cms/contacts/templates/a4_candy_cms_contacts/includes/form.html:16
 #: apps/newsletters/templates/a4_candy_newsletters/restricted_newsletter_dashboard_form.html:22
@@ -2021,7 +1935,8 @@ msgstr ""
 
 #: apps/cms/pages/templates/a4_candy_cms_pages/blocks/video_block.html:16
 msgid ""
-"To view this video please enable JavaScript, or upgrade to a web browser that"
+"To view this video please enable JavaScript, or upgrade to a web browser "
+"that"
 msgstr ""
 
 #: apps/cms/pages/templates/a4_candy_cms_pages/blocks/video_block.html:18
@@ -2177,8 +2092,8 @@ msgstr "Zorg ervoor dat dit veld niet meer dan 4000 tekens bevat."
 #: apps/contrib/mixins.py:5
 msgid ""
 "I hereby confirm that the copyrights for this photo are with me or that I "
-"have received rights of use from the author. I also confirm that the privacy "
-"rights of depicted third persons are not violated. "
+"have received rights of use from the author. I also confirm that the privacy"
+" rights of depicted third persons are not violated. "
 msgstr ""
 "Ik bevestig hierbij dat de auteursrechten voor deze foto bij mij liggen of "
 "dat ik gebruiksrechten heb gekregen van de auteur. Ik bevestig ook dat de "
@@ -2186,8 +2101,8 @@ msgstr ""
 
 #: apps/contrib/mixins.py:29
 msgid ""
-"You want to upload an image. Please check that you have the right of use for "
-"the image."
+"You want to upload an image. Please check that you have the right of use for"
+" the image."
 msgstr ""
 "U wilt een afbeelding uploaden. Controleer of u het recht hebt om de "
 "afbeelding te gebruiken."
@@ -2235,7 +2150,7 @@ msgstr "Vorige pagina"
 
 #: apps/contrib/templates/a4_candy_contrib/includes/pagination.html:14
 msgid " of "
-msgstr " van "
+msgstr ""
 
 #: apps/contrib/templates/a4_candy_contrib/includes/pagination.html:19
 #: apps/contrib/templates/a4_candy_contrib/includes/pagination.html:20
@@ -2318,8 +2233,8 @@ msgid ""
 "rated (pro/contra)."
 msgstr ""
 "In een eerste fase kunnen de deelnemers hun eigen ideeën indienen, deze "
-"markeren op een kaart en de ideeën van anderen bespreken. In een tweede fase "
-"kunnen de ideeën worden beoordeeld (pro/contra)."
+"markeren op een kaart en de ideeën van anderen bespreken. In een tweede fase"
+" kunnen de ideeën worden beoordeeld (pro/contra)."
 
 #: apps/dashboard/blueprints.py:82
 msgid "Text Review"
@@ -2346,8 +2261,8 @@ msgstr "Participatieve budgettering"
 
 #: apps/dashboard/blueprints.py:116
 msgid ""
-"Participants can submit their own suggestions, mark them on a map, and add a "
-"budget. The ideas of others can be discussed and rated (pro/contra)."
+"Participants can submit their own suggestions, mark them on a map, and add a"
+" budget. The ideas of others can be discussed and rated (pro/contra)."
 msgstr ""
 "Deelnemers kunnen hun eigen suggesties indienen, deze markeren op een kaart "
 "en een budget toevoegen. De ideeën van anderen kunnen worden besproken en "
@@ -2391,8 +2306,8 @@ msgid ""
 "contributions from other users."
 msgstr ""
 "Deelnemers kunnen discussiëren over geposte onderwerpen of vragen. Hiervoor "
-"geven de deelnemers commentaar op geposte onderwerpen/vragen en op bijdragen "
-"van andere gebruikers."
+"geven de deelnemers commentaar op geposte onderwerpen/vragen en op bijdragen"
+" van andere gebruikers."
 
 #: apps/dashboard/forms.py:13
 msgid "Organisation name"
@@ -2772,13 +2687,11 @@ msgstr "Livestream bewerken"
 #: apps/interactiveevents/templates/a4_candy_interactive_events/includes/module_affiliations_form.html:3
 msgid ""
 "Here you can specify affiliations. Users must classify\n"
-"    questions accordingly. The questions can be filtered by affiliation and "
-"evaluated in the\n"
+"    questions accordingly. The questions can be filtered by affiliation and evaluated in the\n"
 "    statistics."
 msgstr ""
 "Hier kunt u groeperingen specificeren. \n"
-"Gebruikers moeten de vragen overeenkomstig beantwoorden. De vragen kunnen "
-"worden gefilterd op groepering\n"
+"Gebruikers moeten de vragen overeenkomstig beantwoorden. De vragen kunnen worden gefilterd op groepering\n"
 "en later geëvalueerd in de statistieken."
 
 #: apps/interactiveevents/templates/a4_candy_interactive_events/includes/module_affiliations_form.html:22
@@ -2865,8 +2778,8 @@ msgstr ""
 
 #: apps/learning_nuggets/blocks.py:27
 msgid ""
-"Upload related documents such as worksheets, guides, or additional resources "
-"(PDF format recommended)"
+"Upload related documents such as worksheets, guides, or additional resources"
+" (PDF format recommended)"
 msgstr ""
 
 #: apps/learning_nuggets/blocks.py:43
@@ -3041,8 +2954,8 @@ msgstr "Let op: alleen intern zichtbaar binnen het project."
 
 #: apps/newsletters/forms.py:28
 msgid ""
-"If you add an image, please ensure to set the width no larger than 650px and "
-"to provide an alternate text of the image. An alternate text serves as a "
+"If you add an image, please ensure to set the width no larger than 650px and"
+" to provide an alternate text of the image. An alternate text serves as a "
 "textual description of the image content and is read out by screen readers. "
 "Describe the image in approx. 80 characters. Example: A busy square with "
 "people in summer."
@@ -3095,8 +3008,8 @@ msgstr "Ontvangers"
 #: apps/newsletters/templates/a4_candy_newsletters/emails/newsletter_email.en.email:13
 #, python-format
 msgid ""
-"This email was sent to %(receiver_mail)s. This email was sent to you because "
-"you are registered on %(site_name)s. If you don't want to receive "
+"This email was sent to %(receiver_mail)s. This email was sent to you because"
+" you are registered on %(site_name)s. If you don't want to receive "
 "newsletters anymore, you may disable them in your user account settings."
 msgstr ""
 "Deze e-mail werd verstuurd naar %(receiver_mail)s. Deze e-mail werd naar u "
@@ -3746,8 +3659,7 @@ msgstr ""
 
 #: apps/notifications/strategies/project_strategies.py:355
 #, python-brace-format
-msgid ""
-"A new {content_type} \"{content}\" has been created in project {project}."
+msgid "A new {content_type} \"{content}\" has been created in project {project}."
 msgstr ""
 
 #: apps/notifications/templates/a4_candy_notifications/_notification_card.html:14
@@ -3763,20 +3675,19 @@ msgstr ""
 #: apps/notifications/templates/a4_candy_notifications/_pagination.html:15
 #: adhocracy-plus/templates/a4modules/module_detail.html:78
 msgid "Previous"
-msgstr "Vorige"
+msgstr ""
 
 #: apps/notifications/templates/a4_candy_notifications/_pagination.html:43
 #: adhocracy-plus/templates/a4modules/module_detail.html:84
 msgid "Next"
-msgstr "Volgende"
+msgstr ""
 
 #: apps/notifications/templates/a4_candy_notifications/emails/content/comment_on_post.en.email:3
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_on_post.en.email:29
 #, python-format
 msgid ""
 "\n"
-"<strong>%(commenter)s</strong> commented on your post \"<strong>%(post)s</"
-"strong>\".\n"
+"<strong>%(commenter)s</strong> commented on your post \"<strong>%(post)s</strong>\".\n"
 msgstr ""
 
 #: apps/notifications/templates/a4_candy_notifications/emails/content/comment_on_post.en.email:8
@@ -3892,7 +3803,8 @@ msgstr ""
 
 #: apps/notifications/templates/a4_candy_notifications/emails/content/project_created.en.email:3
 #, python-format
-msgid "The new project %(project_name)s was created for %(organisation_name)s."
+msgid ""
+"The new project %(project_name)s was created for %(organisation_name)s."
 msgstr ""
 
 #: apps/notifications/templates/a4_candy_notifications/emails/content/project_deleted.en.email:3
@@ -3950,8 +3862,8 @@ msgstr ""
 #: apps/projects/templates/a4_candy_projects/emails/invite_participant.en.email:17
 #, python-format
 msgid ""
-"This email was sent to %(receiver_mail)s. This email was sent to you because "
-"you are invited to participate in a private project."
+"This email was sent to %(receiver_mail)s. This email was sent to you because"
+" you are invited to participate in a private project."
 msgstr ""
 "Deze e-mail werd verstuurd naar %(receiver_mail)s. Deze e-mail is naar u "
 "gestuurd omdat u bent uitgenodigd om deel te nemen aan een privéproject."
@@ -3973,8 +3885,7 @@ msgstr "U kunt deelnemen tot %(end_date)s."
 #, python-format
 msgid ""
 "\n"
-"A new %(content_type)s was added to the project %(project)s by "
-"%(creator_name)s.\n"
+"A new %(content_type)s was added to the project %(project)s by %(creator_name)s.\n"
 msgstr ""
 
 #: apps/notifications/templates/a4_candy_notifications/emails/content/user_content_created.en.email:9
@@ -3987,11 +3898,11 @@ msgstr ""
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator.en.email:4
 #, python-format
 msgid "Reaction to your contribution in project %(project_name)s"
-msgstr "Reactie op uw bijdrage in het project %(project_name)s"
+msgstr ""
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator.en.email:6
 msgid "Reaction to your contribution"
-msgstr "Reactie op uw bijdrage"
+msgstr ""
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator.en.email:9
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_on_post.en.email:24
@@ -4014,16 +3925,16 @@ msgstr "Hallo %(receiver_name)s,"
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator.en.email:13
 #, python-format
 msgid "%(actor_name)s commented on your post:"
-msgstr "%(actor_name)s reageerde op uw bericht:"
+msgstr ""
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator.en.email:21
 msgid "Would you like to answer?"
-msgstr "Wilt u reageren?"
+msgstr ""
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator.en.email:26
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_comment_highlight.en.email:17
 msgid "View Post"
-msgstr "Bekijk bericht"
+msgstr ""
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator.en.email:28
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_comment_highlight.en.email:19
@@ -4033,8 +3944,6 @@ msgid ""
 "This email was sent to %(receiver_mail)s. You have received the e-mail "
 "because you added a contribution to the above project."
 msgstr ""
-"Deze e-mail werd verstuurd naar %(receiver_mail)s. U heeft de e-mail "
-"ontvangen omdat u een bijdrage aan bovengenoemd project heeft toegevoegd."
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_on_post.en.email:12
 #, python-format
@@ -4086,12 +3995,12 @@ msgstr ""
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:4
 #, python-format
 msgid "Feedback for your contribution on %(site_name)s"
-msgstr "Feedback voor uw bijdrage op %(site_name)s"
+msgstr ""
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:17
 #, python-format
 msgid "Your contribution is %(status)s."
-msgstr "Uw bijdrage is %(status)s."
+msgstr ""
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_added.en.email:4
 #, python-format
@@ -4111,8 +4020,6 @@ msgid ""
 "This email was sent to %(receiver_mail)s. You have received the e-mail "
 "because you are following the above project."
 msgstr ""
-"Deze e-mail werd verstuurd naar %(receiver_mail)s. U heeft de e-mail "
-"ontvangen omdat u het bovenstaande project volgt."
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_deleted.en.email:4
 #, python-format
@@ -4146,26 +4053,26 @@ msgstr ""
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_over_soon.en.email:4
 #, python-format
 msgid "Participation ends soon for %(project_name)s"
-msgstr "Deelname eindigt binnenkort voor %(project_name)s"
+msgstr ""
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_over_soon.en.email:6
 msgid "Participation ends soon!"
-msgstr "Deelname eindigt binnenkort!"
+msgstr ""
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_over_soon.en.email:13
 msgid "the online participation in the above mentioned project will end soon."
-msgstr "de online deelname aan bovengenoemd project eindigt binnenkort."
+msgstr ""
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_over_soon.en.email:16
 #, python-format
 msgid "You can still participate until %(end_date)s."
-msgstr "U kunt nog steeds deelnemen tot %(end_date)s."
+msgstr ""
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_started.en.email:4
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_project_started.en.email:9
 #, python-format
 msgid "Here we go: %(project_name)s starts now!"
-msgstr "Daar gaan we: %(project_name)s begint nu!"
+msgstr ""
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_project_completed.en.email:4
 #, python-format
@@ -4175,12 +4082,12 @@ msgstr ""
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_created.en.email:4
 #, python-format
 msgid "New project %(project_name)s on %(site_name)s"
-msgstr "Nieuw project %(project_name)s op %(site_name)s"
+msgstr ""
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_created.en.email:6
 #, python-format
 msgid "The new project %(project_name)s was created for %(organisation_name)s"
-msgstr "Nieuw project %(project_name)s is gemaakt voor %(organisation_name)s"
+msgstr ""
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_created.en.email:10
 #, python-format
@@ -4188,17 +4095,13 @@ msgid ""
 "%(creator_name)s has created the project %(project_name)s for "
 "%(organisation_name)s."
 msgstr ""
-"%(creator_name)s heeft het project %(project_name)s gecreëerd voor "
-"%(organisation_name)s."
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_created.en.email:17
 #, python-format
 msgid ""
-"This email was sent to %(receiver_mail)s. This email was sent to you because "
-"you are an intiator of %(organisation_name)s."
+"This email was sent to %(receiver_mail)s. This email was sent to you because"
+" you are an intiator of %(organisation_name)s."
 msgstr ""
-"Deze e-mail werd verstuurd naar %(receiver_mail)s. Deze e-mail werd naar u "
-"gestuurd omdat u een intiator bent van %(organisation_name)s."
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_deleted.en.email:6
 #, python-format
@@ -4212,9 +4115,6 @@ msgid ""
 "are an initiator of the organisation '%(organisation_name)s', in which a "
 "project was deleted."
 msgstr ""
-"Deze e-mail werd verstuurd naar %(receiver)s. Deze e-mail werd naar u "
-"gestuurd omdat u een initiatiefnemer bent van de organisatie "
-"'%(organisation_name)s', waarin een project werd geschrapt."
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:5
 #, python-format
@@ -4235,7 +4135,8 @@ msgstr ""
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:17
 #, python-format
 msgid ""
-"Checkout what happened on the project %(project)s by clicking the link below."
+"Checkout what happened on the project %(project)s by clicking the link "
+"below."
 msgstr ""
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:19
@@ -4253,11 +4154,9 @@ msgstr ""
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:33
 #, python-format
 msgid ""
-"This email was sent to %(receiver_mail)s. This email was sent to you because "
-"you are a moderator in the project."
+"This email was sent to %(receiver_mail)s. This email was sent to you because"
+" you are a moderator in the project."
 msgstr ""
-"Deze e-mail werd verstuurd naar %(receiver_mail)s. Deze e-mail werd naar u "
-"gestuurd omdat u een moderator bent in het project."
 
 #: apps/notifications/templates/a4_candy_notifications/settings.html:19
 msgid "Trigger all notification tasks (for testing)"
@@ -4277,7 +4176,8 @@ msgstr ""
 
 #: apps/notifications/templates/a4_candy_notifications/settings.html:58
 msgid ""
-"Receive email newsletters with updates and news from the projects you follow."
+"Receive email newsletters with updates and news from the projects you "
+"follow."
 msgstr ""
 
 #: apps/notifications/templates/a4_candy_notifications/settings.html:69
@@ -4459,8 +4359,8 @@ msgid ""
 "This description will be displayed below the title. It should briefly state "
 "the goal of the project in max. {} chars."
 msgstr ""
-"De beschrijving wordt onder de titel weergegeven. Hij moet kort het doel van "
-"het project vermelden in max. {} tekens."
+"De beschrijving wordt onder de titel weergegeven. Hij moet kort het doel van"
+" het project vermelden in max. {} tekens."
 
 #: apps/organisations/forms.py:327
 msgid "Picture Upload"
@@ -4469,13 +4369,10 @@ msgstr "Afbeelding uploaden"
 #: apps/organisations/forms.py:331
 #, python-brace-format
 msgid ""
-"The picture will be displayed in the sharepic. It must be min. {} pixel wide "
-"and {} pixel tall. Allowed file formats are png, jpeg, gif. The file size "
+"The picture will be displayed in the sharepic. It must be min. {} pixel wide"
+" and {} pixel tall. Allowed file formats are png, jpeg, gif. The file size "
 "should be max. 5 MB."
 msgstr ""
-"De foto zal worden weergegeven als afbeelding. Het moet min. {} pixel breed "
-"en {} pixel hoog zijn. Toegestane bestandsformaten zijn PNG, JPG, GIF. De "
-"bestandsgrootte is max. 5 MB."
 
 #: apps/organisations/mixins.py:20
 msgid "You can still manage all your preferences on User Agreements."
@@ -4487,8 +4384,8 @@ msgid ""
 "Please agree on the organisation's terms of use to be allowed to create "
 "content."
 msgstr ""
-"Ga akkoord met de gebruiksvoorwaarden van de organisatie om content te mogen "
-"creëren."
+"Ga akkoord met de gebruiksvoorwaarden van de organisatie om content te mogen"
+" creëren."
 
 #: apps/organisations/models.py:25
 msgid "Title of your organisation"
@@ -4518,13 +4415,13 @@ msgstr "Slogan"
 
 #: apps/organisations/models.py:48
 msgid ""
-"The slogan will be shown below the title of your organisation on the landing "
-"page. The slogan can provide context or additional information to the title. "
-"max. 200 characters"
+"The slogan will be shown below the title of your organisation on the landing"
+" page. The slogan can provide context or additional information to the "
+"title. max. 200 characters"
 msgstr ""
 "De slogan wordt onder de titel van uw organisatie op de landingspagina "
-"getoond. De slogan kan context of aanvullende informatie geven bij de titel. "
-"max. 200 tekens"
+"getoond. De slogan kan context of aanvullende informatie geven bij de titel."
+" max. 200 tekens"
 
 #: apps/organisations/models.py:59
 msgid "Information about your organisation"
@@ -4538,8 +4435,8 @@ msgid ""
 "can be reached via the main menu."
 msgstr ""
 "U kunt algemene informatie over uw participatieplatform aan uw bezoekers "
-"verstrekken. Het is ook nuttig om een algemene contactpersoon te noemen voor "
-"vragen. De informatie wordt getoond op een aparte \"Over\" pagina die via "
+"verstrekken. Het is ook nuttig om een algemene contactpersoon te noemen voor"
+" vragen. De informatie wordt getoond op een aparte \"Over\" pagina die via "
 "het hoofdmenu te bereiken is."
 
 #: apps/organisations/models.py:74
@@ -4607,7 +4504,8 @@ msgstr ""
 "Geef alle wettelijk vereiste informatie over uw gebruiksvoorwaarden. De "
 "gebruiksvoorwaarden worden op een aparte pagina weergegeven."
 
-#: apps/organisations/models.py:141 adhocracy-plus/templates/email_base.html:99
+#: apps/organisations/models.py:141
+#: adhocracy-plus/templates/email_base.html:99
 #: adhocracy-plus/templates/footer.html:53
 #: adhocracy-plus/templates/footer_upper.html:21
 msgid "Data protection policy"
@@ -4615,8 +4513,8 @@ msgstr "Privacyverklaring"
 
 #: apps/organisations/models.py:143
 msgid ""
-"Please provide all the legally required information of your data protection. "
-"The data protection policy will be shown on a separate page."
+"Please provide all the legally required information of your data protection."
+" The data protection policy will be shown on a separate page."
 msgstr ""
 "Geef a.u.b. alle wettelijk vereiste informatie over uw gegevensbescherming. "
 "De privacyverklaring wordt op een aparte pagina weergegeven."
@@ -4646,8 +4544,8 @@ msgid ""
 "For supporting organisations, the banner asking for donations is not "
 "displayed on their pages."
 msgstr ""
-"Voor ondersteunende organisaties wordt de banner die om donaties vraagt niet "
-"op hun pagina’s getoond."
+"Voor ondersteunende organisaties wordt de banner die om donaties vraagt niet"
+" op hun pagina’s getoond."
 
 #: apps/organisations/models.py:169
 msgid "enable geolocation for projects"
@@ -4778,8 +4676,8 @@ msgid ""
 msgstr ""
 "Op dit moment zijn er geen publieke participatieprocessen. <a "
 "href=\"%(account_login_url)s?next=%(organisation_url)s\">Log in</a> of <a "
-"href=\"%(organisation_information_url)s\">lees meer over deze organisatie</"
-"a>."
+"href=\"%(organisation_information_url)s\">lees meer over deze "
+"organisatie</a>."
 
 #: apps/organisations/templates/a4_candy_organisations/organisation_landing_page.html:99
 #, python-format
@@ -4985,8 +4883,7 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"                    Diese Zusammenfassung wurde am %(date)s um %(time)s Uhr "
-"mithilfe von KI erstellt und kann Fehler enthalten oder unvollständig sein.\n"
+"                    Diese Zusammenfassung wurde am %(date)s um %(time)s Uhr mithilfe von KI erstellt und kann Fehler enthalten oder unvollständig sein.\n"
 "                "
 msgstr ""
 
@@ -4994,8 +4891,7 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"                    This summary was created by AI on %(date)s at %(time)s "
-"and may contain errors or be incomplete.\n"
+"                    This summary was created by AI on %(date)s at %(time)s and may contain errors or be incomplete.\n"
 "                "
 msgstr ""
 
@@ -5050,8 +4946,8 @@ msgstr ""
 #: apps/projects/templates/a4_candy_projects/_summary_section.html:33
 msgid ""
 "The participation phases of the modules in this section have not started "
-"yet. You cannot contribute to the modules at this stage. In this section you "
-"can find summaries of the planned modules and their objectives."
+"yet. You cannot contribute to the modules at this stage. In this section you"
+" can find summaries of the planned modules and their objectives."
 msgstr ""
 
 #: apps/projects/templates/a4_candy_projects/_summary_section.html:43
@@ -5166,8 +5062,8 @@ msgstr ""
 #: apps/projects/templates/a4_candy_projects/emails/invite_moderator.en.email:17
 #, python-format
 msgid ""
-"This email was sent to %(receiver_mail)s. This email was sent to you because "
-"you are invited to moderate a project."
+"This email was sent to %(receiver_mail)s. This email was sent to you because"
+" you are invited to moderate a project."
 msgstr ""
 "Deze e-mail werd verstuurd naar %(receiver_mail)s. Deze e-mail is naar u "
 "gestuurd omdat u bent uitgenodigd om een project te modereren."
@@ -5217,12 +5113,12 @@ msgstr "Ga naar project"
 #: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:17
 #, python-format
 msgid ""
-"This email was sent to %(receiver_mail)s. This email was sent to you because "
-"you accepted the invitation to participate in a private project."
+"This email was sent to %(receiver_mail)s. This email was sent to you because"
+" you accepted the invitation to participate in a private project."
 msgstr ""
 "Deze e-mail is verzonden naar %(receiver_mail)s. Deze e-mail is u "
-"toegestuurd omdat u de uitnodiging om deel te nemen aan een besloten project "
-"heeft geaccepteerd."
+"toegestuurd omdat u de uitnodiging om deel te nemen aan een besloten project"
+" heeft geaccepteerd."
 
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:18
 #: apps/projects/templates/a4_candy_projects/project_detail.html:81
@@ -5279,17 +5175,17 @@ msgstr " Deelname: vanaf %(date)s"
 
 #: apps/projects/templates/a4_candy_projects/includes/project_timeline-carousel.html:12
 msgid "Timeline item"
-msgstr "Tijdlijnitem"
+msgstr ""
 
 #: apps/projects/templates/a4_candy_projects/includes/project_timeline-carousel.html:18
 #, python-format
 msgid " from %(date)s"
-msgstr "van %(date)s"
+msgstr ""
 
 #: apps/projects/templates/a4_candy_projects/includes/project_timeline-carousel.html:21
 #, python-format
 msgid " on %(date)s"
-msgstr "op %(date)s"
+msgstr ""
 
 #: apps/projects/templates/a4_candy_projects/includes/removeable_invite_list.html:9
 #: apps/projects/templates/a4_candy_projects/includes/removeable_invite_list.html:21
@@ -5332,8 +5228,8 @@ msgid ""
 "Please login to procceed. If you do not have an account, register and "
 "revisit the invitation link."
 msgstr ""
-"Gelieve in te loggen om verder te gaan. Als u geen account heeft, registreer "
-"dan en bekijk de uitnodigingslink opnieuw."
+"Gelieve in te loggen om verder te gaan. Als u geen account heeft, registreer"
+" dan en bekijk de uitnodigingslink opnieuw."
 
 #: apps/projects/templates/a4_candy_projects/moderatorinvite_detail.html:14
 #: apps/projects/templates/a4_candy_projects/participantinvite_detail.html:14
@@ -5384,21 +5280,13 @@ msgstr "Wilt u zich aansluiten bij %(project)s?"
 #, python-format
 msgid ""
 "\n"
-"                    You were invited by the initiator of the project. If you "
-"accept you will be able to participate in the project with your username "
-"\"%(user)s\".\n"
-"                    If you want to join with a different profile please "
-"login with your other profile and follow the invitation link again. If you "
-"decline the invitation the link is not valid anymore.\n"
+"                    You were invited by the initiator of the project. If you accept you will be able to participate in the project with your username \"%(user)s\".\n"
+"                    If you want to join with a different profile please login with your other profile and follow the invitation link again. If you decline the invitation the link is not valid anymore.\n"
 "                    "
 msgstr ""
 "\n"
-"                    U bent uitgenodigd door de initiatiefnemer van het "
-"project. Als u akkoord gaat, kunt u deelnemen aan het project met uw "
-"gebruikersnaam \"%(user)s\".\n"
-"                    Als u met een ander profiel wilt meedoen, log dan in met "
-"uw andere profiel en volg de uitnodigingslink opnieuw. Als u de uitnodiging "
-"afslaat is de link niet meer geldig.\n"
+"                    U bent uitgenodigd door de initiatiefnemer van het project. Als u akkoord gaat, kunt u deelnemen aan het project met uw gebruikersnaam \"%(user)s\".\n"
+"                    Als u met een ander profiel wilt meedoen, log dan in met uw andere profiel en volg de uitnodigingslink opnieuw. Als u de uitnodiging afslaat is de link niet meer geldig.\n"
 "                    "
 
 #: apps/projects/templates/a4_candy_projects/project_detail.html:69
@@ -5444,8 +5332,8 @@ msgstr "Het eindigde op %(date)s."
 #: apps/projects/templates/a4_candy_projects/project_detail.html:276
 #: adhocracy-plus/templates/a4modules/module_detail.html:159
 msgid ""
-"This project is not publicly visible. Only invited users can see content and "
-"actively participate."
+"This project is not publicly visible. Only invited users can see content and"
+" actively participate."
 msgstr ""
 "Dit project is niet publiekelijk zichtbaar. Alleen uitgenodigde gebruikers "
 "kunnen de inhoud zien en actief deelnemen."
@@ -5455,8 +5343,8 @@ msgstr ""
 msgid ""
 "This project is publicly visible. Invited users can actively participate."
 msgstr ""
-"Dit project is publiekelijk zichtbaar. Uitgenodigde gebruikers kunnen actief "
-"deelnemen."
+"Dit project is publiekelijk zichtbaar. Uitgenodigde gebruikers kunnen actief"
+" deelnemen."
 
 #: apps/projects/templates/a4_candy_projects/project_detail.html:303
 #: adhocracy-plus/templates/a4dashboard/includes/project_result_form.html:4
@@ -5465,7 +5353,7 @@ msgstr ""
 
 #: apps/projects/templates/a4_candy_projects/project_detail.html:326
 msgid "No results yet."
-msgstr "Nog geen resultaten."
+msgstr ""
 
 #: apps/projects/templates/a4_candy_projects/project_moderators.html:7
 msgid "Edit Moderators"
@@ -5697,8 +5585,8 @@ msgstr "Je bent nog niet actief in een project."
 
 #: apps/userdashboard/views.py:68 apps/userdashboard/views.py:142
 msgid ""
-"All your important updates, all in one place — from reactions to your posts, "
-"to results from your saved searches, to the latest news from projects you "
+"All your important updates, all in one place — from reactions to your posts,"
+" to results from your saved searches, to the latest news from projects you "
 "follow. You can fine-tune what you get in Notification Settings in your "
 "account."
 msgstr ""
@@ -5754,8 +5642,8 @@ msgid ""
 "Enter a valid username. This value may contain only letters, digits, spaces "
 "and @/./+/-/_ characters. It must start with a digit or a letter."
 msgstr ""
-"Voer een geldige gebruikersnaam in. Deze waarde mag alleen letters, cijfers, "
-"spaties en @/./+/-/_ tekens bevatten. Het moet beginnen met een cijfer of "
+"Voer een geldige gebruikersnaam in. Deze waarde mag alleen letters, cijfers,"
+" spaties en @/./+/-/_ tekens bevatten. Het moet beginnen met een cijfer of "
 "een letter."
 
 #: apps/users/admin.py:14
@@ -5772,8 +5660,8 @@ msgid ""
 "If you no longer want to receive any notifications, change the settings for "
 "your {}account{}."
 msgstr ""
-"Als u geen meldingen meer wilt ontvangen, wijzig dan de instellingen voor uw "
-"{}account{}."
+"Als u geen meldingen meer wilt ontvangen, wijzig dan de instellingen voor uw"
+" {}account{}."
 
 #: apps/users/emails.py:21
 #, python-brace-format
@@ -5823,8 +5711,8 @@ msgid ""
 "The membership number consists of a seven-digit number and can be found on "
 "the membership card."
 msgstr ""
-"Het lidmaatschapsnummer bestaat uit een zevencijferig nummer en is te vinden "
-"op de lidmaatschapskaart."
+"Het lidmaatschapsnummer bestaat uit een zevencijferig nummer en is te vinden"
+" op de lidmaatschapskaart."
 
 #: apps/users/forms.py:154
 msgid "Date of birth"
@@ -5878,10 +5766,11 @@ msgstr "gebruikersnaam"
 
 #: apps/users/models.py:26
 msgid ""
-"Required. 60 characters or fewer. Letters, digits, spaces and @/./+/-/_ only."
+"Required. 60 characters or fewer. Letters, digits, spaces and @/./+/-/_ "
+"only."
 msgstr ""
-"Verplicht. 60 tekens of minder. Alleen letters, cijfers, spaties en @/./+/-/"
-"_."
+"Verplicht. 60 tekens of minder. Alleen letters, cijfers, spaties en "
+"@/./+/-/_."
 
 #: apps/users/models.py:35
 msgid "A user with that username already exists."
@@ -5908,8 +5797,8 @@ msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
 msgstr ""
-"Geeft aan of deze gebruiker als actief moet worden behandeld. Deactiveer dit "
-"in plaats van het verwijderen van accounts."
+"Geeft aan of deze gebruiker als actief moet worden behandeld. Deactiveer dit"
+" in plaats van het verwijderen van accounts."
 
 #: apps/users/models.py:73
 msgid "Biography"
@@ -5929,7 +5818,8 @@ msgstr "Facebook naam"
 
 #: apps/users/models.py:88
 msgid ""
-"Your facebook name is the last part of the URL, when you access your profile."
+"Your facebook name is the last part of the URL, when you access your "
+"profile."
 msgstr ""
 "Uw facebooknaam is het laatste deel van de URL, wanneer u uw profiel opent."
 
@@ -5948,11 +5838,11 @@ msgstr "Uw voorkeurstaal"
 
 #: apps/users/models.py:112
 msgid ""
-"Specify your preferred language for the user interface and the notifications "
-"of the platform."
+"Specify your preferred language for the user interface and the notifications"
+" of the platform."
 msgstr ""
-"Specificeer uw voorkeurstaal voor de gebruikersinterface en de meldingen van "
-"het platform."
+"Specificeer uw voorkeurstaal voor de gebruikersinterface en de meldingen van"
+" het platform."
 
 #: apps/users/templates/a4_candy_users/guest_create.html:4
 msgid "Continue as Guest"
@@ -5972,23 +5862,24 @@ msgid ""
 "                        <a href=\"%(signup_url)s\">click here</a>."
 msgstr ""
 
+#: apps/users/templates/a4_candy_users/guest_create.html:24
+msgid ""
+"Please log out after participating or close your browser. This ensures that "
+"neither you nor anyone else has access to your guest account. You can "
+"convert your guest account into a permanent account in the user settings."
+msgstr ""
+
 #: apps/users/templates/a4_candy_users/guest_create.html:37
 #: adhocracy-plus/templates/account/signup.html:33
 #: adhocracy-plus/templates/socialaccount/signup.html:31
 #, python-format
 msgid ""
 "\n"
-"                I confirm that I have read and accepted the <a "
-"href=\"%(terms_of_use_url)s\" target=\"_blank\">terms of use</a> and the <a "
-"href=\"%(data_protection_policy)s\" target=\"_blank\">data protection "
-"policy</a>.\n"
+"                I confirm that I have read and accepted the <a href=\"%(terms_of_use_url)s\" target=\"_blank\">terms of use</a> and the <a href=\"%(data_protection_policy)s\" target=\"_blank\">data protection policy</a>.\n"
 "                "
 msgstr ""
 "\n"
-"                Ik bevestig dat ik de <a href=\"%(terms_of_use_url)s\" "
-"target=\"_blank\">gebruiksvoorwaarden</a> en de <a "
-"href=\"%(data_protection_policy)s\" target=\"_blank\">privacyverklaring</a> "
-"heb gelezen en geaccepteerd.\n"
+"                Ik bevestig dat ik de <a href=\"%(terms_of_use_url)s\" target=\"_blank\">gebruiksvoorwaarden</a> en de <a href=\"%(data_protection_policy)s\" target=\"_blank\">privacyverklaring</a> heb gelezen en geaccepteerd.\n"
 "                "
 
 #: apps/users/templates/a4_candy_users/guest_create.html:71
@@ -6362,8 +6253,7 @@ msgstr "verwijderen"
 #: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:104
 #, python-format
 msgid " Are you sure you want to delete the project '%(project_name)s'? "
-msgstr ""
-" Weet u zeker dat u het project \"%(project_name)s\" wilt verwijderen? "
+msgstr " Weet u zeker dat u het project \"%(project_name)s\" wilt verwijderen? "
 
 #: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:110
 msgid "cancel"
@@ -6395,19 +6285,19 @@ msgstr "Verwijder item"
 
 #: adhocracy-plus/templates/a4images/image_upload_widget.html:32
 msgid ""
-"Your image will be uploaded/removed once you save your changes at the end of "
-"this page."
+"Your image will be uploaded/removed once you save your changes at the end of"
+" this page."
 msgstr ""
-"Uw afbeelding wordt geüpload/verwijderd zodra u uw wijzigingen aan het einde "
-"van deze pagina opslaat."
+"Uw afbeelding wordt geüpload/verwijderd zodra u uw wijzigingen aan het einde"
+" van deze pagina opslaat."
 
 #: adhocracy-plus/templates/a4modules/module_detail.html:42
 msgid "This project is in not published yet."
-msgstr "Dit project is nog niet gepubliceerd."
+msgstr ""
 
 #: adhocracy-plus/templates/a4modules/module_detail.html:81
 msgid "of"
-msgstr "van"
+msgstr ""
 
 #: adhocracy-plus/templates/a4modules/module_detail.html:182
 msgid "More questions from this online participation"
@@ -6420,10 +6310,8 @@ msgstr ""
 #: adhocracy-plus/templates/a4polls/includes/unregistered-users-info-box.html:9
 msgid ""
 "\n"
-"                    <p>You can now participate in this poll even if you're "
-"not logged in.</p>\n"
-"                    <p><strong>Unregistered users can't edit their votes "
-"once submitted.</strong></p>\n"
+"                    <p>You can now participate in this poll even if you're not logged in.</p>\n"
+"                    <p><strong>Unregistered users can't edit their votes once submitted.</strong></p>\n"
 "                "
 msgstr ""
 
@@ -6449,8 +6337,8 @@ msgid ""
 "the post and delete it if necessary. The following reasons were given:"
 msgstr ""
 "Gebruiker %(user_name)s rapporteerde een bericht in uw project "
-"\"%(project_name)s\". Het is mogelijk dat het bericht spam is. Als moderator "
-"kunt u het bericht bekijken en eventueel verwijderen. De volgende redenen "
+"\"%(project_name)s\". Het is mogelijk dat het bericht spam is. Als moderator"
+" kunt u het bericht bekijken en eventueel verwijderen. De volgende redenen "
 "werden opgegeven:"
 
 #: adhocracy-plus/templates/a4reports/emails/report_moderators.en.email:18
@@ -6525,20 +6413,16 @@ msgstr "Account bestaat al"
 
 #: adhocracy-plus/templates/account/email/account_already_exists.en.email:8
 msgid ""
-"You are receiving this e-mail because you or someone else tried to signup "
-"for an\n"
+"You are receiving this e-mail because you or someone else tried to signup for an\n"
 "    account using the e-mail address:"
 msgstr ""
-"U ontvangt deze e-mail omdat u of iemand anders zich probeerde aan te melden "
-"voor een\n"
+"U ontvangt deze e-mail omdat u of iemand anders zich probeerde aan te melden voor een\n"
 "account met dit e-mailadres:"
 
 #: adhocracy-plus/templates/account/email/account_already_exists.en.email:15
 msgid ""
-"However, an account using that e-mail address already exists.  In case you "
-"have\n"
-"    forgotten about this, please use the password forgotten procedure to "
-"recover\n"
+"However, an account using that e-mail address already exists.  In case you have\n"
+"    forgotten about this, please use the password forgotten procedure to recover\n"
 "    your account:"
 msgstr ""
 "Er bestaat echter al een account met dat e-mailadres. In het geval dat u\n"
@@ -6571,8 +6455,8 @@ msgid ""
 msgstr ""
 "dit e-mailadres is toegevoegd aan het gebruikersaccount \"%(username)s\" op "
 "\"%(current_site)s\". Bevestig dit adres. Als u dit e-mailadres niet heeft "
-"toegevoegd, kunt u dit e-mailbericht negeren. We zullen u geen verdere e-"
-"mails sturen."
+"toegevoegd, kunt u dit e-mailbericht negeren. We zullen u geen verdere "
+"e-mails sturen."
 
 #: adhocracy-plus/templates/account/email/email_confirmation.en.email:15
 msgid "Confirm your email address"
@@ -6594,7 +6478,8 @@ msgid ""
 "You have registered with the username \"%(username)s\" on the participation "
 "platform \"%(current_site)s\". Click \"Confirm email address\" to complete "
 "your registration. As soon as you are registered, you can participate on "
-"\"%(current_site)s\". If you haven't registered, you can ignore this message."
+"\"%(current_site)s\". If you haven't registered, you can ignore this "
+"message."
 msgstr ""
 "U heeft zich geregistreerd met de gebruikersnaam \"%(username)s\" op het "
 "participatieplatform \"%(current_site)s\". Klik op \"E-mailadres "
@@ -6644,15 +6529,15 @@ msgid ""
 "This email was sent to %(useremail)s. You receive this email because your "
 "password on %(current_site)s has been reset."
 msgstr ""
-"Deze e-mail werd verstuurd naar %(useremail)s. U ontvangt deze e-mail, omdat "
-"uw wachtwoord op %(current_site)s opnieuw is ingesteld."
+"Deze e-mail werd verstuurd naar %(useremail)s. U ontvangt deze e-mail, omdat"
+" uw wachtwoord op %(current_site)s opnieuw is ingesteld."
 
 #: adhocracy-plus/templates/account/email/unknown_account.en.email:10
 #, python-format
 msgid ""
 "You are receiving this e-mail because you or someone else has requested a "
-"password for your user account. However, we do not have any record of a user "
-"with email %(email)s in our database."
+"password for your user account. However, we do not have any record of a user"
+" with email %(email)s in our database."
 msgstr ""
 "U ontvangt deze e-mail omdat u of iemand anders een wachtwoord voor uw "
 "gebruikersaccount heeft aangevraagd. We hebben echter geen gegevens van een "
@@ -6712,8 +6597,7 @@ msgid ""
 "                request</a>."
 msgstr ""
 "Deze e-mailbevestigingslink is vervallen of ongeldig.\n"
-"            AUB <a href=\"%(email_url)s\"> een nieuwe e-mailbevestiging "
-"sturen</a>."
+"            AUB <a href=\"%(email_url)s\"> een nieuwe e-mailbevestiging sturen</a>."
 
 #: adhocracy-plus/templates/account/login.html:11
 #, python-format
@@ -6769,8 +6653,8 @@ msgid ""
 "Forgotten your password? Enter your email address below, and we'll send you "
 "an email allowing you to reset it."
 msgstr ""
-"Bent u uw wachtwoord vergeten? Vul hieronder uw e-mailadres in en wij sturen "
-"u een e-mail waarmee u het kunt resetten."
+"Bent u uw wachtwoord vergeten? Vul hieronder uw e-mailadres in en wij sturen"
+" u een e-mail waarmee u het kunt resetten."
 
 #: adhocracy-plus/templates/account/password_reset.html:18
 msgid "Reset My Password"
@@ -6801,8 +6685,8 @@ msgstr "Foutieve token"
 #, python-format
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
-"used.  Please request a <a href=\"%(passwd_reset_url)s\">new password reset</"
-"a>."
+"used.  Please request a <a href=\"%(passwd_reset_url)s\">new password "
+"reset</a>."
 msgstr ""
 "De wachtwoord-resetlink was ongeldig, mogelijk omdat deze al is gebruikt. "
 "Vraag een <a href=\"%(passwd_reset_url)s\">nieuwe wachtwoord reset</a> aan."
@@ -6941,19 +6825,17 @@ msgstr "Bestaande connecties verwijderen"
 #: adhocracy-plus/templates/socialaccount/connections.html:11
 msgid ""
 "You can sign in to your account using any of the following third party\n"
-"        accounts. To remove them mark the one you would like to remove and "
-"click the remove button"
+"        accounts. To remove them mark the one you would like to remove and click the remove button"
 msgstr ""
-"U kunt zich aanmelden op uw account met behulp van een van de volgende "
-"derden\n"
-"        rekeningen. Om ze te verwijderen markeert u degene die u wilt "
-"verwijderen en klikt u op de verwijderknop"
+"U kunt zich aanmelden op uw account met behulp van een van de volgende derden\n"
+"        rekeningen. Om ze te verwijderen markeert u degene die u wilt verwijderen en klikt u op de verwijderknop"
 
 #: adhocracy-plus/templates/socialaccount/connections.html:35
 msgid ""
 "You currently have no social network accounts connected to this account."
 msgstr ""
-"U hebt op dit moment geen sociale netwerkaccounts aangesloten op dit account."
+"U hebt op dit moment geen sociale netwerkaccounts aangesloten op dit "
+"account."
 
 #: adhocracy-plus/templates/socialaccount/login.html:5
 msgid "Sign In"
@@ -6976,7 +6858,8 @@ msgstr ""
 
 #: adhocracy-plus/templates/socialaccount/login.html:20
 #, python-format
-msgid "You are about to sign in using a third-party account from %(provider)s."
+msgid ""
+"You are about to sign in using a third-party account from %(provider)s."
 msgstr ""
 
 #: adhocracy-plus/templates/socialaccount/login.html:27
@@ -6997,8 +6880,7 @@ msgid ""
 "You are about to use your %(provider_name)s account to login to\n"
 "%(site_name)s. As a final step, please complete the following form:"
 msgstr ""
-"U staat op het punt uw %(provider_name)s-account te gebruiken om in te "
-"loggen op\n"
+"U staat op het punt uw %(provider_name)s-account te gebruiken om in te loggen op\n"
 "%(site_name)s. Als laatste stap kunt u het volgende formulier invullen:"
 
 #: adhocracy-plus/templates/socialaccount/snippets/provider_list.html:6

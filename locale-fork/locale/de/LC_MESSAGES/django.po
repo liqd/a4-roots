@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-13 16:04+0200\n"
+"POT-Creation-Date: 2026-08-13 16:18+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1852,17 +1852,22 @@ msgstr ""
 
 #: apps/cms/blocks.py:132
 msgid "Please insert a short description of the video (character limit 500)."
-msgstr "Fügen Sie eine kurze Beschreibung des Videos ein (maximal 500 Zeichen)."
+msgstr ""
+"Fügen Sie eine kurze Beschreibung des Videos ein (maximal 500 Zeichen)."
 
 #: apps/cms/blocks.py:137
 msgid ""
 "Please upload or choose a media file with any of the following extensions: "
 "MP4, WebM, MP3, WAV"
-msgstr "Laden Sie eine Mediendatei mit einer der folgenden Dateiendungen hoch: MP4, WebM, MP3, WAV."
+msgstr ""
+"Laden Sie eine Mediendatei mit einer der folgenden Dateiendungen hoch: MP4, "
+"WebM, MP3, WAV."
 
 #: apps/cms/blocks.py:146
 msgid "You can add the video's transcript here (unlimited characters)."
-msgstr "Sie können hier die Transkription des Videos einfügen (Zeichenanzahl unbegrenzt)."
+msgstr ""
+"Sie können hier die Transkription des Videos einfügen (Zeichenanzahl "
+"unbegrenzt)."
 
 #: apps/cms/contacts/models.py:42 apps/users/forms.py:39
 msgid "I am not a robot"
@@ -1968,7 +1973,9 @@ msgstr "Audiodatei herunterladen"
 #: apps/cms/pages/templates/a4_candy_cms_pages/blocks/video_block.html:16
 msgid ""
 "To view this video please enable JavaScript, or upgrade to a web browser that"
-msgstr "Um dieses Video anzusehen, aktivieren Sie bitte JavaScript oder wechseln Sie zu einem Webbrowser, der JavaScript unterstützt."
+msgstr ""
+"Um dieses Video anzusehen, aktivieren Sie bitte JavaScript oder wechseln Sie "
+"zu einem Webbrowser, der JavaScript unterstützt."
 
 #: apps/cms/pages/templates/a4_candy_cms_pages/blocks/video_block.html:18
 msgid "supports HTML5 video"
@@ -2742,37 +2749,49 @@ msgstr ""
 msgid ""
 "Upload an image that visually captures the content (recommended size: "
 "600x400px, 3:2 ratio)"
-msgstr "Fügen Sie ein Bild ein, das den Inhalt widerspiegelt (empfohlene Größe: 600×400 px, Seitenverhältnis 3:2)."
+msgstr ""
+"Fügen Sie ein Bild ein, das den Inhalt widerspiegelt (empfohlene Größe: "
+"600×400 px, Seitenverhältnis 3:2)."
 
 #: apps/learning_nuggets/blocks.py:20
 msgid ""
 "Upload or select an instructional video to complement the written content "
 "(MP4 format recommended - 20mb)"
-msgstr "Laden Sie ein erklärendes Video hoch oder wählen Sie ein Video aus, das den Text ergänzt (empfohlenes Format: MP4, max. 20 MB)."
+msgstr ""
+"Laden Sie ein erklärendes Video hoch oder wählen Sie ein Video aus, das den "
+"Text ergänzt (empfohlenes Format: MP4, max. 20 MB)."
 
 #: apps/learning_nuggets/blocks.py:27
 msgid ""
 "Upload related documents such as worksheets, guides, or additional resources "
 "(PDF format recommended)"
-msgstr "Laden Sie ergänzende Dokumente hoch, z. B. Arbeitsblätter, Anleitungen oder weiterführende Materialien (empfohlenes Format: PDF)."
+msgstr ""
+"Laden Sie ergänzende Dokumente hoch, z. B. Arbeitsblätter, Anleitungen oder "
+"weiterführende Materialien (empfohlenes Format: PDF)."
 
 #: apps/learning_nuggets/blocks.py:43
 msgid ""
 "Enter a clear, concise title for this learning nugget (max 100 characters "
 "recommended)"
-msgstr "Geben Sie einen klaren Titel für dieses Learning Nugget ein (empfohlen: max. 100 Zeichen)."
+msgstr ""
+"Geben Sie einen klaren Titel für dieses Learning Nugget ein (empfohlen: max. "
+"100 Zeichen)."
 
 #: apps/learning_nuggets/blocks.py:50
 msgid ""
 "Provide a comprehensive description of the learning nugget, including key "
 "takeaways and learning objectives"
-msgstr "Geben Sie eine umfassende Beschreibung dieses Learning Nuggets an – inklusive zentraler Erkenntnisse und Lernziele."
+msgstr ""
+"Geben Sie eine umfassende Beschreibung dieses Learning Nuggets an – "
+"inklusive zentraler Erkenntnisse und Lernziele."
 
 #: apps/learning_nuggets/blocks.py:57
 msgid ""
 "Upload a representative image that visually captures the content "
 "(recommended size: 600x400px, 3:2 ratio)"
-msgstr "Fügen Sie ein aussagekräftiges Bild ein, das den Inhalt widerspiegelt (empfohlene Größe: 600×400 px, Seitenverhältnis 3:2)."
+msgstr ""
+"Fügen Sie ein aussagekräftiges Bild ein, das den Inhalt widerspiegelt "
+"(empfohlene Größe: 600×400 px, Seitenverhältnis 3:2)."
 
 #: apps/learning_nuggets/blocks.py:64
 msgid "Choose optional content: videos, images, or documents."
@@ -3899,7 +3918,9 @@ msgstr "Beitrag anzeigen"
 msgid ""
 "This email was sent to %(receiver_mail)s. You have received the e-mail "
 "because you added a contribution to the above project."
-msgstr "Diese E-Mail wurde an %(receiver_mail)s gesendet. Sie haben die E-Mail erhalten, weil Sie einen Beitrag in einem Projekt erstellt haben."
+msgstr ""
+"Diese E-Mail wurde an %(receiver_mail)s gesendet. Sie haben die E-Mail "
+"erhalten, weil Sie einen Beitrag in einem Projekt erstellt haben."
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_on_post.en.email:12
 #, python-format
@@ -3911,7 +3932,9 @@ msgstr "%(commenter)s kommentierte auf %(post)s"
 msgid ""
 "This email was sent to %(receiver_email)s because someone commented on your "
 "content."
-msgstr "Diese E-Mail wurde an %(receiver_email)s gesendet, weil jemand Ihren Beitrag kommentiert hat. "
+msgstr ""
+"Diese E-Mail wurde an %(receiver_email)s gesendet, weil jemand Ihren Beitrag "
+"kommentiert hat. "
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_reply.en.email:12
 #, python-format
@@ -3932,7 +3955,9 @@ msgstr "Antwort von %(commenter_name)s:"
 msgid ""
 "This email was sent to %(receiver_email)s because someone replied to your "
 "comment."
-msgstr "Diee E-Mail wurde an %(receiver_email)s gesendet, weil jemand auf Ihr Kommentar geantwortet hat."
+msgstr ""
+"Diee E-Mail wurde an %(receiver_email)s gesendet, weil jemand auf Ihr "
+"Kommentar geantwortet hat."
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_blocked.en.email:22
 #, python-format
@@ -3975,7 +4000,9 @@ msgstr "Veranstaltung im Projekt %(project)s hinzugefügt"
 msgid ""
 "This email was sent to %(receiver_mail)s. You have received the e-mail "
 "because you are following the above project."
-msgstr "Diese E-Mail wurde an %(receiver_mail)s gesendet. Sie haben die E-Mail erhalten, weil Sie oben genanntem Projekt folgen."
+msgstr ""
+"Diese E-Mail wurde an %(receiver_mail)s gesendet. Sie haben die E-Mail "
+"erhalten, weil Sie oben genanntem Projekt folgen."
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_deleted.en.email:4
 #, python-format
@@ -4050,14 +4077,18 @@ msgstr "Neues Projekt %(project_name)s bei %(organisation_name)s"
 msgid ""
 "%(creator_name)s has created the project %(project_name)s for "
 "%(organisation_name)s."
-msgstr "%(creator_name)s hat ein neues Projekt %(project_name)s bei %(organisation_name)s erstellt."
+msgstr ""
+"%(creator_name)s hat ein neues Projekt %(project_name)s bei "
+"%(organisation_name)s erstellt."
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_created.en.email:17
 #, python-format
 msgid ""
 "This email was sent to %(receiver_mail)s. This email was sent to you because "
 "you are an intiator of %(organisation_name)s."
-msgstr "Diese E-Mail wurde an %(receiver_mail)s gesendet. Die E-Mail wurde an Sie gesendet, da Sie Initiator*in der Organisation %(organisation_name)s sind."
+msgstr ""
+"Diese E-Mail wurde an %(receiver_mail)s gesendet. Die E-Mail wurde an Sie "
+"gesendet, da Sie Initiator*in der Organisation %(organisation_name)s sind."
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_deleted.en.email:6
 #, python-format
@@ -4070,7 +4101,10 @@ msgid ""
 "This email was sent to %(receiver)s. This email was sent to you because you "
 "are an initiator of the organisation '%(organisation_name)s', in which a "
 "project was deleted."
-msgstr "Diese E-Mail wurde an %(receiver)s gesendet. Die E-Mail wurde an Sie gesendet, da Sie Initiator*in der Organisation '%(organisation_name)s' sind, in der ein Projekt gelöscht wurde."
+msgstr ""
+"Diese E-Mail wurde an %(receiver)s gesendet. Die E-Mail wurde an Sie "
+"gesendet, da Sie Initiator*in der Organisation '%(organisation_name)s' sind, "
+"in der ein Projekt gelöscht wurde."
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:5
 #, python-format
@@ -4080,26 +4114,33 @@ msgstr "%(content_type)s wurde zum Projekt %(project)s hinzugefügt"
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:9
 #, python-format
 msgid "%(creator_name)s created a %(content_type)s on the project %(project)s"
-msgstr "%(creator_name)s hat ein/e%(content_type)s im Projekt %(project)s erstellt"
+msgstr ""
+"%(creator_name)s hat ein/e%(content_type)s im Projekt %(project)s erstellt"
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:14
 #, python-format
 msgid ""
 "on the project %(project)s a %(content_type)s was added by %(creator_name)s."
-msgstr "Im Projekt %(project)s wurde ein/e %(content_type)s von %(creator_name)s hinzugefügt. "
+msgstr ""
+"Im Projekt %(project)s wurde ein/e %(content_type)s von %(creator_name)s "
+"hinzugefügt. "
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:17
 #, python-format
 msgid ""
 "Checkout what happened on the project %(project)s by clicking the link below."
-msgstr "Schauen Sie nach was im Projekt %(project)s geschehen ist, indem Sie auf den Link unten klicken. "
+msgstr ""
+"Schauen Sie nach was im Projekt %(project)s geschehen ist, indem Sie auf den "
+"Link unten klicken. "
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:19
 #, python-format
 msgid ""
 "Checkout what happened on the project %(project)s by clicking the button "
 "below."
-msgstr "Schauen Sie nach was im Projekt %(project)s geschehen ist, indem Sie auf den Link unten klicken. "
+msgstr ""
+"Schauen Sie nach was im Projekt %(project)s geschehen ist, indem Sie auf den "
+"Link unten klicken. "
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:29
 #, python-format
@@ -4111,7 +4152,9 @@ msgstr "Überprüfe %(content_type)s"
 msgid ""
 "This email was sent to %(receiver_mail)s. This email was sent to you because "
 "you are a moderator in the project."
-msgstr "Diese E-Mail wurde an %(receiver_mail)s gesendet. Die E-Mail wurde an Sie gesendet, da Sie Moderator*in des Projekts sind."
+msgstr ""
+"Diese E-Mail wurde an %(receiver_mail)s gesendet. Die E-Mail wurde an Sie "
+"gesendet, da Sie Moderator*in des Projekts sind."
 
 #: apps/notifications/templates/a4_candy_notifications/settings.html:19
 msgid "Trigger all notification tasks (for testing)"
@@ -4315,7 +4358,10 @@ msgid ""
 "The picture will be displayed in the sharepic. It must be min. {} pixel wide "
 "and {} pixel tall. Allowed file formats are png, jpeg, gif. The file size "
 "should be max. 5 MB."
-msgstr "Das Bild wird im Sharepic angezeigt. Es muss mindestens {} Pixel breit und {} Pixel hoch sein. Erlaubte Dateiformate sind png, jpeg, gif. Die maximale Dateigröße beträgt 5 MB."
+msgstr ""
+"Das Bild wird im Sharepic angezeigt. Es muss mindestens {} Pixel breit und "
+"{} Pixel hoch sein. Erlaubte Dateiformate sind png, jpeg, gif. Die maximale "
+"Dateigröße beträgt 5 MB."
 
 #: apps/organisations/mixins.py:20
 msgid "You can still manage all your preferences on User Agreements."
@@ -4512,13 +4558,16 @@ msgstr "QR Codes"
 msgid ""
 "Mit QR-Codes könnt ihr einfach und direkt auf eure Beteiligungsprojekte "
 "verlinken – z. B. auf Plakaten oder Flyern."
-msgstr "QR codes can be used to directly link to participation projects - for instance in newsletters, on flyers, or on posters. "
+msgstr ""
+"QR codes can be used to directly link to participation projects - for "
+"instance in newsletters, on flyers, or on posters. "
 
 #: apps/organisations/templates/a4_candy_organisations/communication_qr_create.html:15
 msgid ""
 "Über dieses externe Tool der TU Chemnitz könnt ihr QR-Codes kostenlos "
 "erstellen:"
-msgstr "This third party tool by the TU Chemnitz creates QR codes free of charge:"
+msgstr ""
+"This third party tool by the TU Chemnitz creates QR codes free of charge:"
 
 #: apps/organisations/templates/a4_candy_organisations/communication_qr_create.html:18
 msgid "QR-Code-Generator öffnen"
@@ -4528,7 +4577,9 @@ msgstr "Open QR code generator"
 msgid ""
 "Einfach Projekt-Link einfügen, Code erzeugen und für eure "
 "Öffentlichkeitsarbeit nutzen!"
-msgstr "Simply add the URL of your project, create the QR code, and use it to promote your project!"
+msgstr ""
+"Simply add the URL of your project, create the QR code, and use it to "
+"promote your project!"
 
 #: apps/organisations/templates/a4_candy_organisations/includes/form_field.html:6
 msgid "Missing important field"
@@ -4742,7 +4793,9 @@ msgstr "Zusammenfassung der Beteiligung"
 msgid ""
 "Automatically generate overview of the most important themes, voices and "
 "insights."
-msgstr "Eine Übersicht der wichtigsten Themen, Beiträge und Ergebnisse automatisch erstellen."
+msgstr ""
+"Eine Übersicht der wichtigsten Themen, Beiträge und Ergebnisse automatisch "
+"erstellen."
 
 #: apps/projects/templates/a4_candy_projects/_generate_summary_button.html:42
 msgid "Summarise with AI"
@@ -4760,7 +4813,9 @@ msgstr ""
 msgid ""
 " The AI ran into an issue processing this content. The original discussion "
 "is still available."
-msgstr "Die KI hatte ein Problem bei der Verarbeitung dieses Inhalts. Die ursprüngliche Diskussion ist weiterhin verfügbar."
+msgstr ""
+"Die KI hatte ein Problem bei der Verarbeitung dieses Inhalts. Die "
+"ursprüngliche Diskussion ist weiterhin verfügbar."
 
 #: apps/projects/templates/a4_candy_projects/_summary_error.html:11
 msgid "Having problems with AI?"
@@ -4789,7 +4844,10 @@ msgid ""
 "                    Diese Zusammenfassung wurde am %(date)s um %(time)s Uhr "
 "mithilfe von KI erstellt und kann Fehler enthalten oder unvollständig sein.\n"
 "                "
-msgstr "\nDiese Zusammenfassung wurde am %(date)s um %(time)s Uhr mithilfe von KI erstellt und kann Fehler enthalten oder unvollständig sein."
+msgstr ""
+"\n"
+"Diese Zusammenfassung wurde am %(date)s um %(time)s Uhr mithilfe von KI "
+"erstellt und kann Fehler enthalten oder unvollständig sein."
 
 #: apps/projects/templates/a4_candy_projects/_summary_fragment.html:45
 #, python-format
@@ -4798,7 +4856,10 @@ msgid ""
 "                    This summary was created by AI on %(date)s at %(time)s "
 "and may contain errors or be incomplete.\n"
 "                "
-msgstr "\nDiese Zusammenfassung wurde am %(date)s um %(time)s Uhr mithilfe von KI erstellt und kann Fehler enthalten oder unvollständig sein."
+msgstr ""
+"\n"
+"Diese Zusammenfassung wurde am %(date)s um %(time)s Uhr mithilfe von KI "
+"erstellt und kann Fehler enthalten oder unvollständig sein."
 
 #: apps/projects/templates/a4_candy_projects/_summary_fragment.html:56
 msgid "General info"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-13 16:04+0200\n"
+"POT-Creation-Date: 2026-08-13 16:18+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3899,7 +3899,9 @@ msgstr "Bekijk bericht"
 msgid ""
 "This email was sent to %(receiver_mail)s. You have received the e-mail "
 "because you added a contribution to the above project."
-msgstr "Deze e-mail werd verstuurd naar %(receiver_mail)s. U heeft de e-mail ontvangen omdat u een bijdrage aan bovengenoemd project heeft toegevoegd."
+msgstr ""
+"Deze e-mail werd verstuurd naar %(receiver_mail)s. U heeft de e-mail "
+"ontvangen omdat u een bijdrage aan bovengenoemd project heeft toegevoegd."
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_on_post.en.email:12
 #, python-format
@@ -3975,7 +3977,9 @@ msgstr ""
 msgid ""
 "This email was sent to %(receiver_mail)s. You have received the e-mail "
 "because you are following the above project."
-msgstr "Deze e-mail werd verstuurd naar %(receiver_mail)s. U heeft de e-mail ontvangen omdat u het bovenstaande project volgt."
+msgstr ""
+"Deze e-mail werd verstuurd naar %(receiver_mail)s. U heeft de e-mail "
+"ontvangen omdat u het bovenstaande project volgt."
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_deleted.en.email:4
 #, python-format
@@ -4050,14 +4054,18 @@ msgstr "Nieuw project %(project_name)s is gemaakt voor %(organisation_name)s"
 msgid ""
 "%(creator_name)s has created the project %(project_name)s for "
 "%(organisation_name)s."
-msgstr "%(creator_name)s heeft het project %(project_name)s gecreëerd voor %(organisation_name)s."
+msgstr ""
+"%(creator_name)s heeft het project %(project_name)s gecreëerd voor "
+"%(organisation_name)s."
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_created.en.email:17
 #, python-format
 msgid ""
 "This email was sent to %(receiver_mail)s. This email was sent to you because "
 "you are an intiator of %(organisation_name)s."
-msgstr "Deze e-mail werd verstuurd naar %(receiver_mail)s. Deze e-mail werd naar u gestuurd omdat u een intiator bent van %(organisation_name)s."
+msgstr ""
+"Deze e-mail werd verstuurd naar %(receiver_mail)s. Deze e-mail werd naar u "
+"gestuurd omdat u een intiator bent van %(organisation_name)s."
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_deleted.en.email:6
 #, python-format
@@ -4070,7 +4078,10 @@ msgid ""
 "This email was sent to %(receiver)s. This email was sent to you because you "
 "are an initiator of the organisation '%(organisation_name)s', in which a "
 "project was deleted."
-msgstr "Deze e-mail werd verstuurd naar %(receiver)s. Deze e-mail werd naar u gestuurd omdat u een initiatiefnemer bent van de organisatie '%(organisation_name)s', waarin een project werd geschrapt."
+msgstr ""
+"Deze e-mail werd verstuurd naar %(receiver)s. Deze e-mail werd naar u "
+"gestuurd omdat u een initiatiefnemer bent van de organisatie "
+"'%(organisation_name)s', waarin een project werd geschrapt."
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:5
 #, python-format
@@ -4111,7 +4122,9 @@ msgstr ""
 msgid ""
 "This email was sent to %(receiver_mail)s. This email was sent to you because "
 "you are a moderator in the project."
-msgstr "Deze e-mail werd verstuurd naar %(receiver_mail)s. Deze e-mail werd naar u gestuurd omdat u een moderator bent in het project."
+msgstr ""
+"Deze e-mail werd verstuurd naar %(receiver_mail)s. Deze e-mail werd naar u "
+"gestuurd omdat u een moderator bent in het project."
 
 #: apps/notifications/templates/a4_candy_notifications/settings.html:19
 msgid "Trigger all notification tasks (for testing)"
@@ -4315,7 +4328,10 @@ msgid ""
 "The picture will be displayed in the sharepic. It must be min. {} pixel wide "
 "and {} pixel tall. Allowed file formats are png, jpeg, gif. The file size "
 "should be max. 5 MB."
-msgstr "De foto zal worden weergegeven als afbeelding. Het moet min. {} pixel breed en {} pixel hoog zijn. Toegestane bestandsformaten zijn PNG, JPG, GIF. De bestandsgrootte is max. 5 MB."
+msgstr ""
+"De foto zal worden weergegeven als afbeelding. Het moet min. {} pixel breed "
+"en {} pixel hoog zijn. Toegestane bestandsformaten zijn PNG, JPG, GIF. De "
+"bestandsgrootte is max. 5 MB."
 
 #: apps/organisations/mixins.py:20
 msgid "You can still manage all your preferences on User Agreements."

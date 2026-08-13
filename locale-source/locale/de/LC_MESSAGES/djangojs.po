@@ -2,7 +2,7 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 # Translators:
 # Katharina Schmid, 2020
 # Frederik Wegener <frederik.wegener@liqd.de>, 2021
@@ -11,19 +11,19 @@
 # Luca Thüer, 2023
 # Julian Dehm <j.dehm@liqd.net>, 2024
 # Tietje, 2026
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-13 12:07+0200\n"
+"POT-Creation-Date: 2026-08-13 10:14+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Tietje, 2026\n"
 "Language-Team: German (https://app.transifex.com/liqd/teams/109316/de/)\n"
-"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:23
@@ -50,8 +50,6 @@ msgstr "Ihre Antwort hier"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:32
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:18
-#: adhocracy4/comments/static/comments/Comment.jsx:32
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:18
 msgid ""
 "You want to report this content? Your message will be sent to the "
 "moderation. The moderation will look at the reported content. The content "
@@ -63,13 +61,9 @@ msgstr ""
 
 #: adhocracy4/comments/static/comments/Comment.jsx:97
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:33
-#: adhocracy4/comments/static/comments/Comment.jsx:97
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:33
 msgid "Moderator"
 msgstr "Moderation"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:106
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:32
 #: adhocracy4/comments/static/comments/Comment.jsx:106
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:32
 msgid "Latest edit on"
@@ -77,13 +71,9 @@ msgstr "Letzte Änderung am"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:111
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:29
-#: adhocracy4/comments/static/comments/Comment.jsx:111
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:29
 msgid "Deleted by creator on"
 msgstr "Vom Ersteller gelöscht am"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:113
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:30
 #: adhocracy4/comments/static/comments/Comment.jsx:113
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:30
 msgid "Deleted by moderator on"
@@ -91,19 +81,9 @@ msgstr "Von der Moderation gelöscht am"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:154
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:26
-#: adhocracy4/comments/static/comments/Comment.jsx:154
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:26
 msgid "Do you really want to delete this comment?"
 msgstr "Möchten Sie diesen Kommentar wirklich löschen?"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:155
-#: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:6
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:28
-#: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:6
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:72
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:77
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:154
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:159
 #: adhocracy4/comments/static/comments/Comment.jsx:155
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:6
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:28
@@ -122,8 +102,6 @@ msgstr "Löschen"
 msgid "Abort"
 msgstr "Abbrechen"
 
-#: adhocracy4/comments/static/comments/CommentBox.jsx:164
-#: adhocracy4/comments/static/comments/CommentEditForm.jsx:33
 #: adhocracy4/comments/static/comments/CommentBox.jsx:164
 #: adhocracy4/comments/static/comments/CommentEditForm.jsx:33
 msgid "Your comment here"
@@ -149,13 +127,9 @@ msgstr "Senden"
 
 #: adhocracy4/comments/static/comments/CommentForm.jsx:40
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:18
-#: adhocracy4/comments/static/comments/CommentForm.jsx:40
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:18
 msgid "Please login to comment"
 msgstr "Bitte melden Sie sich zum Kommentieren an."
 
-#: adhocracy4/comments/static/comments/CommentForm.jsx:41
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:20
 #: adhocracy4/comments/static/comments/CommentForm.jsx:41
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:20
 msgid "The currently active phase doesn't allow to comment."
@@ -163,13 +137,9 @@ msgstr "Die aktuell laufende Phase erlaubt keine Kommentare."
 
 #: adhocracy4/comments/static/comments/CommentForm.jsx:42
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:19
-#: adhocracy4/comments/static/comments/CommentForm.jsx:42
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:19
 msgid "Only invited users can actively participate."
 msgstr "Nur eingeladene Nutzer*innen können sich aktiv beteiligen."
 
-#: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:5
-#: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:5
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:5
 #: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:5
 msgid "Edit"
@@ -177,13 +147,9 @@ msgstr "Bearbeiten"
 
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:7
 #: adhocracy4/reports/static/reports/ReportModal.jsx:12
-#: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:7
-#: adhocracy4/reports/static/reports/ReportModal.jsx:12
 msgid "Report"
 msgstr "Melden"
 
-#: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:8
-#: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:7
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:8
 #: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:7
 msgid "Comment Actions"
@@ -338,9 +304,6 @@ msgstr "Diskussion"
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:40
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:289
 #: adhocracy4/comments_async/static/comments_async/filter_category.jsx:6
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:40
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:289
-#: adhocracy4/comments_async/static/comments_async/filter_category.jsx:6
 #: apps/interactiveevents/assets/Filters.jsx:32
 #: apps/interactiveevents/assets/QuestionBox.jsx:57
 msgid "all"
@@ -353,20 +316,14 @@ msgstr "Hervorgehoben"
 
 #: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:7
 #: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:14
-#: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:7
-#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:14
 msgid "Show more"
 msgstr "Mehr anzeigen "
 
 #: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:8
 #: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:15
-#: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:8
-#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:15
 msgid "Show less"
 msgstr "Weniger anzeigen"
 
-#: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:9
-#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:17
 #: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:9
 #: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:17
 msgid "Ordering"
@@ -421,9 +378,6 @@ msgstr "Veröffentlichen"
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:21
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:110
 #: adhocracy4/static/Modal.jsx:8
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:21
-#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:110
-#: adhocracy4/static/Modal.jsx:8
 #: apps/maps/assets/map_choose_polygon_with_preset.js:108
 msgid "Cancel"
 msgstr "Abbrechen"
@@ -465,18 +419,18 @@ msgstr ""
 #: adhocracy4/follows/static/follows/FollowButton.jsx:13
 msgid "Click to no longer be updated about this project via email."
 msgstr ""
-"Klicken Sie hier um keine weiteren Neuigkeiten aus dem Projekt per E-Mail zu "
-"erhalten."
+"Klicken Sie hier um keine weiteren Neuigkeiten aus dem Projekt per E-Mail zu"
+" erhalten."
 
 #: adhocracy4/follows/static/follows/FollowButton.jsx:15
 msgid ""
 "From now on, we'll keep you updated on all changes.<br/>Make sure email "
-"notifications are enabled in your %(linkStart)s notification settings%"
-"(linkEnd)s"
+"notifications are enabled in your %(linkStart)s notification "
+"settings%(linkEnd)s"
 msgstr ""
-"Ab sofort halten wir Sie über alle Änderungen auf dem Laufenden.<br/>Stellen "
-"Sie sicher, dass E-Mail-Benachrichtigungen in Ihren %"
-"(linkStart)sBenachrichtigungseinstellungen%(linkEnd)s aktiviert sind."
+"Ab sofort halten wir Sie über alle Änderungen auf dem Laufenden.<br/>Stellen"
+" Sie sicher, dass E-Mail-Benachrichtigungen in Ihren "
+"%(linkStart)sBenachrichtigungseinstellungen%(linkEnd)s aktiviert sind."
 
 #: adhocracy4/follows/static/follows/FollowButton.jsx:16
 msgid "You will no longer be updated via email."
@@ -508,9 +462,6 @@ msgstr "Polygon als GeoJSON exportierten"
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:71
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:81
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:93
-#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:71
-#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:81
-#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:93
 #: apps/maps/assets/map_choose_polygon_with_preset.js:69
 #: apps/maps/assets/map_choose_polygon_with_preset.js:79
 #: apps/maps/assets/map_choose_polygon_with_preset.js:92
@@ -518,11 +469,7 @@ msgid "Import polygon via file upload"
 msgstr "Polygon aus Datei importieren"
 
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:88
-#: adhocracy4/static/Alert.jsx:6
-#: adhocracy4/static/Modal.jsx:7
-#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:88
-#: adhocracy4/static/Alert.jsx:6
-#: adhocracy4/static/Modal.jsx:7
+#: adhocracy4/static/Alert.jsx:6 adhocracy4/static/Modal.jsx:7
 #: apps/dashboard/assets/ajax_modal.js:12
 #: apps/maps/assets/map_choose_polygon_with_preset.js:87
 msgid "Close"
@@ -556,8 +503,6 @@ msgstr ""
 msgid "Upload"
 msgstr "Hochladen"
 
-#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:145
-#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:148
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:145
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:148
 #: apps/maps/assets/map_choose_polygon_with_preset.js:143
@@ -622,14 +567,10 @@ msgstr "Projektmarker"
 
 #: adhocracy4/polls/static/PollDashboard/EditPollChoice.jsx:9
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:70
-#: adhocracy4/polls/static/PollDashboard/EditPollChoice.jsx:9
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:70
 msgctxt "noun"
 msgid "Answer"
 msgstr "Antwort"
 
-#: adhocracy4/polls/static/PollDashboard/EditPollChoice.jsx:29
-#: adhocracy4/polls/static/PollDashboard/EditPollChoice.jsx:35
 #: adhocracy4/polls/static/PollDashboard/EditPollChoice.jsx:29
 #: adhocracy4/polls/static/PollDashboard/EditPollChoice.jsx:35
 msgid "remove"
@@ -672,7 +613,8 @@ msgid "The poll has been updated."
 msgstr "Die Umfrage wurde aktualisiert."
 
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:203
-msgid "The poll could not be updated. Please check the data you entered again."
+msgid ""
+"The poll could not be updated. Please check the data you entered again."
 msgstr ""
 "Die Umfrage konnte nicht aktualisiert werden. Bitte überprüfen Sie die von "
 "Ihnen eingegebenen Daten noch einmal."
@@ -684,8 +626,6 @@ msgstr "Speichern"
 
 #: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:17
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:19
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:17
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:19
 #: apps/interactiveevents/assets/QuestionForm.jsx:67
 msgid "Question"
 msgstr "Frage"
@@ -693,16 +633,9 @@ msgstr "Frage"
 #: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:39
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:120
 #: adhocracy4/polls/static/PollDashboard/HelptextForm.jsx:11
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:39
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:120
-#: adhocracy4/polls/static/PollDashboard/HelptextForm.jsx:11
 msgid "Explanation"
 msgstr "Erklärung"
 
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:49
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:54
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:131
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:136
 #: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:49
 #: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:54
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:131
@@ -717,10 +650,6 @@ msgstr "nach oben"
 #: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:66
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:143
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:148
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:61
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:66
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:143
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:148
 #: apps/documents/assets/ChapterNavItem.jsx:45
 #: apps/documents/assets/ChapterNavItem.jsx:50
 #: apps/documents/assets/ParagraphForm.jsx:10
@@ -730,15 +659,12 @@ msgstr "nach unten"
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:47
 msgid "Participants can vote for more than one option (multiple choice)"
 msgstr ""
-"Die Teilnehmer*innen können für mehr als eine Option stimmen "
-"(Mehrfachauswahl)"
+"Die Teilnehmenden können für mehr als eine Option stimmen (Mehrfachauswahl)"
 
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:62
 msgid "Participants can add their own answer"
-msgstr "Teilnehmer*innen können ihre eigene Antwort hinzufügen"
+msgstr "Teilnehmende können ihre eigene Antwort hinzufügen"
 
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:95
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:96
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:95
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:96
 msgid "Other"
@@ -752,8 +678,6 @@ msgstr "Neue Antwort"
 msgid "characters"
 msgstr "Zeichen"
 
-#: adhocracy4/polls/static/PollDetail/ChoiceRow.jsx:6
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:136
 #: adhocracy4/polls/static/PollDetail/ChoiceRow.jsx:6
 #: adhocracy4/polls/static/PollDetail/PollResults.jsx:136
 msgid "other"
@@ -771,7 +695,7 @@ msgstr "Ihre Antwort wurde gespeichert."
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:21
 #: apps/polls/assets/react_polls/PollQuestions.jsx:22
 msgid "In order to participate please <a href=\"%(url)s\">log in</a>."
-msgstr "<a href=\"%(url)s\">Melden Sie sich bitte an</a>, um teilzunehmen."
+msgstr ""
 
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:42
 #: apps/polls/assets/react_polls/PollQuestions.jsx:43
@@ -791,8 +715,6 @@ msgstr "Ihre Antwort ist ungültig oder leer. Bitte versuchen Sie es erneut."
 msgid "To poll"
 msgstr "Zur Umfrage"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:93
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:193
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:93
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:193
 #: apps/polls/assets/react_polls/PollQuestions.jsx:94
@@ -851,7 +773,7 @@ msgstr "%s Teilnehmer*in gab 1 Antwort."
 msgid "%s participant gave %s answers."
 msgid_plural "%s participants gave %s answers."
 msgstr[0] " %s Teilnehmer*in hat %s Anworten gegeben."
-msgstr[1] "%s Teilnehmer*innen haben %s Anworten gegeben."
+msgstr[1] "%s Teilnehmende haben %s Anworten gegeben."
 
 #: adhocracy4/polls/static/PollDetail/PollResults.jsx:88
 msgid ""
@@ -860,8 +782,6 @@ msgstr ""
 " Bei Multiple-Choice-Fragen können sich die Prozentsätze auf mehr als 100 % "
 "summieren."
 
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:90
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:99
 #: adhocracy4/polls/static/PollDetail/PollResults.jsx:90
 #: adhocracy4/polls/static/PollDetail/PollResults.jsx:99
 #, javascript-format
@@ -884,13 +804,9 @@ msgstr "Andere Antworten "
 
 #: adhocracy4/polls/static/PollDetail/PollResults.jsx:164
 #: adhocracy4/polls/static/PollDetail/PollResults.jsx:200
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:164
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:200
 msgid "Answer %(current)s of %(total)s"
 msgstr "Antwort %(current)s von %(total)s"
 
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:170
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:206
 #: adhocracy4/polls/static/PollDetail/PollResults.jsx:170
 #: adhocracy4/polls/static/PollDetail/PollResults.jsx:206
 msgid "Your answer"
@@ -950,9 +866,9 @@ msgid ""
 "moderation team. They will review the reported content, and if it violates "
 "our discussion rules (netiquette), it will be removed."
 msgstr ""
-"Möchten Sie diesen Inhalt melden? Ihre Nachricht wird an das Moderationsteam "
-"gesendet. Sie prüfen den gemeldeten Inhalt und entfernen ihn, falls er gegen "
-"die Diskussionsregeln (Netiquette) verstößt."
+"Möchten Sie diesen Inhalt melden? Ihre Nachricht wird an das Moderationsteam"
+" gesendet. Sie prüfen den gemeldeten Inhalt und entfernen ihn, falls er "
+"gegen die Diskussionsregeln (Netiquette) verstößt."
 
 #: adhocracy4/static/Captcha.jsx:5
 msgid "Click for image-based question"
@@ -981,8 +897,8 @@ msgid ""
 "having difficulty please contact us by {}email{}.</strong>"
 msgstr ""
 "Lösen Sie die Rechenaufgabe und klicken Sie auf das richtige Ergebnis. "
-"<strong>Wenn Sie Schwierigkeiten haben, kontaktieren Sie uns bitte per {}"
-"email{}.</strong>"
+"<strong>Wenn Sie Schwierigkeiten haben, kontaktieren Sie uns bitte per "
+"{}E-Mail{}.</strong>"
 
 #: adhocracy4/static/Captcha.jsx:13
 #: apps/polls/assets/react_polls/ProsopoCaptcha.jsx:7
@@ -991,8 +907,8 @@ msgstr "Es gab ein Problem beim Laden des CAPTCHA."
 
 #: adhocracy4/static/TermsOfUseCheckbox.jsx:5
 msgid ""
-"Yes, I have read and agree to this organisation's %(linkStart)s terms of use "
-"%(linkEnd)s."
+"Yes, I have read and agree to this organisation's %(linkStart)s terms of use"
+" %(linkEnd)s."
 msgstr ""
 "Ja, ich habe die %(linkStart)s Nutzungsbedingungen %(linkEnd)s dieser "
 "Organisation gelesen und stimme ihnen zu."
@@ -1126,7 +1042,8 @@ msgstr "Frage als beantwortet markieren"
 #: apps/interactiveevents/assets/InfoBox.jsx:9
 msgid "is shown in front of a question? It has been marked by the moderation."
 msgstr ""
-"wird vor einer Frage angezeigt? Dann wurde sie von der Moderation vorgemerkt."
+"wird vor einer Frage angezeigt? Dann wurde sie von der Moderation "
+"vorgemerkt."
 
 #: apps/interactiveevents/assets/InfoBox.jsx:10
 msgid "Close information"
@@ -1263,8 +1180,8 @@ msgstr "Ihr Feedback wurde erfolgreich gelöscht."
 msgid ""
 "The comment has already been moderated. Your feedback could not be saved."
 msgstr ""
-"Der Kommentar wurde bereits moderiert. Ihr Feedback konnte nicht gespeichert "
-"werden."
+"Der Kommentar wurde bereits moderiert. Ihr Feedback konnte nicht gespeichert"
+" werden."
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotification.jsx:16
 msgid "Go to discussion"
@@ -1520,8 +1437,8 @@ msgstr "Externes Video"
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:17
 msgid ""
 "Here you can find a video from Vimeo. To protect your data the content will "
-"only be loaded after you give your consent. Only then will Vimeo set cookies "
-"that collect information on user behaviour."
+"only be loaded after you give your consent. Only then will Vimeo set cookies"
+" that collect information on user behaviour."
 msgstr ""
 "Hier befindet sich ein Video von dem Anbieter Vimeo. Um Ihre Daten zu "
 "schützen, laden wir dieses Video nur mit Ihrer Zustimmung. Erst dann werden "
