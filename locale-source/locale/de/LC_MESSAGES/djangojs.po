@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-02 17:37+0200\n"
+"POT-Creation-Date: 2026-08-13 11:54+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Tietje, 2026\n"
 "Language-Team: German (https://app.transifex.com/liqd/teams/109316/de/)\n"
@@ -104,12 +104,16 @@ msgstr "Möchten Sie diesen Kommentar wirklich löschen?"
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:6
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:28
 #: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:6
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:72
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:77
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:154
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:159
 #: adhocracy4/comments/static/comments/Comment.jsx:155
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:6
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:28
 #: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:6
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:72
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:77
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:154
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:159
 #: apps/documents/assets/ChapterNavItem.jsx:57
@@ -210,7 +214,6 @@ msgstr ""
 
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:8
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:8
-#, javascript-format
 msgctxt "defakts"
 msgid ""
 "The AI considers some of the characteristics of disinformation to be "
@@ -787,17 +790,44 @@ msgstr "Frage"
 msgid "Explanation"
 msgstr "Erklärung"
 
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:49
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:54
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:131
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:136
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:49
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:54
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:131
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:136
+#: apps/documents/assets/ChapterNavItem.jsx:33
+#: apps/documents/assets/ChapterNavItem.jsx:38
+#: apps/documents/assets/ParagraphForm.jsx:9
+msgid "Move up"
+msgstr "nach oben"
+
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:61
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:66
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:143
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:148
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:61
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:66
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:143
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:148
+#: apps/documents/assets/ChapterNavItem.jsx:45
+#: apps/documents/assets/ChapterNavItem.jsx:50
+#: apps/documents/assets/ParagraphForm.jsx:10
+msgid "Move down"
+msgstr "nach unten"
+
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:47
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:47
 msgid "Participants can vote for more than one option (multiple choice)"
 msgstr ""
-"Die Teilnehmer*innen können für mehr als eine Option stimmen "
-"(Mehrfachauswahl)"
+"Die Teilnehmenden können für mehr als eine Option stimmen (Mehrfachauswahl)"
 
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:62
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:62
 msgid "Participants can add their own answer"
-msgstr "Teilnehmer*innen können ihre eigene Antwort hinzufügen"
+msgstr "Teilnehmende können ihre eigene Antwort hinzufügen"
 
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:95
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:96
@@ -810,26 +840,6 @@ msgstr "Sonstige"
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:113
 msgid "New answer"
 msgstr "Neue Antwort"
-
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:131
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:136
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:131
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:136
-#: apps/documents/assets/ChapterNavItem.jsx:33
-#: apps/documents/assets/ChapterNavItem.jsx:38
-#: apps/documents/assets/ParagraphForm.jsx:9
-msgid "Move up"
-msgstr "nach oben"
-
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:143
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:148
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:143
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:148
-#: apps/documents/assets/ChapterNavItem.jsx:45
-#: apps/documents/assets/ChapterNavItem.jsx:50
-#: apps/documents/assets/ParagraphForm.jsx:10
-msgid "Move down"
-msgstr "nach unten"
 
 #: adhocracy4/polls/static/PollDetail/CharCounter.jsx:5
 #: adhocracy4/polls/static/PollDetail/CharCounter.jsx:5
@@ -858,7 +868,7 @@ msgstr "Ihre Antwort wurde gespeichert."
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:21
 #: apps/polls/assets/react_polls/PollQuestions.jsx:22
 msgid "In order to participate please <a href=\"%(url)s\">log in</a>."
-msgstr "<a href=\"%(url)s\">Melden Sie sich bitte an</a>, um teilzunehmen."
+msgstr ""
 
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:42
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:42
@@ -952,7 +962,7 @@ msgstr "%s Teilnehmer*in gab 1 Antwort."
 msgid "%s participant gave %s answers."
 msgid_plural "%s participants gave %s answers."
 msgstr[0] " %s Teilnehmer*in hat %s Anworten gegeben."
-msgstr[1] "%s Teilnehmer*innen haben %s Anworten gegeben."
+msgstr[1] "%s Teilnehmende haben %s Anworten gegeben."
 
 #: adhocracy4/polls/static/PollDetail/PollResults.jsx:88
 #: adhocracy4/polls/static/PollDetail/PollResults.jsx:88
@@ -1105,8 +1115,8 @@ msgid ""
 "having difficulty please contact us by {}email{}.</strong>"
 msgstr ""
 "Lösen Sie die Rechenaufgabe und klicken Sie auf das richtige Ergebnis. "
-"<strong>Wenn Sie Schwierigkeiten haben, kontaktieren Sie uns bitte per {}"
-"email{}.</strong>"
+"<strong>Wenn Sie Schwierigkeiten haben, kontaktieren Sie uns bitte per {}E-"
+"Mail{}.</strong>"
 
 #: adhocracy4/static/Captcha.jsx:13
 #: adhocracy4/static/Captcha.jsx:13
