@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-02 17:38+0200\n"
+"POT-Creation-Date: 2026-08-13 12:07+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Luca Thüer, 2023\n"
 "Language-Team: Russian (https://app.transifex.com/liqd/teams/109316/ru/)\n"
@@ -28,8 +28,7 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/categories/templates/a4categories/includes/module_categories_form.html:3
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/categories/templates/a4categories/includes/module_categories_form.html:3
+#: adhocracy4/categories/templates/a4categories/includes/module_categories_form.html:3
 msgid ""
 "In this section, you can create\n"
 "categories. If you create any, each contribution has to be assigned\n"
@@ -40,37 +39,34 @@ msgstr ""
 "быть приписан к одной из категорий. Таким образом, контент можно "
 "классифицировать."
 
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/categories/templates/a4categories/includes/module_categories_form.html:21
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/categories/templates/a4categories/includes/module_categories_form.html:21
+#: adhocracy4/categories/templates/a4categories/includes/module_categories_form.html:21
 msgid "Add category"
 msgstr "Добавить категорию"
 
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/dashboard/templates/a4dashboard/base_dashboard.html:4
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/templates/a4dashboard/base_dashboard.html:4
+#: adhocracy4/dashboard/templates/a4dashboard/base_dashboard.html:4
 #: adhocracy-plus/templates/a4dashboard/base_dashboard.html:55
 #: adhocracy-plus/templates/includes/userdashboard_mobile_toggle.html:30
 msgid "Dashboard"
 msgstr "Личный кабинет"
 
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:5
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:5
+#: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:5
 #: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:24
 msgid "Project Settings"
 msgstr "Настройки проекта"
 
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:15
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:33
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:15
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:33
+#: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:15
+#: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:33
+#: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:15
+#: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:33
 #: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:50
 #: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:105
 msgid "Missing fields for publication"
 msgstr "Отсутствуют поля для публикации"
 
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/dashboard/templates/a4dashboard/base_form_module.html:18
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/dashboard/templates/a4dashboard/base_form_project.html:18
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/templates/a4dashboard/base_form_module.html:18
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/templates/a4dashboard/base_form_project.html:18
+#: adhocracy4/dashboard/templates/a4dashboard/base_form_module.html:18
+#: adhocracy4/dashboard/templates/a4dashboard/base_form_project.html:18
+#: adhocracy4/dashboard/templates/a4dashboard/base_form_module.html:18
+#: adhocracy4/dashboard/templates/a4dashboard/base_form_project.html:18
 #: apps/activities/templates/a4_candy_activities/activities_dashboard.html:19
 #: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_form.html:32
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_moderate_form.html:39
@@ -89,48 +85,45 @@ msgstr "Отсутствуют поля для публикации"
 msgid "Save"
 msgstr "Сохранить"
 
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:4
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:7
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/dashboard/templates/a4dashboard/project_list.html:9
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:4
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:7
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/templates/a4dashboard/project_list.html:9
+#: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:4
+#: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:7
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:9
+#: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:4
+#: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:7
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:9
 #: adhocracy-plus/templates/a4dashboard/blueprint_list.html:6
 #: adhocracy-plus/templates/a4dashboard/project_list.html:13
 msgid "New Project"
 msgstr "Новый проект"
 
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:17
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:17
+#: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:17
 msgid "Phase"
 msgstr "Фаза"
 
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:23
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:23
+#: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:23
 #: apps/organisations/templates/a4_candy_organisations/communication_form_social_media.html:15
 #: adhocracy-plus/templates/a4dashboard/includes/blueprint_list_tile.html:17
 msgid "Select"
 msgstr "Выбрать"
 
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/dashboard/templates/a4dashboard/includes/form_field.html:6
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/templates/a4dashboard/includes/form_field.html:6
+#: adhocracy4/dashboard/templates/a4dashboard/includes/form_field.html:6
 msgid "Missing field for publication"
 msgstr "Отсутствует поле для публикации"
 
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/dashboard/templates/a4dashboard/includes/preview.html:7
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/dashboard/templates/a4dashboard/project_list.html:39
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/templates/a4dashboard/includes/preview.html:7
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/templates/a4dashboard/project_list.html:39
+#: adhocracy4/dashboard/templates/a4dashboard/includes/preview.html:7
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:39
+#: adhocracy4/dashboard/templates/a4dashboard/includes/preview.html:7
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:39
 #: apps/organisations/templates/a4_candy_organisations/communication_form_social_media.html:59
 #: adhocracy-plus/templates/a4dashboard/includes/preview.html:7
 #: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:41
 msgid "Preview"
 msgstr "Предварительный просмотр"
 
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/dashboard/templates/a4dashboard/includes/preview.html:9
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/dashboard/templates/a4dashboard/project_list.html:41
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/templates/a4dashboard/includes/preview.html:9
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/templates/a4dashboard/project_list.html:41
+#: adhocracy4/dashboard/templates/a4dashboard/includes/preview.html:9
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:41
+#: adhocracy4/dashboard/templates/a4dashboard/includes/preview.html:9
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:41
 #: apps/debate/templates/a4_candy_debate/includes/subject_dashboard_list_item.html:14
 #: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_list_item.html:15
 #: apps/topicprio/templates/a4_candy_topicprio/includes/topic_dashboard_list_item.html:14
@@ -139,41 +132,36 @@ msgstr "Предварительный просмотр"
 msgid "View"
 msgstr "Просмотр"
 
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:16
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:16
+#: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:16
 #, python-format
 msgid "%(value)s from %(max)s"
 msgstr "%(value)sиз%(max)s"
 
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:17
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:17
+#: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:17
 msgid "required fields for publication"
 msgstr "обязательные поля для публикации"
 
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:27
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:27
+#: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:27
 #: apps/dashboard/templates/a4_candy_dashboard/includes/progress.html:12
 #: apps/dashboard/templates/a4_candy_dashboard/includes/progress.html:31
 #: apps/dashboard/templates/a4_candy_dashboard/includes/progress.html:57
 msgid "Publish"
 msgstr "Опубликовать"
 
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:31
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:31
+#: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:31
 #: apps/dashboard/templates/a4_candy_dashboard/includes/progress.html:19
 #: apps/dashboard/templates/a4_candy_dashboard/includes/progress.html:35
 msgid "Unpublish"
 msgstr "Удалить публикацию"
 
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:4
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:7
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:4
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:7
+#: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:4
+#: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:7
+#: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:4
+#: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:7
 msgid "Create project based on"
 msgstr "Создать проект на основе"
 
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:23
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:23
+#: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:23
 #: adhocracy-plus/templates/a4dashboard/project_create_form.html:41
 msgid ""
 "After saving the draft project you can further customize and edit your "
@@ -182,14 +170,12 @@ msgstr ""
 "После сохранения предварительного проекта вы можете дополнительно настроить "
 "и отредактировать свой проект и опубликовать его в последней редакции."
 
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:25
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:25
+#: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:25
 #: adhocracy-plus/templates/a4dashboard/project_create_form.html:46
 msgid "Create draft"
 msgstr "Создать предварительный проект"
 
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:27
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:27
+#: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:27
 #: apps/account/templates/a4_candy_account/account_deletion.html:50
 #: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_form.html:31
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_confirm_delete.html:14
@@ -213,10 +199,10 @@ msgstr "Создать предварительный проект"
 msgid "Cancel"
 msgstr "Отмена"
 
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/dashboard/templates/a4dashboard/project_list.html:4
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/dashboard/templates/a4dashboard/project_list.html:7
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/templates/a4dashboard/project_list.html:4
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/templates/a4dashboard/project_list.html:7
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:4
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:7
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:4
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:7
 #: apps/projects/templates/a4_candy_projects/project_list.html:4
 #: apps/userdashboard/views.py:83 apps/userdashboard/views.py:155
 #: adhocracy-plus/templates/a4dashboard/base_project_list.html:16
@@ -225,28 +211,24 @@ msgstr "Отмена"
 msgid "Projects"
 msgstr "Проекты"
 
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/dashboard/templates/a4dashboard/project_list.html:24
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/templates/a4dashboard/project_list.html:24
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:24
 #: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:24
 msgid "Finished"
 msgstr "Завершено"
 
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/dashboard/templates/a4dashboard/project_list.html:27
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/templates/a4dashboard/project_list.html:27
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/projects/enums.py:14
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:27
+#: adhocracy4/projects/enums.py:14
 #: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:27
 msgid "semipublic"
 msgstr "Смешанный"
 
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/dashboard/templates/a4dashboard/project_list.html:30
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/templates/a4dashboard/project_list.html:30
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/projects/enums.py:15
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:30
+#: adhocracy4/projects/enums.py:15
 #: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:30
 msgid "private"
 msgstr "Частный"
 
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/dashboard/templates/a4dashboard/project_list.html:48
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/templates/a4dashboard/project_list.html:48
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:48
 #: apps/contrib/templates/a4_candy_contrib/item_detail.html:114
 #: apps/debate/templates/a4_candy_debate/includes/subject_dashboard_list_item.html:19
 #: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_list_item.html:20
@@ -256,63 +238,56 @@ msgstr "Частный"
 msgid "Edit"
 msgstr "Редактировать"
 
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/dashboard/templates/a4dashboard/project_list.html:57
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/templates/a4dashboard/project_list.html:57
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:57
 #: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:71
 msgid "Duplicate"
 msgstr "Копировать"
 
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/dashboard/templates/a4dashboard/project_list.html:65
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/templates/a4dashboard/project_list.html:65
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:65
 #: apps/projects/templates/a4_candy_projects/project_list.html:18
 #: adhocracy-plus/templates/a4dashboard/project_list.html:27
 msgid "We could not find any projects."
 msgstr "Мы не смогли найти ни одного проекта"
 
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/exports/templates/a4exports/export_dashboard.html:5
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/exports/templates/a4exports/export_dashboard.html:23
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/exports/templates/a4exports/export_dashboard.html:35
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/exports/templates/a4exports/export_dashboard.html:47
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/exports/templates/a4exports/export_dashboard.html:59
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/exports/templates/a4exports/export_dashboard.html:5
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/exports/templates/a4exports/export_dashboard.html:23
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/exports/templates/a4exports/export_dashboard.html:35
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/exports/templates/a4exports/export_dashboard.html:47
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/exports/templates/a4exports/export_dashboard.html:59
+#: adhocracy4/exports/templates/a4exports/export_dashboard.html:5
+#: adhocracy4/exports/templates/a4exports/export_dashboard.html:23
+#: adhocracy4/exports/templates/a4exports/export_dashboard.html:35
+#: adhocracy4/exports/templates/a4exports/export_dashboard.html:47
+#: adhocracy4/exports/templates/a4exports/export_dashboard.html:59
+#: adhocracy4/exports/templates/a4exports/export_dashboard.html:5
+#: adhocracy4/exports/templates/a4exports/export_dashboard.html:23
+#: adhocracy4/exports/templates/a4exports/export_dashboard.html:35
+#: adhocracy4/exports/templates/a4exports/export_dashboard.html:47
+#: adhocracy4/exports/templates/a4exports/export_dashboard.html:59
 msgid "Export"
 msgstr "Экспорт"
 
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/exports/templates/a4exports/export_dashboard.html:7
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/exports/templates/a4exports/export_dashboard.html:7
+#: adhocracy4/exports/templates/a4exports/export_dashboard.html:7
 msgid ""
 "You can export the results of your participation project as an excel file."
 msgstr ""
 "Вы можете экспортировать результаты вашего проекта участия в виде файла "
 "Excel."
 
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/exports/templates/a4exports/export_dashboard.html:19
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/exports/templates/a4exports/export_dashboard.html:19
+#: adhocracy4/exports/templates/a4exports/export_dashboard.html:19
 msgid "here you can export all ideas"
 msgstr "здесь вы можете экспортировать все идеи"
 
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/exports/templates/a4exports/export_dashboard.html:31
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/exports/templates/a4exports/export_dashboard.html:31
+#: adhocracy4/exports/templates/a4exports/export_dashboard.html:31
 msgid "here you can export all subjects"
 msgstr "Здесь вы можете экспортировать все темы"
 
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/exports/templates/a4exports/export_dashboard.html:43
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/exports/templates/a4exports/export_dashboard.html:43
+#: adhocracy4/exports/templates/a4exports/export_dashboard.html:43
 msgid "here you can export all answers"
 msgstr "Здесь вы можете экспортировать все ответы"
 
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/exports/templates/a4exports/export_dashboard.html:55
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/exports/templates/a4exports/export_dashboard.html:55
+#: adhocracy4/exports/templates/a4exports/export_dashboard.html:55
 msgid "here you can export all comments"
 msgstr "здесь вы можете экспортировать все комментарии"
 
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/filters/templates/a4filters/widgets/free_text_filter.html:15
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/filter.py:11
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/filters/templates/a4filters/widgets/free_text_filter.html:15
+#: adhocracy4/filters/templates/a4filters/widgets/free_text_filter.html:15
+#: adhocracy4/dashboard/filter.py:11
+#: adhocracy4/filters/templates/a4filters/widgets/free_text_filter.html:15
 #: apps/contrib/widgets.py:65 apps/debate/filters.py:12
 #: apps/topicprio/views.py:21
 #: adhocracy-plus/templates/a4filters/widgets/free_text_filter.html:4
@@ -321,8 +296,7 @@ msgstr "здесь вы можете экспортировать все ком�
 msgid "Search"
 msgstr "Поиск"
 
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/forms/templates/a4forms/includes/form_field.html:5
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/forms/templates/a4forms/includes/form_field.html:5
+#: adhocracy4/forms/templates/a4forms/includes/form_field.html:5
 #: apps/account/templates/a4_candy_account/guest_convert.html:32
 #: apps/contrib/templates/a4_candy_contrib/includes/form_checkbox_field.html:6
 #: apps/contrib/templates/a4_candy_contrib/includes/form_field.html:5
@@ -334,19 +308,18 @@ msgstr "Поиск"
 msgid "This field is required"
 msgstr "Это поле обязательно к заполнению"
 
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/forms/templates/a4forms/includes/inline_form.html:14
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/forms/templates/a4forms/includes/inline_form.html:15
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/forms/templates/a4forms/includes/inline_form.html:18
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/forms/templates/a4forms/includes/inline_form.html:19
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/forms/templates/a4forms/includes/inline_form.html:14
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/forms/templates/a4forms/includes/inline_form.html:15
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/forms/templates/a4forms/includes/inline_form.html:18
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/forms/templates/a4forms/includes/inline_form.html:19
+#: adhocracy4/forms/templates/a4forms/includes/inline_form.html:14
+#: adhocracy4/forms/templates/a4forms/includes/inline_form.html:15
+#: adhocracy4/forms/templates/a4forms/includes/inline_form.html:18
+#: adhocracy4/forms/templates/a4forms/includes/inline_form.html:19
+#: adhocracy4/forms/templates/a4forms/includes/inline_form.html:14
+#: adhocracy4/forms/templates/a4forms/includes/inline_form.html:15
+#: adhocracy4/forms/templates/a4forms/includes/inline_form.html:18
+#: adhocracy4/forms/templates/a4forms/includes/inline_form.html:19
 msgid "Remove category"
 msgstr "Удалить категорию"
 
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/images/templates/a4images/image_upload_widget.html:8
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/images/templates/a4images/image_upload_widget.html:8
+#: adhocracy4/images/templates/a4images/image_upload_widget.html:8
 #: adhocracy-plus/templates/a4images/image_upload_widget.html:10
 #: adhocracy-plus/templates/a4images/image_upload_widget.html:11
 #: adhocracy-plus/templates/a4images/image_upload_widget_simple.html:10
@@ -354,8 +327,7 @@ msgstr "Удалить категорию"
 msgid "Remove the picture"
 msgstr "Удалить изображение"
 
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/images/templates/a4images/image_upload_widget.html:12
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/images/templates/a4images/image_upload_widget.html:12
+#: adhocracy4/images/templates/a4images/image_upload_widget.html:12
 #: adhocracy-plus/templates/a4images/image_upload_widget.html:16
 #: adhocracy-plus/templates/a4images/image_upload_widget.html:17
 #: adhocracy-plus/templates/a4images/image_upload_widget_simple.html:16
@@ -363,8 +335,7 @@ msgstr "Удалить изображение"
 msgid "Upload a picture"
 msgstr "Загрузить изображение"
 
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/images/templates/a4images/image_upload_widget.html:19
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/images/templates/a4images/image_upload_widget.html:19
+#: adhocracy4/images/templates/a4images/image_upload_widget.html:19
 msgid ""
 "\n"
 "            Your image will be uploaded/removed once you save your changes\n"
@@ -376,8 +347,7 @@ msgstr ""
 "изменений\n"
 "          в конце этой страницы."
 
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/labels/templates/a4labels/includes/module_labels_form.html:3
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/labels/templates/a4labels/includes/module_labels_form.html:3
+#: adhocracy4/labels/templates/a4labels/includes/module_labels_form.html:3
 msgid ""
 "In this section, you can create\n"
 "labels. If you create any, each contribution can be assigned\n"
@@ -388,86 +358,82 @@ msgstr ""
 "к одному или нескольким из них. Таким образом, можно классифицировать "
 "контент."
 
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/labels/templates/a4labels/includes/module_labels_form.html:21
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/labels/templates/a4labels/includes/module_labels_form.html:21
+#: adhocracy4/labels/templates/a4labels/includes/module_labels_form.html:21
 msgid "Add label"
 msgstr "Добавить ярлык"
 
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/polls/templates/a4polls/poll_404.html:8
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/polls/templates/a4polls/poll_404.html:8
+#: adhocracy4/polls/templates/a4polls/poll_404.html:8
 msgid ""
 "Participation is not possible at the moment. The poll has not been set up "
 "yet."
 msgstr "На данный момент участие невозможно. Опрос еще не настроен."
 
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/polls/templates/a4polls/poll_404.html:15
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/polls/templates/a4polls/poll_404.html:15
+#: adhocracy4/polls/templates/a4polls/poll_404.html:15
 msgid "Setup the poll by adding questions and answers in the dashboard."
 msgstr "Настройте опрос, добавив вопросы и ответы в личном кабинете."
 
-#: /var/liqd/a4-roots/node_modules/adhocracy4/adhocracy4/polls/templates/a4polls/poll_dashboard.html:5
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/polls/templates/a4polls/poll_dashboard.html:5
+#: adhocracy4/polls/templates/a4polls/poll_dashboard.html:5
 msgid "Edit poll"
 msgstr "Редактировать опрос"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/categories/dashboard.py:13
+#: adhocracy4/categories/dashboard.py:13
 #: apps/exports/mixins.py:19
 msgid "Categories"
 msgstr "категории"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/categories/dashboard.py:15
+#: adhocracy4/categories/dashboard.py:15
 msgid "Edit categories"
 msgstr "редактировать категории"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/categories/fields.py:10
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/categories/filters.py:16
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/categories/forms.py:53
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/categories/models.py:24
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/exports/mixins/items.py:24
+#: adhocracy4/categories/fields.py:10
+#: adhocracy4/categories/filters.py:16
+#: adhocracy4/categories/forms.py:53
+#: adhocracy4/categories/models.py:24
+#: adhocracy4/exports/mixins/items.py:24
 msgid "Category"
 msgstr "Категория"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/categories/forms.py:47
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/labels/forms.py:23
+#: adhocracy4/categories/forms.py:47
+#: adhocracy4/labels/forms.py:23
 msgid "Category name"
 msgstr "Наименование категории"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/categories/forms.py:48
+#: adhocracy4/categories/forms.py:48
 msgid "Category icon"
 msgstr "Иконка категории"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/categories/models.py:26
+#: adhocracy4/categories/models.py:26
 msgid "Type of category"
 msgstr ""
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/categories/models.py:28
+#: adhocracy4/categories/models.py:28
 msgid ""
 "You can individualise the term category. The character limit is max. 25 "
 "characters (with spaces)."
 msgstr ""
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/categories/models.py:36
+#: adhocracy4/categories/models.py:36
 msgid ""
 "Assign your proposal to a category. This automatically appears in the "
 "display of your proposal. The list of all proposals can be filtered by "
 "category."
 msgstr ""
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/categories/models.py:42
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/labels/models.py:29
+#: adhocracy4/categories/models.py:42
+#: adhocracy4/labels/models.py:29
 msgid "Description/Helptext"
 msgstr ""
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/categories/models.py:44
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/labels/models.py:31
+#: adhocracy4/categories/models.py:44
+#: adhocracy4/labels/models.py:31
 msgid ""
 "You can individualise the description text. The description text is "
 "displayed to the participants as help text when they have to assign their "
 "ideas. The character limit is max. 300 characters (with spaces)."
 msgstr ""
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/comments/models.py:54
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/polls/exports.py:42
+#: adhocracy4/comments/models.py:54
+#: adhocracy4/polls/exports.py:42
 #: apps/budgeting/exports.py:78 apps/debate/exports.py:68
 #: apps/documents/exports.py:41 apps/ideas/exports.py:77
 #: apps/mapideas/exports.py:78 apps/topicprio/exports.py:75
@@ -475,8 +441,8 @@ msgctxt "noun"
 msgid "Comment"
 msgstr "Комментарий"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/comments/models.py:55
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/exports/mixins/comments.py:48
+#: adhocracy4/comments/models.py:55
+#: adhocracy4/exports/mixins/comments.py:48
 #: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_list_item.html:16
 #: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_list_item.html:17
 #: apps/ideas/templates/a4_candy_ideas/includes/idea_list_item.html:18
@@ -488,47 +454,47 @@ msgstr "Комментарий"
 msgid "Comments"
 msgstr "Комментарии"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/comments/serializers.py:78
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/comments/serializers.py:178
+#: adhocracy4/comments/serializers.py:78
+#: adhocracy4/comments/serializers.py:178
 msgid "Please choose a category"
 msgstr "Пожалуйста, выберите категорию"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/comments/serializers.py:87
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/comments_async/serializers.py:92
+#: adhocracy4/comments/serializers.py:87
+#: adhocracy4/comments_async/serializers.py:92
 #: apps/userdashboard/serializers.py:64
 msgid "unknown user"
 msgstr "Неизвестный пользователь"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/comments_async/api.py:149
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/polls/api.py:160
+#: adhocracy4/comments_async/api.py:150
+#: adhocracy4/polls/api.py:160
 msgid "Please agree to the organisation's terms of use."
 msgstr "пожалуйста, согласитесь с условиями использования организации"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/comments_async/serializers.py:15
+#: adhocracy4/comments_async/serializers.py:15
 msgid "Please choose one or more categories."
 msgstr "Выберите одну или несколько категорий"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/components/forms/forms.py:49
+#: adhocracy4/dashboard/components/forms/forms.py:49
 msgid "Description must be at most 170 characters"
 msgstr ""
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/components/forms/views.py:24
+#: adhocracy4/dashboard/components/forms/views.py:24
 msgid "The project has been updated."
 msgstr "Проект был обновлен"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/components/forms/views.py:51
+#: adhocracy4/dashboard/components/forms/views.py:51
 msgid "The module has been updated."
 msgstr "Модуль был обновлен"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/dashboard.py:14
+#: adhocracy4/dashboard/dashboard.py:14
 msgid "Basic settings"
 msgstr "Основные настройки"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/dashboard.py:16
+#: adhocracy4/dashboard/dashboard.py:16
 msgid "Edit basic settings"
 msgstr "Изменить основные настройки"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/dashboard.py:24
+#: adhocracy4/dashboard/dashboard.py:24
 #: apps/organisations/templates/a4_candy_organisations/organisation_information.html:15
 #: apps/organisations/templates/a4_candy_organisations/organisation_information.html:30
 #: apps/projects/templates/a4_candy_projects/project_detail.html:107
@@ -536,63 +502,63 @@ msgstr "Изменить основные настройки"
 msgid "Information"
 msgstr "Информация"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/dashboard.py:26
+#: adhocracy4/dashboard/dashboard.py:26
 msgid "Edit project information"
 msgstr "Редактировать информацию о проекте"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/dashboard.py:34
+#: adhocracy4/dashboard/dashboard.py:34
 #: apps/projects/dashboard.py:87
 #: apps/projects/templates/a4_candy_projects/project_detail.html:127
 #: adhocracy-plus/templates/includes/project_header_mobile_toggle.html:44
 msgid "Result"
 msgstr "Результат"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/dashboard.py:36
+#: adhocracy4/dashboard/dashboard.py:36
 #: apps/projects/dashboard.py:89
 msgid "Edit project result"
 msgstr "Редактировать результат проекта"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/dashboard.py:44
+#: adhocracy4/dashboard/dashboard.py:44
 msgid "Basic information"
 msgstr "Основная информация"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/dashboard.py:46
+#: adhocracy4/dashboard/dashboard.py:46
 msgid "Edit basic module information"
 msgstr "Редактировать основную информацию о модуле"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/dashboard.py:58
+#: adhocracy4/dashboard/dashboard.py:58
 msgid "Phases"
 msgstr "Фазы"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/dashboard.py:60
+#: adhocracy4/dashboard/dashboard.py:60
 msgid "Edit phases information"
 msgstr "Редактировать информацию о фазах"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/dashboard.py:73
+#: adhocracy4/dashboard/dashboard.py:73
 msgid "Area settings"
 msgstr "Области настройки"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/dashboard.py:74
+#: adhocracy4/dashboard/dashboard.py:74
 msgid "Edit area settings"
 msgstr "Редактировать области настроек"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/filter.py:15
+#: adhocracy4/dashboard/filter.py:15
 #: apps/budgeting/views.py:31
 msgid "Archived"
 msgstr "Заархивировано"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/filter.py:19
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/filters/widgets.py:33
+#: adhocracy4/dashboard/filter.py:19
+#: adhocracy4/filters/widgets.py:33
 #: apps/budgeting/views.py:35
 msgid "All"
 msgstr "Все"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/filter.py:20
+#: adhocracy4/dashboard/filter.py:20
 #: apps/budgeting/views.py:36
 msgid "No"
 msgstr "Нет"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/filter.py:21
+#: adhocracy4/dashboard/filter.py:21
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_confirm_delete.html:15
 #: apps/budgeting/views.py:37
 #: apps/debate/templates/a4_candy_debate/subject_confirm_delete.html:16
@@ -603,20 +569,20 @@ msgstr "Нет"
 msgid "Yes"
 msgstr "Да"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/forms.py:80
+#: adhocracy4/dashboard/forms.py:80
 msgid "All users can participate (public)."
 msgstr "Все пользователи могут участвовать (открытый доступ)."
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/forms.py:83
+#: adhocracy4/dashboard/forms.py:83
 msgid "Only invited users can participate (private)."
 msgstr "Только приглашенные пользователи могут участвовать (частный доступ)."
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/forms.py:91
+#: adhocracy4/dashboard/forms.py:91
 #: apps/projects/templates/a4_candy_projects/project_detail.html:156
 msgid "Contact for questions"
 msgstr "Контактные данные для вопросов"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/forms.py:93
+#: adhocracy4/dashboard/forms.py:93
 msgid ""
 "Please name a contact person. The user will then know who is carrying out "
 "this project and to whom they can address possible questions. The contact "
@@ -626,11 +592,11 @@ msgstr ""
 "выполняет этот проект и кому он может задать возможные вопросы. Контактное "
 "лицо будет показано на вкладке информации на странице проекта"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/forms.py:99
+#: adhocracy4/dashboard/forms.py:99
 msgid "More contact possibilities"
 msgstr "Больше возможностей контакта"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/forms.py:114
+#: adhocracy4/dashboard/forms.py:114
 msgid ""
 "The project description will be shown in the info-tab. If you add an image, "
 "please provide an alternate text. It serves as a textual description of the "
@@ -638,7 +604,7 @@ msgid ""
 "approx. 80 characters. Example: A busy square with people in summer."
 msgstr ""
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/forms.py:134
+#: adhocracy4/dashboard/forms.py:134
 msgid ""
 "The results description will be shown in the result-tab. Please describe a "
 "participation promise beforehand (what will happen with the outcome?) and "
@@ -648,159 +614,159 @@ msgid ""
 "Example: A busy square with people in summer."
 msgstr ""
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/forms.py:165
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/phases/models.py:66
+#: adhocracy4/dashboard/forms.py:165
+#: adhocracy4/phases/models.py:66
 msgid "End date"
 msgstr "Дата окончания"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/forms.py:165
+#: adhocracy4/dashboard/forms.py:165
 msgid "End time"
 msgstr "Время окончания"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/forms.py:171
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/phases/models.py:64
+#: adhocracy4/dashboard/forms.py:171
+#: adhocracy4/phases/models.py:64
 msgid "Start date"
 msgstr "Дата начала"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/forms.py:171
+#: adhocracy4/dashboard/forms.py:171
 msgid "Start time"
 msgstr "Время начала"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/mixins.py:259
+#: adhocracy4/dashboard/mixins.py:259
 msgid "Project successfully duplicated."
 msgstr "Проект был успешно скопирован"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/views.py:73
+#: adhocracy4/dashboard/views.py:73
 msgid "Project successfully created."
 msgstr "Проект был успешно создан"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/views.py:164
+#: adhocracy4/dashboard/views.py:164
 #: apps/dashboard/views.py:133
 msgid "Invalid action"
 msgstr "Недопустимое действие"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/views.py:181
+#: adhocracy4/dashboard/views.py:181
 msgid "Project is already published"
 msgstr "Проект уже опубликован"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/views.py:186
+#: adhocracy4/dashboard/views.py:186
 msgid "Project cannot be published. No module is added."
 msgstr "Проект не может быть опубликован. Модуль не добавлен."
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/views.py:202
+#: adhocracy4/dashboard/views.py:202
 msgid "Project cannot be published. Required fields are missing."
 msgstr "Проект не может быть опубликован. Обязательные поля не заполнены."
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/views.py:211
+#: adhocracy4/dashboard/views.py:211
 msgid "Project cannot be published."
 msgstr "Проект не может быть опубликован."
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/views.py:221
+#: adhocracy4/dashboard/views.py:221
 msgid "the project has been published."
 msgstr "проект был опубликован"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/views.py:226
+#: adhocracy4/dashboard/views.py:226
 msgid "Project is already unpublished"
 msgstr "Публикация проекта уже удалена."
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/dashboard/views.py:234
+#: adhocracy4/dashboard/views.py:234
 msgid "the project has been unpublished."
 msgstr "Публикация проекта была удалена."
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/exports/mixins/comments.py:17
+#: adhocracy4/exports/mixins/comments.py:17
 msgid "Comment count"
 msgstr "Количество комментариев"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/exports/mixins/comments.py:80
+#: adhocracy4/exports/mixins/comments.py:80
 msgid "Reply to Comment"
 msgstr "Ответить на комментарий"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/exports/mixins/comments.py:99
+#: adhocracy4/exports/mixins/comments.py:99
 msgid "Reply to Reference"
 msgstr "Ответить на ссылку"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/exports/mixins/general.py:15
+#: adhocracy4/exports/mixins/general.py:15
 msgid "Creator"
 msgstr "Автор"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/exports/mixins/general.py:17
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/models/base.py:12
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/polls/exports.py:43
+#: adhocracy4/exports/mixins/general.py:17
+#: adhocracy4/models/base.py:12
+#: adhocracy4/polls/exports.py:43
 #: apps/budgeting/exports.py:79 apps/debate/exports.py:69
 #: apps/documents/exports.py:42 apps/ideas/exports.py:78
 #: apps/mapideas/exports.py:79 apps/topicprio/exports.py:76
 msgid "Created"
 msgstr "Создано"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/exports/mixins/general.py:36
+#: adhocracy4/exports/mixins/general.py:36
 msgid "Link"
 msgstr "Ссылка"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/exports/mixins/general.py:52
+#: adhocracy4/exports/mixins/general.py:52
 msgid "Location (Longitude)"
 msgstr "Местоположение (долгота)"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/exports/mixins/general.py:54
+#: adhocracy4/exports/mixins/general.py:54
 msgid "Location (Latitude)"
 msgstr "Местоположение (широта)"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/exports/mixins/general.py:56
+#: adhocracy4/exports/mixins/general.py:56
 msgid "Location label"
 msgstr "Местоположения ярлыка"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/exports/mixins/items.py:43
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/labels/dashboard.py:13
+#: adhocracy4/exports/mixins/items.py:43
+#: adhocracy4/labels/dashboard.py:13
 #: apps/ideas/models.py:50 apps/topicprio/models.py:57
 msgid "Labels"
 msgstr "Ярлыки"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/exports/mixins/items.py:61
+#: adhocracy4/exports/mixins/items.py:61
 #: apps/contrib/templates/a4_candy_contrib/item_detail.html:74
 msgid "Reference No."
 msgstr "Номер ссылки"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/exports/mixins/items.py:81
+#: adhocracy4/exports/mixins/items.py:81
 msgid "Status"
 msgstr "Статус"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/exports/mixins/items.py:83
+#: adhocracy4/exports/mixins/items.py:83
 msgid "Feedback"
 msgstr "Обратная связь"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/exports/mixins/items.py:107
+#: adhocracy4/exports/mixins/items.py:107
 #: apps/moderatorremark/models.py:14
 #: apps/moderatorremark/templates/a4_candy_moderatorremark/includes/popover_remark.html:5
 #: apps/moderatorremark/templates/a4_candy_moderatorremark/includes/popover_remark.html:21
 msgid "Remark"
 msgstr "Примечание"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/exports/mixins/rates.py:16
+#: adhocracy4/exports/mixins/rates.py:16
 msgid "Positive ratings"
 msgstr "Положительные рейтинги"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/exports/mixins/rates.py:18
+#: adhocracy4/exports/mixins/rates.py:18
 msgid "Negative ratings"
 msgstr "Отрицательные рейтинги"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/exports/views.py:91
+#: adhocracy4/exports/views.py:91
 msgid "yes"
 msgstr "да"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/exports/views.py:92
+#: adhocracy4/exports/views.py:92
 msgid "no"
 msgstr "нет"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/filters/widgets.py:76
+#: adhocracy4/filters/widgets.py:76
 #: apps/contrib/widgets.py:58
 msgid "Ordering"
 msgstr "Заказ"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/forms/fields.py:19
+#: adhocracy4/forms/fields.py:19
 #, python-format
 msgid "Time of %(date_label)s"
 msgstr "Время %(date_label)s"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/images/fields.py:70
+#: adhocracy4/images/fields.py:70
 #, python-brace-format
 msgid ""
 "{help_prefix} It must be min. {min_resolution[0]} pixel wide and "
@@ -811,117 +777,118 @@ msgstr ""
 "и {min_resolution[1]} пикселей в высоту. Допустимые форматы файлов: "
 "{fileformats_str}. Размер файла не должен превышать {max_size_mb} МБ."
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/images/fields.py:87
+#: adhocracy4/images/fields.py:87
 #, python-brace-format
 msgid "{image_name} copyright"
 msgstr "{image_name}авторское право"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/images/fields.py:90
+#: adhocracy4/images/fields.py:90
 #, python-brace-format
 msgid "Copyright shown in the {image_name}."
 msgstr "Авторское право отображено в {image_name}."
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/images/fields.py:103
+#: adhocracy4/images/fields.py:103
 #, python-brace-format
 msgid "{image_name} alt text"
 msgstr ""
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/images/fields.py:106
+#: adhocracy4/images/fields.py:106
 msgid ""
 "An alternate text serves as a textual description of the image content and "
 "is read out by screen readers. Describe the image in max. 80 characters. "
 "Example: A busy square with people in summer."
 msgstr ""
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/images/mixins.py:30
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/images/mixins.py:35
+#: adhocracy4/images/mixins.py:30
+#: adhocracy4/images/mixins.py:35
 msgid "Please add copyright information."
 msgstr ""
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/images/mixins.py:40
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/images/mixins.py:45
+#: adhocracy4/images/mixins.py:40
+#: adhocracy4/images/mixins.py:45
 msgid "Please add an alternative text for this image"
 msgstr ""
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/images/validators.py:28
+#: adhocracy4/images/validators.py:28
+#, python-brace-format
 msgid "Unsupported file format. Supported formats are {}."
 msgstr "Неподдерживаемый формат файла. Поддерживаемые форматы {}."
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/images/validators.py:35
+#: adhocracy4/images/validators.py:35
 #: apps/organisations/forms.py:357
 #, python-brace-format
 msgid "Image should be at most {max_size} MB"
 msgstr "Размер изображения не должен превышать {max_size}МБ"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/images/validators.py:43
+#: adhocracy4/images/validators.py:43
 #: apps/organisations/forms.py:365
 #, python-brace-format
 msgid "Image must be at least {min_width} pixels wide"
 msgstr "Изображение должно быть не менее {min_width} пикселей в ширину."
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/images/validators.py:51
+#: adhocracy4/images/validators.py:51
 #: apps/organisations/forms.py:375
 #, python-brace-format
 msgid "Image must be at least {min_height} pixels high"
 msgstr "Изображение должно быть не менее {min_height} пикселей в высоту."
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/images/validators.py:57
+#: adhocracy4/images/validators.py:57
 #, python-brace-format
 msgid "Image must be at most {max_width} pixels wide"
 msgstr "Изображение должно быть не более {max_width} пикселей в ширину"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/images/validators.py:60
+#: adhocracy4/images/validators.py:60
 #, python-brace-format
 msgid "Image must be at most {max_height} pixels high"
 msgstr "Изображение должно быть не более {max_height} пикселей в высоту"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/images/validators.py:69
+#: adhocracy4/images/validators.py:69
 #, python-brace-format
 msgid "Image aspect ratio should be {aspect_width}:{aspect_height}"
 msgstr ""
 "Соотношение сторон изображения должно быть {aspect_width}:{aspect_height}"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/images/validators.py:87
+#: adhocracy4/images/validators.py:87
 msgid "Please add an alternative text for all images."
 msgstr ""
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/images/widgets.py:28
+#: adhocracy4/images/widgets.py:28
 msgid "Select a picture from your local folder."
 msgstr "Выберите изображение из вашей локальной папки."
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/labels/dashboard.py:15
+#: adhocracy4/labels/dashboard.py:15
 msgid "Edit labels"
 msgstr "Редактировать ярлыки"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/labels/filters.py:10
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/labels/forms.py:25
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/labels/models.py:10
+#: adhocracy4/labels/filters.py:10
+#: adhocracy4/labels/forms.py:25
+#: adhocracy4/labels/models.py:10
 msgid "Label"
 msgstr "Ярлык"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/labels/models.py:12
+#: adhocracy4/labels/models.py:12
 msgid "Type of label"
 msgstr ""
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/labels/models.py:14
+#: adhocracy4/labels/models.py:14
 msgid ""
 "You can individualise the term label. The character limit is max. 25 "
 "characters (with spaces)."
 msgstr ""
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/labels/models.py:22
+#: adhocracy4/labels/models.py:22
 msgid ""
 "Specify your proposal with one or more labels. These will automatically "
 "appear in the display of your proposal. In addition, the list of all "
 "proposals can be filtered by labels."
 msgstr ""
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/maps/admin.py:15
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/maps/models.py:11
+#: adhocracy4/maps/admin.py:15
+#: adhocracy4/maps/models.py:11
 msgid "Polygon"
 msgstr "Многоугольник"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/maps/admin.py:19
+#: adhocracy4/maps/admin.py:19
 msgid ""
 "Enter a valid GeoJSON object. To initialize a new areasetting enter the "
 "string \"false\" without quotation marks."
@@ -929,35 +896,35 @@ msgstr ""
 "Введите действительный объект GeoJSON. Для инициализации нового набора "
 "площади введите строку «ложь» без кавычек."
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/maps/fields.py:16
+#: adhocracy4/maps/fields.py:16
 msgid "Geometry as GeoJSON"
 msgstr "Геометрия GeoJSON"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/maps/fields.py:34
+#: adhocracy4/maps/fields.py:34
 msgid "Please add a Marker on the map"
 msgstr "Пожалуйста, добавьте маркер на карту"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/maps/fields.py:39
+#: adhocracy4/maps/fields.py:39
 msgid "Please draw a Polygon on the map"
 msgstr "Пожалуйста, нарисуйте на карте многоугольник"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/maps/models.py:11
+#: adhocracy4/maps/models.py:11
 msgid "Please draw an area on the map."
 msgstr "Пожалуйста, нарисуйте область на карте."
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/maps/validators.py:12
+#: adhocracy4/maps/validators.py:12
 msgid "Point is not inside the specified area"
 msgstr ""
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/models/base.py:17
+#: adhocracy4/models/base.py:17
 msgid "Modified"
 msgstr "изменено"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/modules/models.py:75
+#: adhocracy4/modules/models.py:75
 msgid "Title of the module"
 msgstr "Заголовок модуля"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/modules/models.py:77
+#: adhocracy4/modules/models.py:77
 msgid ""
 "This title will appear in the timeline and the header on the module and "
 "project detail pages. It should be max. 512 characters long"
@@ -966,11 +933,11 @@ msgstr ""
 "страницах сведений о модуле и проекте. Количество символов не должно "
 "превышать 512 "
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/modules/models.py:86
+#: adhocracy4/modules/models.py:86
 msgid "Short description of the module"
 msgstr "Краткое описание модуля"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/modules/models.py:88
+#: adhocracy4/modules/models.py:88
 msgid ""
 "This short description will appear on the header of the module and project "
 "detail pages. It should briefly state the goal of the module in max. 512 "
@@ -980,78 +947,78 @@ msgstr ""
 "подробных сведений о проекте. Количество символов в кратком описании не "
 "должно превышать 512 ."
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/modules/models.py:227
+#: adhocracy4/modules/models.py:225
 msgid "day"
 msgstr "день"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/modules/models.py:227
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/modules/models.py:234
+#: adhocracy4/modules/models.py:225
+#: adhocracy4/modules/models.py:232
 msgid "days"
 msgstr "дни"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/modules/models.py:228
+#: adhocracy4/modules/models.py:226
 msgid "hour"
 msgstr "час"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/modules/models.py:228
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/modules/models.py:235
+#: adhocracy4/modules/models.py:226
+#: adhocracy4/modules/models.py:233
 msgid "hours"
 msgstr "часы"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/modules/models.py:229
+#: adhocracy4/modules/models.py:227
 msgid "minute"
 msgstr "минута"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/modules/models.py:229
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/modules/models.py:236
+#: adhocracy4/modules/models.py:227
+#: adhocracy4/modules/models.py:234
 msgid "minutes"
 msgstr "минуты"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/modules/models.py:230
+#: adhocracy4/modules/models.py:228
 msgid "second"
 msgstr "секунда"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/modules/models.py:230
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/modules/models.py:237
+#: adhocracy4/modules/models.py:228
+#: adhocracy4/modules/models.py:235
 msgid "seconds"
 msgstr "секунды"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/modules/models.py:234
+#: adhocracy4/modules/models.py:232
 msgctxt "abbreviation for day(s)"
 msgid "D"
 msgstr "D"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/modules/models.py:235
+#: adhocracy4/modules/models.py:233
 msgctxt "abbreviation for hour(s)"
 msgid "H"
 msgstr "H"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/modules/models.py:236
+#: adhocracy4/modules/models.py:234
 msgctxt "abbreviation for minute(s)"
 msgid "M"
 msgstr "M"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/modules/models.py:237
+#: adhocracy4/modules/models.py:235
 msgctxt "abbreviation for second(s)"
 msgid "S"
 msgstr "S"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/phases/forms.py:24
+#: adhocracy4/phases/forms.py:24
 msgid "Phases cannot run at the same time and must follow after each other."
 msgstr ""
 "Фазы не могут выполняться одновременно и должны следовать друг за другом."
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/phases/forms.py:31
+#: adhocracy4/phases/forms.py:31
 msgid "Phases need to be in same order as in form."
 msgstr "Фазы должны быть в том же порядке, что и в форме."
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/phases/models.py:59
+#: adhocracy4/phases/models.py:59
 #: apps/newsletters/models.py:30
 #: apps/projects/templates/a4_candy_projects/includes/removeable_user_list.html:7
 msgid "Name"
 msgstr "Имя"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/phases/models.py:60
+#: adhocracy4/phases/models.py:60
 #: apps/activities/models.py:22 apps/debate/models.py:27
 #: apps/ideas/models.py:38 apps/offlineevents/models.py:33
 #: apps/organisations/forms.py:317 apps/topicprio/forms.py:23
@@ -1059,77 +1026,78 @@ msgstr "Имя"
 msgid "Description"
 msgstr "Описание"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/phases/models.py:84
+#: adhocracy4/phases/models.py:84
 msgid "End date can not be before start date."
 msgstr "Дата окончания не может быть раньше даты начала."
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/phases/models.py:88
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/phases/models.py:92
+#: adhocracy4/phases/models.py:88
+#: adhocracy4/phases/models.py:92
 msgid "Either both or no date has to be set."
 msgstr "Необходимо установить либо обе даты, либо дату не указывать. "
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/polls/api.py:124
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/polls/api.py:142
+#: adhocracy4/polls/api.py:124
+#: adhocracy4/polls/api.py:142
 msgid "Your answer to the captcha was wrong."
 msgstr "Ваш ответ на капчу был неправильным."
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/polls/api.py:129
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/polls/api.py:138
+#: adhocracy4/polls/api.py:129
+#: adhocracy4/polls/api.py:138
 msgid "Something about the answer to the captcha was wrong."
 msgstr "Что-то в ответе на капчу было не так."
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/polls/api.py:223
+#: adhocracy4/polls/api.py:223
 msgid "Please specify your answer."
 msgstr "Пожалуйста, конкретизируйте ваш ответ"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/polls/api.py:237
+#: adhocracy4/polls/api.py:237
+#, python-brace-format
 msgid "Key error for {}"
 msgstr "Ошибка ключа для {}"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/polls/api.py:239
+#: adhocracy4/polls/api.py:239
 msgid "Choice not found."
 msgstr "Выбор не был найден"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/polls/api.py:260
+#: adhocracy4/polls/api.py:260
 msgid "Duplicate choices detected."
 msgstr "Повторяющиеся выборы найдены"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/polls/api.py:263
+#: adhocracy4/polls/api.py:263
 msgid "Multiple choice disabled for question."
 msgstr "Множественный выбор отключен для вопроса"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/polls/dashboard.py:15
+#: adhocracy4/polls/dashboard.py:15
 #: apps/dashboard/blueprints.py:98
 msgid "Poll"
 msgstr "Опрос"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/polls/dashboard.py:44
+#: adhocracy4/polls/dashboard.py:44
 #: apps/budgeting/dashboard.py:14 apps/debate/dashboard.py:65
 #: apps/documents/dashboard.py:50 apps/ideas/dashboard.py:14
 #: apps/mapideas/dashboard.py:14 apps/topicprio/dashboard.py:65
 msgid "Export Excel"
 msgstr "Экспорт в Excel"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/polls/exports.py:41
+#: adhocracy4/polls/exports.py:41
 #: apps/budgeting/exports.py:77 apps/debate/exports.py:67
 #: apps/documents/exports.py:40 apps/ideas/exports.py:76
 #: apps/mapideas/exports.py:77 apps/topicprio/exports.py:74
 msgid "ID"
 msgstr "Удостоверение личности"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/polls/exports.py:151
+#: adhocracy4/polls/exports.py:151
 msgid "Voter ID"
 msgstr ""
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/polls/models.py:50
+#: adhocracy4/polls/models.py:50
 msgid "Explanation"
 msgstr "Объяснение"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/polls/models.py:77
+#: adhocracy4/polls/models.py:77
 msgid "Questions with open answers cannot have multiple choices."
 msgstr "Вопросы с открытыми ответами не могут иметь несколько ответов"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/polls/models.py:86
+#: adhocracy4/polls/models.py:86
 msgid ""
 "Question with choices cannot become open question. Delete choices or add new "
 "open question."
@@ -1137,83 +1105,83 @@ msgstr ""
 "Вопросы с нескольким ответами не могут быть открытым вопросом. Удалите "
 "варианты ответов или добавьте новый вопрос"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/polls/models.py:147
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/polls/models.py:267
+#: adhocracy4/polls/models.py:147
+#: adhocracy4/polls/models.py:267
 msgid "Answer"
 msgstr "Ответ"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/polls/models.py:158
+#: adhocracy4/polls/models.py:158
 msgid "Only open questions can have answers."
 msgstr "Только открытые вопросы могут иметь ответы"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/polls/models.py:194
+#: adhocracy4/polls/models.py:194
 msgid "Open questions cannot have choices."
 msgstr "Открытые вопросы не могу иметь несколько вариантов ответа"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/polls/models.py:200
+#: adhocracy4/polls/models.py:200
 msgid ""
 "\"Other\" cannot be the only choice. Use open question or add more choices."
 msgstr ""
 "\"Другое\" не может только одним вариантом ответа. Используйте открытый "
 "вопрос или добавьте больше вариантов ответа"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/polls/models.py:211
+#: adhocracy4/polls/models.py:211
 msgid "Question already has \"other\" choice."
 msgstr "Вопрос уже имеет ответ \"другое\""
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/polls/models.py:274
+#: adhocracy4/polls/models.py:274
 msgid "Other vote can only be created for vote on \"other\" choice."
 msgstr ""
 "Другое выбор/голосование может быть создано только для выбора/голосования на "
 "ответ \"другое\""
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/polls/models.py:296
+#: adhocracy4/polls/models.py:296
 msgid "other"
 msgstr "другое"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/polls/phases.py:16
+#: adhocracy4/polls/phases.py:16
 msgctxt "A4: voting phase name"
 msgid "Voting phase"
 msgstr "Фазы голосования/выбора"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/polls/phases.py:18
+#: adhocracy4/polls/phases.py:18
 msgctxt "A4: voting phase description"
 msgid "Answer the questions and comment on the poll."
 msgstr "Отвечайте на вопросы и комментируйте опрос."
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/polls/phases.py:20
+#: adhocracy4/polls/phases.py:20
 msgid "polls"
 msgstr "Опросы"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/polls/validators.py:16
+#: adhocracy4/polls/validators.py:16
 #, python-format
 msgid "Item of type %(item)s for that module already exists"
 msgstr "Пункт типа%(item)s для этого модуля уже существует"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/polls/validators.py:28
+#: adhocracy4/polls/validators.py:28
 msgid "Question has to belong to the poll set in the url."
 msgstr "Вопрос должен принадлежать опросу, указанному в URL-адресе."
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/polls/validators.py:39
+#: adhocracy4/polls/validators.py:39
 msgid "Choice has to belong to the question set in the url."
 msgstr "Выбор должен относиться к вопросу, указанному в URL-адресе."
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/polls/validators.py:62
+#: adhocracy4/polls/validators.py:62
 msgid "Only one vote per choice is allowed per user."
 msgstr "Одному голосующему можно проголосовать только один раз"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/projects/admin.py:11
+#: adhocracy4/projects/admin.py:11
 #: apps/newsletters/forms.py:47
 #: adhocracy-plus/templates/includes/project_header_mobile_toggle.html:12
 msgid "Project"
 msgstr "Проект"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/projects/admin.py:69
+#: adhocracy4/projects/admin.py:69
 #: apps/projects/admin.py:41
 msgid "Information and result"
 msgstr "Информация и результат"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/projects/admin.py:75
+#: adhocracy4/projects/admin.py:75
 #: apps/organisations/templates/a4_candy_organisations/communication_form_social_media.html:4
 #: apps/organisations/templates/a4_candy_organisations/communication_qr_create.html:4
 #: apps/organisations/templates/a4_candy_organisations/organisation_form.html:4
@@ -1222,26 +1190,26 @@ msgstr "Информация и результат"
 msgid "Settings"
 msgstr "Настройки"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/projects/admin.py:87
+#: adhocracy4/projects/admin.py:87
 #: apps/projects/admin.py:61
 msgid "Images"
 msgstr "Изображения"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/projects/admin.py:99
+#: adhocracy4/projects/admin.py:99
 #: apps/projects/admin.py:73 adhocracy-plus/templates/email_base.html:105
 #: adhocracy-plus/templates/footer.html:63
 msgid "Contact"
 msgstr "Контактные данные"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/projects/enums.py:13
+#: adhocracy4/projects/enums.py:13
 msgid "public"
 msgstr "Открытый доступ"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/projects/mixins.py:173
+#: adhocracy4/projects/mixins.py:173
 msgid "Final Results"
 msgstr ""
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/projects/models.py:63
+#: adhocracy4/projects/models.py:63
 msgid ""
 "Phone numbers can only contain digits, spaces and the following characters: "
 "-, +, (, ). It has to be between 8 and 20 characters long."
@@ -1249,35 +1217,35 @@ msgstr ""
 "Номера телефонов могут содержать только цифры, пробелы и следующие символы: "
 "-, +, (,). Номер телефона должен содержать от 8 до 20 символов."
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/projects/models.py:70
+#: adhocracy4/projects/models.py:70
 msgid "Postal address"
 msgstr "Почтовый адрес"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/projects/models.py:73
+#: adhocracy4/projects/models.py:73
 #: apps/notifications/templates/a4_candy_notifications/settings.html:63
 #: apps/projects/templates/a4_candy_projects/includes/removeable_invite_list.html:7
 #: apps/projects/templates/a4_candy_projects/project_detail.html:168
 msgid "Email"
 msgstr "Электронная почта"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/projects/models.py:76
+#: adhocracy4/projects/models.py:76
 msgid "Contact person"
 msgstr "Контактное лицо"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/projects/models.py:80
+#: adhocracy4/projects/models.py:80
 msgid "Phone"
 msgstr "Телефон"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/projects/models.py:83
+#: adhocracy4/projects/models.py:83
 #: apps/projects/templates/a4_candy_projects/project_detail.html:173
 msgid "Website"
 msgstr "Вебсайт"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/projects/models.py:104
+#: adhocracy4/projects/models.py:104
 msgid "Can your project be located on the map?"
 msgstr "Может ли ваш проект быть размещен на карте?"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/projects/models.py:106
+#: adhocracy4/projects/models.py:106
 msgid ""
 "Locate your project. Click inside the marked area or type in an address to "
 "set the marker. A set marker can be dragged when pressed."
@@ -1286,15 +1254,15 @@ msgstr ""
 "или введите адрес, чтобы установить маркер. Установленный маркер можно "
 "перетащить при нажатии."
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/projects/models.py:122
+#: adhocracy4/projects/models.py:122
 msgid "Administrative district"
 msgstr "Административный район"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/projects/models.py:210
+#: adhocracy4/projects/models.py:210
 msgid "Title of your project"
 msgstr "Название вашего проекта"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/projects/models.py:212
+#: adhocracy4/projects/models.py:212
 msgid ""
 "This title will appear on the teaser card and on top of the project detail "
 "page. It should be max. 120 characters long"
@@ -1302,55 +1270,55 @@ msgstr ""
 "Этот заголовок появится на карточке-тизере и в верхней части страницы "
 "сведений о проекте. Количество символов не должно превышать 120 символов"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/projects/models.py:225
+#: adhocracy4/projects/models.py:225
 msgid "Short description of your project"
 msgstr "Краткое описание вашего проекта"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/projects/models.py:227
+#: adhocracy4/projects/models.py:227
 msgid ""
 "This short description will appear on the header of the project and in the "
 "teaser. It should briefly state the goal of the project in max. 170 chars."
 msgstr ""
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/projects/models.py:236
+#: adhocracy4/projects/models.py:236
 msgid "Description of your project"
 msgstr "Описание вашего проекта"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/projects/models.py:242
+#: adhocracy4/projects/models.py:242
 msgid "Results of your project"
 msgstr "Результаты вашего проекта"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/projects/models.py:246
+#: adhocracy4/projects/models.py:246
 msgid "Access to the project"
 msgstr "Доступ к проекту"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/projects/models.py:251
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/projects/models.py:257
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/projects/models.py:258
+#: adhocracy4/projects/models.py:251
+#: adhocracy4/projects/models.py:257
+#: adhocracy4/projects/models.py:258
 #: apps/organisations/models.py:96
 msgid "Header image"
 msgstr "Заглавное изображение"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/projects/models.py:252
+#: adhocracy4/projects/models.py:252
 #: apps/organisations/models.py:97
 msgid "The image will be shown as a decorative background image."
 msgstr "Изображение будет отображаться как декоративное фоновое изображение."
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/projects/models.py:261
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/projects/models.py:267
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/projects/models.py:268
+#: adhocracy4/projects/models.py:261
+#: adhocracy4/projects/models.py:267
+#: adhocracy4/projects/models.py:268
 msgid "Tile image"
 msgstr "Замостить изображение"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/projects/models.py:262
+#: adhocracy4/projects/models.py:262
 msgid "The image will be shown in the project tile."
 msgstr "Изображение будет показано на клетке проекта."
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/projects/models.py:281
+#: adhocracy4/projects/models.py:281
 msgid "Project is archived"
 msgstr "Проект заархивирован"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/projects/models.py:283
+#: adhocracy4/projects/models.py:283
 msgid ""
 "Archived projects are not shown in the project overview. For project "
 "initiators they are still visible in the dashboard."
@@ -1358,15 +1326,16 @@ msgstr ""
 "Заархивированные проекты не отображаются в обзоре проектов. Для "
 "организаторов проекта они по-прежнему видны на панели инструментов."
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/projects/utils.py:46
+#: adhocracy4/projects/utils.py:46
+#, python-brace-format
 msgid "{}. Online Participation"
 msgstr "{}. Онлайн-участие"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/projects/utils.py:55
+#: adhocracy4/projects/utils.py:55
 msgid "Online Participation"
 msgstr "Онлайн-участие"
 
-#: /var/liqd/a4-roots/venv/lib/python3.13/site-packages/adhocracy4/reports/templatetags/react_reports.py:28
+#: adhocracy4/reports/templatetags/react_reports.py:28
 #: apps/contrib/templates/a4_candy_contrib/item_detail.html:125
 msgid "Report"
 msgstr "Отчет"
@@ -1379,6 +1348,7 @@ msgid "Password"
 msgstr "Пароль"
 
 #: apps/account/forms.py:75 apps/organisations/mixins.py:58
+#, python-brace-format
 msgid "Yes, I have read and agree to this organisation's {}terms of use{}."
 msgstr "Да, я прочитал и согласен с {}условиями{} этой организации."
 
@@ -2062,6 +2032,7 @@ msgid "Header image: "
 msgstr "Заглавное изображение:"
 
 #: apps/cms/settings/helpers.py:8
+#, python-brace-format
 msgid "Please look {}here{} for more information."
 msgstr "Дополнительную информацию можно найти {} здесь {}."
 
@@ -2865,6 +2836,7 @@ msgid "Ask a question yourself!"
 msgstr "Задайте вопрос сами!"
 
 #: apps/interactiveevents/templatetags/react_interactiveevents.py:28
+#, python-brace-format
 msgid ""
 "I confirm that I have read and accepted the {}terms of use{} and the {}data "
 "protection policy{}."
@@ -4406,18 +4378,22 @@ msgid "The offline event has been deleted"
 msgstr "Офлайн-событие удалено"
 
 #: apps/organisations/forms.py:16
+#, python-brace-format
 msgid "Here you can find an example of an {}imprint{}."
 msgstr "Здесь вы можете найти пример {} выходных данных {}."
 
 #: apps/organisations/forms.py:17
+#, python-brace-format
 msgid "Here you can find an example of {}terms of use{}."
 msgstr "Здесь вы можете найти пример {} условий использования {}."
 
 #: apps/organisations/forms.py:19
+#, python-brace-format
 msgid "Here you can find an example of a {}data protection policy{}."
 msgstr "Здесь вы можете найти пример {} политики защиты данных {}."
 
 #: apps/organisations/forms.py:21
+#, python-brace-format
 msgid "Here you can find an example of a {}netiquette{}."
 msgstr "Здесь вы можете найти пример {} сетевого этикета {}."
 
@@ -4460,6 +4436,7 @@ msgid "Please select a project of your organisation and click select."
 msgstr "Пожалуйста, выберите проект вашей организации и нажмите выбрать."
 
 #: apps/organisations/forms.py:311
+#, python-brace-format
 msgid ""
 "This title will be displayed as a header. It should be max. {} characters "
 "long."
@@ -4467,6 +4444,7 @@ msgstr ""
 "Название будет размещено как заголовок. Оно должно быть не больше  {} . "
 
 #: apps/organisations/forms.py:320
+#, python-brace-format
 msgid ""
 "This description will be displayed below the title. It should briefly state "
 "the goal of the project in max. {} chars."
@@ -4479,6 +4457,7 @@ msgid "Picture Upload"
 msgstr "Размещение рисунка"
 
 #: apps/organisations/forms.py:331
+#, python-brace-format
 msgid ""
 "The picture will be displayed in the sharepic. It must be min. {} pixel wide "
 "and {} pixel tall. Allowed file formats are png, jpeg, gif. The file size "
@@ -4927,6 +4906,7 @@ msgid "running"
 msgstr "текущий"
 
 #: apps/projects/serializers.py:255
+#, python-brace-format
 msgid "starts on {}"
 msgstr "начинается {}"
 
@@ -5515,10 +5495,12 @@ msgid "Invite moderators via file upload"
 msgstr "Пригласить модераторов через загрузку файла"
 
 #: apps/projects/views.py:244
+#, python-brace-format
 msgid "{} moderator invited."
 msgstr "Приглашен {} модератор."
 
 #: apps/projects/views.py:244
+#, python-brace-format
 msgid "{} moderators invited."
 msgstr "Приглашено {} модераторов."
 
@@ -5527,10 +5509,12 @@ msgid "Moderator successfully removed."
 msgstr "Модератор успешно удален."
 
 #: apps/projects/views.py:263
+#, python-brace-format
 msgid "{} participant invited."
 msgstr "Приглашен {} участник."
 
 #: apps/projects/views.py:263
+#, python-brace-format
 msgid "{} participants invited."
 msgstr "Приглашено {} участников."
 
@@ -5773,6 +5757,7 @@ msgid "Important dates"
 msgstr "Важные даты"
 
 #: apps/users/emails.py:17
+#, python-brace-format
 msgid ""
 "If you no longer want to receive any notifications, change the settings for "
 "your {}account{}."
@@ -5781,6 +5766,7 @@ msgstr ""
 "учетной записи {}."
 
 #: apps/users/emails.py:21
+#, python-brace-format
 msgid ""
 "If you no longer want to receive notifications about this project, "
 "unsubscribe from the {}project{}."
@@ -5794,6 +5780,7 @@ msgstr ""
 "Пожалуйста, введите действительные адреса электронной почты через запятую."
 
 #: apps/users/forms.py:23
+#, python-brace-format
 msgid ""
 "Please complete the captcha verification.<strong>If you are having "
 "difficulty please contact us by {}email{}.</strong>"
