@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-13 11:54+0200\n"
+"POT-Creation-Date: 2026-08-13 12:07+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Leonardo Herkenhoff <leonardoherkenhoff@gmail.com>, 2025\n"
 "Language-Team: Portuguese (Brazil) (https://app.transifex.com/liqd/teams/"
@@ -24,7 +24,6 @@ msgstr ""
 "1000000 == 0 ? 1 : 2;\n"
 
 #: adhocracy4/categories/templates/a4categories/includes/module_categories_form.html:3
-#: adhocracy4/categories/templates/a4categories/includes/module_categories_form.html:3
 msgid ""
 "In this section, you can create\n"
 "categories. If you create any, each contribution has to be assigned\n"
@@ -35,18 +34,15 @@ msgstr ""
 "a uma categoria. Dessa forma, o conteúdo pode ser classificado."
 
 #: adhocracy4/categories/templates/a4categories/includes/module_categories_form.html:21
-#: adhocracy4/categories/templates/a4categories/includes/module_categories_form.html:21
 msgid "Add category"
 msgstr "Adicionar categoria"
 
-#: adhocracy4/dashboard/templates/a4dashboard/base_dashboard.html:4
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard.html:4
 #: adhocracy-plus/templates/a4dashboard/base_dashboard.html:55
 #: adhocracy-plus/templates/includes/userdashboard_mobile_toggle.html:30
 msgid "Dashboard"
 msgstr "Painel"
 
-#: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:5
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:5
 #: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:24
 msgid "Project Settings"
@@ -95,18 +91,15 @@ msgid "New Project"
 msgstr "Novo Projeto"
 
 #: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:17
-#: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:17
 msgid "Phase"
 msgstr "Fase"
 
-#: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:23
 #: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:23
 #: apps/organisations/templates/a4_candy_organisations/communication_form_social_media.html:15
 #: adhocracy-plus/templates/a4dashboard/includes/blueprint_list_tile.html:17
 msgid "Select"
 msgstr "Selecionar"
 
-#: adhocracy4/dashboard/templates/a4dashboard/includes/form_field.html:6
 #: adhocracy4/dashboard/templates/a4dashboard/includes/form_field.html:6
 msgid "Missing field for publication"
 msgstr "Campo ausente para publicação"
@@ -134,17 +127,14 @@ msgid "View"
 msgstr "Visualização"
 
 #: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:16
-#: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:16
 #, python-format
 msgid "%(value)s from %(max)s"
 msgstr "%(value)s de %(max)s"
 
 #: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:17
-#: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:17
 msgid "required fields for publication"
 msgstr "campos obrigatórios para publicação"
 
-#: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:27
 #: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:27
 #: apps/dashboard/templates/a4_candy_dashboard/includes/progress.html:12
 #: apps/dashboard/templates/a4_candy_dashboard/includes/progress.html:31
@@ -152,7 +142,6 @@ msgstr "campos obrigatórios para publicação"
 msgid "Publish"
 msgstr "Publicar"
 
-#: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:31
 #: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:31
 #: apps/dashboard/templates/a4_candy_dashboard/includes/progress.html:19
 #: apps/dashboard/templates/a4_candy_dashboard/includes/progress.html:35
@@ -167,7 +156,6 @@ msgid "Create project based on"
 msgstr "Criar projeto baseado em "
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:23
-#: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:23
 #: adhocracy-plus/templates/a4dashboard/project_create_form.html:41
 msgid ""
 "After saving the draft project you can further customize and edit your "
@@ -177,12 +165,10 @@ msgstr ""
 "seu projeto e, eventualmente, publicá-lo."
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:25
-#: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:25
 #: adhocracy-plus/templates/a4dashboard/project_create_form.html:46
 msgid "Create draft"
 msgstr "Criar rascunho"
 
-#: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:27
 #: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:27
 #: apps/account/templates/a4_candy_account/account_deletion.html:50
 #: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_form.html:31
@@ -220,12 +206,10 @@ msgid "Projects"
 msgstr "Projetos"
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:24
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:24
 #: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:24
 msgid "Finished"
 msgstr "Finalizado"
 
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:27
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:27
 #: adhocracy4/projects/enums.py:14
 #: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:27
@@ -233,13 +217,11 @@ msgid "semipublic"
 msgstr "semipúblico"
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:30
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:30
 #: adhocracy4/projects/enums.py:15
 #: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:30
 msgid "private"
 msgstr "privado"
 
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:48
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:48
 #: apps/contrib/templates/a4_candy_contrib/item_detail.html:114
 #: apps/debate/templates/a4_candy_debate/includes/subject_dashboard_list_item.html:19
@@ -251,12 +233,10 @@ msgid "Edit"
 msgstr "Editar"
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:57
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:57
 #: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:71
 msgid "Duplicate"
 msgstr "Duplicar"
 
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:65
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:65
 #: apps/projects/templates/a4_candy_projects/project_list.html:18
 #: adhocracy-plus/templates/a4dashboard/project_list.html:27
@@ -277,7 +257,6 @@ msgid "Export"
 msgstr "Exportar"
 
 #: adhocracy4/exports/templates/a4exports/export_dashboard.html:7
-#: adhocracy4/exports/templates/a4exports/export_dashboard.html:7
 msgid ""
 "You can export the results of your participation project as an excel file."
 msgstr ""
@@ -285,21 +264,17 @@ msgstr ""
 "arquivo Excel."
 
 #: adhocracy4/exports/templates/a4exports/export_dashboard.html:19
-#: adhocracy4/exports/templates/a4exports/export_dashboard.html:19
 msgid "here you can export all ideas"
 msgstr "aqui você pode exportar todas as ideias"
 
-#: adhocracy4/exports/templates/a4exports/export_dashboard.html:31
 #: adhocracy4/exports/templates/a4exports/export_dashboard.html:31
 msgid "here you can export all subjects"
 msgstr "aqui você pode exportar todos os assuntos"
 
 #: adhocracy4/exports/templates/a4exports/export_dashboard.html:43
-#: adhocracy4/exports/templates/a4exports/export_dashboard.html:43
 msgid "here you can export all answers"
 msgstr "aqui você pode exportar todas as respostas"
 
-#: adhocracy4/exports/templates/a4exports/export_dashboard.html:55
 #: adhocracy4/exports/templates/a4exports/export_dashboard.html:55
 msgid "here you can export all comments"
 msgstr "aqui você pode exportar todos os comentários"
@@ -315,7 +290,6 @@ msgstr "aqui você pode exportar todos os comentários"
 msgid "Search"
 msgstr "Buscar"
 
-#: adhocracy4/forms/templates/a4forms/includes/form_field.html:5
 #: adhocracy4/forms/templates/a4forms/includes/form_field.html:5
 #: apps/account/templates/a4_candy_account/guest_convert.html:32
 #: apps/contrib/templates/a4_candy_contrib/includes/form_checkbox_field.html:6
@@ -340,7 +314,6 @@ msgid "Remove category"
 msgstr "Remover categoria"
 
 #: adhocracy4/images/templates/a4images/image_upload_widget.html:8
-#: adhocracy4/images/templates/a4images/image_upload_widget.html:8
 #: adhocracy-plus/templates/a4images/image_upload_widget.html:10
 #: adhocracy-plus/templates/a4images/image_upload_widget.html:11
 #: adhocracy-plus/templates/a4images/image_upload_widget_simple.html:10
@@ -349,7 +322,6 @@ msgid "Remove the picture"
 msgstr "Remover a foto"
 
 #: adhocracy4/images/templates/a4images/image_upload_widget.html:12
-#: adhocracy4/images/templates/a4images/image_upload_widget.html:12
 #: adhocracy-plus/templates/a4images/image_upload_widget.html:16
 #: adhocracy-plus/templates/a4images/image_upload_widget.html:17
 #: adhocracy-plus/templates/a4images/image_upload_widget_simple.html:16
@@ -357,7 +329,6 @@ msgstr "Remover a foto"
 msgid "Upload a picture"
 msgstr "Carregar uma foto"
 
-#: adhocracy4/images/templates/a4images/image_upload_widget.html:19
 #: adhocracy4/images/templates/a4images/image_upload_widget.html:19
 msgid ""
 "\n"
@@ -371,7 +342,6 @@ msgstr ""
 " "
 
 #: adhocracy4/labels/templates/a4labels/includes/module_labels_form.html:3
-#: adhocracy4/labels/templates/a4labels/includes/module_labels_form.html:3
 msgid ""
 "In this section, you can create\n"
 "labels. If you create any, each contribution can be assigned\n"
@@ -382,11 +352,9 @@ msgstr ""
 "a um ou mais deles. Dessa forma, o conteúdo pode ser classificado."
 
 #: adhocracy4/labels/templates/a4labels/includes/module_labels_form.html:21
-#: adhocracy4/labels/templates/a4labels/includes/module_labels_form.html:21
 msgid "Add label"
 msgstr "Adicionar rótulo"
 
-#: adhocracy4/polls/templates/a4polls/poll_404.html:8
 #: adhocracy4/polls/templates/a4polls/poll_404.html:8
 msgid ""
 "Participation is not possible at the moment. The poll has not been set up "
@@ -396,11 +364,9 @@ msgstr ""
 "configurada."
 
 #: adhocracy4/polls/templates/a4polls/poll_404.html:15
-#: adhocracy4/polls/templates/a4polls/poll_404.html:15
 msgid "Setup the poll by adding questions and answers in the dashboard."
 msgstr "Configure a enquete adicionando perguntas e respostas no painel."
 
-#: adhocracy4/polls/templates/a4polls/poll_dashboard.html:5
 #: adhocracy4/polls/templates/a4polls/poll_dashboard.html:5
 msgid "Edit poll"
 msgstr "Editar enquete"
@@ -906,7 +872,7 @@ msgstr "Por favor, adicione texto alternativo para todas as imagens."
 
 #: adhocracy4/images/widgets.py:28
 msgid "Select a picture from your local folder."
-msgstr ""
+msgstr "Selecione uma foto de seu diretório local."
 
 #: adhocracy4/labels/dashboard.py:15
 msgid "Edit labels"
@@ -1383,11 +1349,11 @@ msgstr ""
 #: adhocracy4/projects/utils.py:46
 #, python-brace-format
 msgid "{}. Online Participation"
-msgstr ""
+msgstr "{}. Participação online"
 
 #: adhocracy4/projects/utils.py:55
 msgid "Online Participation"
-msgstr ""
+msgstr "Participação online"
 
 #: adhocracy4/reports/templatetags/react_reports.py:28
 #: apps/contrib/templates/a4_candy_contrib/item_detail.html:125
@@ -2302,7 +2268,7 @@ msgstr "Página anterior"
 
 #: apps/contrib/templates/a4_candy_contrib/includes/pagination.html:14
 msgid " of "
-msgstr ""
+msgstr "de"
 
 #: apps/contrib/templates/a4_candy_contrib/includes/pagination.html:19
 #: apps/contrib/templates/a4_candy_contrib/includes/pagination.html:20
@@ -3838,12 +3804,12 @@ msgstr ""
 #: apps/notifications/templates/a4_candy_notifications/_pagination.html:15
 #: adhocracy-plus/templates/a4modules/module_detail.html:78
 msgid "Previous"
-msgstr ""
+msgstr "Anterior"
 
 #: apps/notifications/templates/a4_candy_notifications/_pagination.html:43
 #: adhocracy-plus/templates/a4modules/module_detail.html:84
 msgid "Next"
-msgstr ""
+msgstr "Próximo"
 
 #: apps/notifications/templates/a4_candy_notifications/emails/content/comment_on_post.en.email:3
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_on_post.en.email:29
@@ -4062,11 +4028,11 @@ msgstr ""
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator.en.email:4
 #, python-format
 msgid "Reaction to your contribution in project %(project_name)s"
-msgstr ""
+msgstr "Reação à sua contribuição no projeto%(project_name)s"
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator.en.email:6
 msgid "Reaction to your contribution"
-msgstr ""
+msgstr "Reação à sua contribuição"
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator.en.email:9
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_on_post.en.email:24
@@ -4089,16 +4055,16 @@ msgstr "Olá %(receiver_name)s,"
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator.en.email:13
 #, python-format
 msgid "%(actor_name)s commented on your post:"
-msgstr ""
+msgstr "%(actor_name)scomentou na sua publicação: "
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator.en.email:21
 msgid "Would you like to answer?"
-msgstr ""
+msgstr "Você gostaria de responder?"
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator.en.email:26
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_comment_highlight.en.email:17
 msgid "View Post"
-msgstr ""
+msgstr "Ver Publicação"
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator.en.email:28
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_comment_highlight.en.email:19
@@ -4108,6 +4074,8 @@ msgid ""
 "This email was sent to %(receiver_mail)s. You have received the e-mail "
 "because you added a contribution to the above project."
 msgstr ""
+"Este e-mail foi enviado para %(receiver_mail)s. Você recebeu o e-mail porque "
+"adicionou uma contribuição ao projeto acima."
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_on_post.en.email:12
 #, python-format
@@ -4159,12 +4127,12 @@ msgstr ""
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:4
 #, python-format
 msgid "Feedback for your contribution on %(site_name)s"
-msgstr ""
+msgstr "Feedback para sua contribuição em %(site_name)s"
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:17
 #, python-format
 msgid "Your contribution is %(status)s."
-msgstr ""
+msgstr "Sua contribuição está %(status)s."
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_added.en.email:4
 #, python-format
@@ -4184,6 +4152,8 @@ msgid ""
 "This email was sent to %(receiver_mail)s. You have received the e-mail "
 "because you are following the above project."
 msgstr ""
+"Este e-mail foi enviado para %(receiver_mail)s. Você recebeu o e-mail porque "
+"está acompanhando o projeto acima."
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_deleted.en.email:4
 #, python-format
@@ -4217,26 +4187,26 @@ msgstr ""
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_over_soon.en.email:4
 #, python-format
 msgid "Participation ends soon for %(project_name)s"
-msgstr ""
+msgstr "A participação termina em breve para %(project_name)s"
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_over_soon.en.email:6
 msgid "Participation ends soon!"
-msgstr ""
+msgstr "A participação termina em breve!"
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_over_soon.en.email:13
 msgid "the online participation in the above mentioned project will end soon."
-msgstr ""
+msgstr "a participação online no projeto acima mencionado terminará em breve."
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_over_soon.en.email:16
 #, python-format
 msgid "You can still participate until %(end_date)s."
-msgstr ""
+msgstr "Você ainda pode participar até %(end_date)s."
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_started.en.email:4
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_project_started.en.email:9
 #, python-format
 msgid "Here we go: %(project_name)s starts now!"
-msgstr ""
+msgstr "Aqui vamos nós: %(project_name)s começa agora!"
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_project_completed.en.email:4
 #, python-format
@@ -4246,12 +4216,12 @@ msgstr ""
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_created.en.email:4
 #, python-format
 msgid "New project %(project_name)s on %(site_name)s"
-msgstr ""
+msgstr "Novo projeto %(project_name)s no %(site_name)s"
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_created.en.email:6
 #, python-format
 msgid "The new project %(project_name)s was created for %(organisation_name)s"
-msgstr ""
+msgstr "O novo projeto %(project_name)s foi criado para %(organisation_name)s"
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_created.en.email:10
 #, python-format
@@ -4259,6 +4229,7 @@ msgid ""
 "%(creator_name)s has created the project %(project_name)s for "
 "%(organisation_name)s."
 msgstr ""
+"%(creator_name)scriou o projeto %(project_name)s para %(organisation_name)s."
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_created.en.email:17
 #, python-format
@@ -4266,6 +4237,8 @@ msgid ""
 "This email was sent to %(receiver_mail)s. This email was sent to you because "
 "you are an intiator of %(organisation_name)s."
 msgstr ""
+"Este e-mail foi enviado para %(receiver_mail)s. Este e-mail foi enviado a "
+"você porque você é um iniciador de %(organisation_name)s."
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_deleted.en.email:6
 #, python-format
@@ -4279,6 +4252,9 @@ msgid ""
 "are an initiator of the organisation '%(organisation_name)s', in which a "
 "project was deleted."
 msgstr ""
+"Este e-mail foi enviado para %(receiver)s. Este e-mail foi enviado a você "
+"porque você é um iniciador da organização \"%(organisation_name)s\",  na "
+"qual um projeto foi excluído."
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:5
 #, python-format
@@ -4320,6 +4296,8 @@ msgid ""
 "This email was sent to %(receiver_mail)s. This email was sent to you because "
 "you are a moderator in the project."
 msgstr ""
+"Este e-mail foi enviado para %(receiver_mail)s. Este e-mail foi enviado a "
+"você porque você é moderador do projeto."
 
 #: apps/notifications/templates/a4_candy_notifications/settings.html:19
 msgid "Trigger all notification tasks (for testing)"
@@ -4539,6 +4517,9 @@ msgid ""
 "and {} pixel tall. Allowed file formats are png, jpeg, gif. The file size "
 "should be max. 5 MB."
 msgstr ""
+"A imagem será exibida no sharepic. Ela deve ter no mínimo {} pixels de "
+"largura e {} pixels de altura. Os formatos de arquivo permitidos são png, "
+"jpeg, gif. O tamanho do arquivo deve ser no máximo 5 MB."
 
 #: apps/organisations/mixins.py:20
 msgid "You can still manage all your preferences on User Agreements."
@@ -5349,17 +5330,17 @@ msgstr " Participação: a partir de %(date)s"
 
 #: apps/projects/templates/a4_candy_projects/includes/project_timeline-carousel.html:12
 msgid "Timeline item"
-msgstr ""
+msgstr "Item da linha do tempo"
 
 #: apps/projects/templates/a4_candy_projects/includes/project_timeline-carousel.html:18
 #, python-format
 msgid " from %(date)s"
-msgstr ""
+msgstr " a partir de %(date)s"
 
 #: apps/projects/templates/a4_candy_projects/includes/project_timeline-carousel.html:21
 #, python-format
 msgid " on %(date)s"
-msgstr ""
+msgstr " em %(date)s"
 
 #: apps/projects/templates/a4_candy_projects/includes/removeable_invite_list.html:9
 #: apps/projects/templates/a4_candy_projects/includes/removeable_invite_list.html:21
@@ -5535,7 +5516,7 @@ msgstr "Insights"
 
 #: apps/projects/templates/a4_candy_projects/project_detail.html:326
 msgid "No results yet."
-msgstr ""
+msgstr "Nenhum resultado ainda."
 
 #: apps/projects/templates/a4_candy_projects/project_moderators.html:7
 msgid "Edit Moderators"
@@ -6472,11 +6453,11 @@ msgstr ""
 
 #: adhocracy-plus/templates/a4modules/module_detail.html:42
 msgid "This project is in not published yet."
-msgstr ""
+msgstr "Este projeto ainda não foi publicado."
 
 #: adhocracy-plus/templates/a4modules/module_detail.html:81
 msgid "of"
-msgstr ""
+msgstr "de"
 
 #: adhocracy-plus/templates/a4modules/module_detail.html:182
 msgid "More questions from this online participation"

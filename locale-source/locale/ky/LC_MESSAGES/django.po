@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-13 11:54+0200\n"
+"POT-Creation-Date: 2026-08-13 12:07+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Luca Thüer, 2023\n"
 "Language-Team: Kyrgyz (https://app.transifex.com/liqd/teams/109316/ky/)\n"
@@ -26,7 +26,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: adhocracy4/categories/templates/a4categories/includes/module_categories_form.html:3
 #: adhocracy4/categories/templates/a4categories/includes/module_categories_form.html:3
 msgid ""
 "In this section, you can create\n"
@@ -38,18 +37,15 @@ msgstr ""
 " бир категорияга киргизилиши керек. Ошентип, контентти жиктөөгө болот. "
 
 #: adhocracy4/categories/templates/a4categories/includes/module_categories_form.html:21
-#: adhocracy4/categories/templates/a4categories/includes/module_categories_form.html:21
 msgid "Add category"
 msgstr "Категорияны кошуу"
 
-#: adhocracy4/dashboard/templates/a4dashboard/base_dashboard.html:4
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard.html:4
 #: adhocracy-plus/templates/a4dashboard/base_dashboard.html:55
 #: adhocracy-plus/templates/includes/userdashboard_mobile_toggle.html:30
 msgid "Dashboard"
 msgstr "Жеке кабинет"
 
-#: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:5
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:5
 #: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:24
 msgid "Project Settings"
@@ -98,18 +94,15 @@ msgid "New Project"
 msgstr "Жаңы долбоор "
 
 #: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:17
-#: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:17
 msgid "Phase"
 msgstr "Фаза"
 
-#: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:23
 #: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:23
 #: apps/organisations/templates/a4_candy_organisations/communication_form_social_media.html:15
 #: adhocracy-plus/templates/a4dashboard/includes/blueprint_list_tile.html:17
 msgid "Select"
 msgstr "Тандоо"
 
-#: adhocracy4/dashboard/templates/a4dashboard/includes/form_field.html:6
 #: adhocracy4/dashboard/templates/a4dashboard/includes/form_field.html:6
 msgid "Missing field for publication"
 msgstr "Жарыялоо үчүн тилке жок"
@@ -137,17 +130,14 @@ msgid "View"
 msgstr "Карап чыгуу"
 
 #: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:16
-#: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:16
 #, python-format
 msgid "%(value)s from %(max)s"
 msgstr "%(value)sден%(max)s"
 
 #: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:17
-#: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:17
 msgid "required fields for publication"
 msgstr "жарыялоо үчүн милдеттүү тилкелер "
 
-#: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:27
 #: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:27
 #: apps/dashboard/templates/a4_candy_dashboard/includes/progress.html:12
 #: apps/dashboard/templates/a4_candy_dashboard/includes/progress.html:31
@@ -155,7 +145,6 @@ msgstr "жарыялоо үчүн милдеттүү тилкелер "
 msgid "Publish"
 msgstr "Жарыялоо "
 
-#: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:31
 #: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:31
 #: apps/dashboard/templates/a4_candy_dashboard/includes/progress.html:19
 #: apps/dashboard/templates/a4_candy_dashboard/includes/progress.html:35
@@ -170,7 +159,6 @@ msgid "Create project based on"
 msgstr "негизинде долбоорду түзүү"
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:23
-#: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:23
 #: adhocracy-plus/templates/a4dashboard/project_create_form.html:41
 msgid ""
 "After saving the draft project you can further customize and edit your "
@@ -180,12 +168,10 @@ msgstr ""
 "оңдосоңуз болот жана акыркы оңдолгон вариантын жарыяласаңыз болот. "
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:25
-#: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:25
 #: adhocracy-plus/templates/a4dashboard/project_create_form.html:46
 msgid "Create draft"
 msgstr "Болжолдуу долбоорду түзүү"
 
-#: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:27
 #: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:27
 #: apps/account/templates/a4_candy_account/account_deletion.html:50
 #: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_form.html:31
@@ -223,12 +209,10 @@ msgid "Projects"
 msgstr "Долбоорлор"
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:24
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:24
 #: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:24
 msgid "Finished"
 msgstr "Аяктады"
 
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:27
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:27
 #: adhocracy4/projects/enums.py:14
 #: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:27
@@ -236,13 +220,11 @@ msgid "semipublic"
 msgstr "аралаш"
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:30
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:30
 #: adhocracy4/projects/enums.py:15
 #: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:30
 msgid "private"
 msgstr "жеке"
 
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:48
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:48
 #: apps/contrib/templates/a4_candy_contrib/item_detail.html:114
 #: apps/debate/templates/a4_candy_debate/includes/subject_dashboard_list_item.html:19
@@ -254,12 +236,10 @@ msgid "Edit"
 msgstr "Редакциялоо "
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:57
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:57
 #: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:71
 msgid "Duplicate"
 msgstr "Көчүрүү "
 
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:65
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:65
 #: apps/projects/templates/a4_candy_projects/project_list.html:18
 #: adhocracy-plus/templates/a4dashboard/project_list.html:27
@@ -280,7 +260,6 @@ msgid "Export"
 msgstr "Өткөрүү "
 
 #: adhocracy4/exports/templates/a4exports/export_dashboard.html:7
-#: adhocracy4/exports/templates/a4exports/export_dashboard.html:7
 msgid ""
 "You can export the results of your participation project as an excel file."
 msgstr ""
@@ -288,21 +267,17 @@ msgstr ""
 "болот. "
 
 #: adhocracy4/exports/templates/a4exports/export_dashboard.html:19
-#: adhocracy4/exports/templates/a4exports/export_dashboard.html:19
 msgid "here you can export all ideas"
 msgstr "бул жакта сиз бардык идеяларды өткөрө аласыз "
 
-#: adhocracy4/exports/templates/a4exports/export_dashboard.html:31
 #: adhocracy4/exports/templates/a4exports/export_dashboard.html:31
 msgid "here you can export all subjects"
 msgstr "Ушул жерге сиз бардык темаларды экспорт кыла аласыз"
 
 #: adhocracy4/exports/templates/a4exports/export_dashboard.html:43
-#: adhocracy4/exports/templates/a4exports/export_dashboard.html:43
 msgid "here you can export all answers"
 msgstr "Ушул жерге сиз бардык жоопторду экспорт кыла аласыз"
 
-#: adhocracy4/exports/templates/a4exports/export_dashboard.html:55
 #: adhocracy4/exports/templates/a4exports/export_dashboard.html:55
 msgid "here you can export all comments"
 msgstr "бул жакта сиз бардык пикирлерди өткөрө аласыз "
@@ -318,7 +293,6 @@ msgstr "бул жакта сиз бардык пикирлерди өткөрө 
 msgid "Search"
 msgstr "Издөө"
 
-#: adhocracy4/forms/templates/a4forms/includes/form_field.html:5
 #: adhocracy4/forms/templates/a4forms/includes/form_field.html:5
 #: apps/account/templates/a4_candy_account/guest_convert.html:32
 #: apps/contrib/templates/a4_candy_contrib/includes/form_checkbox_field.html:6
@@ -343,7 +317,6 @@ msgid "Remove category"
 msgstr "Категорияны өчүрүү"
 
 #: adhocracy4/images/templates/a4images/image_upload_widget.html:8
-#: adhocracy4/images/templates/a4images/image_upload_widget.html:8
 #: adhocracy-plus/templates/a4images/image_upload_widget.html:10
 #: adhocracy-plus/templates/a4images/image_upload_widget.html:11
 #: adhocracy-plus/templates/a4images/image_upload_widget_simple.html:10
@@ -352,7 +325,6 @@ msgid "Remove the picture"
 msgstr "Сүрөттү өчүрүү"
 
 #: adhocracy4/images/templates/a4images/image_upload_widget.html:12
-#: adhocracy4/images/templates/a4images/image_upload_widget.html:12
 #: adhocracy-plus/templates/a4images/image_upload_widget.html:16
 #: adhocracy-plus/templates/a4images/image_upload_widget.html:17
 #: adhocracy-plus/templates/a4images/image_upload_widget_simple.html:16
@@ -360,7 +332,6 @@ msgstr "Сүрөттү өчүрүү"
 msgid "Upload a picture"
 msgstr "Сүрөттү жүктөө "
 
-#: adhocracy4/images/templates/a4images/image_upload_widget.html:19
 #: adhocracy4/images/templates/a4images/image_upload_widget.html:19
 msgid ""
 "\n"
@@ -374,7 +345,6 @@ msgstr ""
 "             бул баракчанын аягында."
 
 #: adhocracy4/labels/templates/a4labels/includes/module_labels_form.html:3
-#: adhocracy4/labels/templates/a4labels/includes/module_labels_form.html:3
 msgid ""
 "In this section, you can create\n"
 "labels. If you create any, each contribution can be assigned\n"
@@ -386,11 +356,9 @@ msgstr ""
 "болот. "
 
 #: adhocracy4/labels/templates/a4labels/includes/module_labels_form.html:21
-#: adhocracy4/labels/templates/a4labels/includes/module_labels_form.html:21
 msgid "Add label"
 msgstr "Ярлыкты кошуу"
 
-#: adhocracy4/polls/templates/a4polls/poll_404.html:8
 #: adhocracy4/polls/templates/a4polls/poll_404.html:8
 msgid ""
 "Participation is not possible at the moment. The poll has not been set up "
@@ -398,13 +366,11 @@ msgid ""
 msgstr "Азыркы учурда катышуу мүмкүн эмес. Сурамжылоо баштала элек. "
 
 #: adhocracy4/polls/templates/a4polls/poll_404.html:15
-#: adhocracy4/polls/templates/a4polls/poll_404.html:15
 msgid "Setup the poll by adding questions and answers in the dashboard."
 msgstr ""
 "Жеке кабинетте суроолорду жана жоопторду кошуу менен сурамжылоону "
 "тууралаңыз. "
 
-#: adhocracy4/polls/templates/a4polls/poll_dashboard.html:5
 #: adhocracy4/polls/templates/a4polls/poll_dashboard.html:5
 msgid "Edit poll"
 msgstr "Сурамжылоону оңдоо"
@@ -890,7 +856,7 @@ msgstr ""
 
 #: adhocracy4/images/widgets.py:28
 msgid "Select a picture from your local folder."
-msgstr ""
+msgstr "Локалдык папкаңыздан сүрөттү тандаңыз"
 
 #: adhocracy4/labels/dashboard.py:15
 msgid "Edit labels"
@@ -1366,11 +1332,11 @@ msgstr ""
 #: adhocracy4/projects/utils.py:46
 #, python-brace-format
 msgid "{}. Online Participation"
-msgstr ""
+msgstr "{}. Онлайн катышуу"
 
 #: adhocracy4/projects/utils.py:55
 msgid "Online Participation"
-msgstr ""
+msgstr "Онлайн катышуу"
 
 #: adhocracy4/reports/templatetags/react_reports.py:28
 #: apps/contrib/templates/a4_candy_contrib/item_detail.html:125
@@ -2273,7 +2239,7 @@ msgstr "Мурунку баракча"
 
 #: apps/contrib/templates/a4_candy_contrib/includes/pagination.html:14
 msgid " of "
-msgstr ""
+msgstr "ичинен"
 
 #: apps/contrib/templates/a4_candy_contrib/includes/pagination.html:19
 #: apps/contrib/templates/a4_candy_contrib/includes/pagination.html:20
@@ -3795,12 +3761,12 @@ msgstr ""
 #: apps/notifications/templates/a4_candy_notifications/_pagination.html:15
 #: adhocracy-plus/templates/a4modules/module_detail.html:78
 msgid "Previous"
-msgstr ""
+msgstr "Мурунку"
 
 #: apps/notifications/templates/a4_candy_notifications/_pagination.html:43
 #: adhocracy-plus/templates/a4modules/module_detail.html:84
 msgid "Next"
-msgstr ""
+msgstr "Кийинки"
 
 #: apps/notifications/templates/a4_candy_notifications/emails/content/comment_on_post.en.email:3
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_on_post.en.email:29
@@ -4019,11 +3985,11 @@ msgstr ""
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator.en.email:4
 #, python-format
 msgid "Reaction to your contribution in project %(project_name)s"
-msgstr ""
+msgstr "%(project_name)s долбооруна  Сиздин салымыңызга реакция "
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator.en.email:6
 msgid "Reaction to your contribution"
-msgstr ""
+msgstr "Сиздин салымга реакция "
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator.en.email:9
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_on_post.en.email:24
@@ -4046,16 +4012,16 @@ msgstr "Саламатсызбы %(receiver_name)s,"
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator.en.email:13
 #, python-format
 msgid "%(actor_name)s commented on your post:"
-msgstr ""
+msgstr "%(actor_name)s Сиздин билдирүүңүзгө пикир калтырды:  "
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator.en.email:21
 msgid "Would you like to answer?"
-msgstr ""
+msgstr "Жооп бергиңиз келеби? "
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator.en.email:26
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_comment_highlight.en.email:17
 msgid "View Post"
-msgstr ""
+msgstr "Билдирүүнү окуп көрүү "
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator.en.email:28
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_comment_highlight.en.email:19
@@ -4065,6 +4031,8 @@ msgid ""
 "This email was sent to %(receiver_mail)s. You have received the e-mail "
 "because you added a contribution to the above project."
 msgstr ""
+"Бул электрондук кат %(receiver_mail)s жиберилди. Сиз электрондук катты "
+"жогоруда аталган долбоорго салым кошконуңуз үчүн алдыңыз. "
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_on_post.en.email:12
 #, python-format
@@ -4116,12 +4084,12 @@ msgstr ""
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:4
 #, python-format
 msgid "Feedback for your contribution on %(site_name)s"
-msgstr ""
+msgstr "Сиздин салым тууралуу ой-пикир %(site_name)sда"
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:17
 #, python-format
 msgid "Your contribution is %(status)s."
-msgstr ""
+msgstr "Сиздин салым %(status)s."
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_added.en.email:4
 #, python-format
@@ -4141,6 +4109,8 @@ msgid ""
 "This email was sent to %(receiver_mail)s. You have received the e-mail "
 "because you are following the above project."
 msgstr ""
+"Бул кат %(receiver_mail)s жиберилди. Сиз бул электрондук катты жогоруда "
+"аталган долбоорго катышкандыгыңыз үчүн алдыңыз. "
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_deleted.en.email:4
 #, python-format
@@ -4174,26 +4144,26 @@ msgstr ""
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_over_soon.en.email:4
 #, python-format
 msgid "Participation ends soon for %(project_name)s"
-msgstr ""
+msgstr "%(project_name)s катышуу жакында аяктайт "
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_over_soon.en.email:6
 msgid "Participation ends soon!"
-msgstr ""
+msgstr "Катышуу жакында аяктайт! "
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_over_soon.en.email:13
 msgid "the online participation in the above mentioned project will end soon."
-msgstr ""
+msgstr "Онлайн катышуу жогоруда айтылган долбоордо жакында аяктайт."
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_over_soon.en.email:16
 #, python-format
 msgid "You can still participate until %(end_date)s."
-msgstr ""
+msgstr "Сиз дагы эле %(end_date)sчейин катыша аласыз."
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_started.en.email:4
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_project_started.en.email:9
 #, python-format
 msgid "Here we go: %(project_name)s starts now!"
-msgstr ""
+msgstr "Келиңиз баштайлы: %(project_name)s башталды!"
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_project_completed.en.email:4
 #, python-format
@@ -4203,12 +4173,12 @@ msgstr ""
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_created.en.email:4
 #, python-format
 msgid "New project %(project_name)s on %(site_name)s"
-msgstr ""
+msgstr "%(project_name)sжаңы долбоору %(site_name)sда"
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_created.en.email:6
 #, python-format
 msgid "The new project %(project_name)s was created for %(organisation_name)s"
-msgstr ""
+msgstr "%(project_name)s жаңы долбоору %(organisation_name)s үчүн түзүлгөн."
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_created.en.email:10
 #, python-format
@@ -4216,6 +4186,8 @@ msgid ""
 "%(creator_name)s has created the project %(project_name)s for "
 "%(organisation_name)s."
 msgstr ""
+"%(creator_name)s%(project_name)s долбоорун %(organisation_name)s  үчүн "
+"даярдады.  "
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_created.en.email:17
 #, python-format
@@ -4223,6 +4195,8 @@ msgid ""
 "This email was sent to %(receiver_mail)s. This email was sent to you because "
 "you are an intiator of %(organisation_name)s."
 msgstr ""
+"Бул электрондук кат %(receiver_mail)s жиберилген. Бул электрондук кат Сизге "
+"Сиз %(organisation_name)s уюштуруучусу болгонуңуз үчүн жиберилди. "
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_deleted.en.email:6
 #, python-format
@@ -4236,6 +4210,9 @@ msgid ""
 "are an initiator of the organisation '%(organisation_name)s', in which a "
 "project was deleted."
 msgstr ""
+"Бул электрондук кат %(receiver)s жиберилген. Сизге бул электрондук кат "
+"долбоор  өчүрүлгөн %(organisation_name)s уюмунун уюштуруучусу болгонуңуз "
+"үчүн жиберилди. "
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:5
 #, python-format
@@ -4277,6 +4254,8 @@ msgid ""
 "This email was sent to %(receiver_mail)s. This email was sent to you because "
 "you are a moderator in the project."
 msgstr ""
+"Бул электрондук кат %(receiver_mail)s жиберилген. Бул  электрондук кат Сизге "
+"долбоордун модератору болгонуңуз үчүн жиберилген."
 
 #: apps/notifications/templates/a4_candy_notifications/settings.html:19
 msgid "Trigger all notification tasks (for testing)"
@@ -4491,6 +4470,9 @@ msgid ""
 "and {} pixel tall. Allowed file formats are png, jpeg, gif. The file size "
 "should be max. 5 MB."
 msgstr ""
+"Cүрөт жайгаштырылат. Анын бийиктиги {} пиксельден туурасы {} пиксельден "
+"ашпоосу керек. Колдонууга болгон форматтар png, jpeg, gif. Файлдын көлөмү 5 "
+"мбтан ашпоосу керек"
 
 #: apps/organisations/mixins.py:20
 msgid "You can still manage all your preferences on User Agreements."
@@ -5298,17 +5280,17 @@ msgstr "%(date)s тартып катышуу "
 
 #: apps/projects/templates/a4_candy_projects/includes/project_timeline-carousel.html:12
 msgid "Timeline item"
-msgstr ""
+msgstr "Ырааттама пункту "
 
 #: apps/projects/templates/a4_candy_projects/includes/project_timeline-carousel.html:18
 #, python-format
 msgid " from %(date)s"
-msgstr ""
+msgstr "дан %(date)s"
 
 #: apps/projects/templates/a4_candy_projects/includes/project_timeline-carousel.html:21
 #, python-format
 msgid " on %(date)s"
-msgstr ""
+msgstr "%(date)sкүнү"
 
 #: apps/projects/templates/a4_candy_projects/includes/removeable_invite_list.html:9
 #: apps/projects/templates/a4_candy_projects/includes/removeable_invite_list.html:21
@@ -5483,7 +5465,7 @@ msgstr ""
 
 #: apps/projects/templates/a4_candy_projects/project_detail.html:326
 msgid "No results yet."
-msgstr ""
+msgstr "Азырынча жыйынтык  жок. "
 
 #: apps/projects/templates/a4_candy_projects/project_moderators.html:7
 msgid "Edit Moderators"
@@ -6424,11 +6406,11 @@ msgstr ""
 
 #: adhocracy-plus/templates/a4modules/module_detail.html:42
 msgid "This project is in not published yet."
-msgstr ""
+msgstr "Бул долбоор али жарыялана элек. "
 
 #: adhocracy-plus/templates/a4modules/module_detail.html:81
 msgid "of"
-msgstr ""
+msgstr "ичинен"
 
 #: adhocracy-plus/templates/a4modules/module_detail.html:182
 msgid "More questions from this online participation"
