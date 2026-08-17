@@ -110,6 +110,22 @@ compiled.
 Here, the English translations are kept untranslated, so that they could
 be used to overwrite strings.
 
+Important rules for forks:
+
+- `locale-source` is a pure mirror of the (shared) transifex resource. It is
+  only ever written by `tx pull -af`. Never hand-edit it and never add
+  fork-specific strings or translations to it - they will be overwritten and
+  lost on the next pull.
+- All fork-specific strings and translations are added **only** in
+  `locale-fork`. Entries left untranslated in `locale-fork` fall through to
+  the transifex translations in `locale-source`, so only the strings that
+  should differ from the main branch need to be filled in.
+- `tx pull`/`tx push` only ever touch `locale-source`; `locale-fork` is not
+  configured in `.tx/config` and is never touched by transifex.
+- Because the transifex project is shared with adhocracy-plus, do not push
+  fork-specific source strings to it. New shared (main branch) strings are
+  pushed by the adhocracy-plus repo.
+
 ### Mark fork-specific translations for translators
 There are two options to mark the strings for translators:
 1. By comments, that are displayed to translators. Django docs on comments for translaters

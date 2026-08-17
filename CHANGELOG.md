@@ -27,6 +27,10 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Adjusted Newsletter emails
 - Installed HTMX rather than using script tag
 
+### Fixed
+
+- Translations: fork translations moved to locale-fork, no longer overwritten by transifex pulls
+
 
 ## v2602.01-partial
 
