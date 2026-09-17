@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 Since version v2306 the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Added
+
+- Summarization: project context (project id and slug) in Sentry error reports [ST-2214]
+
+### Changed
+
+- Translations: fork translations live in `locale-fork` and are no longer overwritten by transifex pulls (#116)
+- Updated translations from transifex (#114)
+- Learning Center: unified heading sizes (`h2`/`h3`/`h4` and `--lg` titles) to 1.35rem [ST-2728]
+
+### Fixed
+
+- Guest login: heading, button and guest-account hint are translatable again and have a German translation
+- Summarization: already absolute attachment URLs are no longer prefixed again, empty URLs are handled [ST-2214]
+
 ## roots-v2604.01
 
 ### Added
@@ -26,11 +43,6 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Changed BMBF logo to BMFTR
 - Adjusted Newsletter emails
 - Installed HTMX rather than using script tag
-
-### Fixed
-
-- Translations: fork translations moved to locale-fork, no longer overwritten by transifex pulls
-
 
 ## v2602.01-partial
 
