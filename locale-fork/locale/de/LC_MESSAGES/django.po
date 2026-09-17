@@ -5777,6 +5777,17 @@ msgid ""
 "                        <a href=\"%(signup_url)s\">click here</a>."
 msgstr ""
 
+#: apps/users/templates/a4_candy_users/guest_create.html:24
+msgid ""
+"Please log out after participating or close your browser. This ensures that "
+"neither you nor anyone else has access to your guest account. You can "
+"convert your guest account into a permanent account in the user settings."
+msgstr ""
+"Bitte melden Sie sich nach der Teilnahme ab oder schließen Sie Ihren "
+"Browser. So stellen Sie sicher, dass Dritte Zugriff keinen auf Ihr Gastkonto"
+" haben. Sie können Ihr Gastkonto jederzeit in den Nutzerkontoeinstellungen "
+"in ein dauerhaftes Konto umwandeln."
+
 #: apps/users/templates/a4_candy_users/guest_create.html:37
 #: adhocracy-plus/templates/account/signup.html:33
 #: adhocracy-plus/templates/socialaccount/signup.html:31

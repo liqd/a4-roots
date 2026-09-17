@@ -4,7 +4,7 @@
     {% translate "Continue as Guest" %}
 {% endblock head_title %}
 {% block content %}
-    <h1>Proceed as guest</h1>
+    <h1>{% translate "Proceed as Guest" %}</h1>
     <p>
         {% url 'account_login' as login_url %}
         {% url 'account_signup' as signup_url %}
@@ -21,7 +21,7 @@
         {% endwith %}
       {% endwith %}
     </p>
-    <p>Please log out after participating or close your browser. This ensures that neither you nor anyone else has access to your guest account. You can convert your guest account into a permanent account in the user settings.</p>
+    <p>{% translate "Please log out after participating or close your browser. This ensures that neither you nor anyone else has access to your guest account. You can convert your guest account into a permanent account in the user settings." %}</p>
     <form id="signup_form" method="post" action="">
         {{ form.non_field_errors }}
         {{ form.media }}
