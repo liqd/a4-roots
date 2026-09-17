@@ -58,7 +58,7 @@
   width: 100%;
   height: 148px;
   object-fit: cover;
-  background-color: #d9d9d9; /* Gray fallback */
+  background-color: $gray-lightest; /* Gray fallback */
   margin-bottom: 8px;
 }
 
@@ -76,40 +76,40 @@
 // Learning Content
 .learning-content {
   max-width: 30rem;
+}
 
-  &__categories {
-    &__item {
-      margin-bottom: 16px;
+.learning-content__categories__item {
+  margin-bottom: 16px;
 
-      &:last-child {
-        margin-bottom: 39px;
-      }
-    }
+  &:last-child {
+    margin-bottom: 39px;
   }
 }
 
 .learning-content:last-child  {
   padding-bottom: 3rem;
+}
 
-  // h2 is added by wagtail without a class, hence the nots
+// h2/h3/h4 are added by wagtail richtext without a class, hence the nots
+.learning-content__description {
   & h2:not(.learning-content__title, .learning-content__title--lg, .learning-content__title--md) {
     font-family: $font-family-base;
     font-weight: 700;
-    font-size: 1.35rem; 
+    font-size: 1.35rem;
     margin-bottom: 8px;
   }
 
   & h3 {
     font-family: $font-family-base;
     font-weight: 700;
-    font-size: 1.2rem; 
+    font-size: 1.2rem;
     margin-bottom: 6px;
   }
 
   & h4 {
     font-family: $font-family-base;
     font-weight: 700;
-    font-size: 1.05rem; 
+    font-size: 1.05rem;
     margin-bottom: 4px;
   }
 }
@@ -126,7 +126,7 @@
 }
 
 .learning-content__title--lg {
-  font-size: 1.5rem;
+  font-size: 1.35rem;
 }
 
 .learning-content__title--md {
