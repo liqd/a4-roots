@@ -5784,7 +5784,7 @@ msgid ""
 "convert your guest account into a permanent account in the user settings."
 msgstr ""
 "Bitte melden Sie sich nach der Teilnahme ab oder schließen Sie Ihren "
-"Browser. So stellen Sie sicher, dass Dritte Zugriff keinen auf Ihr Gastkonto"
+"Browser. So stellen Sie sicher, dass Dritte keinen Zugriff auf Ihr Gastkonto"
 " haben. Sie können Ihr Gastkonto jederzeit in den Nutzerkontoeinstellungen "
 "in ein dauerhaftes Konto umwandeln."
 
